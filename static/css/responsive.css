@@ -1,0 +1,229 @@
+/*
+====================================
+Small Screen - Tablate
+====================================
+*/
+@media screen and (max-width: 991px) {
+
+	html {
+		font-size: 50%;
+	}
+
+	.main-wrapper {
+		padding: 2rem 2rem;
+	}
+
+	.main-left-col {
+		position: fixed;
+		width: 40rem;
+		height: 100%;
+		background: #fff;
+		top: 0;
+		left: -100%;
+		overflow-y: scroll;
+		transition: .35s;
+		z-index: 1024;
+	}
+
+	.main-left-col.current {
+		left: 0;
+	}
+
+	.main-left {
+		width: 40rem;
+		z-index: 1024;
+	}
+
+	.logo_wraper {
+		padding: 3rem 2rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background-size: 110%;
+	}
+
+	.logo_wraper .hamburger-menu span {
+		background: #FFF;
+	}
+
+	.side_menu {
+		padding: 3rem 2rem 3rem 2rem;
+	}
+
+	.header_area {
+		width: 100%;
+		padding: 0rem 0rem 2rem;
+	}
+
+	.right-mainpart {
+		padding: 0;
+	}
+
+	.history_table table th,
+	.history_table table td {
+		font-size: 1.6rem;
+	}
+
+	.action_button img {
+		width: 2.6rem;
+	}
+
+	.saved_box {
+		display: block;
+	}
+
+	.report_box {
+		margin-top: 2.5rem;
+	}
+
+	.save_left {
+		width: 100%;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+
+	.header_title h2 {
+   		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		line-clamp: 1;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		-webkit-box-orient: vertical;
+	}
+
+	.header_title {
+		width: 70%;
+	}
+
+	.template_title h4 {
+		width: 85%;
+	}
+
+}
+
+
+/*
+================================================
+Medium devices (tablets, 767px and down)
+================================================
+*/
+@media screen and (max-width: 767px) {
+
+	.header_title h2 {
+   		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		line-clamp: 1;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		-webkit-box-orient: vertical;
+	}
+
+	.header_title {
+		width: 65%;
+		gap: 1.6rem;
+	}
+
+	.main-wrapper {
+		padding: 1.5rem 1.5rem;
+	}
+
+	.header_area {
+		padding-bottom: 1.6rem;
+	}
+
+	.template_title h4 {
+		width: 80%;
+	}
+
+	.accordian_cnt p {
+		width: 90%;
+	}
+
+	.history_table table {
+		width: 90rem;
+	}
+
+	.history_table {
+		overflow-x: auto;
+	}
+
+	.audit_item2 {
+		gap: 4rem;
+	}
+
+	.audit_item2 .audit_cnt {
+		padding-right: 4rem;
+	}
+
+}
+
+/*Small devices (landscape phones, 575px and down)*/
+@media (max-width: 575px) {
+
+	.template_title {
+		display: block;
+	}
+
+	.template_title h4 {
+		width: 100%;
+		margin-bottom: 0.6rem;
+	}
+
+	.add_wraper {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 1rem;
+	}
+
+	.custom-upload {
+		width: 100%;
+	}
+
+	.added_item {
+		width: 100%;
+	}
+
+	.accordian_cnt p {
+		width: 85%;
+	}
+
+	.pest_dropdown {
+		width: 35rem;
+	}
+
+	.audit_item {
+		display: block;
+	}
+
+	.audit_item img {
+		width: 100%;
+		display: block;
+		margin-bottom: 1.5rem;
+	}
+
+	.report_box {
+		width: 100%;
+	}
+
+	.audit_item2 {
+		display: block;
+	}
+
+	.audit_item2 .audit_cnt {
+		padding-right: 0rem;
+	}
+
+	.audit_item2 .audit_cnt img {
+		display: none;
+	}
+
+	.sign_title h3  {
+		font-size: 3rem;
+	}
+
+	.sign_title p {
+		font-size: 2rem;
+	}
+
+}
