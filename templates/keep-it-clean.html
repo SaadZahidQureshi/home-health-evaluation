@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="utf-8">
     <meta name="description" content="">
@@ -12,12 +13,12 @@
     <title>Keep it clean </title>
 
     <!-- favicon -->
-    <link href="img/favicon.png" type="image/png" rel="icon">
+    <link href="{% static "img\favicon.png" %}" type="image/png" rel="icon">
 
     <!-- all css here -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <link href="css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="{% static "css\bootstrap.min.css" %}" rel="stylesheet" type="text/css" />
+    <link href="{% static "css\style.css" %}" rel="stylesheet" type="text/css" />
+    <link href="{% static "css\responsive.css" %}" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -28,7 +29,7 @@
                 <div class="main-left">
                     <div class="logo_wraper">
                         <a href="#">
-                            <img src="img/logo.svg" alt="">
+                            <img src="{% static "img\logo.svg" %}" alt="">
                         </a>
                         <div class="hamburger-menu d-lg-none">
                             <span class="line-top"></span>
@@ -79,12 +80,12 @@
                         </div>
                         <div class="header_right">
                             <ul>
-                                <li><a href="#"><img src="img/save.svg" alt=""></a></li>
-                                <li><a href="#"><img src="img/history.svg" alt=""></a></li>
+                                <li><a href="#"><img src="{% static "img\save.svg" %}" alt=""></a></li>
+                                <li><a href="#"><img src="{% static "img\history.svg" %}" alt=""></a></li>
                                 <li>
                                     <div class="dropdown">
                                         <a class="profile_btn" href="#" role="button" id="profile_dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="img/profile.png" alt="">
+                                            <img src="{% static "img\profile.png" %}" alt="">
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="profile_dropdown">
                                             <li><a class="dropdown-item" href="profile-settings.html">Profile Settings</a></li>
