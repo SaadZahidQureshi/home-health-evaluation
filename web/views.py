@@ -1,5 +1,5 @@
-from django.shortcuts import render
 from django.views.generic import TemplateView
+from api.core.mixin import LoginRequiredMixin
 
 # Create your views here.
 class LandingPageTemplateView(TemplateView):
@@ -11,7 +11,7 @@ class LoginPageTemplateView(TemplateView):
 class RegisterPageTemplateView(TemplateView):
     template_name = "sign-up.html"
 
-class KeepItCleanPageTemplateView(TemplateView):
+class KeepItCleanPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "keep-it-clean.html"
 
     def get_context_data(self, **kwargs):
@@ -20,7 +20,7 @@ class KeepItCleanPageTemplateView(TemplateView):
         context["active_page"] = "keep_it_clean"
         return context
     
-class KeepItCleanItemSelectedPageTemplateView(TemplateView):
+class KeepItCleanItemSelectedPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "keep-it-clean-item-selected.html"
 
     def get_context_data(self, **kwargs):
@@ -29,7 +29,7 @@ class KeepItCleanItemSelectedPageTemplateView(TemplateView):
         context["active_page"] = "keep_it_clean"
         return context
 
-class KeepItDryPageTemplateView(TemplateView):
+class KeepItDryPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "keep-it-dry.html"
 
     def get_context_data(self, **kwargs):
@@ -38,7 +38,7 @@ class KeepItDryPageTemplateView(TemplateView):
         context["active_page"] = "keep_it_dry"
         return context
     
-class KeepItDryItemSelectedPageTemplateView(TemplateView):
+class KeepItDryItemSelectedPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "keep-it-dry-item-selected.html"
 
     def get_context_data(self, **kwargs):
@@ -47,7 +47,7 @@ class KeepItDryItemSelectedPageTemplateView(TemplateView):
         context["active_page"] = "keep_it_dry"
         return context
 
-class KeepItMaintainedPageTemplateView(TemplateView):
+class KeepItMaintainedPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "keep-it-maintained.html"
 
     def get_context_data(self, **kwargs):
@@ -56,7 +56,7 @@ class KeepItMaintainedPageTemplateView(TemplateView):
         context["active_page"] = "keep_it_maintained"
         return context
     
-class KeepItMaintainedItemSelectedPageTemplateView(TemplateView):
+class KeepItMaintainedItemSelectedPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "keep-it-maintained-item-selected.html"
 
     def get_context_data(self, **kwargs):
@@ -65,7 +65,7 @@ class KeepItMaintainedItemSelectedPageTemplateView(TemplateView):
         context["active_page"] = "keep_it_maintained"
         return context
 
-class KeepItSafePageTemplateView(TemplateView):
+class KeepItSafePageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "keep-it-safe.html"
 
     def get_context_data(self, **kwargs):
@@ -74,7 +74,7 @@ class KeepItSafePageTemplateView(TemplateView):
         context["active_page"] = "keep_it_safe"
         return context
 
-class KeepItPestFreePageTemplateView(TemplateView):
+class KeepItPestFreePageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "keep-it-pest-free.html"
 
     def get_context_data(self, **kwargs):
@@ -83,7 +83,7 @@ class KeepItPestFreePageTemplateView(TemplateView):
         context["active_page"] = "keep_it_pest_free"
         return context
 
-class KeepItPestFreeItemSelectedPageTemplateView(TemplateView):
+class KeepItPestFreeItemSelectedPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "keep-it-pest-free-item-selected.html"
 
     def get_context_data(self, **kwargs):
@@ -92,7 +92,7 @@ class KeepItPestFreeItemSelectedPageTemplateView(TemplateView):
         context["active_page"] = "keep_it_pest_free"
         return context    
 
-class KeepItCleanContaminentFreePageTemplateView(TemplateView):
+class KeepItCleanContaminentFreePageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "keep-it-clean-contaminent-free.html"
 
     def get_context_data(self, **kwargs):
@@ -101,7 +101,7 @@ class KeepItCleanContaminentFreePageTemplateView(TemplateView):
         context["active_page"] = "keep_it_contaminent_free"
         return context
 
-class KeepItCleanContaminentFreeItemSelectedPageTemplateView(TemplateView):
+class KeepItCleanContaminentFreeItemSelectedPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "keep-it-clean-contaminent-free-item-selected.html"
 
     def get_context_data(self, **kwargs):
@@ -110,7 +110,7 @@ class KeepItCleanContaminentFreeItemSelectedPageTemplateView(TemplateView):
         context["active_page"] = "keep_it_contaminent_free"
         return context
 
-class KeepItVentilatedPageTemplateView(TemplateView):
+class KeepItVentilatedPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "keep-it-ventilated.html"
 
     def get_context_data(self, **kwargs):
@@ -119,7 +119,7 @@ class KeepItVentilatedPageTemplateView(TemplateView):
         context["active_page"] = "keep_it_ventilated"
         return context
 
-class KeepItVentilatedItemSelectedPageTemplateView(TemplateView):
+class KeepItVentilatedItemSelectedPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "keep-it-ventilated-item-selected.html"
 
     def get_context_data(self, **kwargs):
@@ -128,7 +128,7 @@ class KeepItVentilatedItemSelectedPageTemplateView(TemplateView):
         context["active_page"] = "keep_it_ventilated"
         return context    
 
-class KeepItComfortablePageTemplateView(TemplateView):
+class KeepItComfortablePageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "keep-it-comfortable.html"
 
     def get_context_data(self, **kwargs):
@@ -137,7 +137,7 @@ class KeepItComfortablePageTemplateView(TemplateView):
         context["active_page"] = "keep_it_confortable"
         return context
 
-class KeepItComfortableItemSelectedPageTemplateView(TemplateView):
+class KeepItComfortableItemSelectedPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "keep-it-comfortable-item-selected.html"
 
     def get_context_data(self, **kwargs):
@@ -146,7 +146,7 @@ class KeepItComfortableItemSelectedPageTemplateView(TemplateView):
         context["active_page"] = "keep_it_confortable"
         return context
 
-class ProfileSettingPageTemplateView(TemplateView):
+class ProfileSettingPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "profile-settings.html"
 
     def get_context_data(self, **kwargs):
@@ -154,7 +154,7 @@ class ProfileSettingPageTemplateView(TemplateView):
         context["title"] = "Profile Settings"
         return context
     
-class SettingPageTemplateView(TemplateView):
+class SettingPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "settings.html"
 
     def get_context_data(self, **kwargs):
@@ -162,7 +162,7 @@ class SettingPageTemplateView(TemplateView):
         context["title"] = "Settings"
         return context
 
-class SavedgPageTemplateView(TemplateView):
+class SavedgPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "saved.html"
 
     def get_context_data(self, **kwargs):
@@ -170,7 +170,7 @@ class SavedgPageTemplateView(TemplateView):
         context["title"] = "Saved"
         return context
 
-class HistoryPageTemplateView(TemplateView):
+class HistoryPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "history.html"
 
     def get_context_data(self, **kwargs):

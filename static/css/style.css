@@ -40,6 +40,10 @@ button {
 	padding: 0;
 }
 
+.hide {
+	display: none;
+}
+
 ol,
 ul {
     list-style: none;
@@ -1048,6 +1052,7 @@ body {
 
 .sign_item {
 	margin-bottom: 1rem;
+	position: relative;
 }
 
 .sign_item label {
@@ -1073,6 +1078,19 @@ body {
 	padding: 1.2rem 1.2rem;
 	border-radius: 1rem;
 	outline: none;
+}
+
+.password-toggle{
+	position: absolute;
+    right: 8px;
+    top: 32px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: transparent;
 }
 
 .sign_item input::placeholder {
@@ -1123,3 +1141,58 @@ body {
 .signup_bottom {
 	padding-top: 3rem;
 }
+
+.toast-info {
+    border-radius: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 50px;
+}
+
+.toast-info .title{
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.toast-info .body {
+    font-weight: 400;
+}
+
+
+.toastify {
+    border-radius: 6px!important;
+    font-size: 14px !important;
+    font-weight: 400;
+    line-height: 14px;
+    color: #FFFFFF;
+}
+
+.danger-toast {
+    border: 1px solid #dc3545!important;
+    background: #fef5f5!important;
+    color: #dc3545!important;
+    display: flex!important;
+    gap: 5px;
+    line-height: 16px;
+}
+
+.success-toast {
+    border: 1px solid #28a745 !important;
+    background: #f0fff4 !important;
+    color: #28a745 !important;
+    display: flex !important;
+    gap: 5px;
+    line-height: 16px;
+}
+
+.success-toast .toast-close {
+    color: #28a745 !important;
+    opacity: 1 !important;
+    align-self: flex-start;
+}
+
+.danger-toast .toast-close {
+    color: #dc3545!important;
+    opacity: 1!important;
+    align-self: flex-start;
+} 
