@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="app, landing, corporate, Creative, Html Template, Template">
+    <meta name="author" content="web-themes">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1">
+
+    <!-- title -->
+    <title>{% block title %}{% endblock title %}</title>
+
+    <!-- favicon -->
+    <link href="{% static "img\favicon.png" %}" type="image/png" rel="icon">
+
+    <!-- all css here -->
+    <link href="{% static "css\bootstrap.min.css" %}" rel="stylesheet" type="text/css" />
+    <link href="{% static "css\style.css" %}" rel="stylesheet" type="text/css" />
+    <link href="{% static "css\responsive.css" %}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <!--========== main-wrapper start ===========-->
+    <main class="main-wrapper">
+        <div class="row g-0">
+            <div class="col-lg-3 main-left-col">
+                <div class="main-left">
+                    <div class="logo_wraper">
+                        <a href="#">
+                            <img src="{% static "img\logo.svg" %}" alt="">
+                        </a>
+                        <div class="hamburger-menu d-lg-none">
+                            <span class="line-top"></span>
+                            <span class="line-center"></span>
+                            <span class="line-bottom"></span>
+                        </div>
+                    </div>
+                    <div class="side_menu">
+                        <ul>
+                            <li class="{% if active_page == "keep_it_clean" %}active{% endif %}">
+                                <a href="/keep-it-clean/"><span class="">1</span> Keep It Clean</a>
+                            </li>
+                            <li class="{% if active_page == "keep_it_dry" %}active{% endif %}">
+                                <a href="/keep-it-dry/"><span class="">2</span> Keep It Dry</a>
+                            </li>
+                            <li class="{% if active_page == "keep_it_pest_free" %}active{% endif %}">
+                                <a href="/keep-it-pest-free/"><span class="">3</span> Keep It Pest-Free</a>
+                            </li>
+                            <li class="{% if active_page == "keep_it_contaminent_free" %}active{% endif %}">
+                                <a href="/keep-it-clean-contaminent-free/"><span class="">4</span> Keep It Contaminent-Free</a>
+                            </li>
+                            <li class="{% if active_page == "keep_it_safe" %}active{% endif %}">
+                                <a href="/keep-it-safe/"><span class="">5</span> Keep It Safe</a>
+                            </li>
+                            <li class="{% if active_page == "keep_it_ventilated" %}active{% endif %}">
+                                <a href="/keep-it-ventilated/"><span class="">6</span> Keep It Ventilated</a>
+                            </li>
+                            <li class="{% if active_page == "keep_it_confortable" %}active{% endif %}">
+                                <a href="/keep-it-comfortable/"><span class="">7</span> Keep It Comfortable</a>
+                            </li>
+                            <li class="{% if active_page == "keep_it_maintained" %}active{% endif %}">
+                                <a href="/keep-it-maintained/"><span class="">8</span> Keep It Maintained</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 main-right-col">
+                <div class="main-right">
+                    <div class="header_area">
+                        <div class="header_title header_title2">
+                            <div class="hamburger-menu d-lg-none">
+                                <span class="line-top"></span>
+                                <span class="line-center"></span>
+                                <span class="line-bottom"></span>
+                            </div>
+                            <div class="back_btn">
+                                <a href="javascript:void(0)" onclick="history.back()"><img src="{% static "img\left-arrow.svg" %}" alt=""></a>
+                            </div>
+                            <h2>{{title}}</h2>
+                        </div>
+                        <div class="header_right">
+                            <ul>
+                                <li><a href="/saved/"><img src="{% static "img\save.svg" %}" alt=""></a></li>
+                                <li><a href="/history/"><img src="{% static "img\history.svg" %}" alt=""></a></li>
+                                <li>
+                                    <div class="dropdown">
+                                        <a class="profile_btn" href="#" role="button" id="profile_dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img src="{% static "img\profile.png" %}" alt="">
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="profile_dropdown">
+                                            <li><a class="dropdown-item" href="/profile-settings/">Profile Settings</a></li>
+                                            <li><a class="dropdown-item" href="/settings/">Settings</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    {% block content %}{% endblock content %}           
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--========== main-wrapper end ===========-->
+
+    <!-- all js here -->
+    <script src="{% static "js\jquery-3.4.1.min.js" %}"></script>
+    <script src="{% static "js\bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "js\main.js" %}"></script>
+</body>
+</html>

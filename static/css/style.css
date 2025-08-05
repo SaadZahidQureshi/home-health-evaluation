@@ -200,7 +200,7 @@ body {
 }
 
 .side_menu ul li.active a span::after {
-	display: none;
+	background: linear-gradient(180deg, #71BF1E 0%, #02A0E9 100%);
 }
 
 .side_menu ul li:last-child {

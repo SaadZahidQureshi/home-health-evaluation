@@ -1,155 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="keywords" content="app, landing, corporate, Creative, Html Template, Template">
-    <meta name="author" content="web-themes">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1">
 
-    <!-- title -->
-    <title>Settings</title>
+{% extends "base.html" %}
+{% load static %}
 
-    <!-- favicon -->
-    <link href="img/favicon.png" type="image/png" rel="icon">
+{% block title %}Settings{% endblock title %}
 
-    <!-- all css here -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <link href="css/responsive.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-
-    <!--========== main-wrapper start ===========-->
-    <main class="main-wrapper">
-        <div class="row g-0">
-            <div class="col-lg-3 main-left-col">
-                <div class="main-left">
-                    <div class="logo_wraper">
-                        <a href="#">
-                            <img src="img/logo.svg" alt="">
-                        </a>
-                        <div class="hamburger-menu d-lg-none">
-                            <span class="line-top"></span>
-                            <span class="line-center"></span>
-                            <span class="line-bottom"></span>
+{% block content %}
+<div class="right-mainpart">
+    <div class="settings_box">
+        <form action="#">
+            <div class="settings_wrapper">
+                <div class="profile_wrap text-center">
+                    <div class="settings_profile">
+                        <div class="profile_photo business_photo">
+                            <a href="#">
+                                <img src="{% static "img\business-logo.png" %}" alt="">
+                            </a>
+                        </div>
+                        <div class="edit_btn">
+                            <a href="#">
+                                <img src="{% static "img\edit.svg" %}" alt="">
+                            </a>
                         </div>
                     </div>
-                    <div class="side_menu">
-                        <ul>
-                            <li>
-                                <a href="#"><span>1</span> Keep It Clean</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>2</span> Keep It Dry</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>3</span> Keep It Pest-Free</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>4</span> Keep It Contaminent-Free</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>5</span> Keep It Safe</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>6</span> Keep It Ventilated</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>7</span> Keep It Comfortable</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>8</span> Keep It Maintained</a>
-                            </li>
-                        </ul>
+                    <div class="profile_text">
+                        <p>Business Logo</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-9 main-right-col">
-                <div class="main-right">
-                    <div class="header_area">
-                        <div class="header_title header_title2">
-                            <div class="hamburger-menu d-lg-none">
-                                <span class="line-top"></span>
-                                <span class="line-center"></span>
-                                <span class="line-bottom"></span>
-                            </div>
-                            <div class="back_btn">
-                                <a href="#"><img src="img/left-arrow.svg" alt=""></a>
-                            </div>
-                            <h2>Settings</h2>
-                        </div>
-                        <div class="header_right">
-                            <ul>
-                                <li><a href="#"><img src="img/save.svg" alt=""></a></li>
-                                <li><a href="#"><img src="img/history.svg" alt=""></a></li>
-                                <li>
-                                    <div class="dropdown">
-                                        <a class="profile_btn" href="#" role="button" id="profile_dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="img/profile.png" alt="">
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="profile_dropdown">
-                                            <li><a class="dropdown-item" href="profile-settings.html">Profile Settings</a></li>
-                                            <li><a class="dropdown-item" href="settings.html">Settings</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                <div class="settings_details">
+                    <div class="settings_item">
+                        <label>Name of Business</label>
+                        <input type="text" placeholder="PG Home">
                     </div>
-
-                    <div class="right-mainpart">
-                        <div class="settings_box">
-                            <form action="#">
-                                <div class="settings_wrapper">
-                                    <div class="profile_wrap text-center">
-                                        <div class="settings_profile">
-                                            <div class="profile_photo business_photo">
-                                                <a href="#">
-                                                    <img src="img/business-logo.png" alt="">
-                                                </a>
-                                            </div>
-                                            <div class="edit_btn">
-                                                <a href="#">
-                                                    <img src="img/edit.svg" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="profile_text">
-                                            <p>Business Logo</p>
-                                        </div>
-                                    </div>
-                                    <div class="settings_details">
-                                        <div class="settings_item">
-                                            <label>Name of Business</label>
-                                            <input type="text" placeholder="PG Home">
-                                        </div>
-                                        <div class="settings_item">
-                                            <label>Email Address</label>
-                                            <input type="email" placeholder="pghome@gmail.com">
-                                        </div>
-                                        <div class="settings_item">
-                                            <label>Phone Number</label>
-                                            <input type="tel" placeholder="+01 234 566 788">
-                                        </div>
-                                    </div>
-                                    <div class="save_btn">
-                                        <button type="button">Save</button>
-                                    </div>                           
-                                </div>
-                            </form>
-                        </div>                                              
-                    </div>               
+                    <div class="settings_item">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="pghome@gmail.com">
+                    </div>
+                    <div class="settings_item">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="+01 234 566 788">
+                    </div>
                 </div>
+                <div class="save_btn">
+                    <button type="button">Save</button>
+                </div>                           
             </div>
-        </div>
-    </main>
-    <!--========== main-wrapper end ===========-->
-
-    <!-- all js here -->
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
-</body>
-</html>
+        </form>
+    </div>                                              
+</div>  
+{% endblock content %}

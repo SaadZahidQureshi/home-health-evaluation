@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Keep It Maintained Item selected{% endblock title %}
+{% block title %}Keep It Comfortable Item selected{% endblock title %}
 
 {% block content %}
 <div class="right-mainpart">
     <div class="accordian_box">
         <div class="accordian_title">
-            <h4>The Hazards of LEAD, ASBESTOS, and RADON in the home</h4>
+            <h4>Environmental</h4>
         </div>
         <div class="accordian_cnt active">
-            <p>Other toxic elements include:  Mercury and Sewer gas</p>
-            <img src="{% static "img\down.svg" %}" alt="">
+            <p>Maintain the home at WHO-recommended.</p>
+            <img src="img/down.svg" alt="">
         </div>
         <div class="accordian_inner accordion_selected">
             <div class="template_title">
@@ -61,15 +61,39 @@
     </div>
     <div class="accordian_box">
         <div class="accordian_title">
-            <h4>Six Points to Maintaining a Healthy Home</h4>
+            <h4>Building</h4>
         </div>
         <div class="accordian_cnt">
-            <p>AIdentify what needs to be done.</p>
-            <img src="{% static "img\down.svg" %}" alt="">
+            <p>Air seal in the basement and attic (if these are unconditioned spaces) to establish a pressure boundary.  This controls airflow and reduces convective heat transfer.</p>
+            <img src="img/down.svg" alt="">
         </div>
         <div class="accordian_inner">
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
         </div>
-    </div>                       
-</div>  
+    </div>
+    <div class="accordian_box">
+        <div class="accordian_title">
+            <h4>Mechanicals</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p>Air seal duct systems to control airflow and reduce convective heat transfer.</p>
+            <img src="img/down.svg" alt="">
+        </div>
+        <div class="accordian_inner">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
+        </div>
+    </div>
+    <div class="accordian_box">
+        <div class="accordian_title">
+            <h4>Occupants</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p>Investigate assistance programs for low-income households, such as Low Income Home Energy Assistance Program (LIHEAP)</p>
+            <img src="img/down.svg" alt="">
+        </div>
+        <div class="accordian_inner">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
+        </div>
+    </div>                      
+</div>
 {% endblock content %}

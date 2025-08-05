@@ -1,165 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="keywords" content="app, landing, corporate, Creative, Html Template, Template">
-    <meta name="author" content="web-themes">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1">
 
-    <!-- title -->
-    <title>Keep it Comfortable </title>
+{% extends "base.html" %}
+{% load static %}
 
-    <!-- favicon -->
-    <link href="img/favicon.png" type="image/png" rel="icon">
+{% block title %}Keep it Comfortable {% endblock title %}
 
-    <!-- all css here -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <link href="css/responsive.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-
-    <!--========== main-wrapper start ===========-->
-    <main class="main-wrapper">
-        <div class="row g-0">
-            <div class="col-lg-3 main-left-col">
-                <div class="main-left">
-                    <div class="logo_wraper">
-                        <a href="#">
-                            <img src="img/logo.svg" alt="">
-                        </a>
-                        <div class="hamburger-menu d-lg-none">
-                            <span class="line-top"></span>
-                            <span class="line-center"></span>
-                            <span class="line-bottom"></span>
-                        </div>
-                    </div>
-                    <div class="side_menu">
-                        <ul>
-                            <li class="active">
-                                <a href="#"><span>1</span> Keep It Clean</a>
-                            </li>
-                            <li class="active">
-                                <a href="#"><span>2</span> Keep It Dry</a>
-                            </li>
-                            <li class="active">
-                                <a href="#"><span>3</span> Keep It Pest-Free</a>
-                            </li>
-                            <li class="active">
-                                <a href="#"><span>4</span> Keep It Contaminent-Free</a>
-                            </li>
-                            <li class="active">
-                                <a href="#"><span>5</span> Keep It Safe</a>
-                            </li>
-                            <li class="active">
-                                <a href="#"><span>6</span> Keep It Ventilated</a>
-                            </li>
-                            <li class="active">
-                                <a href="#"><span>7</span> Keep It Comfortable</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>8</span> Keep It Maintained</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-9 main-right-col">
-                <div class="main-right">
-                    <div class="header_area">
-                        <div class="header_title">
-                            <div class="hamburger-menu d-lg-none">
-                                <span class="line-top"></span>
-                                <span class="line-center"></span>
-                                <span class="line-bottom"></span>
-                            </div>
-                            <h2>Keep It Comfortable: Healthy Home Actions</h2>
-                        </div>
-                        <div class="header_right">
-                            <ul>
-                                <li><a href="#"><img src="img/save.svg" alt=""></a></li>
-                                <li><a href="#"><img src="img/history.svg" alt=""></a></li>
-                                <li>
-                                    <div class="dropdown">
-                                        <a class="profile_btn" href="#" role="button" id="profile_dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="img/profile.png" alt="">
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="profile_dropdown">
-                                            <li><a class="dropdown-item" href="profile-settings.html">Profile Settings</a></li>
-                                            <li><a class="dropdown-item" href="settings.html">Settings</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="right-mainpart">
-                        <div class="accordian_box">
-                            <div class="accordian_title">
-                                <h4>Environmental</h4>
-                            </div>
-                            <div class="accordian_cnt">
-                                <p>Maintain the home at WHO-recommended.</p>
-                                <img src="img/down.svg" alt="">
-                            </div>
-                            <div class="accordian_inner">
-                                <ul>
-                                    <li><a href="keep-it-comfortable-item-selected .html">Air seal in the basement and attic (if these are unconditioned spaces) to establish a pressure boundary.  This controls airflow and reduces convective heat transfer</a></li>
-                                    <li><a href="keep-it-comfortable-item-selected .html">Install weatherstrip around windows and window frames, and doors and door frames, to establish a pressure boundary.</a></li>
-                                    <li><a href="keep-it-comfortable-item-selected .html">Install door sweeps along the bottom of entry doors to establish a pressure boundary.</a></li>
-                                    <li><a href="keep-it-comfortable-item-selected .html">Install insulation in unconditioned spaces to establish a thermal boundary.  This reduces conductive heat transfer.</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="accordian_box">
-                            <div class="accordian_title">
-                                <h4>Building</h4>
-                            </div>
-                            <div class="accordian_cnt">
-                                <p>Air seal in the basement and attic (if these are unconditioned spaces) to establish a pressure boundary.  This controls airflow and reduces convective heat transfer.</p>
-                                <img src="img/down.svg" alt="">
-                            </div>
-                            <div class="accordian_inner">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-                            </div>
-                        </div>
-                        <div class="accordian_box">
-                            <div class="accordian_title">
-                                <h4>Mechanicals</h4>
-                            </div>
-                            <div class="accordian_cnt">
-                                <p>Air seal duct systems to control airflow and reduce convective heat transfer.</p>
-                                <img src="img/down.svg" alt="">
-                            </div>
-                            <div class="accordian_inner">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-                            </div>
-                        </div>
-                        <div class="accordian_box">
-                            <div class="accordian_title">
-                                <h4>Occupants</h4>
-                            </div>
-                            <div class="accordian_cnt">
-                                <p>Investigate assistance programs for low-income households, such as Low Income Home Energy Assistance Program (LIHEAP)</p>
-                                <img src="img/down.svg" alt="">
-                            </div>
-                            <div class="accordian_inner">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-                            </div>
-                        </div>                       
-                    </div>               
-                </div>
-            </div>
+{% block content %}
+<div class="right-mainpart">
+    <div class="accordian_box">
+        <div class="accordian_title">
+            <h4>Environmental</h4>
         </div>
-    </main>
-    <!--========== main-wrapper end ===========-->
-
-    <!-- all js here -->
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
-</body>
-</html>
+        <div class="accordian_cnt">
+            <p>Maintain the home at WHO-recommended.</p>
+            <img src="{% static "img\down.svg" %}" alt="">
+        </div>
+        <div class="accordian_inner">
+            <ul>
+                <li><a href="/keep-it-comfortable-item-selected/">Air seal in the basement and attic (if these are unconditioned spaces) to establish a pressure boundary.  This controls airflow and reduces convective heat transfer</a></li>
+                <li><a href="/keep-it-comfortable-item-selected/">Install weatherstrip around windows and window frames, and doors and door frames, to establish a pressure boundary.</a></li>
+                <li><a href="/keep-it-comfortable-item-selected/">Install door sweeps along the bottom of entry doors to establish a pressure boundary.</a></li>
+                <li><a href="/keep-it-comfortable-item-selected/">Install insulation in unconditioned spaces to establish a thermal boundary.  This reduces conductive heat transfer.</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="accordian_box">
+        <div class="accordian_title">
+            <h4>Building</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p>Air seal in the basement and attic (if these are unconditioned spaces) to establish a pressure boundary.  This controls airflow and reduces convective heat transfer.</p>
+            <img src="{% static "img\down.svg" %}" alt="">
+        </div>
+        <div class="accordian_inner">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
+        </div>
+    </div>
+    <div class="accordian_box">
+        <div class="accordian_title">
+            <h4>Mechanicals</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p>Air seal duct systems to control airflow and reduce convective heat transfer.</p>
+            <img src="{% static "img\down.svg" %}" alt="">
+        </div>
+        <div class="accordian_inner">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
+        </div>
+    </div>
+    <div class="accordian_box">
+        <div class="accordian_title">
+            <h4>Occupants</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p>Investigate assistance programs for low-income households, such as Low Income Home Energy Assistance Program (LIHEAP)</p>
+            <img src="{% static "img\down.svg" %}" alt="">
+        </div>
+        <div class="accordian_inner">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
+        </div>
+    </div>                       
+</div>   
+{% endblock content %}

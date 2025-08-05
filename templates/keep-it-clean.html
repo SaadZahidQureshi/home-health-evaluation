@@ -1,167 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 {% load static %}
-<head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="keywords" content="app, landing, corporate, Creative, Html Template, Template">
-    <meta name="author" content="web-themes">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1">
 
-    <!-- title -->
-    <title>Keep it clean </title>
+{% block title %}Keep it clean {% endblock title %}
 
-    <!-- favicon -->
-    <link href="{% static "img\favicon.png" %}" type="image/png" rel="icon">
+{% block content %}
 
-    <!-- all css here -->
-    <link href="{% static "css\bootstrap.min.css" %}" rel="stylesheet" type="text/css" />
-    <link href="{% static "css\style.css" %}" rel="stylesheet" type="text/css" />
-    <link href="{% static "css\responsive.css" %}" rel="stylesheet" type="text/css" />
-</head>
-<body>
-
-    <!--========== main-wrapper start ===========-->
-    <main class="main-wrapper">
-        <div class="row g-0">
-            <div class="col-lg-3 main-left-col">
-                <div class="main-left">
-                    <div class="logo_wraper">
-                        <a href="#">
-                            <img src="{% static "img\logo.svg" %}" alt="">
-                        </a>
-                        <div class="hamburger-menu d-lg-none">
-                            <span class="line-top"></span>
-                            <span class="line-center"></span>
-                            <span class="line-bottom"></span>
-                        </div>
-                    </div>
-                    <div class="side_menu">
-                        <ul>
-                            <li class="active">
-                                <a href="#"><span>1</span> Keep It Clean</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>2</span> Keep It Dry</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>3</span> Keep It Pest-Free</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>4</span> Keep It Contaminent-Free</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>5</span> Keep It Safe</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>6</span> Keep It Ventilated</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>7</span> Keep It Comfortable</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>8</span> Keep It Maintained</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-9 main-right-col">
-                <div class="main-right">
-                    <div class="header_area">
-                        <div class="header_title">
-                            <div class="hamburger-menu d-lg-none">
-                                <span class="line-top"></span>
-                                <span class="line-center"></span>
-                                <span class="line-bottom"></span>
-                            </div>
-                            <h2>Keep It Clean: Healthy Home Actions</h2>
-                        </div>
-                        <div class="header_right">
-                            <ul>
-                                <li><a href="#"><img src="{% static "img\save.svg" %}" alt=""></a></li>
-                                <li><a href="#"><img src="{% static "img\history.svg" %}" alt=""></a></li>
-                                <li>
-                                    <div class="dropdown">
-                                        <a class="profile_btn" href="#" role="button" id="profile_dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="{% static "img\profile.png" %}" alt="">
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="profile_dropdown">
-                                            <li><a class="dropdown-item" href="profile-settings.html">Profile Settings</a></li>
-                                            <li><a class="dropdown-item" href="settings.html">Settings</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="right-mainpart">
-                        <div class="accordian_box">
-                            <div class="accordian_title">
-                                <h4>Building</h4>
-                            </div>
-                            <div class="accordian_cnt">
-                                <p>Have hard surfaces outside the home at entry doors.</p>
-                                <img src="img/down.svg" alt="">
-                            </div>
-                            <div class="accordian_inner">
-                                <ul>
-                                    <li><a href="keep-it-clean-item-selected.html">Have hard surfaces outside the home at entry doors</a></li>
-                                    <li><a href="keep-it-clean-item-selected.html">Have a space to leave shoes by the door</a></li>
-                                    <li><a href="keep-it-clean-item-selected.html">Use pollen-filtering screens on windows</a></li>
-                                    <li><a href="keep-it-clean-item-selected.html">Have hard-surface floors inside the home, if possible</a></li>
-                                    <li><a href="keep-it-clean-item-selected.html">Use low-pile carpet if hard-surface floors are not an option</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="accordian_box">
-                            <div class="accordian_title">
-                                <h4>Mechanicals</h4>
-                            </div>
-                            <div class="accordian_cnt">
-                                <p>Ensure the duct system is free of dust, mold, and pests</p>
-                                <img src="img/down.svg" alt="">
-                            </div>
-                            <div class="accordian_inner">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-                            </div>
-                        </div>
-                        <div class="accordian_box">
-                            <div class="accordian_title">
-                                <h4>Environment</h4>
-                            </div>
-                            <div class="accordian_cnt">
-                                <p>Keep the outdoors outside the home</p>
-                                <img src="img/down.svg" alt="">
-                            </div>
-                            <div class="accordian_inner">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-                            </div>
-                        </div>
-                        <div class="accordian_box">
-                            <div class="accordian_title">
-                                <h4>Occupant</h4>
-                            </div>
-                            <div class="accordian_cnt">
-                                <p>Clear clutter from the home</p>
-                                <img src="img/down.svg" alt="">
-                            </div>
-                            <div class="accordian_inner">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-                            </div>
-                        </div>                        
-                    </div>               
-                </div>
-            </div>
+<div class="right-mainpart">
+    <div class="accordian_box">
+        <div class="accordian_title">
+            <h4>Building</h4>
         </div>
-    </main>
-    <!--========== main-wrapper end ===========-->
+        <div class="accordian_cnt">
+            <p>Have hard surfaces outside the home at entry doors.</p>
+            <img src="{% static "img\down.svg" %}" alt="">
+        </div>
+        <div class="accordian_inner">
+            <ul>
+                <li><a href="/keep-it-clean-item-selected/">Have hard surfaces outside the home at entry doors</a></li>
+                <li><a href="/keep-it-clean-item-selected/">Have a space to leave shoes by the door</a></li>
+                <li><a href="/keep-it-clean-item-selected/">Use pollen-filtering screens on windows</a></li>
+                <li><a href="/keep-it-clean-item-selected/">Have hard-surface floors inside the home, if possible</a></li>
+                <li><a href="/keep-it-clean-item-selected/">Use low-pile carpet if hard-surface floors are not an option</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="accordian_box">
+        <div class="accordian_title">
+            <h4>Mechanicals</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p>Ensure the duct system is free of dust, mold, and pests</p>
+            <img src="{% static "img\down.svg" %}" alt="">
+        </div>
+        <div class="accordian_inner">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
+        </div>
+    </div>
+    <div class="accordian_box">
+        <div class="accordian_title">
+            <h4>Environment</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p>Keep the outdoors outside the home</p>
+            <img src="{% static "img\down.svg" %}" alt="">
+        </div>
+        <div class="accordian_inner">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
+        </div>
+    </div>
+    <div class="accordian_box">
+        <div class="accordian_title">
+            <h4>Occupant</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p>Clear clutter from the home</p>
+            <img src="{% static "img\down.svg" %}" alt="">
+        </div>
+        <div class="accordian_inner">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
+        </div>
+    </div>                        
+</div>      
 
-    <!-- all js here -->
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
-</body>
-</html>
+{% endblock content %}
+            
