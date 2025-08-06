@@ -6,14 +6,15 @@
 {% block content %}
 <div class="right-mainpart">
     <div class="settings_box">
-        <form action="#">
+        <form action="#" id="profileUpdateForm">
             <div class="settings_wrapper">
                 <div class="profile_wrap text-center">
                     <div class="settings_profile">
                         <div class="profile_photo">
-                            <a href="#">
-                                <img src="{% static "img\profile-photo.png" %}" alt="">
-                            </a>
+                            <label for="profiel-image">
+                                <img class="avatar-icon" src="{% static "img\profile-photo.png" %}" alt="">
+                                <input type="file" class="hide" name="image" id="profiel-image" onchange="UploadImage(event)">
+                            </label>
                         </div>
                         <div class="edit_btn">
                             <a href="#">
@@ -28,26 +29,32 @@
                 <div class="settings_details">
                     <div class="settings_item">
                         <label>Name</label>
-                        <input type="text" placeholder="Jorden">
+                        <input type="text" name="name" placeholder="Jorden">
                     </div>
                     <div class="settings_item">
                         <label>Email Address</label>
-                        <input type="email" placeholder="jordenjane@gmail.com">
+                        <input type="email" name="email" placeholder="jordenjane@gmail.com">
                     </div>
                     <div class="settings_item">
                         <label>Phone Number</label>
-                        <input type="tel" placeholder="+01 234 566 788">
+                        <input type="tel" name="phone" placeholder="+01 234 566 788">
                     </div>
-                    <div class="settings_item">
+                    <div class="settings_item hide">
                         <label>Password</label>
                         <input type="password" placeholder="********">
                     </div>
                 </div>
                 <div class="save_btn">
-                    <button type="button">Save</button>
+                    <button type="submit">
+                        <span class="spinner-border hide" role="status" aria-hidden="true"></span>
+                        <span class="btn-text">Save</span>
+                    </button>
                 </div>                           
             </div>
         </form>
     </div>                                               
 </div>  
 {% endblock content %}
+{% block js %}
+<script src="{% static "js/profile-settings.js" %}"></script>
+{% endblock js %}

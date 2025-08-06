@@ -2,14 +2,14 @@ from hmac import compare_digest
 from rest_framework import serializers
 from django.contrib.auth import get_user_model, authenticate
 from api.core.choices import Roles
-from api.core.validators import PasswordValidator, DotsValidationError
+from api.core.validators import PasswordValidator, DotsValidationError, phone_regex
 User = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "name", "email", "role", "is_active", "image"]
+        fields = ["id", "name", "email", "phone", "role", "is_active", "image"]
 
 
 class RegisterUserSerializer(serializers.ModelSerializer):
@@ -28,6 +28,22 @@ class RegisterUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ["name", "email", "password", "confirm_password"]
+
+    def get_fields(self):
+        fields = super().get_fields()
+        if self.instance:
+            fields['phone'] = serializers.CharField(
+                max_length=20,
+                validators=[phone_regex],
+                required=False,
+                allow_null=True,
+                allow_blank=True
+            )
+            fields['image'] = serializers.ImageField(
+                required=False,
+                allow_null=True,
+            )
+        return fields
     
     def validate(self, attrs):
         if not self.instance:
@@ -48,6 +64,9 @@ class RegisterUserSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         validated_data.pop('password', None)
         validated_data.pop('confirm_password', None)
+        image = validated_data.pop('image', None)
+        if image is not None:
+            instance.image = image
         return super().update(instance, validated_data)
     
 

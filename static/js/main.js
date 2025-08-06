@@ -1,5 +1,6 @@
 const API_BASE_URL = JSON.parse(document.getElementById("API_BASE_URL").textContent);
 const emailRegex = /^[a-z0-9](?:[a-z0-9._%+-]*[a-z0-9])?@[a-z0-9.-]+\.[a-z]{2,}$/i;
+
 (function ($) {
 
     $(document).ready(function () {
@@ -32,17 +33,14 @@ function formDataToObject(formData){
 }
 
 function showToast(title, body, className) {
-    
-    // Use the container as the node option
     Toastify({
-        // node: toastContent,
         text: body,
-        duration: 5000, // 5 seconds
+        duration: 5000,
         close: true,
-        gravity: "top", // top or bottom
-        position: "right", // left, center or right
+        gravity: "top",
+        position: "right",
         className: className,
-        stopOnFocus: true, // Prevents dismissing of toast on hover
+        stopOnFocus: true,
     }).showToast();
 }
 
@@ -116,35 +114,12 @@ function togglePassword(fieldId) {
 }
 
 async function requestAPI(url, data, headers, method, tries=0) {
-    // let maxTries = tries;
     const response = await fetch(url, {
         method: method,
         mode: 'cors',
         headers: headers,
         body: data,
     });
-    // maxTries++;
-    // if (response.status == 401) {
-    //     if(maxTries > 3) return response;
-    //     console.log(maxTries);
-    //     let refreshResponse = await onRefreshToken(maxTries);
-    //     if (refreshResponse.status == 200) {
-    //         let refreshRes = await refreshResponse.json();
-    //         const accessToken = parseJwt(refreshRes.access);
-    //         setCookie("user_access", refreshRes.access, accessToken.exp);
-    //         headers['Authorization'] = `Bearer ${refreshRes.access}`;
-    //         return await requestAPI(url, data, headers, method, maxTries);
-    //     }
-    //     else {
-    //         clearUserTokens();
-    //         const currentPath = window.location.pathname;
-    //         const isAuthPage = authPages.some(page => currentPath.includes(page));
-    //         if (isAuthPage) return;
-
-    //         location.href = location.origin + '/administration/login/';
-    //         return;
-    //     }
-    // }
     return response; 
 }
 
@@ -162,3 +137,96 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+
+async function _get_me_data(){
+    try {
+        let headers = {
+            "Content-Type": "application/json",
+            'X-CSRFToken': getCookie('csrftoken')
+        };
+        let response = await requestAPI(`${API_BASE_URL}me`, null, headers, 'GET');
+        response.json().then(function(res) {
+            if (response.status == 200) {
+                _render_me_data(res);
+            }
+            else {
+                console.log(res)
+                return false;
+            }
+        })
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+window.addEventListener('load', _get_me_data());
+
+function _render_me_data(me_data){
+    document.querySelector("#image").src = me_data?.image || '/static/images/admin_profile_image.svg';
+}
+
+function UploadImage(event){
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.querySelector(".avatar-icon").src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+async function handleLogout(){
+    let modalId = "logoutModal";
+    let modal = document.querySelector(`#${modalId}`);
+    let form = modal.querySelector("form");
+    modal.addEventListener('hidden.bs.modal', event => {
+        form.reset();
+        form.removeEventListener("submit", formEvent);
+    })
+    document.querySelector(`.${modalId}`).click();
+}
+
+
+let logout_form = document.querySelector("#logoutForm");
+logout_form?.addEventListener("submit", logoutForm)
+
+async function logoutForm(event) {
+    event.preventDefault();
+    const form = event.target;
+    const button = document.querySelector(`button[form="${form.id}"]`);
+    const buttonTextEl = button.querySelector(".btn-text");
+    const originalButtonText = buttonTextEl.textContent;
+
+    try {
+        let headers = {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')
+        };
+        button.disabled = true;
+        beforeLoad(button);
+        const response = await requestAPI(`${API_BASE_URL}logout`, null, headers, 'POST');
+        
+        if (response.status == 200) {
+            showToast("Success", "Logged out successfully!", "success-toast");
+            setTimeout(() => {
+                afterLoad(button, "Signed in");
+                location.href = `/login/`;
+            }, 1000);
+        } else {
+            const result = await response.json();
+            afterLoad(button, originalButtonText);
+            let errors = extractErrorMessages(result);
+            showToast("Warning!", errors[0] || "Logging out failed.", "danger-toast");
+            button.disabled = false;
+        }
+    } catch (error) {
+        console.error("Logout error:", error);
+        let errors = extractErrorMessages(result);
+        showToast("Error!", errors[0], "danger-toast");
+        button.disabled = false;
+        afterLoad(button, originalButtonText);
+    }
+}
+

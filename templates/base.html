@@ -8,6 +8,7 @@
     <meta name="author" content="web-themes">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
     <!-- title -->
     <title>{% block title %}{% endblock title %}</title>
@@ -18,6 +19,7 @@
     <!-- all css here -->
     <link href="{% static "css\bootstrap.min.css" %}" rel="stylesheet" type="text/css" />
     <link href="{% static "css\style.css" %}" rel="stylesheet" type="text/css" />
+    <link href="{% static "css\modals\logout.css" %}" rel="stylesheet" type="text/css" />
     <link href="{% static "css\responsive.css" %}" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -88,27 +90,32 @@
                                 <li>
                                     <div class="dropdown">
                                         <a class="profile_btn" href="#" role="button" id="profile_dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="{% static "img\profile.png" %}" alt="">
+                                            <img id="image" src="{% static "img\profile.png" %}" alt="">
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="profile_dropdown">
                                             <li><a class="dropdown-item" href="/profile-settings/">Profile Settings</a></li>
                                             <li><a class="dropdown-item" href="/settings/">Settings</a></li>
+                                            <li><a class="dropdown-item" onclick="handleLogout()" href="javascript:void(0)">Logout</a></li>
                                         </ul>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    {% block content %}{% endblock content %}           
+                    {% block content %}{% endblock content %}
+                    {% include "modals/logout.html" %}  
                 </div>
             </div>
         </div>
     </main>
+    {{API_BASE_URL|json_script:"API_BASE_URL"}}
     <!--========== main-wrapper end ===========-->
 
     <!-- all js here -->
     <script src="{% static "js\jquery-3.4.1.min.js" %}"></script>
     <script src="{% static "js\bootstrap.bundle.min.js" %}"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="{% static "js\main.js" %}"></script>
+    {% block js %}{% endblock js %}
 </body>
 </html>
