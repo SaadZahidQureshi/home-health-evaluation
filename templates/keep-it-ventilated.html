@@ -6,55 +6,11 @@
 
 {% block content %}
 <div class="right-mainpart">
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Mechanicals</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Heating System <img src="{% static "img\right.svg" %}" alt=""> If possible, do not use a fireplace or wood stove as the primary source of heat</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner pest_inner">
-            <ul>
-                <li>
-                    <a href="/keep-it-ventilated-item-selected/">Heating Systems <img src="{% static "img\arrow-right.svg" %}" alt=""></a>
-                    <ul class="pest_dropdown ventilated_dropdown">
-                        <li><a href="/keep-it-ventilated-item-selected/">If possible, do not use a fireplace or wood stove as the primary source of heat</a></li>
-                        <li><a href="/keep-it-ventilated-item-selected/">If possible, replace a wood-burning fireplace with a properly vented gas fireplace</a></li>
-                        <li><a href="/keep-it-ventilated-item-selected/">Install CO alarms near sleeping areas and on every level of the home</a></li>
-                        <li><a href="/keep-it-ventilated-item-selected/">Follow the manufacturer’s recommendation on whether to place it on the wall or a ceiling</a></li>
-                    </ul>
-                </li>
-                <li><a href="/keep-it-ventilated-item-selected/">Bathrooms <img src="{% static "img\arrow-right.svg" %}" alt=""></a></li>
-                <li><a href="/keep-it-ventilated-item-selected/">Kitchens <img src="{% static "img\arrow-right.svg" %}" alt=""></a></li>
-                <li><a href="/keep-it-ventilated-item-selected/">Clothes Dryer <img src="{% static "img\arrow-right.svg" %}" alt=""></a></li>
-                <li><a href="/keep-it-ventilated-item-selected/">General <img src="{% static "img\arrow-right.svg" %}" alt=""></a></li>
-            </ul>
-        </div>
-    </div>  
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Occupants</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Heating System <img src="{% static "img\right.svg" %}" alt=""> Have the heating system serviced by a professional annually</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-        </div>
-    </div>
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Building</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Air seal the home to help control where air infiltrates and exfiltrates</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-        </div>
-    </div>                       
+                      
 </div>
+{{principleId|json_script:"principleId"}}
 {% endblock content %}
+
+{% block js %}
+<script src="{% static "js/category-base.js" %}"></script>
+{% endblock js %}

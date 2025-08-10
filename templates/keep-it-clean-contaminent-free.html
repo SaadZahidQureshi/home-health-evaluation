@@ -6,75 +6,11 @@
 
 {% block content %}
 <div class="right-mainpart">
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Building</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Wash walls and ceilings with soap and water to remove tobacco smoke contaminants.</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <ul>
-                <li><a href="/keep-it-clean-contaminent-free-item-selected/">Wash walls and ceilings with soap and water to remove tobacco smoke contaminants.</a></li>
-                <li><a href="/keep-it-clean-contaminent-free-item-selected/">Wash walls and ceilings with soap and water to remove tobacco smoke contaminants.</a></li>
-                <li><a href="/keep-it-clean-contaminent-free-item-selected/">Repaint walls with 2-3 coats of paint to encapsulate nicotine.</a></li>
-                <li><a href="/keep-it-clean-contaminent-free-item-selected/">Remove carpet and padding and wash the floors before replacing carpeting</a></li>
-                <li><a href="/keep-it-clean-contaminent-free-item-selected/">Choose VOC-free and low-VOC options for paint, floor finishes, carpet, cabinets, and other items that become a permanent or semi-permanent aspect of the home.</a></li>
-                <li><a href="/keep-it-clean-contaminent-free-item-selected/">Avoid paint that uses ethylene glycol</a></li>
-                <li><a href="/keep-it-clean-contaminent-free-item-selected/">Avoid acid-cured polyurethane finishes for floors</a></li>
-                <li><a href="/keep-it-clean-contaminent-free-item-selected/">When building or remodeling, use hardwood plywood or particleboard that complies with Toxic Substances Control Act Title VI</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Mechanicals</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Follow ventilation recommendations to keep air truly fresh.</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-        </div>
-    </div>
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Environmental</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Increase ventilation if formaldehyde contamination is suspected</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-        </div>
-    </div>
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Environmental</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Safely dispose of old products that are no longer needed. Instead of throwing them out, find out if the city/town runs a collection program for household waste</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-        </div>
-    </div>   
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Occupant</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Take all unused cleaning, hobby, remodeling and other household products to a local household hazardous waste collection instead of placing in the trash to go to a landfill.</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-        </div>
-    </div>                      
+                   
 </div>  
+{{principleId|json_script:"principleId"}}
 {% endblock content %}
 
+{% block js %}
+<script src="{% static "js/category-base.js" %}"></script>
+{% endblock js %}

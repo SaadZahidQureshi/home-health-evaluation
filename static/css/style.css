@@ -207,6 +207,11 @@ body {
 	background: linear-gradient(180deg, #71BF1E 0%, #02A0E9 100%);
 }
 
+.side_menu ul li.completed a span::after {
+	background: linear-gradient(180deg, #71BF1E 0%, #02A0E9 100%);
+}
+
+
 .side_menu ul li:last-child {
 	padding-bottom: 0rem;
 }
@@ -571,6 +576,60 @@ body {
 	display: block;
 	padding: 1.4rem 0rem;
 	border-bottom: 1px solid rgba(27, 47, 71, 0.15);;
+}
+
+.accordian_inner ul li label {
+	font-size: 1.6rem;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 150%;
+	color: #4C4C4C;
+	display: block;
+	padding: 1.4rem 0rem;
+	border-bottom: 1px solid rgba(27, 47, 71, 0.15);;
+	display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.accordian_inner ul li label input{
+	accent-color: #71BF1E;
+		width: 15px;
+		height: 15px;
+}
+
+.form-container {
+	margin-top: .5rem;
+}
+
+.button-container {
+	width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+	flex-wrap: wrap;
+}
+
+.button-container button {
+	width: 150px;
+	height: 45px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: unset;
+	font-weight: 600;
+}
+
+.button-container button:first-of-type{
+	border: 1px solid #71BF1E;
+	color: #71BF1E;
+}
+
+.button-container button:last-of-type {
+	background: linear-gradient(180deg, #71BF1E 0%, #71BF1E 100%);
+	color: #ffffff;
 }
 
 .accordian_inner ul li:last-child a {
@@ -1196,3 +1255,8 @@ body {
     opacity: 1!important;
     align-self: flex-start;
 } 
+
+.image-preview-container {
+	display: flex;
+	gap: 1rem;
+}

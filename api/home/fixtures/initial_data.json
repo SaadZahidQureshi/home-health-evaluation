@@ -1,0 +1,1212 @@
+[
+  {
+    "model": "home.Principle",
+    "pk": 1,
+    "fields": {
+      "key": "CLEAN",
+      "name": "Keep It Clean",
+      "description": "Actions to maintain a clean home environment",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Principle",
+    "pk": 2,
+    "fields": {
+      "key": "DRY",
+      "name": "Keep It Dry",
+      "description": "Actions to prevent moisture problems in the home",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Principle",
+    "pk": 3,
+    "fields": {
+      "key": "PESTFREE",
+      "name": "Keep It Pest-Free",
+      "description": "Actions to prevent and control pests in the home",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Principle",
+    "pk": 4,
+    "fields": {
+      "key": "CONTAMINANTFREE",
+      "name": "Keep It Contaminant-Free",
+      "description": "Actions to reduce exposure to harmful contaminants",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Principle",
+    "pk": 5,
+    "fields": {
+      "key": "SAFE",
+      "name": "Keep It Safe",
+      "description": "Actions to prevent injuries and accidents in the home",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Principle",
+    "pk": 6,
+    "fields": {
+      "key": "VENTILATED",
+      "name": "Keep It Ventilated",
+      "description": "Actions to ensure proper ventilation in the home",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Principle",
+    "pk": 7,
+    "fields": {
+      "key": "COMFORTABLE",
+      "name": "Keep It Comfortable",
+      "description": "Actions to maintain comfortable temperatures in the home",
+      "order": 7,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Principle",
+    "pk": 8,
+    "fields": {
+      "key": "MANTAINED",
+      "name": "Keep It Maintained",
+      "description": "Actions for regular home maintenance",
+      "order": 8,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Category",
+    "pk": 1,
+    "fields": {
+      "key": "BUILDING",
+      "name": "Building",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Category",
+    "pk": 2,
+    "fields": {
+      "key": "MECHANICALS",
+      "name": "Mechanicals",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Category",
+    "pk": 3,
+    "fields": {
+      "key": "ENVIRONMENT",
+      "name": "Environment",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Category",
+    "pk": 4,
+    "fields": {
+      "key": "OCCUPANT",
+      "name": "Occupant",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.PestType",
+    "pk": 1,
+    "fields": {
+      "key": "RODENTS",
+      "name": "Rodents",
+      "description": "Prevention and control measures for rodents",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.PestType",
+    "pk": 2,
+    "fields": {
+      "key": "COCKROACHES",
+      "name": "Cockroaches",
+      "description": "Prevention and control measures for cockroaches",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.PestType",
+    "pk": 3,
+    "fields": {
+      "key": "DUST_MITES",
+      "name": "Dust Mites",
+      "description": "Prevention and control measures for dust mites",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.PestType",
+    "pk": 4,
+    "fields": {
+      "key": "BED_BUGS",
+      "name": "Bed Bugs",
+      "description": "Prevention and control measures for bed bugs",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.QuestionGroup",
+    "pk": 1,
+    "fields": {
+      "name": "General Building",
+      "category": 1,
+      "pest_type": null,
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.QuestionGroup",
+    "pk": 2,
+    "fields": {
+      "name": "Rodents Prevention",
+      "category": 1,
+      "pest_type": 1,
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.QuestionGroup",
+    "pk": 3,
+    "fields": {
+      "name": "General Mechanicals",
+      "category": 2,
+      "pest_type": null,
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.QuestionGroup",
+    "pk": 4,
+    "fields": {
+      "name": "General Environment",
+      "category": 3,
+      "pest_type": null,
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.QuestionGroup",
+    "pk": 5,
+    "fields": {
+      "name": "General Occupant",
+      "category": 4,
+      "pest_type": null,
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 1,
+    "fields": {
+      "principle": 1,
+      "group": 1,
+      "category": 1,
+      "pest_type": null,
+      "text": "Have hard surfaces outside the home at entry doors",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 2,
+    "fields": {
+      "principle": 1,
+      "group": 1,
+      "category": 1,
+      "pest_type": null,
+      "text": "Have a space to leave shoes by the door",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 3,
+    "fields": {
+      "principle": 1,
+      "group": 1,
+      "category": 1,
+      "pest_type": null,
+      "text": "Use pollen-filtering screens on windows",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 4,
+    "fields": {
+      "principle": 1,
+      "group": 1,
+      "category": 1,
+      "pest_type": null,
+      "text": "Have hard-surface floors inside the home, if possible",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 5,
+    "fields": {
+      "principle": 1,
+      "group": 1,
+      "category": 1,
+      "pest_type": null,
+      "text": "Use low-pile carpet if hard-surface floors are not an option",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 6,
+    "fields": {
+      "principle": 1,
+      "group": 3,
+      "category": 2,
+      "pest_type": null,
+      "text": "Ensure the duct system is free of dust, mold, and pests",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 7,
+    "fields": {
+      "principle": 1,
+      "group": 3,
+      "category": 2,
+      "pest_type": null,
+      "text": "For those with allergies and asthma, consider upgrading to a furnace filter with a minimum efficiency value (MERV) of 11-13 in HVAC systems, and replace it on the recommended schedule.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 8,
+    "fields": {
+      "principle": 1,
+      "group": 4,
+      "category": 3,
+      "pest_type": null,
+      "text": "Keep the outdoors outside the home",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 9,
+    "fields": {
+      "principle": 1,
+      "group": 4,
+      "category": 3,
+      "pest_type": null,
+      "text": "Close windows on high smog and high pollen days and when pesticides or other chemicals are being used.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 10,
+    "fields": {
+      "principle": 1,
+      "group": 5,
+      "category": 4,
+      "pest_type": null,
+      "text": "Clear clutter from the home.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 11,
+    "fields": {
+      "principle": 1,
+      "group": 5,
+      "category": 4,
+      "pest_type": null,
+      "text": "Keep dust-producing activities outside (e.g., cutting wood for home projects).",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 12,
+    "fields": {
+      "principle": 1,
+      "group": 5,
+      "category": 4,
+      "pest_type": null,
+      "text": "Use a vacuum cleaner equipped with an allergen-capturing bag and a HEPA-filtered exhaust to prevent allergens from being redistributed.",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 13,
+    "fields": {
+      "principle": 1,
+      "group": 5,
+      "category": 4,
+      "pest_type": null,
+      "text": "Wet-dust using a damp cloth or sponge. Dry-dusting moves the dust around but doesn't completely collect it.",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 14,
+    "fields": {
+      "principle": 1,
+      "group": 5,
+      "category": 4,
+      "pest_type": null,
+      "text": "Use a washable pad or microfiber pad to wet-clean floors",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 15,
+    "fields": {
+      "principle": 1,
+      "group": 5,
+      "category": 4,
+      "pest_type": null,
+      "text": "Take shoes off at the door.",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 16,
+    "fields": {
+      "principle": 2,
+      "group": 1,
+      "category": 1,
+      "pest_type": null,
+      "text": "Ensure gutters are working and downspouts direct water away from the foundation.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 17,
+    "fields": {
+      "principle": 2,
+      "group": 1,
+      "category": 1,
+      "pest_type": null,
+      "text": "Grade dirt away from the house. It should be lower away from the foundation than it is next to it.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 18,
+    "fields": {
+      "principle": 2,
+      "group": 1,
+      "category": 1,
+      "pest_type": null,
+      "text": "Repair leaks (roof, doors, windows, plumbing).",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 19,
+    "fields": {
+      "principle": 2,
+      "group": 1,
+      "category": 1,
+      "pest_type": null,
+      "text": "Repair foundation cracks.",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 20,
+    "fields": {
+      "principle": 2,
+      "group": 1,
+      "category": 1,
+      "pest_type": null,
+      "text": "Install storm windows to help prevent condensation.",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 21,
+    "fields": {
+      "principle": 2,
+      "group": 1,
+      "category": 1,
+      "pest_type": null,
+      "text": "Control moisture in a crawl space with a properly-installed ground cover.",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 22,
+    "fields": {
+      "principle": 2,
+      "group": 1,
+      "category": 1,
+      "pest_type": null,
+      "text": "Be wary of passive ventilation in a basement or crawl space. This may bring humid outdoor air into an already damp environment.",
+      "order": 7,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 23,
+    "fields": {
+      "principle": 2,
+      "group": 3,
+      "category": 2,
+      "pest_type": null,
+      "text": "Ensure bathrooms have fans vented to the outside.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 24,
+    "fields": {
+      "principle": 2,
+      "group": 3,
+      "category": 2,
+      "pest_type": null,
+      "text": "Ensure the kitchen has a fan vented to the outside.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 25,
+    "fields": {
+      "principle": 2,
+      "group": 3,
+      "category": 2,
+      "pest_type": null,
+      "text": "Ensure the clothes dryer is vented to the outside.",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 26,
+    "fields": {
+      "principle": 2,
+      "group": 3,
+      "category": 2,
+      "pest_type": null,
+      "text": "Consider a whole-house dehumidifier.",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 27,
+    "fields": {
+      "principle": 2,
+      "group": 3,
+      "category": 2,
+      "pest_type": null,
+      "text": "Use the bathroom fan when bathing.",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 28,
+    "fields": {
+      "principle": 2,
+      "group": 3,
+      "category": 2,
+      "pest_type": null,
+      "text": "Use the kitchen fan when cooking.",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 29,
+    "fields": {
+      "principle": 2,
+      "group": 5,
+      "category": 4,
+      "pest_type": null,
+      "text": "Keep the dryer vent clear of lint and ensure that it is properly vented to the outdoors.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 30,
+    "fields": {
+      "principle": 2,
+      "group": 5,
+      "category": 4,
+      "pest_type": null,
+      "text": "Use a portable dehumidifier in the basement or crawlspace. Empty and clean it regularly.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 31,
+    "fields": {
+      "principle": 2,
+      "group": 5,
+      "category": 4,
+      "pest_type": null,
+      "text": "Dry spills immediately.",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 32,
+    "fields": {
+      "principle": 2,
+      "group": 5,
+      "category": 4,
+      "pest_type": null,
+      "text": "Be mindful of having too many houseplants, fish tanks, and other sources of standing water.",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 33,
+    "fields": {
+      "principle": 2,
+      "group": 5,
+      "category": 4,
+      "pest_type": null,
+      "text": "Throw away wet material.",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 34,
+    "fields": {
+      "principle": 2,
+      "group": 5,
+      "category": 4,
+      "pest_type": null,
+      "text": "Promote airflow. Doors can be undercut by an inch, closet doors can be left cracked, and furniture can be moved a few inches away from walls.",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 35,
+    "fields": {
+      "principle": 3,
+      "group": 4,
+      "category": 3,
+      "pest_type": null,
+      "text": "Don't store firewood indoors or in a garage",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 36,
+    "fields": {
+      "principle": 3,
+      "group": 4,
+      "category": 3,
+      "pest_type": null,
+      "text": "Remove garbage from the outdoor environment",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 37,
+    "fields": {
+      "principle": 3,
+      "group": 4,
+      "category": 3,
+      "pest_type": null,
+      "text": "Keep firewood and scrap lumber at least 20 ft. from the house; keep it 18 inches off the ground to prevent nesting.",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 38,
+    "fields": {
+      "principle": 3,
+      "group": 4,
+      "category": 3,
+      "pest_type": null,
+      "text": "Eliminate food and water sources from the indoor environment",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 39,
+    "fields": {
+      "principle": 3,
+      "group": 4,
+      "category": 3,
+      "pest_type": null,
+      "text": "Inspect items brought into the home (grocery bags, pet food, boxes of food or beverages).",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 40,
+    "fields": {
+      "principle": 3,
+      "group": 4,
+      "category": 3,
+      "pest_type": null,
+      "text": "Place bait traps or gels in the indoor environment",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 41,
+    "fields": {
+      "principle": 3,
+      "group": 4,
+      "category": 3,
+      "pest_type": null,
+      "text": "Keep RH (Relative Humidity) below 50%, which will lead to dust mites drying out (dehydrating)",
+      "order": 7,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 42,
+    "fields": {
+      "principle": 3,
+      "group": 2,
+      "category": 1,
+      "pest_type": 1,
+      "text": "Add door sweeps to all entry doors.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 43,
+    "fields": {
+      "principle": 3,
+      "group": 2,
+      "category": 1,
+      "pest_type": 1,
+      "text": "Seal all cracks with silicone caulk.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 44,
+    "fields": {
+      "principle": 3,
+      "group": 2,
+      "category": 1,
+      "pest_type": 1,
+      "text": "Identify any openings larger than ¼ inch.",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 45,
+    "fields": {
+      "principle": 3,
+      "group": 2,
+      "category": 1,
+      "pest_type": 1,
+      "text": "Fill small openings with stainless steel or copper mesh; seal with silicone caulk.",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 46,
+    "fields": {
+      "principle": 3,
+      "group": 2,
+      "category": 1,
+      "pest_type": 1,
+      "text": "Seal large openings with material rodents cannot chew through, such as concrete or sheet metal",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 47,
+    "fields": {
+      "principle": 3,
+      "group": 2,
+      "category": 1,
+      "pest_type": 2,
+      "text": "Use weatherstripping to fill gaps around windows and doors.",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 48,
+    "fields": {
+      "principle": 3,
+      "group": 2,
+      "category": 1,
+      "pest_type": 2,
+      "text": "Repair all exterior leaks.",
+      "order": 7,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 49,
+    "fields": {
+      "principle": 3,
+      "group": 2,
+      "category": 1,
+      "pest_type": 3,
+      "text": "Seal exterior leaks to reduce excess moisture.",
+      "order": 8,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 50,
+    "fields": {
+      "principle": 3,
+      "group": 2,
+      "category": 1,
+      "pest_type": 3,
+      "text": "Have hard-surface floors inside the home, if possible.",
+      "order": 9,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 51,
+    "fields": {
+      "principle": 3,
+      "group": 2,
+      "category": 1,
+      "pest_type": 3,
+      "text": "Use low-pile carpet if hard-surface floors are not an option.",
+      "order": 10,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 52,
+    "fields": {
+      "principle": 3,
+      "group": 2,
+      "category": 1,
+      "pest_type": 4,
+      "text": "Seal interior openings around plumbing or electrical wiring to limit bed bugs' ability to migrate to other nesting areas.",
+      "order": 11,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 53,
+    "fields": {
+      "principle": 3,
+      "group": 2,
+      "category": 1,
+      "pest_type": 4,
+      "text": "Seal around crown molding and baseboard molding with silicone caulk to limit bed bugs' ability to migrate to other nesting areas.",
+      "order": 12,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 54,
+    "fields": {
+      "principle": 3,
+      "group": 3,
+      "category": 2,
+      "pest_type": 2,
+      "text": "Repair all interior leaks",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 55,
+    "fields": {
+      "principle": 3,
+      "group": 3,
+      "category": 2,
+      "pest_type": 3,
+      "text": "Repair plumbing leaks to reduce excess moisture.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 56,
+    "fields": {
+      "principle": 3,
+      "group": 5,
+      "category": 4,
+      "pest_type": 1,
+      "text": "Develop and maintain a cleaning schedule.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 57,
+    "fields": {
+      "principle": 3,
+      "group": 5,
+      "category": 4,
+      "pest_type": 2,
+      "text": "Establish a monitoring process. In multi-family buildings, a monitoring program involving all of the residents may be necessary.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 58,
+    "fields": {
+      "principle": 3,
+      "group": 5,
+      "category": 4,
+      "pest_type": 2,
+      "text": "Check clothing, backpacks, and luggage whenever traveling and returning home.",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 59,
+    "fields": {
+      "principle": 3,
+      "group": 5,
+      "category": 4,
+      "pest_type": 3,
+      "text": "Wash bedding and blankets weekly in hot water to kill dust mites.",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 60,
+    "fields": {
+      "principle": 3,
+      "group": 5,
+      "category": 4,
+      "pest_type": 3,
+      "text": "Use dust mite-proof covers to prevent dust mites from nesting in mattresses and pillows and launder them monthly.",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 61,
+    "fields": {
+      "principle": 3,
+      "group": 5,
+      "category": 4,
+      "pest_type": 3,
+      "text": "Avoid cloth window treatments. Alternatively wash them.",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 62,
+    "fields": {
+      "principle": 3,
+      "group": 5,
+      "category": 4,
+      "pest_type": 3,
+      "text": "Wash stuffed animals or put them in the freezer for at least two days.",
+      "order": 7,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 63,
+    "fields": {
+      "principle": 3,
+      "group": 5,
+      "category": 4,
+      "pest_type": 3,
+      "text": "Vacuum all surfaces regularly (carpets, rugs, furniture).",
+      "order": 8,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 64,
+    "fields": {
+      "principle": 3,
+      "group": 5,
+      "category": 4,
+      "pest_type": 4,
+      "text": "Check clothing, backpacks, and luggage whenever traveling and returning home.",
+      "order": 9,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 65,
+    "fields": {
+      "principle": 3,
+      "group": 5,
+      "category": 4,
+      "pest_type": 4,
+      "text": "Eliminate clutter in which bed bugs can nest; store items in closed bins.",
+      "order": 10,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 66,
+    "fields": {
+      "principle": 3,
+      "group": 5,
+      "category": 4,
+      "pest_type": 4,
+      "text": "Vacuum using a HEPA filter or bag in the vacuum. Double-bag and dispose of the vacuum bag immediately.",
+      "order": 11,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 67,
+    "fields": {
+      "principle": 3,
+      "group": 5,
+      "category": 4,
+      "pest_type": 4,
+      "text": "Seal mattresses in a bed bug-proof cover. Bed bugs will die if they are unable to feed.",
+      "order": 12,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 68,
+    "fields": {
+      "principle": 3,
+      "group": 5,
+      "category": 4,
+      "pest_type": 4,
+      "text": "Wash all bedding in hot water weekly to kill bed bugs.",
+      "order": 13,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 69,
+    "fields": {
+      "principle": 3,
+      "group": 5,
+      "category": 4,
+      "pest_type": 4,
+      "text": "Use interceptors under each bed post.",
+      "order": 14,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  }
+]

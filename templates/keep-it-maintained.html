@@ -7,32 +7,11 @@
 
 {% block content %}
 <div class="right-mainpart">
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>The Hazards of LEAD, ASBESTOS, and RADON in the home</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Other toxic elements include:  Mercury and Sewer gas</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <ul>
-                <li><a href="/keep-it-maintained-item-selected/">Other toxic elements include:  Mercury and Sewer gas</a></li>
-                <li><a href="/keep-it-maintained-item-selected/">Other toxic elements include:  Mercury and Sewer gas.</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Six Points to Maintaining a Healthy Home</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>AIdentify what needs to be done.</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-        </div>
-    </div>                    
+                  
 </div> 
+{{principleId|json_script:"principleId"}}
 {% endblock content %}
+
+{% block js %}
+<script src="{% static "js/category-base.js" %}"></script>
+{% endblock js %}

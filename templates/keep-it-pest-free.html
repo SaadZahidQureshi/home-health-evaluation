@@ -5,63 +5,11 @@
 
 {% block content %}
 <div class="right-mainpart">
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Environmental</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Rodents <img src="{% static "img\right.svg" %}" alt=""> Don’t store firewood indoors or in a garage.</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner pest_inner">
-            <ul>
-                <li>
-                    <a href="/keep-it-pest-free-item-selected/">Rodents <img src="{% static "img\arrow-right.svg" %}" alt=""></a>
-                    <ul class="pest_dropdown">
-                        <li><a href="/keep-it-pest-free-item-selected/">Don’t store firewood indoors or in a garage</a></li>
-                        <li><a href="/keep-it-pest-free-item-selected/">Remove garbage from the outdoor environment.</a></li>
-                    </ul>
-                </li>
-                <li><a href="/keep-it-pest-free-item-selected/">Cockroaches <img src="{% static "img\arrow-right.svg" %}" alt=""></a></li>
-                <li><a href="/keep-it-pest-free-item-selected/">Dust Mites <img src="{% static "img\arrow-right.svg" %}" alt=""></a></li>
-            </ul>
-        </div>
-    </div>  
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Building</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Rodents <img src="{% static "img\right.svg" %}" alt=""> Add door sweeps to all entry doors.</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-        </div>
-    </div>
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Mechanicals</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Cockroaches <img src="{% static "img\right.svg" %}" alt=""> Repair all interior leaks.</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-        </div>
-    </div>
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Occupant</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Rodents <img src="{% static "img\right.svg" %}" alt=""> Develop and maintain a cleaning schedule.</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-        </div>
-    </div>                        
+   
 </div> 
+{{principleId|json_script:"principleId"}}
 {% endblock content %}
+
+{% block js %}
+<script src="{% static "js/category-base.js" %}"></script>
+{% endblock js %}

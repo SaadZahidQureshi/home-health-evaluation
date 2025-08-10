@@ -5,62 +5,11 @@
 
 {% block content %}
 
-<div class="right-mainpart">
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Building</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Have hard surfaces outside the home at entry doors.</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <ul>
-                <li><a href="/keep-it-clean-item-selected/">Have hard surfaces outside the home at entry doors</a></li>
-                <li><a href="/keep-it-clean-item-selected/">Have a space to leave shoes by the door</a></li>
-                <li><a href="/keep-it-clean-item-selected/">Use pollen-filtering screens on windows</a></li>
-                <li><a href="/keep-it-clean-item-selected/">Have hard-surface floors inside the home, if possible</a></li>
-                <li><a href="/keep-it-clean-item-selected/">Use low-pile carpet if hard-surface floors are not an option</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Mechanicals</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Ensure the duct system is free of dust, mold, and pests</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-        </div>
-    </div>
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Environment</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Keep the outdoors outside the home</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-        </div>
-    </div>
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Occupant</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Clear clutter from the home</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-        </div>
-    </div>                        
+<div class="right-mainpart">                      
 </div>      
-
+{{principleId|json_script:"principleId"}}
 {% endblock content %}
-            
+{% block js %}
+<script src="{% static "js/keep-it-clean.js" %}"></script>
+<script src="{% static "js/category-base.js" %}"></script>
+{% endblock js %}

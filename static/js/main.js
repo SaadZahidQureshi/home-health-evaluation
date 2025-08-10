@@ -1,5 +1,9 @@
 const API_BASE_URL = JSON.parse(document.getElementById("API_BASE_URL").textContent);
 const emailRegex = /^[a-z0-9](?:[a-z0-9._%+-]*[a-z0-9])?@[a-z0-9.-]+\.[a-z]{2,}$/i;
+let logout_form = document.querySelector("#logoutForm");
+logout_form?.addEventListener("submit", logoutForm)
+let principle_status_data = null;
+window.addEventListener('load', () =>{_get_me_data(); get_principle_status_data()});
 
 (function ($) {
 
@@ -17,8 +21,6 @@ const emailRegex = /^[a-z0-9](?:[a-z0-9._%+-]*[a-z0-9])?@[a-z0-9.-]+\.[a-z]{2,}$
         $(".accordian_cnt").click(function() {
             $(this).toggleClass("active").next().slideToggle();
         });
-
-
 
     });
 
@@ -160,8 +162,6 @@ async function _get_me_data(){
     }
 }
 
-window.addEventListener('load', _get_me_data());
-
 function _render_me_data(me_data){
     document.querySelector("#image").src = me_data?.image || '/static/images/admin_profile_image.svg';
 }
@@ -187,10 +187,6 @@ async function handleLogout(){
     })
     document.querySelector(`.${modalId}`).click();
 }
-
-
-let logout_form = document.querySelector("#logoutForm");
-logout_form?.addEventListener("submit", logoutForm)
 
 async function logoutForm(event) {
     event.preventDefault();
@@ -230,3 +226,32 @@ async function logoutForm(event) {
     }
 }
 
+async function get_principle_status_data(){
+    try {
+        let headers = {
+            "Content-Type": "application/json",
+            'X-CSRFToken': getCookie('csrftoken')
+        };
+        let response = await requestAPI(`${API_BASE_URL}principles/status`, null, headers, 'GET');
+        response.json().then(function(res) {
+            if (response.status == 200) {
+                principle_status_data = res;
+                render_principle_status_data(principle_status_data);
+            }
+            else {
+                console.log(res)
+                return false;
+            }
+        })
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+function render_principle_status_data(data){
+    let container = document.querySelector(".side_menu > ul");
+    data.forEach(item => {
+        container.querySelector(`#principle-${item.id}`).classList.add(`${item?.status}`)
+    })
+}

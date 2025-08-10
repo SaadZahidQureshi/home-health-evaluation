@@ -6,58 +6,11 @@
 
 {% block content %}
 <div class="right-mainpart">
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Environmental</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Maintain the home at WHO-recommended.</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <ul>
-                <li><a href="/keep-it-comfortable-item-selected/">Air seal in the basement and attic (if these are unconditioned spaces) to establish a pressure boundary.  This controls airflow and reduces convective heat transfer</a></li>
-                <li><a href="/keep-it-comfortable-item-selected/">Install weatherstrip around windows and window frames, and doors and door frames, to establish a pressure boundary.</a></li>
-                <li><a href="/keep-it-comfortable-item-selected/">Install door sweeps along the bottom of entry doors to establish a pressure boundary.</a></li>
-                <li><a href="/keep-it-comfortable-item-selected/">Install insulation in unconditioned spaces to establish a thermal boundary.  This reduces conductive heat transfer.</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Building</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Air seal in the basement and attic (if these are unconditioned spaces) to establish a pressure boundary.  This controls airflow and reduces convective heat transfer.</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-        </div>
-    </div>
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Mechanicals</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Air seal duct systems to control airflow and reduce convective heat transfer.</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-        </div>
-    </div>
-    <div class="accordian_box">
-        <div class="accordian_title">
-            <h4>Occupants</h4>
-        </div>
-        <div class="accordian_cnt">
-            <p>Investigate assistance programs for low-income households, such as Low Income Home Energy Assistance Program (LIHEAP)</p>
-            <img src="{% static "img\down.svg" %}" alt="">
-        </div>
-        <div class="accordian_inner">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis officiis dicta aliquid ab reprehenderit tenetur iure provident, eius, porro magnam, dolor! Dignissimos ullam, voluptas perferendis quis aliquid fugiat vel ipsum, unde at labore excepturi magni voluptatum sunt voluptate ut explicabo sit ea vitae illo eum. Veniam fuga culpa deleniti vel.</p>
-        </div>
-    </div>                       
+                     
 </div>   
+{{principleId|json_script:"principleId"}}
 {% endblock content %}
+
+{% block js %}
+<script src="{% static "js/category-base.js" %}"></script>
+{% endblock js %}
