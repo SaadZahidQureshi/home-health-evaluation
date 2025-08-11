@@ -1,0 +1,58 @@
+
+
+<div class="modal fade" id="addUserModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+        <div class="modal-header border-0">
+            <h1 class="modal-title m-auto" id="addUserModalLabel">Enter Customer Information</h1>
+            <svg class="position-absolute" style="right:1rem" data-bs-dismiss="modal" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.8076 5.08008C18.1147 4.77312 18.6129 4.77303 18.9199 5.08008C19.227 5.38713 19.2269 5.88528 18.9199 6.19238L13.1123 12L18.9199 17.8076C19.1928 18.0806 19.2228 18.5041 19.0107 18.8105L19.0029 18.8223L19.002 18.8213L18.9287 18.9102L18.9199 18.9199C18.6468 19.193 18.2226 19.2231 17.916 19.0107L17.9053 19.0029L18.002 18.8877L17.9053 19.002L17.8174 18.9287L17.8076 18.9199L12 13.1123L6.19238 18.9199C5.88528 19.2269 5.38713 19.227 5.08008 18.9199C4.77303 18.6129 4.77312 18.1147 5.08008 17.8076L10.8877 12L5.08008 6.19238C4.80721 5.91939 4.77717 5.49593 4.98926 5.18945L4.99707 5.17773H4.99902L5.07129 5.08984L5.08008 5.08008L5.18945 4.98926C5.41935 4.83008 5.71518 4.80711 5.96387 4.9209L6.08398 4.98926L6.09473 4.99707L5.99805 5.1123L6.09473 4.99805L6.18262 5.07129L6.19238 5.08008L12 10.8877L17.8076 5.08008Z" fill="#FF0000" stroke="#FF0000" stroke-width="0.3"/>
+            </svg>
+        </div>
+        <form class="modal-body" id="addUserForm">
+            <div class="input-wrapper">
+                <label for="name">Customer Name</label>
+                <input type="text" name="name" id="name" placeholder="John">
+            </div>
+            <div class="input-wrapper">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Johndoe@email.com">
+            </div>
+            <div class="input-wrapper">
+                <label for="address">Address</label>
+                <input type="text" name="address" id="address" placeholder="New York">
+            </div>  
+            <div class="input-wrapper">
+                <label for="city">City</label>
+                <input type="text" name="city" id="city" placeholder="New York">
+            </div>   
+            <div class="input-wrapper">
+                <label for="state">State</label>
+                <input type="text" name="state" id="state" placeholder="New York">
+            </div>    
+            <div class="input-wrapper">
+                <label for="zip_code">ZIP Code</label>
+                <input type="text" name="zip_code" id="zip_code" placeholder="New York">
+            </div>    
+            <div class="input-wrapper provider hide">
+                <span>House Image</span>
+                <label for="id_image" class="upload-box" id="file-box">
+                    <img src="" class="hide" id="id_image_preview" alt="">
+                    <input name="file" type="file" name="id_image" id="id_image" hidden onchange="uploadIdImage(event)" accept="image/jpeg, image/jpg, image/png">
+                    <svg width="38" height="26" viewBox="0 0 38 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M26.6379 25.5143H29.5078C33.7233 25.5143 37.1411 22.1372 37.1411 17.972C37.1411 13.8068 33.7233 10.4297 29.5078 10.4297C28.4897 10.4297 27.5177 10.6276 26.6301 10.9844C26.5389 6.8981 23.1583 3.61328 19.0002 3.61328C14.8422 3.61328 11.4615 6.89921 11.3704 10.9844C10.4827 10.6276 9.51073 10.4297 8.49259 10.4297C4.27717 10.4297 0.859375 13.8068 0.859375 17.972C0.859375 22.1372 4.27717 25.5143 8.49259 25.5143H11.3625" fill="#D6E9FB" fill-opacity="0.69"/>
+                        <path d="M16.8586 16.8968V6.83277H12.8594L19.2099 0.484375L25.5583 6.83277H21.5612V16.8862" fill="#00274D"/>
+                    </svg>                    
+                </label>
+            </div>            
+        </form>
+        <div class="modal-footer border-0 d-flex justify-content-center">
+            <button type="submit" form="addUserForm">
+                <span class="spinner-border spinner-border-sm hide" role="status" aria-hidden="true"></span>
+                <span class="btn-text">Save</span>
+            </button>
+        </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" class="addUserModal" data-bs-toggle="modal" data-bs-target="#addUserModal">

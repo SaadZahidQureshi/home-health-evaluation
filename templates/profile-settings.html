@@ -11,14 +11,14 @@
                 <div class="profile_wrap text-center">
                     <div class="settings_profile">
                         <div class="profile_photo">
-                            <label for="profiel-image">
-                                <img class="avatar-icon" src="{% static "img\profile-photo.png" %}" alt="">
-                                <input type="file" class="hide" name="image" id="profiel-image" onchange="UploadImage(event)">
+                            <label for="profile-image">
+                                <img class="avatar-icon" src="{% static 'img/profile-photo.png' %}" alt="Profile Photo">
+                                <input type="file" class="hide" name="image" id="profile-image" onchange="UploadImage(event)" accept="image/*">
                             </label>
                         </div>
                         <div class="edit_btn">
-                            <a href="#">
-                                <img src="{% static "img\edit.svg" %}" alt="">
+                            <a href="javascript:void(0)" onclick="document.getElementById('profile-image').click()">
+                                <img src="{% static 'img/edit.svg' %}" alt="Edit">
                             </a>
                         </div>
                     </div>

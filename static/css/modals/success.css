@@ -1,18 +1,18 @@
 
 
 
-#logoutModal .modal-title {
+#successmodal .modal-title {
     font-weight: 700;
     font-size: 20px;
     color: #000000;
 }
 
-#logoutModal .modal-content {
+#successmodal .modal-content {
     border-radius: 20px;
     padding: 14px;
 }
 
-#logoutModal .modal-body {
+#successmodal .modal-body {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,7 +21,7 @@
     padding-inline: 50px;
 }
 
-#logoutModal .main-content-delete {
+#successmodal .main-content-delete {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,7 +29,7 @@
     gap: 34px;
 }
 
-#logoutModal .main-content-delete span{
+#successmodal .main-content-delete span{
     font-weight: 500;
     font-size: 20px;
     color: #333333;
@@ -37,14 +37,14 @@
     text-align: center;
 }
 
-#logoutModal .modal-footer {
+#successmodal .modal-footer {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#logoutModal .modal-footer button {
-    width: 190px;
+#successmodal .modal-footer button {
+    width: 75%;
     height: 50px;
     opacity: 1;
     border-radius: 80px;
@@ -56,24 +56,19 @@
     font-size: 16px;
     color: #ffffff;
 }
-
-#logoutModal .modal-footer button span {
-    font-size: 16px;
-}
-
-#logoutModal .modal-footer button:first-child {
+#successmodal .modal-footer button:first-child {
     background: #1B2F46;
 }
 
-#logoutModal .modal-footer button:last-child{
+#successmodal .modal-footer button:last-child{
     background-color: #71BF1E;
 }
 
-#logoutModal .modal-footer button:first-child:hover {
+#successmodal .modal-footer button:first-child:hover {
     background: #1B2F46;
     color: #000000;
 }
 
-#logoutModal .modal-footer button:last-child:hover {
+#successmodal .modal-footer button:last-child:hover {
     background: #71BF1E;
 }

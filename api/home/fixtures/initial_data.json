@@ -140,6 +140,160 @@
     }
   },
   {
+    "model": "home.Category",
+    "pk": 5,
+    "fields": {
+      "key": "OCCUPANT(POISONING)",
+      "name": "OCCUPANT(POISONING)",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Category",
+    "pk": 6,
+    "fields": {
+      "key": "BUILDING(FALLS)",
+      "name": "BUILDING(FALLS)",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Category",
+    "pk": 7,
+    "fields": {
+      "key": "ENVIRONMENT(FALLS)",
+      "name": "ENVIRONMENT(FALLS)",
+      "order": 7,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Category",
+    "pk": 8,
+    "fields": {
+      "key": "OCCUPANTS(FALLS)",
+      "name": "OCCUPANTS(FALLS)",
+      "order": 8,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Category",
+    "pk": 9,
+    "fields": {
+      "key": "MECHANICALS(FIRES_AND_BURNS)",
+      "name": "MECHANICALS(FIRES AND BURNS)",
+      "order": 9,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Category",
+    "pk": 9,
+    "fields": {
+      "key": "MECHANICALS(FIRES_AND_BURNS)",
+      "name": "MECHANICALS(FIRES AND BURNS)",
+      "order": 9,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Category",
+    "pk": 10,
+    "fields": {
+      "key": "OCCUPANTS(FIRES_AND_BURNS)",
+      "name": "OCCUPANTS(FIRES AND BURNS)",
+      "order": 10,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Category",
+    "pk": 11,
+    "fields": {
+      "key": "OCCUPANTS(CHOKINGSUFFOCATION)",
+      "name": "OCCUPANTS(CHOKING/SUFFOCATION)",
+      "order": 11,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Category",
+    "pk": 12,
+    "fields": {
+      "key": "ENVIRONMENT(DROWNING)",
+      "name": "ENVIRONMENT(DROWNING)",
+      "order": 12,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Category",
+    "pk": 13,
+    "fields": {
+      "key": "OCCUPANTS(DROWNING)",
+      "name": "OCCUPANTS(DROWNING)",
+      "order": 13,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Category",
+    "pk": 14,
+    "fields": {
+      "key": "ENVIRONMENT(OTHE_HAZARDS)",
+      "name": "ENVIRONMENT(OTHE HAZARDS)",
+      "order": 14,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Category",
+    "pk": 15,
+    "fields": {
+      "key": "OCCUPANTS(OTHE_HAZARDS)",
+      "name": "OCCUPANTS(OTHE HAZARDS)",
+      "order": 15,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Category",
+    "pk": 16,
+    "fields": {
+      "key": "The_Hazards_of_LEAD_ASBESTOS_and_RADON_in_home",
+      "name": "The Hazards of LEAD, ASBESTOS, and RADON in the home",
+      "order": 16,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Category",
+    "pk": 17,
+    "fields": {
+      "key": "Six_Steps_Maintaining",
+      "name": "Six Steps to Maintaining a Healthy Home",
+      "order": 17,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
     "model": "home.PestType",
     "pk": 1,
     "fields": {
@@ -178,6 +332,61 @@
     "fields": {
       "key": "BED_BUGS",
       "name": "Bed Bugs",
+      "description": "Prevention and control measures for bed bugs",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.PestType",
+    "pk": 5,
+    "fields": {
+      "key": "Heating_Systems",
+      "name": "Heating Systems",
+      "description": "Prevention and control measures for bed bugs",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.PestType",
+    "pk": 6,
+    "fields": {
+      "key": "Bathrooms",
+      "name": "Bathrooms",
+      "description": "Prevention and control measures for bed bugs",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.PestType",
+    "pk": 7,
+    "fields": {
+      "key": "Kitchens",
+      "name": "Kitchens",
+      "description": "Prevention and control measures for bed bugs",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.PestType",
+    "pk": 8,
+    "fields": {
+      "key": "Clothes_Dryer",
+      "name": "Clothes Dryer",
+      "description": "Prevention and control measures for bed bugs",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.PestType",
+    "pk": 9,
+    "fields": {
+      "key": "General",
+      "name": "General",
       "description": "Prevention and control measures for bed bugs",
       "created_at": "2023-01-01T00:00:00Z",
       "updated_at": "2023-01-01T00:00:00Z"
@@ -236,6 +445,90 @@
     "pk": 5,
     "fields": {
       "name": "General Occupant",
+      "category": 4,
+      "pest_type": null,
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.QuestionGroup",
+    "pk": 6,
+    "fields": {
+      "name": "MECHANICALS Heating Systems",
+      "category": 2,
+      "pest_type": null,
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.QuestionGroup",
+    "pk": 7,
+    "fields": {
+      "name": "MECHANICALS Bathrooms",
+      "category": 2,
+      "pest_type": null,
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.QuestionGroup",
+    "pk": 8,
+    "fields": {
+      "name": "MECHANICALS Kitchens",
+      "category": 2,
+      "pest_type": null,
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.QuestionGroup",
+    "pk": 9,
+    "fields": {
+      "name": "MECHANICALS Clothes Dryer",
+      "category": 2,
+      "pest_type": null,
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.QuestionGroup",
+    "pk": 10,
+    "fields": {
+      "name": "OCCUPANTS Heating Systems",
+      "category": 4,
+      "pest_type": null,
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.QuestionGroup",
+    "pk": 11,
+    "fields": {
+      "name": "OCCUPANTS Bathrooms",
+      "category": 4,
+      "pest_type": null,
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.QuestionGroup",
+    "pk": 12,
+    "fields": {
+      "name": "OCCUPANTS Kitchens",
       "category": 4,
       "pest_type": null,
       "order": 1,
@@ -1208,5 +1501,2255 @@
       "created_at": "2023-01-01T00:00:00Z",
       "updated_at": "2023-01-01T00:00:00Z"
     }
-  }
+  },
+  {
+    "model": "home.Question",
+    "pk": 70,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 1,
+      "pest_type": null,
+      "text": "Wash walls and ceilings with soap and water to remove tobacco smoke contaminants.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 71,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 1,
+      "pest_type": null,
+      "text": "Repaint walls with 2-3 coats of paint to encapsulate nicotine.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 72,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 1,
+      "pest_type": null,
+      "text": "Remove carpet and padding and wash the floors before replacing carpeting.",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 73,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 1,
+      "pest_type": null,
+      "text": "Choose VOC-free and low-VOC options for paint, floor finishes, carpet, cabinets, and other items that become a permanent or semi-permanent aspect of the home.",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 74,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 1,
+      "pest_type": null,
+      "text": "Avoid paint that uses ethylene glycol.",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 75,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 1,
+      "pest_type": null,
+      "text": "Avoid acid-cured polyurethane finishes for floors.",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 76,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 1,
+      "pest_type": null,
+      "text": "When building or remodeling, use hardwood plywood or particleboard that complies with Toxic Substances Control Act Title VI.",
+      "order": 7,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 77,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 2,
+      "pest_type": null,
+      "text": "Follow ventilation recommendations to keep air truly fresh.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 78,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 2,
+      "pest_type": null,
+      "text": "Use air conditioning to keep the home at a comfortable temperature. Higher temperatures increase off-gassing.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 79,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 2,
+      "pest_type": null,
+      "text": "Use dehumidifiers to keep relative humidity between 40-60%. Higher RH increases off-gassing.",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 80,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 2,
+      "pest_type": null,
+      "text": "Replace the furnace filter on a routine basis, somewhere between monthly and quarterly depending on how dusty indoor conditions appear to be.",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 81,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 2,
+      "pest_type": null,
+      "text": "Ensure the home is adequately ventilated, which means bringing in fresh outdoor air and removing stale air.",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 82,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 2,
+      "pest_type": null,
+      "text": "Increase ventilation when products containing VOC’s are used. Use fans to have 2-5 air changes per hour during application and for 48 hours afterwards.",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },{
+    "model": "home.Question",
+    "pk": 83,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "Increase ventilation if formaldehyde contamination is suspected.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 84,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "Avoid using chemical air fresheners and scented products.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 85,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "Clean window treatments to eliminate off-gassing of thirdhand smoke.",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 86,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "Do not smoke, or at least do not smoke indoors.",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 87,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "If renting, ask the property owner or manager about adopting a smoke-free policy.",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 88,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "Choose VOC-free or low-VOC products.",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 89,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "Avoid terpenes (turpentine and furniture varnish) and linseed oil.",
+      "order": 7,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 90,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "Do not idle cars in an attached garage.",
+      "order": 8,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },{
+    "model": "home.Question",
+    "pk": 91,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "Use Integrated Pest Management (IPM) to reduce the use of pesticides in the home.",
+      "order": 9,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 92,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "Obtain, read, and follow Safety Data Sheets when available.",
+      "order": 10,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 93,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "Follow label instructions. Note that a well-ventilated area is either outdoors or a place that has an exhaust fan that meets the recommendations given above in Mechanicals.",
+      "order": 11,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 94,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "Store products outside of the living space, if possible (e.g., garage, shed).",
+      "order": 12,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 95,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "If materials must be stored in the home, find a well-ventilated area.",
+      "order": 13,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 96,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "Store products out of sight and out of reach. Use child-safe locks or latches to limit access.",
+      "order": 14,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 97,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "Buy only what is needed so that extra VOC-containing products don’t need to be stored.",
+      "order": 15,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 98,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "Safely dispose of old products that are no longer needed. Instead of throwing them out, find out if the city/town runs a collection program for household waste.",
+      "order": 16,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 99,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "When purchasing composite wood products (e.g., flat-pack furniture, children’s play furniture), verify they comply with TSCA Title VI.",
+      "order": 17,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 100,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "Choose phthalate-free products.",
+      "order": 18,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 101,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "Minimize exposure when working with products that may contain phthalate. For example, minimize dust by using a utility knife instead of a circular saw when cutting vinyl plank flooring.",
+      "order": 19,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 102,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 3,
+      "pest_type": null,
+      "text": "Have a track-off system and remove footwear when entering the home.",
+      "order": 20,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },{
+    "model": "home.Question",
+    "pk": 103,
+    "fields": {
+      "principle": 4,
+      "group": null,
+      "category": 4,
+      "pest_type": null,
+      "text": "Take all unused cleaning, hobby, remodeling and other household products to a local household hazardous waste collection instead of placing in the trash to go to a landfill.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },{
+    "model": "home.Question",
+    "pk": 104,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 5,
+      "pest_type": null,
+      "text": "Program the number for Poison Control into cell phones and post it near land-line phones:  1-800-222-1222.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 105,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 5,
+      "pest_type": null,
+      "text": "Read labels when purchasing products and choose products that are less hazardous",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 106,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 5,
+      "pest_type": null,
+      "text": "Keep products in their original containers, which will have all required hazard warnings.",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 107,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 5,
+      "pest_type": null,
+      "text": "Store cleaning products out of reach and out of sight of children.",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 108,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 5,
+      "pest_type": null,
+      "text": "Use child safety latches/locks on cabinets.",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 109,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 5,
+      "pest_type": null,
+      "text": "Store poisonous items out of reach and out of sight of children. If this is not possible, use child safety latches/locks on cabinets.",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 110,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 5,
+      "pest_type": null,
+      "text": "Store medicine and vitamins out of reach and out of sight. If pill organizers are needed, set alarm reminders instead of leaving the pill organizer out as a visual reminder.",
+      "order": 7,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 111,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 5,
+      "pest_type": null,
+      "text": "Households without children should still consider making their hazardous products “pet-proof.”",
+      "order": 8,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 112,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 5,
+      "pest_type": null,
+      "text": "Dispose of unused medicines via city or town take-back programs.",
+      "order": 9,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 113,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 5,
+      "pest_type": null,
+      "text": "Keep poisonous plants out of the home.",
+      "order": 10,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 114,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 5,
+      "pest_type": null,
+      "text": "Know which outdoor plants are poisonous and restrict children’s access to them.",
+      "order": 11,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 115,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 5,
+      "pest_type": null,
+      "text": "Purchase only nontoxic arts and crafts supplies for children.",
+      "order": 12,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 116,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 5,
+      "pest_type": null,
+      "text": "Install CO alarms on every floor of the home.",
+      "order": 13,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 117,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 6,
+      "pest_type": null,
+      "text": "Ensure stairways meet current code requirements for uniform riser height and tread depth and are properly lit.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 118,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 6,
+      "pest_type": null,
+      "text": "Install handrails when there are four or more risers in a flight of stairs (or fewer if required by local code).",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 119,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 6,
+      "pest_type": null,
+      "text": "Depending on occupant needs, install chair-height toilets.",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 120,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 6,
+      "pest_type": null,
+      "text": "Add window guards to upper-story windows; these protective bars screw into framing studs (not decorative trim) to prevent falls.",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 121,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 6,
+      "pest_type": null,
+      "text": "Use portable gates at opening for exterior stairs to prevent young children from falling.",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 122,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 7,
+      "pest_type": null,
+      "text": "Ensure that exterior and interior lighting is sufficiently bright that occupants and visitors can see where they are walking. Motion sensor lights in hallways and bathrooms are an option.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 123,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 7,
+      "pest_type": null,
+      "text": "Grade exterior walkways so that water does not pool on them.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 124,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 7,
+      "pest_type": null,
+      "text": "Use soft materials under children’s play areas.",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 125,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 7,
+      "pest_type": null,
+      "text": "Cap old, unused wells according to local building code.",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 126,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 7,
+      "pest_type": null,
+      "text": "Place nonslip mats or adhesive strips in shower stalls and bathtubs.",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 127,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 7,
+      "pest_type": null,
+      "text": "Place nonslip adhesive strips on stairs.",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 128,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 7,
+      "pest_type": null,
+      "text": "Use safety gates at the top and bottom of stairs inside homes that have young children.",
+      "order": 7,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 129,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 8,
+      "pest_type": null,
+      "text": "Remove clutter from the home.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 130,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 8,
+      "pest_type": null,
+      "text": "Put away children’s toys and pet toys.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 131,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 8,
+      "pest_type": null,
+      "text": "Remove area rugs and small furniture.",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 132,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 8,
+      "pest_type": null,
+      "text": "Rearrange furniture to allow for wide walking paths through rooms.",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 133,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 8,
+      "pest_type": null,
+      "text": "Clear snow and ice from exterior stairs and walkways.",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 134,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 8,
+      "pest_type": null,
+      "text": "Properly dispose of old lumber and building materials that present a trip and fall hazard.",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 135,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 8,
+      "pest_type": null,
+      "text": "Remove a trampoline if possible or ensure that existing trampolines have appropriate safety features.",
+      "order": 7,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 136,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 9,
+      "pest_type": null,
+      "text": "Hire a licensed electrician to investigate and repair blown fuses/tripped circuit breakers.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 137,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 9,
+      "pest_type": null,
+      "text": "Hire a licensed electrician to repair exposed wiring.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 138,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 9,
+      "pest_type": null,
+      "text": "Hire a licensed electrician to add outlets to rooms that lack them, or that lack a sufficient number of outlets.",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 139,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 9,
+      "pest_type": null,
+      "text": "Use outlet covers to prevent electric shock.",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 140,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 9,
+      "pest_type": null,
+      "text": "Verify or adjust the hot water heater to a maximum of 120F.",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 141,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 9,
+      "pest_type": null,
+      "text": "Have fireplace chimneys and oil flues professionally cleaned annually.",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 142,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 9,
+      "pest_type": null,
+      "text": "Ensure the dryer lint trap is clean and is connected so that it exhausts to the outside.",
+      "order": 7,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 143,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 9,
+      "pest_type": null,
+      "text": "Ensure that fireplaces have screens.",
+      "order": 8,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 144,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 9,
+      "pest_type": null,
+      "text": "Ensure the home has smoke detectors on each floor, preferably hardwired together (local code may require this).",
+      "order": 9,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 145,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 9,
+      "pest_type": null,
+      "text": "Do not use extension cords as a permanent solution to insufficient electrical outlets.",
+      "order": 10,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 146,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 9,
+      "pest_type": null,
+      "text": "If needed, use power strips with overload protection as a safe alternative.",
+      "order": 11,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 147,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 9,
+      "pest_type": null,
+      "text": "Make sure there are GFCI for all outlets in rooms with water sources.",
+      "order": 12,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 148,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 10,
+      "pest_type": null,
+      "text": "Do not smoke inside the home.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 149,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 10,
+      "pest_type": null,
+      "text": "Have a nonflammable container for ashes and cigarette butts for occupants who smoke outside.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 150,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 10,
+      "pest_type": null,
+      "text": "Be cautious when using candles.",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 151,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 10,
+      "pest_type": null,
+      "text": "Be cautious when using space heaters.",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 152,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 10,
+      "pest_type": null,
+      "text": "Don’t leave matches or lighters around.",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 153,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 10,
+      "pest_type": null,
+      "text": "Don’t leave wood stoves unattended.",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 154,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 10,
+      "pest_type": null,
+      "text": "Stay in the home when cooking and do not leave cooking food unattended.",
+      "order": 7,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 155,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 10,
+      "pest_type": null,
+      "text": "Keep combustible material (packaging, hand towels) away from heat sources.",
+      "order": 8,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 156,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 10,
+      "pest_type": null,
+      "text": "Test smoke alarms monthly.",
+      "order": 9,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 157,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 10,
+      "pest_type": null,
+      "text": "Develop and practice a fire escape plan.",
+      "order": 10,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 158,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 10,
+      "pest_type": null,
+      "text": "Add anti-scald devices to faucets and shower heads.",
+      "order": 11,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 159,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 11,
+      "pest_type": null,
+      "text": "Ensure balusters on staircases and guardrails on play equipment are less than four inches apart.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 160,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 11,
+      "pest_type": null,
+      "text": "Ensure cribs meet current CPSC standards.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 161,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 11,
+      "pest_type": null,
+      "text": "Ensure the mattress is snug to the edges of the crib. If more than two fingers can fit between the mattress and the crib, they are not the correct size match.",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 162,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 11,
+      "pest_type": null,
+      "text": "Use only a mattress and a fitted sheet in a crib. No additional bedding, toys, or stuffed animals are needed.",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 163,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 11,
+      "pest_type": null,
+      "text": "Use a sleep sack, which is a wearable blanket, on an infant in place of other bedding.",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 164,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 11,
+      "pest_type": null,
+      "text": "Do not use fabric “bumpers.”",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 165,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 11,
+      "pest_type": null,
+      "text": "Do not sleep with an infant; the American Academy of Pediatrics recommends against this.",
+      "order": 7,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 166,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 11,
+      "pest_type": null,
+      "text": "Keep the crib away from window treatments. An infant could use them for leverage while standing and pull them into the crib.",
+      "order": 8,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 167,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 11,
+      "pest_type": null,
+      "text": "Do not hang anything from the crib or bedposts; this creates a strangulation hazard.",
+      "order": 9,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 168,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 11,
+      "pest_type": null,
+      "text": "Use cordless blinds or tie loose ends well out of reach of children.",
+      "order": 10,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 169,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 11,
+      "pest_type": null,
+      "text": "Remove old appliances such as refrigerators, washers, and dryers in which children could become trapped and suffocate.",
+      "order": 11,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 170,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 11,
+      "pest_type": null,
+      "text": "Buy nondescript magnets for the refrigerator and place them out of children’s reach.",
+      "order": 12,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 171,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 12,
+      "pest_type": null,
+      "text": "Follow local codes on pool safety, which typically requires a fence with a locking gate.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 172,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 12,
+      "pest_type": null,
+      "text": "Add fences around, or safety nets over, water features such as ponds.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 173,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 12,
+      "pest_type": null,
+      "text": "Use a cover with locking straps when a hot tub is not in use.",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 174,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 12,
+      "pest_type": null,
+      "text": "Protect steps to hot tubs or above-ground pools with locking gates.",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 175,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 12,
+      "pest_type": null,
+      "text": "If steps are movable, move them away from the hot tub or above-ground pool and chain-lock them to a fixed object such as a fence post when they are not in use.",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 176,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 12,
+      "pest_type": null,
+      "text": "Cap old, unused wells according to local building code.",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 177,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 13,
+      "pest_type": null,
+      "text": "Properly store buckets, wheelbarrows, and any other item that could collect water.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 178,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 13,
+      "pest_type": null,
+      "text": "Lock (don’t just latch) pool gates.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 179,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 14,
+      "pest_type": null,
+      "text": "Avoid using fencing that has sharp points or jagged edges at the top. Certain styles of chain link, picket, stockade, and wrought-iron fencing may fall into this category.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 180,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 15,
+      "pest_type": null,
+      "text": "Cover exposed nuts and bolts on play structures and picnic benches to prevent cuts and scrapes.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 181,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 15,
+      "pest_type": null,
+      "text": "Place stickers or some other marker on glass doors so that occupants will see they are closed.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 182,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 15,
+      "pest_type": null,
+      "text": "Use outlet covers in homes with young children to prevent electrocution.",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 183,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 15,
+      "pest_type": null,
+      "text": "Use doorknob covers and door locks to prevent children from accessing rooms with dangers.",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 184,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 15,
+      "pest_type": null,
+      "text": "Use door stops and door holders to prevent children’s fingers from being pinched.",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 185,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 15,
+      "pest_type": null,
+      "text": "Use corner and edge bumpers to help prevent injuries.",
+      "order": 6,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 186,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 15,
+      "pest_type": null,
+      "text": "Keep refrigerators at 40F or lower.",
+      "order": 7,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 187,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 15,
+      "pest_type": null,
+      "text": "Store raw and cooked food in separate containers.",
+      "order": 8,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 188,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 15,
+      "pest_type": null,
+      "text": "Wash hands before handling food and again after handling raw meat or seafood.",
+      "order": 9,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 189,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 15,
+      "pest_type": null,
+      "text": "Use a food thermometer to ensure food has been cooked to a safe temperature.",
+      "order": 10,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 190,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 15,
+      "pest_type": null,
+      "text": "Store firearms unloaded, locked, and in a gun safe.",
+      "order": 11,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 191,
+    "fields": {
+      "principle": 5,
+      "group": null,
+      "category": 15,
+      "pest_type": null,
+      "text": "Store ammunition in a separate location than the firearms.",
+      "order": 12,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 192,
+    "fields": {
+      "principle": 6,
+      "group": 6,
+      "category": 2,
+      "pest_type": 5,
+      "text": "If possible, do not use a fireplace or wood stove as the primary source of heat.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 193,
+    "fields": {
+      "principle": 6,
+      "group": 6,
+      "category": 2,
+      "pest_type": 5,
+      "text": "If possible, replace a wood-burning fireplace with a properly vented gas fireplace.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 194,
+    "fields": {
+      "principle": 6,
+      "group": 6,
+      "category": 2,
+      "pest_type": 5,
+      "text": "Install CO alarms near sleeping areas and on every level of the home.",
+      "order": 3,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 195,
+    "fields": {
+      "principle": 6,
+      "group": 6,
+      "category": 2,
+      "pest_type": 5,
+      "text": "Follow the manufacturer’s recommendation on whether to place it on the wall or a ceiling.",
+      "order": 4,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 196,
+    "fields": {
+      "principle": 6,
+      "group": 6,
+      "category": 2,
+      "pest_type": 5,
+      "text": "Seal leaks in ducts.",
+      "order": 5,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 197,
+    "fields": {
+      "principle": 6,
+      "group": 7,
+      "category": 2,
+      "pest_type": 6,
+      "text": "Locate an exhaust fan in each bathroom.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 198,
+    "fields": {
+      "principle": 6,
+      "group": 7,
+      "category": 2,
+      "pest_type": 6,
+      "text": "Ensure the fan vents to the outside, not the attic, to prevent moisture problems.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 199,
+    "fields": {
+      "principle": 6,
+      "group": 8,
+      "category": 2,
+      "pest_type": 7,
+      "text": "Locate an exhaust fan (not a recirculating fan) above the range.",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 200,
+    "fields": {
+      "principle": 6,
+      "group": 8,
+      "category": 2,
+      "pest_type": 7,
+      "text": "Ensure a quiet fan is chosen, otherwise occupants may not use it.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 201,
+    "fields": {
+      "principle": 6,
+      "group": 9,
+      "category": 2,
+      "pest_type": 8,
+      "text": "Ensure dryers are connected to a vent that exhausts outside (except for a heat pump dryer).",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 202,
+    "fields": {
+      "principle": 6,
+      "group": 9,
+      "category": 2,
+      "pest_type": 8,
+      "text": "Ensure dryer vent exhaust is working, is clean and free of lint, and is not leaking.",
+      "order": 2,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Question",
+    "pk": 203,
+    "fields": {
+      "principle": 6,
+      "group": 3,
+      "category": 2,
+      "pest_type": 9,
+      "text": "Use whole-house ventilation to supply fresh air to the home, dilute indoor air, and remove contaminated air",
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+    {
+      "model": "home.Question",
+      "pk": 204,
+      "fields": {
+        "principle": 6,
+        "group": 10,
+        "category": 4,
+        "pest_type": 5,
+        "text": "Have the heating system serviced by a professional annually.",
+        "order": 1,
+        "created_at": "2023-01-01T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "home.Question",
+      "pk": 205,
+      "fields": {
+        "principle": 6,
+        "group": 10,
+        "category": 4,
+        "pest_type": 5,
+        "text": "For wood and oil-burning systems, have the flue cleaned by a professional annually.",
+        "order": 2,
+        "created_at": "2023-01-01T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "home.Question",
+      "pk": 206,
+      "fields": {
+        "principle": 6,
+        "group": 10,
+        "category": 4,
+        "pest_type": 5,
+        "text": "Change the furnace/HVAC filter regularly.",
+        "order": 3,
+        "created_at": "2023-01-01T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "home.Question",
+      "pk": 207,
+      "fields": {
+        "principle": 6,
+        "group": 10,
+        "category": 4,
+        "pest_type": 5,
+        "text": "Do not use unvented kerosene or gas heaters, which can generate CO.",
+        "order": 4,
+        "created_at": "2023-01-01T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "home.Question",
+      "pk": 208,
+      "fields": {
+        "principle": 6,
+        "group": 10,
+        "category": 4,
+        "pest_type": 5,
+        "text": "Have the fireplace flue cleaned by a professional annually.",
+        "order": 5,
+        "created_at": "2023-01-01T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "home.Question",
+      "pk": 209,
+      "fields": {
+        "principle": 6,
+        "group": 11,
+        "category": 4,
+        "pest_type": 6,
+        "text": "Turn on the fan when the bathtub or shower is being used",
+        "order": 1,
+        "created_at": "2023-01-01T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "home.Question",
+      "pk": 210,
+      "fields": {
+        "principle": 6,
+        "group": 12,
+        "category": 4,
+        "pest_type": 7,
+        "text": "Turn on the fan when the range is being used.",
+        "order": 1,
+        "created_at": "2023-01-01T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "home.Question",
+      "pk": 211,
+      "fields": {
+        "principle": 6,
+        "group": 12,
+        "category": 4,
+        "pest_type": 7,
+        "text": "Establish a cleaning routine to address the grease that collects on the fan grille.",
+        "order": 2,
+        "created_at": "2023-01-01T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "home.Question",
+      "pk": 212,
+      "fields": {
+        "principle": 6,
+        "group": 5,
+        "category": 2,
+        "pest_type": 9,
+        "text": "Never idle a car in an attached garage, even with the garage door open.",
+        "order": 1,
+        "created_at": "2023-01-01T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "home.Question",
+      "pk": 213,
+      "fields": {
+        "principle": 7,
+        "group": null,
+        "category": 3,
+        "pest_type": null,
+        "text": "Maintain the home at WHO-recommended temperatures for the occupants.",
+        "order": 1,
+        "created_at": "2023-01-01T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "home.Question",
+      "pk": 214,
+      "fields": {
+        "principle": 7,
+        "group": null,
+        "category": 3,
+        "pest_type": null,
+        "text": "Set the temperature on the programmable thermostat to be lower (in heating seasons) or higher (in cooling seasons) when occupants aren't home.",
+        "order": 2,
+        "created_at": "2023-01-01T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+    },
+      {
+        "model": "home.Question",
+        "pk": 215,
+        "fields": {
+          "principle": 7,
+          "group": null,
+          "category": 1,
+          "pest_type": null,
+          "text": "Air seal in the basement and attic (if these are unconditioned spaces) to establish a pressure boundary. This controls airflow and reduces convective heat transfer.",
+          "order": 1,
+          "created_at": "2023-01-01T00:00:00Z",
+          "updated_at": "2023-01-01T00:00:00Z"
+        }
+      },
+      {
+        "model": "home.Question",
+        "pk": 216,
+        "fields": {
+          "principle": 7,
+          "group": null,
+          "category": 1,
+          "pest_type": null,
+          "text": "Install weatherstrip around windows and window frames, and doors and door frames, to establish a pressure boundary.",
+          "order": 2,
+          "created_at": "2023-01-01T00:00:00Z",
+          "updated_at": "2023-01-01T00:00:00Z"
+        }
+      },
+      {
+        "model": "home.Question",
+        "pk": 217,
+        "fields": {
+          "principle": 7,
+          "group": null,
+          "category": 1,
+          "pest_type": null,
+          "text": "Install door sweeps along the bottom of entry doors to establish a pressure boundary.",
+          "order": 3,
+          "created_at": "2023-01-01T00:00:00Z",
+          "updated_at": "2023-01-01T00:00:00Z"
+        }
+      },
+      {
+        "model": "home.Question",
+        "pk": 218,
+        "fields": {
+          "principle": 7,
+          "group": null,
+          "category": 1,
+          "pest_type": null,
+          "text": "Install insulation in unconditioned spaces to establish a thermal boundary. This reduces conductive heat transfer.",
+          "order": 4,
+          "created_at": "2023-01-01T00:00:00Z",
+          "updated_at": "2023-01-01T00:00:00Z"
+        }
+      },
+      {
+        "model": "home.Question",
+        "pk": 219,
+        "fields": {
+          "principle": 7,
+          "group": null,
+          "category": 2,
+          "pest_type": null,
+          "text": "Air seal duct systems to control airflow and reduce convective heat transfer.",
+          "order": 1,
+          "created_at": "2023-01-01T00:00:00Z",
+          "updated_at": "2023-01-01T00:00:00Z"
+        }
+      },
+      {
+        "model": "home.Question",
+        "pk": 220,
+        "fields": {
+          "principle": 7,
+          "group": null,
+          "category": 2,
+          "pest_type": null,
+          "text": "Ensure the heating and cooling systems are adequate for the home.",
+          "order": 2,
+          "created_at": "2023-01-01T00:00:00Z",
+          "updated_at": "2023-01-01T00:00:00Z"
+        }
+      },
+      {
+        "model": "home.Question",
+        "pk": 221,
+        "fields": {
+          "principle": 7,
+          "group": null,
+          "category": 2,
+          "pest_type": null,
+          "text": "Install a programmable thermostat.",
+          "order": 3,
+          "created_at": "2023-01-01T00:00:00Z",
+          "updated_at": "2023-01-01T00:00:00Z"
+        }
+      },
+      {
+        "model": "home.Question",
+        "pk": 222,
+        "fields": {
+          "principle": 7,
+          "group": null,
+          "category": 4,
+          "pest_type": null,
+          "text": "Investigate assistance programs for low-income households, such as Low Income Home Energy Assistance Program (LIHEAP)(https://www.acf.hhs.gov/ocs/resource/division-of-energy-assistance-federal-staff).",
+          "order": 1,
+          "created_at": "2023-01-01T00:00:00Z",
+          "updated_at": "2023-01-01T00:00:00Z"
+        }
+      },
+      {
+        "model": "home.Question",
+        "pk": 223,
+        "fields": {
+          "principle": 7,
+          "group": null,
+          "category": 4,
+          "pest_type": null,
+          "text": "Have the heating/cooling systems maintained annually.",
+          "order": 2,
+          "created_at": "2023-01-01T00:00:00Z",
+          "updated_at": "2023-01-01T00:00:00Z"
+        }
+      },
+      {
+        "model": "home.Question",
+        "pk": 224,
+        "fields": {
+          "principle": 8,
+          "group": null,
+          "category": 16,
+          "pest_type": null,
+          "text": "Other toxic elements include: Mercury and Sewer gas",
+          "order": 1,
+          "created_at": "2023-01-01T00:00:00Z",
+          "updated_at": "2023-01-01T00:00:00Z"
+        }
+    },
+    {
+      "model": "home.Question",
+      "pk": 225,
+      "fields": {
+        "principle": 8,
+        "group": null,
+        "category": 17,
+        "pest_type": null,
+        "text": "Identify what needs to be done.",
+        "order": 1,
+        "created_at": "2023-01-01T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "home.Question",
+      "pk": 226,
+      "fields": {
+        "principle": 8,
+        "group": null,
+        "category": 17,
+        "pest_type": null,
+        "text": "Determine level of ability required for tasks and projects. For example, are homeowners comfortable climbing a ladder? Is help needed to move furniture in order to clean or make a repair? When is a licensed professional needed?",
+        "order": 2,
+        "created_at": "2023-01-01T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "home.Question",
+      "pk": 227,
+      "fields": {
+        "principle": 8,
+        "group": null,
+        "category": 17,
+        "pest_type": null,
+        "text": "Schedule Time for a maintenance of areas or appliances identified. Be realistic in blocking out time on a calender, just like one might for any other activity important to good family health. For many people, committing to a regular maintenance schedule is often an overlooked step.",
+        "order": 3,
+        "created_at": "2023-01-01T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "home.Question",
+      "pk": 228,
+      "fields": {
+        "principle": 8,
+        "group": null,
+        "category": 17,
+        "pest_type": null,
+        "text": "Prioritize work by season. Developing a checklist for each season in your part of the country can be a useful tool.",
+        "order": 4,
+        "created_at": "2023-01-01T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "home.Question",
+      "pk": 229,
+      "fields": {
+        "principle": 8,
+        "group": null,
+        "category": 17,
+        "pest_type": null,
+        "text": "Plan for each activity and assemble the tools, and if needed, the people, to complete the scheduled maintenance activity.",
+        "order": 5,
+        "created_at": "2023-01-01T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+    },
+    {
+      "model": "home.Question",
+      "pk": 230,
+      "fields": {
+        "principle": 8,
+        "group": null,
+        "category": 17,
+        "pest_type": null,
+        "text": "Check tasks off the list as they are completed. Satisfaction guaranteed!!",
+        "order": 6,
+        "created_at": "2023-01-01T00:00:00Z",
+        "updated_at": "2023-01-01T00:00:00Z"
+      }
+    }
 ]

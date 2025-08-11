@@ -1,0 +1,46 @@
+
+
+<div class="modal fade" id="successmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="successmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+        <div class="modal-header border-0">
+            <h1 class="modal-title m-auto" id="successmodalLabel">Form Submitted Successfully</h1>
+            <svg class="position-absolute" style="right:1rem" data-bs-dismiss="modal" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.8076 5.08008C18.1147 4.77312 18.6129 4.77303 18.9199 5.08008C19.227 5.38713 19.2269 5.88528 18.9199 6.19238L13.1123 12L18.9199 17.8076C19.1928 18.0806 19.2228 18.5041 19.0107 18.8105L19.0029 18.8223L19.002 18.8213L18.9287 18.9102L18.9199 18.9199C18.6468 19.193 18.2226 19.2231 17.916 19.0107L17.9053 19.0029L18.002 18.8877L17.9053 19.002L17.8174 18.9287L17.8076 18.9199L12 13.1123L6.19238 18.9199C5.88528 19.2269 5.38713 19.227 5.08008 18.9199C4.77303 18.6129 4.77312 18.1147 5.08008 17.8076L10.8877 12L5.08008 6.19238C4.80721 5.91939 4.77717 5.49593 4.98926 5.18945L4.99707 5.17773H4.99902L5.07129 5.08984L5.08008 5.08008L5.18945 4.98926C5.41935 4.83008 5.71518 4.80711 5.96387 4.9209L6.08398 4.98926L6.09473 4.99707L5.99805 5.1123L6.09473 4.99805L6.18262 5.07129L6.19238 5.08008L12 10.8877L17.8076 5.08008Z" fill="#FF0000" stroke="#FF0000" stroke-width="0.3"/>
+            </svg>
+        </div>
+        <form class="modal-body" id="successForm">
+            {% csrf_token %}
+
+            <div class="main-content-delete">
+                <svg width="107" height="107" viewBox="0 0 107 107" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0.644978" y="29.7478" width="81.9486" height="81.9486" rx="7.5" transform="rotate(-20.8022 0.644978 29.7478)" fill="#D6FED1"/>
+                    <rect x="0.644978" y="29.7478" width="81.9486" height="81.9486" rx="7.5" transform="rotate(-20.8022 0.644978 29.7478)" stroke="url(#paint0_linear_377_621)"/>
+                    <foreignObject x="4.74681" y="9.86326" width="96.6502" height="91.5313"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(6.15px);clip-path:url(#bgblur_0_377_621_clip_path);height:100%;width:100%"></div></foreignObject><path data-figma-bg-blur-radius="12.3076" d="M19.9668 31.2686C40.4806 19.5466 65.664 19.5464 86.1777 31.2686C87.8236 32.2091 88.8477 33.9776 88.7803 35.8623C88.0816 55.3724 81.1248 67.9772 73.54 75.9854C65.9501 83.9989 57.7154 87.4257 54.4463 88.5488C53.5477 88.8575 52.5968 88.8575 51.6982 88.5488C48.4295 87.4259 40.1939 83.9993 32.6035 75.9854C25.0188 67.9772 18.0619 55.3724 17.3633 35.8623C17.2959 33.9776 18.3208 32.2091 19.9668 31.2686Z" fill="#00AE00" stroke="url(#paint1_linear_377_621)" stroke-width="0.611895"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M67.1084 41.463C68.4048 42.7875 68.4048 44.9348 67.1084 46.2592L51.6168 62.0858C50.9942 62.7219 50.1498 63.0792 49.2694 63.0792C48.389 63.0792 47.5446 62.7219 46.9221 62.0858L38.0697 53.0421C36.7733 51.7176 36.7733 49.5703 38.0697 48.2459C39.3661 46.9214 41.468 46.9215 42.7644 48.2459L49.2694 54.8916L62.4137 41.463C63.7101 40.1386 65.812 40.1386 67.1084 41.463Z" fill="white"/>
+                    <defs>
+                    <clipPath id="bgblur_0_377_621_clip_path" transform="translate(-4.74681 -9.86326)"><path d="M19.9668 31.2686C40.4806 19.5466 65.664 19.5464 86.1777 31.2686C87.8236 32.2091 88.8477 33.9776 88.7803 35.8623C88.0816 55.3724 81.1248 67.9772 73.54 75.9854C65.9501 83.9989 57.7154 87.4257 54.4463 88.5488C53.5477 88.8575 52.5968 88.8575 51.6982 88.5488C48.4295 87.4259 40.1939 83.9993 32.6035 75.9854C25.0188 67.9772 18.0619 55.3724 17.3633 35.8623C17.2959 33.9776 18.3208 32.2091 19.9668 31.2686Z"/>
+                    </clipPath><linearGradient id="paint0_linear_377_621" x1="44.9305" y1="17.0158" x2="43.2041" y2="95.7788" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="white"/>
+                    <stop offset="0.996024" stop-color="white" stop-opacity="0"/>
+                    </linearGradient>
+                    <linearGradient id="paint1_linear_377_621" x1="18.3912" y1="28.3956" x2="107.829" y2="94.3507" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="white"/>
+                    <stop offset="0.734375" stop-color="white" stop-opacity="0"/>
+                    </linearGradient>
+                    </defs>
+                </svg>
+                <span>Your Form has been submitted successfully.</span>
+            </div>
+
+        </form>
+        <div class="modal-footer border-0 ">
+            <button type="submit" form="successForm" class="btn btn-primary">
+                <span class="spinner-border spinner-border-sm hide" role="status" aria-hidden="true"></span>
+                <span class="btn-text">Continue</span>
+            </button>
+        </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" class="successmodal" data-bs-toggle="modal" data-bs-target="#successmodal">

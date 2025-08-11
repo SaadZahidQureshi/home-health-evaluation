@@ -150,7 +150,7 @@ class KeepItComfortablePageTemplateView(LoginRequiredMixin, TemplateView):
         context =  super().get_context_data(**kwargs)
         context["title"] = "Keep It Comfortable: Healthy Home Actions"
         context["active_page"] = "keep_it_confortable"
-        context["principleId"] = Principle.objects.get(key="VENTILATED").id
+        context["principleId"] = Principle.objects.get(key="COMFORTABLE").id
         return context
 
 class KeepItComfortableItemSelectedPageTemplateView(LoginRequiredMixin, TemplateView):

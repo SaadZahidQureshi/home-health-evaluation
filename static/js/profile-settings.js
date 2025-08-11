@@ -43,44 +43,17 @@ async function profileUpdateForm(event) {
     const formData = new FormData(form);
     const imageInput = form.querySelector('input[type="file"]');
     
-    if (!formData.get('name')) {
-        showToast("Warning!", "Name is required", "danger-toast");
-        return;
-    }
-    if (!formData.get('email')) {
-        showToast("Warning!", "Email is required", "danger-toast");
-        return;
-    }
-    if (!emailRegex.test(formData.get('email'))) {
-        showToast("Warning!", "Please enter a valid email address", "danger-toast");
-        return;
-    }
-
+    if (!validateProfileForm(formData)) return;
+    formData.delete("image")
+    
     try {
         button.disabled = true;
         beforeLoad(button);
-        
-        let payload;
-        let headers;
-        
-        if (imageInput.files.length > 0) {
-            headers = {
-                'X-CSRFToken': getCookie('csrftoken')
-            };
-            payload = formData;
-        } else {
-            headers = {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': getCookie('csrftoken')
-            };
-            const data = {};
-            formData.forEach((value, key) => data[key] = value);
-            payload = JSON.stringify(data);
-        }
-
-        const response = await requestAPI(`${API_BASE_URL}user/${userId}`,payload, headers, 'PATCH');
-
-        if (response.status == 200) {
+        const profileResponse = await updateProfileData(formData);
+        if (profileResponse.status === 200) {
+            if (imageInput.files.length > 0) {
+                await updateProfileImage(imageInput.files[0]);
+            }
             showToast("Success", "Profile updated successfully!", "success-toast");
             setTimeout(() => {
                 afterLoad(button, "Updated");
@@ -89,9 +62,7 @@ async function profileUpdateForm(event) {
                 get_me_data();
             }, 1000);
         } else {
-            const result = await response.json();
-            let errors = extractErrorMessages(result);
-            showToast("Warning!", errors[0] || "Update failed", "danger-toast");
+            handleProfileUpdateError(await profileResponse.json());
         }
     } catch (error) {
         console.error("Update error:", error);
@@ -100,4 +71,50 @@ async function profileUpdateForm(event) {
         button.disabled = false;
         afterLoad(button, originalButtonText);
     }
+}
+
+function validateProfileForm(formData) {
+    if (!formData.get('name')) {
+        showToast("Warning!", "Name is required", "danger-toast");
+        return false;
+    }
+    
+    if (!formData.get('email')) {
+        showToast("Warning!", "Email is required", "danger-toast");
+        return false;
+    }
+    
+    if (!emailRegex.test(formData.get('email'))) {
+        showToast("Warning!", "Please enter a valid email address", "danger-toast");
+        return false;
+    }
+    
+    return true;
+}
+
+async function updateProfileData(formData) {
+    const data = {};
+    formData.forEach((value, key) => data[key] = value);
+    
+    const payload = JSON.stringify(data);
+    const headers = {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': getCookie('csrftoken')
+    };
+    
+    return await requestAPI(`${API_BASE_URL}user/${userId}`, payload, headers, 'PATCH');
+}
+
+async function updateProfileImage(imageFile) {
+    const imageFormData = new FormData();
+    imageFormData.append('image', imageFile);
+    const imageHeaders = {
+        "X-CSRFToken": getCookie('csrftoken')
+    };
+    return await requestAPI(`${API_BASE_URL}user/${userId}`, imageFormData, imageHeaders, 'PATCH');
+}
+
+function handleProfileUpdateError(errorResponse) {
+    let errors = extractErrorMessages(errorResponse);
+    showToast("Warning!", errors[0] || "Update failed", "danger-toast");
 }

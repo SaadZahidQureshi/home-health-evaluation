@@ -177,15 +177,14 @@ function UploadImage(event){
     }
 }
 
-async function handleLogout(){
-    let modalId = "logoutModal";
-    let modal = document.querySelector(`#${modalId}`);
-    let form = modal.querySelector("form");
-    modal.addEventListener('hidden.bs.modal', event => {
+async function handleLogout() {
+    const modalId = "logoutModal";
+    const modal = new bootstrap.Modal(document.getElementById(modalId));
+    const form = document.getElementById("logoutForm");
+    modal._element.addEventListener('hidden.bs.modal', function() {
         form.reset();
-        form.removeEventListener("submit", formEvent);
-    })
-    document.querySelector(`.${modalId}`).click();
+    });
+    modal.show();
 }
 
 async function logoutForm(event) {
@@ -254,4 +253,40 @@ function render_principle_status_data(data){
     data.forEach(item => {
         container.querySelector(`#principle-${item.id}`).classList.add(`${item?.status}`)
     })
+}
+
+async function addCustomerModal(){
+    let modalId = "addUserModal";
+    let modal_el = document.getElementById(modalId)
+    const modal = new bootstrap.Modal(modal_el);
+    const form = modal_el.querySelector("form");
+    modal._element.addEventListener('hidden.bs.modal', function() {
+        form.reset();
+    });
+    modal.show();
+}
+
+async function successModal(){
+    let modalId = "successmodal";
+    let modal_el = document.getElementById(modalId)
+    const modal = new bootstrap.Modal(modal_el);
+    const form = modal_el.querySelector("form");
+    modal._element.addEventListener('hidden.bs.modal', function() {
+        form.reset();
+    });
+    modal.show();
+}
+
+function uploadIdImage(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imgElement = document.querySelector('#id_image_preview');
+            imgElement.src = e.target.result;
+            imgElement.classList.remove("hide");
+        };
+        reader.readAsDataURL(file);
+        hasUploadedIdImage = true;
+    }
 }

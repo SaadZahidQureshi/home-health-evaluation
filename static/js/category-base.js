@@ -494,7 +494,7 @@ function updateSelectedQuestionDisplay(selectedQs, questionIds, data) {
         selectedQs.textContent = questionData ? questionData.text : '';
     } else if (questionIds.length > 1) {
         // Multiple questions - show count
-        selectedQs.textContent = `${questionIds.length} questions selected`;
+        selectedQs.textContent = `${questionIds.length} options selected`;
     }
 }
 
@@ -540,8 +540,8 @@ function renderQuestionForm(container, questionIds, data, selectedQs) {
 
     let formHTML = `
         <div class="accordion_selected">
-            <div class="template_title">
-                <h4>${questionIds.length === 1 ? 'Fill your details below' : `Answer for ${questionIds.length} selected questions`}</h4>
+            <div class="template_title hide">
+                <h4 class="hide">${questionIds.length === 1 ? 'Fill your details below' : `Answer for ${questionIds.length} selected questions`}</h4>
                 <a href="#" class="save-btn hide">Save Info</a>
             </div>
     `;
@@ -550,7 +550,7 @@ function renderQuestionForm(container, questionIds, data, selectedQs) {
     if (questionIds.length > 1) {
         formHTML += `
             <div class="selected-questions-info">
-                <p><strong>This answer will be applied to all selected questions:</strong></p>
+                <p class="hide"><strong>This answer will be applied to all selected questions:</strong></p>
                 <ul class="selected-questions-list">
         `;
         questions.forEach(question => {
