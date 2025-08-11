@@ -289,7 +289,7 @@ class DotsModelMixin(models.Model):
 #         return super(CustomAutoSchema, self).get_query_serializer()
 
 class LoginRequiredMixin(AccessMixin):
-    login_url = '/login/'
+    login_url = '/'
     redirect_field_name = 'next'
 
     def dispatch(self, request, *args, **kwargs):

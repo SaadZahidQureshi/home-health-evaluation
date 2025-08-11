@@ -4,8 +4,8 @@ from .views import *
 
 
 urlpatterns = [
-    path("", LandingPageTemplateView.as_view(), name="landing_page"),
-    path("login/", LoginPageTemplateView.as_view(), name="login_page"),
+    path("home/", LandingPageTemplateView.as_view(), name="landing_page"),
+    path("", LoginPageTemplateView.as_view(), name="login_page"),
     path("register/", RegisterPageTemplateView.as_view(), name="register_page"),
     path("settings/", SettingPageTemplateView.as_view(), name="settings_page"),
     path("profile-settings/", ProfileSettingPageTemplateView.as_view(), name="profile_settings_page"),

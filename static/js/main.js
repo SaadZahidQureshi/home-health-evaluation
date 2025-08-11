@@ -208,7 +208,7 @@ async function logoutForm(event) {
             showToast("Success", "Logged out successfully!", "success-toast");
             setTimeout(() => {
                 afterLoad(button, "Signed in");
-                location.href = `/login/`;
+                location.href = `/`;
             }, 1000);
         } else {
             const result = await response.json();
