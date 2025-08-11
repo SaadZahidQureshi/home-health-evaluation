@@ -81,7 +81,7 @@ class LoginUserSerializer(serializers.Serializer):
         user = authenticate(request=self.context.get('request'), username=email, password=password)
         if not user:
             raise DotsValidationError("User not found.")
-        if user.role != Roles.ADMIN:
+        if user.role != Roles.USER:
             raise DotsValidationError("You are not authorized to log in here")
         attrs['user'] = user
         return attrs
