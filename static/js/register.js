@@ -69,7 +69,7 @@ async function registerForm(event) {
         const response = await requestAPI(`${API_BASE_URL}user`, JSON.stringify(data), headers, 'POST');
         
         if (response.status == 201) {
-            showToast("Success", "User created successfully!", "success-toast");
+            showToast("Success", "User has been created successfully. Please log in to proceed.", "success-toast");
             setTimeout(() => {
                 afterLoad(button, "Signed in");
                 location.href = `/`;
