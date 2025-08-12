@@ -195,7 +195,7 @@ class CustomerViewSet(DotsModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = super().get_queryset().filter(created_by=self.request.user)
         if self.action in ["list"]:
             queryset = queryset.filter(audit_completed=True)
         return queryset
