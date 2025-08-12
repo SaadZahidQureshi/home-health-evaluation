@@ -3502,20 +3502,6 @@
     },
     {
       "model": "home.Question",
-      "pk": 212,
-      "fields": {
-        "principle": 6,
-        "group": null,
-        "category": null,
-        "pest_type": null,
-        "text": "Never idle a car in an attached garage, even with the garage door open.",
-        "order": 1,
-        "created_at": "2023-01-01T00:00:00Z",
-        "updated_at": "2023-01-01T00:00:00Z"
-      }
-    },
-    {
-      "model": "home.Question",
       "pk": 213,
       "fields": {
         "principle": 7,
