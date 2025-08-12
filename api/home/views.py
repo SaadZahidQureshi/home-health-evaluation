@@ -196,5 +196,6 @@ class CustomerViewSet(DotsModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = queryset.filter(audit_completed=True)
+        if self.action in ["list"]:
+            queryset = queryset.filter(audit_completed=True)
         return queryset
