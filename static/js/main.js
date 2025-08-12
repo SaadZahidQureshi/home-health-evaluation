@@ -207,6 +207,7 @@ async function logoutForm(event) {
             showToast("Success", "Logged out successfully!", "success-toast");
             setTimeout(() => {
                 afterLoad(button, "Signed in");
+                sessionStorage.removeItem("customer_id")
                 location.href = `/`;
             }, 1000);
         } else {
@@ -226,12 +227,15 @@ async function logoutForm(event) {
 }
 
 async function get_principle_status_data(){
+    let customer_id = sessionStorage.getItem("customer_id") || null;
     try {
         let headers = {
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
         };
-        let response = await requestAPI(`${API_BASE_URL}principles/status`, null, headers, 'GET');
+        let enndpoint = `${API_BASE_URL}principles/status`
+        if (customer_id) enndpoint = `${API_BASE_URL}principles/status?customer_id=${customer_id}`
+        let response = await requestAPI(enndpoint, null, headers, 'GET');
         response.json().then(function(res) {
             if (response.status == 200) {
                 principle_status_data = res;
@@ -289,4 +293,10 @@ function uploadIdImage(event) {
         reader.readAsDataURL(file);
         hasUploadedIdImage = true;
     }
+}
+
+function addNewCustomerRecord(event){
+    event.preventDefault();
+    sessionStorage.removeItem("customer_id");
+    location.href = "/keep-it-clean/";
 }

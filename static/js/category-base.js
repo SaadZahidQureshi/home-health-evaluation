@@ -2,6 +2,7 @@
 let principleId = JSON.parse(document.getElementById("principleId").textContent) || null;
 let principle_data = null;
 let selectedQuestionsByCategory = new Map();
+let customer_id = sessionStorage.getItem("customer_id") || null;
 window.addEventListener('load', get_principle_data());
 
 async function get_principle_data(){
@@ -10,7 +11,9 @@ async function get_principle_data(){
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
         };
-        let response = await requestAPI(`${API_BASE_URL}principles/${principleId}/categories/questions`, null, headers, 'GET');
+        let enndpoint = `${API_BASE_URL}principles/${principleId}/categories/questions`
+        if (customer_id) enndpoint = `${API_BASE_URL}principles/${principleId}/categories/questions?customer_id=${customer_id}`
+        let response = await requestAPI(enndpoint, null, headers, 'GET');
         response.json().then(function(res) {
             if (response.status == 200) {
                 principle_data = res;
@@ -212,7 +215,7 @@ function render_principle_data(data) {
             innerDiv.style.display = 'block';
         } else {
             formContainer.style.display = 'block';
-            innerDiv.style.display = 'block';
+            // innerDiv.style.display = 'block';
         }
         
         accordionBox.appendChild(titleDiv);
@@ -334,102 +337,148 @@ function handlePrevious(event) {
 
 async function handleGlobalSubmit(event) {
     event.preventDefault();
-    const button = event.target.closest("button")
+    const button = event.target.closest("button");
     const buttonTextEl = button.querySelector(".btn-text");
     const originalButtonText = buttonTextEl ? buttonTextEl.textContent : button.textContent;
-    let allValid = true;
-    let answersList = [];
 
-    principle_data.categories.forEach(category => {
-        let categoryId = category.category.id;
-        let selectedQs = selectedQuestionsByCategory.get(categoryId) || new Set();
+    let allValid = true;
+    const answersList = [];
+
+
+    for (const category of principle_data.categories) {
+        const categoryId = category.category.id;
+        const selectedQs = selectedQuestionsByCategory.get(categoryId) || new Set();
 
         if (selectedQs.size === 0) {
             showToast("Warning!", `Please answer at least one question in "${category.category.name}"`, "danger-toast");
             allValid = false;
-            return;
+            break;
         }
 
         const accordionBox = [...document.querySelectorAll('.accordian_box')]
             .find(box => box.querySelector('.accordian_title h4').textContent === category.category.name);
-        if (accordionBox) {
-            const form = accordionBox.querySelector('.details-form');
-            if (!form) return;
-            const formData = new FormData(form);
-            const details = formData.get('details');
-            const imageFiles = formData.getAll('images').filter(file => file.size > 0);
-            const existingImages = [...form.querySelectorAll('.added_item[data-image-id]')]
-                .map(item => item.getAttribute('data-image-id'));
-            if (!details || (imageFiles.length === 0 && existingImages.length === 0)) {
-                showToast("Warning!", `Please provide a comment and at least one image for "${category.category.name}"`, "danger-toast");
-                allValid = false;
-                return;
-            }
-            answersList.push({
-                questionIds: Array.from(selectedQs),
-                details,
-                imageFiles,
-                existingImages
-            });
+
+        if (!accordionBox) continue;
+
+        const form = accordionBox.querySelector('.details-form');
+        if (!form) continue;
+
+        const formData = new FormData(form);
+        const details = formData.get('details');
+        const imageFiles = formData.getAll('images').filter(file => file.size > 0);
+        const existingImages = [...form.querySelectorAll('.added_item[data-image-id]')]
+            .map(item => item.getAttribute('data-image-id'));
+
+        if (!details || (imageFiles.length === 0 && existingImages.length === 0)) {
+            showToast("Warning!", `Please provide a comment and at least one image for "${category.category.name}"`, "danger-toast");
+            allValid = false;
+            break;
         }
-    });
+
+        answersList.push({
+            questionIds: Array.from(selectedQs),
+            details,
+            imageFiles,
+            existingImages
+        });
+    }
+
     if (!allValid) return;
+
+    button.disabled = true;
+    beforeLoad(button);
+
     try {
-        button.disabled = true;
-        beforeLoad(button);
         for (const answer of answersList) {
-            await saveQuestionDataGlobal(answer.questionIds, answer.details, answer.imageFiles, answer.existingImages);
+            const success = await saveQuestionDataGlobal(
+                answer.questionIds,
+                answer.details,
+                answer.imageFiles,
+                answer.existingImages
+            );
+            if (!success) {
+                throw new Error("Failed to save one or more answers.");
+            }
         }
+
         setTimeout(() => {
             afterLoad(button, "Saved!");
             navigateToStep('next');
         }, 800);
+
     } catch (error) {
         console.error("Error in global submit:", error);
         afterLoad(button, originalButtonText);
         button.disabled = false;
-        showToast("Error!", "Something went wrong while saving. Please try again.", "danger-toast");
+        showToast("Error!", error.message || "Something went wrong while saving. Please try again.", "danger-toast");
     }
 }
 
 async function saveQuestionDataGlobal(questionIds, details, imageFiles, existingImages) {
-    let headers = { 'X-CSRFToken': getCookie('csrftoken') };
+    const headers = { 'X-CSRFToken': getCookie('csrftoken') };
+
     for (const questionId of questionIds) {
         try {
             const questionFormData = new FormData();
             questionFormData.append("question", questionId);
             questionFormData.append("details", details);
-            const checkResponse = await requestAPI(`${API_BASE_URL}answers/by-question/${questionId}`, null, headers, 'GET');
-            let answerId = null;
-            let isUpdate = false;
-            if (checkResponse.status == 200) {
-                const answers = await checkResponse.json();
-                if (answers.length > 0) {
-                    answerId = answers[0].id;
-                    isUpdate = true;
-                }
+
+            let enndpoint = `${API_BASE_URL}answers/by-question/${questionId}`
+            if (customer_id) {
+                questionFormData.append("customer_id", customer_id);
+                enndpoint = `${API_BASE_URL}answers/by-question/${questionId}?customer_id=${customer_id}`
             }
+
+            const checkResponse = await requestAPI(enndpoint, null, headers, 'GET');
+            if (!checkResponse.status == 200) {
+                console.error(`Failed to check existing answer for question ${questionId}`);
+                return false;
+            }
+
+            const answers = await checkResponse.json();
             let apiUrl = `${API_BASE_URL}answers`;
             let method = 'POST';
-            if (isUpdate) {apiUrl = `${API_BASE_URL}answers/${answerId}`; method = 'PATCH';}
-            let response = await requestAPI(apiUrl, questionFormData, headers, method);
-            let responseData = await response.json();
 
-            if (response.status === 201 || response.status === 200) {
-                if (imageFiles.length > 0) {
-                    let imageFormData = new FormData();
-                    imageFiles.forEach(file => {
-                        imageFormData.append('images', file);
-                    });
-                    await requestAPI(`${API_BASE_URL}answers/${responseData.data.id}/upload-images`, imageFormData, headers, 'POST');
-                }
-            } else {
-                console.error(`Failed to save answer for question ${questionId}`);
+            if (answers.length > 0) {
+                apiUrl = `${API_BASE_URL}answers/${answers[0].id}`;
+                method = 'PATCH';
             }
+
+            const response = await requestAPI(apiUrl, questionFormData, headers, method);
+            if (response.status !== 200 && response.status !== 201) {
+                console.error(`Failed to save answer for question ${questionId}`);
+                return false;
+            }
+
+
+            const responseData = await response.json();
+            sessionStorage.setItem("customer_id", responseData.data.customer);
+            customer_id = responseData.data.customer;
+
+            // Upload images if provided
+            if (imageFiles.length > 0) {
+                const imageFormData = new FormData();
+                imageFiles.forEach(file => imageFormData.append('images', file));
+
+                const imageResponse = await requestAPI(
+                    `${API_BASE_URL}answers/${responseData.data.id}/upload-images?customer_id=${customer_id}`,
+                    imageFormData,
+                    headers,
+                    'POST'
+                );
+
+                if (!imageResponse.ok) {
+                    console.error(`Failed to upload images for question ${questionId}`);
+                    return false;
+                }
+            }
+
         } catch (err) {
             console.error(`Error saving answer for question ${questionId}:`, err);
+            return false;
         }
     }
+    return true;
 }
 
 function setupEventHandlers(data) {

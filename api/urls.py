@@ -12,6 +12,7 @@ router.register(r"questiongroups", QuestionGroupViewSet, basename="questiongroup
 router.register(r"questions", QuestionViewSet, basename="questions")
 router.register(r"answers", AnswerViewSet, basename="answers")
 router.register(r"photos", PhotosViewSet, basename="photos")
+router.register(r"customers", CustomerViewSet, basename="customers")
 
 
 urlpatterns = [

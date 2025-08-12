@@ -53,7 +53,7 @@ class ShortQuestionSerializer(serializers.ModelSerializer):
 class PhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
-        fields = ['id', 'image', 'uploaded_by']
+        fields = ['id', 'image', 'customer']
 
 
 class AnswerSerializer(serializers.ModelSerializer):
@@ -69,3 +69,17 @@ class ShortAnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
         fields = ['id', 'question', 'details']
+
+
+class ReturnShortAnswerSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Answer
+        fields = ['id', 'question', 'details', "customer"]
+
+
+class CustomerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Customer
+        fields = "__all__"
