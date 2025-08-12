@@ -64,8 +64,8 @@ class Category(BaseModel):
 
 class QuestionGroup(BaseModel):
     name = models.CharField(max_length=CharFieldSizes.SMALL)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    pest_type = models.ForeignKey(PestType, on_delete=models.CASCADE, null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="question_group_category")
+    pest_type = models.ForeignKey(PestType, on_delete=models.CASCADE, null=True, blank=True, related_name="question_group_pest_type")
     order = models.PositiveIntegerField(default=0)
 
     class Meta:
@@ -79,10 +79,10 @@ class QuestionGroup(BaseModel):
 
 
 class Question(BaseModel):
-    principle = models.ForeignKey(Principle, on_delete=models.CASCADE)
-    group = models.ForeignKey(QuestionGroup, on_delete=models.CASCADE, null=True, blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    pest_type = models.ForeignKey(PestType, on_delete=models.CASCADE, null=True, blank=True) 
+    principle = models.ForeignKey(Principle, on_delete=models.CASCADE, related_name="question_principle")
+    group = models.ForeignKey(QuestionGroup, on_delete=models.CASCADE, null=True, blank=True, related_name="question_group")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="question_category")
+    pest_type = models.ForeignKey(PestType, on_delete=models.CASCADE, null=True, blank=True, related_name="question_pest_type") 
     text = models.TextField()
     order = models.PositiveIntegerField(default=0)
 
@@ -100,15 +100,17 @@ class Question(BaseModel):
 
 
 class Customer(BaseModel):
-    user =  models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="customer_user")
     house_image = models.ImageField(upload_to="house_images/", null=True, blank=True)
     address = models.CharField(CharFieldSizes.LARGE, null=True)
     city = models.CharField(CharFieldSizes.SMALL, null=True)
     state = models.CharField(CharFieldSizes.SMALL, null=True)
     zip = models.CharField(CharFieldSizes.SMALL, null=True)
+    audit_completed = models.BooleanField(default=False)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="customer_created_by")
 
     @classmethod
-    def create_default_customer(cls):
+    def create_default_customer(self, obj):
         user_data = {
             "name": None,
             "email": None,
@@ -117,14 +119,14 @@ class Customer(BaseModel):
         user_serializer = ShortUserSerializer(data=user_data)
         user_serializer.is_valid(raise_exception=True)
         user = user_serializer.save()
-        return cls.objects.create(user=user,address=None,city=None,state=None,zip=None)
+        return self.objects.create(user=user,address=None,city=None,state=None,zip=None, created_by=obj)
 
 
 class Answer(BaseModel):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, related_name="answer_customer")
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="answer_question")
     details = models.TextField(blank=True)
-    images = models.ManyToManyField('Photo')
+    images = models.ManyToManyField('Photo', related_name="answer_images")
 
     def __str__(self):
         return f"Answer for {self.question}"
@@ -132,7 +134,7 @@ class Answer(BaseModel):
 
 class Photo(BaseModel):
     image = models.ImageField(upload_to='answer_photos/')
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, related_name="customer_photo")
 
     def __str__(self):
         return f"Photo {self.id}"

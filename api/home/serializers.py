@@ -90,11 +90,12 @@ class CustomerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Customer
-        fields = ["name", "email", "address", "city", "state", "zip", "house_image"]
+        fields = ["name", "email", "address", "city", "state", "zip", "house_image", "audit_completed"]
 
     def update(self, instance, validated_data):
         user_serializer = ShortUserSerializer(instance=instance.user, data=validated_data.pop('user'), partial=True)
         user_serializer.is_valid(raise_exception=True)
         user = user_serializer.save()
         validated_data['user'] = user
+        validated_data["audit_completed"] = True
         return super().update(instance, validated_data)

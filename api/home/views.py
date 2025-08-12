@@ -38,7 +38,7 @@ class PrincipleViewSet(DotsModelViewSet):
             if customer_id:
                 try:
                     customer = Customer.objects.get(id=customer_id)
-                    answer = question.answer_set.filter(customer=customer).first()
+                    answer = question.answer_question.filter(customer=customer).first()
                 except Customer.DoesNotExist:
                     pass
             
@@ -64,7 +64,7 @@ class PrincipleViewSet(DotsModelViewSet):
 
         for principle in principles:
             questions = Question.objects.filter(principle=principle)\
-                .select_related('category').prefetch_related('answer_set')
+                .select_related('category').prefetch_related('answer_question')
             
             answered_categories = set()
             all_categories = set()
@@ -74,7 +74,7 @@ class PrincipleViewSet(DotsModelViewSet):
                 if customer_id:
                     try:
                         customer = Customer.objects.get(id=customer_id)
-                        if question.answer_set.filter(customer=customer).exists():
+                        if question.answer_question.filter(customer=customer).exists():
                             answered_categories.add(question.category.id)
                     except Customer.DoesNotExist:
                         pass
@@ -145,7 +145,8 @@ class AnswerViewSet(DotsModelViewSet):
             customer = self.get_customer(customer_id)
             if customer:
                 return customer
-        return Customer.create_default_customer()
+        current_user = self.request.user
+        return Customer.create_default_customer(current_user)
 
     def perform_create(self, serializer):
         customer_id = self.request.data.get("customer_id", None)
@@ -192,3 +193,8 @@ class CustomerViewSet(DotsModelViewSet):
     serializer_class = ReturnCustomerSerializer
     serializer_create_class = CustomerSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(audit_completed=True)
+        return queryset

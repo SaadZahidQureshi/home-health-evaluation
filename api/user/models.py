@@ -42,4 +42,4 @@ class User(AbstractUser, BaseModel):
     objects = UserManager()
 
     def __str__(self):
-        return self.email
+        return self.email if self.email else self.role

@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}{{title}}{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="{% static "css\principle-details.css" %}">
+{% endblock css %}
 
 {% block content %}
 <div class="right-mainpart">   
