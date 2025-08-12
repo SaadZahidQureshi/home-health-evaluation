@@ -35,7 +35,9 @@ function render_customers_data(data) {
         document.getElementById("city").textContent = data.city || "--";
         document.getElementById("state").textContent = data.state || "--";
         document.getElementById("zip").textContent = data.zip || "--";
-        document.getElementById("house_image").src = data.house_image || "--";
+        if(data.house_image){
+            document.getElementById("house_image").src = data?.house_image;
+        }
     } 
 }
 

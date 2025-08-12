@@ -277,6 +277,8 @@ async function successModal(){
     const form = modal_el.querySelector("form");
     modal._element.addEventListener('hidden.bs.modal', function() {
         form.reset();
+        sessionStorage.removeItem("customer_id");
+        location.href = "/keep-it-clean/";
     });
     modal.show();
 }
