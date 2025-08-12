@@ -16,6 +16,7 @@ class PrincipleViewSet(DotsModelViewSet):
     @action(detail=True, methods=["GET"], url_path="categories/questions")
     def principle_related_categories_question(self, request, *args, **kwargs):
         principle = self.get_object()
+        customer_id = self.request.GET.get("customer_id")
         questions = Question.objects.filter(principle=principle)\
             .select_related('category', 'pest_type', 'principle')\
             .order_by("order")
@@ -33,7 +34,14 @@ class PrincipleViewSet(DotsModelViewSet):
             if pest_type_key not in categories[category.id]['pest_types']:
                 categories[category.id]['pest_types'][pest_type_key] = { 'pest_type': PestTypeSerializer(pest_type).data if pest_type else None, 'questions': []}
 
-            answer = question.answer_set.filter(created_by=request.user).first()
+            answer = None
+            if customer_id:
+                try:
+                    customer = Customer.objects.get(id=customer_id)
+                    answer = question.answer_set.filter(customer=customer).first()
+                except Customer.DoesNotExist:
+                    pass
+            
             categories[category.id]['pest_types'][pest_type_key]['questions'].append(
                     {
                         "question": ShortQuestionSerializer(question).data,
@@ -51,20 +59,25 @@ class PrincipleViewSet(DotsModelViewSet):
     @action(detail=False, methods=["GET"], url_path="status")
     def principles_status(self, request, *args, **kwargs):
         principles = self.get_queryset()
+        customer_id = request.GET.get("customer_id")
         status_list = []
 
         for principle in principles:
             questions = Question.objects.filter(principle=principle)\
-                .select_related('category')\
-                .prefetch_related('answer_set')
+                .select_related('category').prefetch_related('answer_set')
             
             answered_categories = set()
             all_categories = set()
             
             for question in questions:
                 all_categories.add(question.category.id)
-                if question.answer_set.filter(created_by=request.user).exists():
-                    answered_categories.add(question.category.id)
+                if customer_id:
+                    try:
+                        customer = Customer.objects.get(id=customer_id)
+                        if question.answer_set.filter(customer=customer).exists():
+                            answered_categories.add(question.category.id)
+                    except Customer.DoesNotExist:
+                        pass
             
             # Determine if principle is completed
             is_completed = len(answered_categories) == len(all_categories) and len(all_categories) > 0
@@ -107,7 +120,8 @@ class QuestionViewSet(DotsModelViewSet):
 
 class AnswerViewSet(DotsModelViewSet):
     queryset = Answer.objects.all()
-    serializer_class = ShortAnswerSerializer
+    serializer_class = ReturnShortAnswerSerializer
+    serializer_create_class = ShortAnswerSerializer
     permission_classes = [IsAuthenticated]
 
     def get_serializer_class(self):
@@ -117,19 +131,38 @@ class AnswerViewSet(DotsModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = queryset.filter(created_by=self.request.user)
+        queryset = queryset.filter()
         return queryset
+    
+    def get_customer(self, customer_id):
+        try:
+            return Customer.objects.get(id=customer_id)
+        except Customer.DoesNotExist:
+            return None
+        
+    def get_or_create_customer(self, customer_id=None):
+        if customer_id:
+            customer = self.get_customer(customer_id)
+            if customer:
+                return customer
+        return Customer.create_default_customer()
 
     def perform_create(self, serializer):
-        serializer.validated_data["created_by"] = self.request.user
+        customer_id = self.request.data.get("customer_id", None)
+        customer = self.get_or_create_customer(customer_id)
+        serializer.validated_data["customer"] = customer
         return super().perform_create(serializer)
 
     @action(detail=True, methods=['post'], url_path='upload-images')
     def upload_images(self, request, pk=None):
         answer = self.get_object()
+        customer_id = request.GET.get("customer_id")
         images = request.FILES.getlist('images')
         for image in images:
-            photo = Photo.objects.create(image=image, uploaded_by=request.user)
+            if not customer_id:
+                return Response({"error": "customer_id is required"}, status=status.HTTP_400_BAD_REQUEST)
+            customer = self.get_customer(customer_id)
+            photo = Photo.objects.create(image=image, customer=customer)
             answer.images.add(photo)
         answer.refresh_from_db()
         serializer_class = self.get_serializer_class()
@@ -138,7 +171,11 @@ class AnswerViewSet(DotsModelViewSet):
 
     @action(detail=False, methods=['get'], url_path='by-question/(?P<question_id>\d+)')
     def by_question(self, request, question_id=None):
-        answers = self.get_queryset().filter(question_id=question_id)
+        customer_id = request.GET.get("customer_id")
+        if not customer_id:
+                return Response({"error": "customer_id is required"}, status=status.HTTP_400_BAD_REQUEST)
+        customer = self.get_customer(customer_id)
+        answers = self.get_queryset().filter(question_id=question_id, customer=customer)
         serializer_class = self.get_serializer_class()
         serializer = serializer_class(answers, many=True)
         return Response(serializer.data)
@@ -150,5 +187,7 @@ class PhotosViewSet(DotsModelViewSet):
     permission_classes = [IsAuthenticated]
 
 
-
-
+class CustomerViewSet(DotsModelViewSet):
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
+    permission_classes = [IsAuthenticated]

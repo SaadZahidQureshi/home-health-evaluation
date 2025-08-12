@@ -34,8 +34,8 @@ class User(AbstractUser, BaseModel):
     last_name = None
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
-    email = models.EmailField(unique=True)
-    name = models.CharField(max_length=CharFieldSizes.LARGE)
+    email = models.EmailField(unique=True, null=True)
+    name = models.CharField(max_length=CharFieldSizes.LARGE, null=True)
     role = models.CharField(choices=Roles.choices, max_length=CharFieldSizes.SMALL, default=Roles.USER)
     phone = models.CharField(max_length=20, validators=[phone_regex], null=True, blank=True, unique=True, default=None)
     image = models.ImageField(upload_to="profiles/", default=settings.DEFAULT_PROFILE_IMAGE, null=True, blank=True)

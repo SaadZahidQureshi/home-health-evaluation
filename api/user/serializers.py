@@ -85,3 +85,10 @@ class LoginUserSerializer(serializers.Serializer):
             raise DotsValidationError("You are not authorized to log in here")
         attrs['user'] = user
         return attrs
+    
+
+class ShortUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ["name", "email", "role"]

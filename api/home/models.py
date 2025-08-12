@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from api.core.abstract import BaseModel
 from api.core.choices import *
+from api.user.serializers import ShortUserSerializer
 User = get_user_model()
 
 class Principle(BaseModel):
@@ -96,10 +97,31 @@ class Question(BaseModel):
 
     def __str__(self):
         return f"{self.principle.name} - {self.category.name}: {self.text[:50]}..."
-    
+
+
+class Customer(BaseModel):
+    user =  models.ForeignKey(User, on_delete=models.CASCADE)
+    house_image = models.ImageField(upload_to="house_images/", null=True, blank=True)
+    address = models.CharField(CharFieldSizes.LARGE, null=True)
+    city = models.CharField(CharFieldSizes.SMALL, null=True)
+    state = models.CharField(CharFieldSizes.SMALL, null=True)
+    zip = models.CharField(CharFieldSizes.SMALL, null=True)
+
+    @classmethod
+    def create_default_customer(cls):
+        user_data = {
+            "name": None,
+            "email": None,
+            "role": Roles.CUSTOMER
+        }
+        user_serializer = ShortUserSerializer(data=user_data)
+        user_serializer.is_valid(raise_exception=True)
+        user = user_serializer.save()
+        return cls.objects.create(user=user,address=None,city=None,state=None,zip=None)
+
 
 class Answer(BaseModel):
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     details = models.TextField(blank=True)
     images = models.ManyToManyField('Photo')
@@ -110,7 +132,7 @@ class Answer(BaseModel):
 
 class Photo(BaseModel):
     image = models.ImageField(upload_to='answer_photos/')
-    uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f"Photo {self.id}"

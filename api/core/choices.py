@@ -4,6 +4,7 @@ from django.db import models
 class Roles(models.TextChoices):
     ADMIN = "admin", "Admin"
     USER = "user", "User"
+    CUSTOMER = "customer", "Customer"
 
 class CharFieldSizes(models.IntegerChoices):
     SMALL = 50
