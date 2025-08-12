@@ -29,6 +29,7 @@ async function get_principle_data(){
         console.log(err);
     }
 }
+
 function render_principle_data(data) {
     let container = document.querySelector(".right-mainpart");
     container.innerHTML = '';
@@ -160,11 +161,13 @@ function render_principle_data(data) {
                             if (hasAnswer) {
                                 questionsWithAnswers.add(question.question.id.toString());
                             }
+                            let is_update = (hasAnswer && customer_id !== null) ? true : false
+
                             
                             const questionLi = document.createElement('li');
                             questionLi.innerHTML = `
                                 <label class="question-checkbox-label">
-                                    <input type="checkbox" class="question-checkbox" data-question-id="${question.question.id}" ${hasAnswer ? 'checked' : ''}>
+                                    <input type="checkbox" class="question-checkbox" data-question-id="${question.question.id}" ${(is_update) ? 'checked' : ''}>
                                     <span class="question-text">${question.question.text}</span>
                                 </label>
                             `;
@@ -289,11 +292,8 @@ function render_principle_data(data) {
             selectedQuestionsByCategory.get(categoryId).add(questionId);
         });
         
-        // Check if this is an update flow (has customer_id) or creation flow
-        const isUpdateFlow = customer_id && customer_id !== null && customer_id !== '';
-        
-        // Only force first question selection in creation flow
-        if (!isUpdateFlow && firstQuestionId && !questionsWithAnswers.has(firstQuestionId.toString())) {
+        // If first question doesn't have answer but we need to show it, add it to selection
+        if (firstQuestionId && !questionsWithAnswers.has(firstQuestionId.toString())) {
             const firstCheckbox = accordionBox.querySelector(`input[data-question-id="${firstQuestionId}"]`);
             if (firstCheckbox) {
                 firstCheckbox.checked = true;
@@ -347,6 +347,7 @@ function render_principle_data(data) {
     container.appendChild(buttons_container);    
     setupEventHandlers(data);
 }
+
 
 function navigateToStep(direction) {
     const menuItems = [...document.querySelectorAll('.side_menu ul li')];
