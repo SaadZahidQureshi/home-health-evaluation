@@ -1,4 +1,4 @@
-from . serialziers import *
+from .serializers import *
 from . models import *
 from api.core.mixin import DotsModelViewSet
 from rest_framework.decorators import action
@@ -189,5 +189,6 @@ class PhotosViewSet(DotsModelViewSet):
 
 class CustomerViewSet(DotsModelViewSet):
     queryset = Customer.objects.all()
-    serializer_class = CustomerSerializer
+    serializer_class = ReturnCustomerSerializer
+    serializer_create_class = CustomerSerializer
     permission_classes = [IsAuthenticated]

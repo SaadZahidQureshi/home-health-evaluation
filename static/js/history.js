@@ -30,17 +30,19 @@ function render_customers_data(data) {
     container.innerHTML = '';
     
     if (data.data.length == 0){
-        console.log("no cutomers")
+        container.innerHTML += `
+                <tr >
+                    <td colspan="6">No data available.</td>
+                </tr>`
     }else{
         data.data.forEach(customer => {
             container.innerHTML += `
                 <tr>
                     <td>${customer?.id || "--"}</td>
-                    <td>${customer?.name || "--"}</td>
-                    <td>${customer?.email || "--"}</td>
-                    <td>${customer?.phone || "--"}</td>
+                    <td>${customer?.user?.name || "--"}</td>
+                    <td>${customer?.user?.email || "--"}</td>
                     <td>${customer?.address || "--"}</td>
-                    <td>${customer?.created_at || "--"}</td>
+                    <td>${formatDate(customer?.created_at )|| "--"}</td>
                     <td>
                         <div class="action_button">
                             <a href="javascript:void(0)" onclick="deleteCustomer(${customer?.id})">
@@ -48,6 +50,12 @@ function render_customers_data(data) {
                             </a>
                             <a href="javascript:void(0)" onclick="editCustomer(${customer?.id})">
                                 <img src="/static/img/edit-rounded.svg" alt="">
+                            </a>
+                            <a href="javascript:void(0)" onclick="viewCustomer(${customer?.id})">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="3.3" stroke="#71BF1E" stroke-width="1.4"/>
+                                    <path d="M20.188 10.9343C20.5762 11.4056 20.7703 11.6412 20.7703 12C20.7703 12.3588 20.5762 12.5944 20.188 13.0657C18.7679 14.7899 15.6357 18 12 18C8.36427 18 5.23206 14.7899 3.81197 13.0657C3.42381 12.5944 3.22973 12.3588 3.22973 12C3.22973 11.6412 3.42381 11.4056 3.81197 10.9343C5.23206 9.21014 8.36427 6 12 6C15.6357 6 18.7679 9.21014 20.188 10.9343Z" stroke="#71BF1E" stroke-width="1.7"/>
+                                </svg>
                             </a>
                         </div>
                     </td>
@@ -82,4 +90,8 @@ async function deleteCustomer(id){
 function editCustomer(id){
     sessionStorage.setItem("customer_id", id);
     location.href = "/keep-it-clean/";
+}
+
+function viewCustomer(id){
+    location.href = `/saved/${id}`
 }

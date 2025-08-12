@@ -1275,3 +1275,11 @@ textarea::placeholder {
 input, textarea {
 	color: #000 !important;
 }
+
+.customer-info {
+	height: -webkit-fill-available;
+}
+
+.customer-info .row {
+	height: -webkit-fill-available;
+}
