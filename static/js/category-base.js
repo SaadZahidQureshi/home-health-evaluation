@@ -344,7 +344,7 @@ async function handleGlobalSubmit(event) {
     let allValid = true;
     const answersList = [];
 
-
+    // Validate and collect answers for the current step
     for (const category of principle_data.categories) {
         const categoryId = category.category.id;
         const selectedQs = selectedQuestionsByCategory.get(categoryId) || new Set();
@@ -389,6 +389,7 @@ async function handleGlobalSubmit(event) {
     beforeLoad(button);
 
     try {
+        // Save data for all answers in this step
         for (const answer of answersList) {
             const success = await saveQuestionDataGlobal(
                 answer.questionIds,
@@ -396,15 +397,34 @@ async function handleGlobalSubmit(event) {
                 answer.imageFiles,
                 answer.existingImages
             );
-            if (!success) {
-                throw new Error("Failed to save one or more answers.");
-            }
+            if (!success) throw new Error("Failed to save one or more answers.");
         }
 
-        setTimeout(() => {
-            afterLoad(button, "Saved!");
-            navigateToStep('next');
-        }, 800);
+        if (isLastStep()) {
+            // If this is the last step, check all principles completion
+            if (await checkAllPrinciplesCompleted()) {
+                const customer_id = sessionStorage.getItem("customer_id");
+                if (!customer_id) {
+                    showToast("Warning!", "No customer data found. Please complete previous steps first.", "danger-toast");
+                    afterLoad(button, originalButtonText);
+                    button.disabled = false;
+                    return;
+                }
+                afterLoad(button, originalButtonText);
+                // Show customer update modal at last step
+                showCustomerUpdateModal();
+            } else {
+                showToast("Warning!", "Please complete all steps before updating the customer.", "danger-toast");
+                afterLoad(button, originalButtonText);
+                button.disabled = false;
+            }
+        } else {
+            // For non-last steps, move to next step
+            setTimeout(() => {
+                afterLoad(button, "Saved!");
+                navigateToStep('next');
+            }, 800);
+        }
 
     } catch (error) {
         console.error("Error in global submit:", error);
@@ -627,7 +647,7 @@ function renderQuestionForm(container, questionIds, data, selectedQs) {
                         <div class="add_wraper">
                             <div class="add_box">
                                 <label class="custom-upload">
-                                    <input type="file" name="images" multiple class="image-upload" />
+                                    <input type="file" name="images" multiple class="image-upload"  accept="image/jpeg, image/jpg, image/png"/>
                                     <img src="/static/img/download.svg" alt="">
                                     Add Image
                                 </label>
@@ -737,5 +757,138 @@ async function delete_answer_image(imageId){
     catch (err) {
         console.error(err);
         showToast("Error!", "An error occurred while deleting", "danger-toast");
+    }
+}
+
+function isLastStep() {
+    const menuItems = [...document.querySelectorAll('.side_menu ul li')];
+    const activeIndex = menuItems.findIndex(li => li.classList.contains('active'));
+    return activeIndex === menuItems.length - 1; // Returns true if it's the last step
+}
+
+async function getCustomerDetails(customerId) {
+    try {
+        let headers = {
+            "Content-Type": "application/json",
+            'X-CSRFToken': getCookie('csrftoken')
+        };
+        let response = await requestAPI(`${API_BASE_URL}customers/${customerId}`, null, headers, 'GET');
+        if (response.status == 200) {
+            const customerData = await response.json();
+            return customerData.data;
+        } else {
+            console.error('Failed to get customer details');
+            return null;
+        }
+    } catch (err) {
+        console.error('Error getting customer details:', err);
+        return null;
+    }
+}
+
+async function showCustomerUpdateModal() {
+    const customer_id = sessionStorage.getItem("customer_id");
+    if (!customer_id) {
+        showToast("Error!", "Customer ID not found", "danger-toast");
+        return;
+    }
+    const customerData = await getCustomerDetails(customer_id);
+    if (!customerData) {
+        showToast("Error!", "Failed to load customer details", "danger-toast");
+        return;
+    }
+    let modalId = "addUserModal";
+    let modal_el = document.getElementById(modalId);
+    if (!modal_el) {
+        modal_el = document.getElementById(modalId);
+    }
+    const form = modal_el.querySelector("form");
+
+    form.querySelector('input[name="name"]').value = customerData.user.name || '';
+    form.querySelector('input[name="email"]').value = customerData.user.email || '';
+    form.querySelector('input[name="address"]').value = customerData.address || '';
+    form.querySelector('input[name="city"]').value = customerData.city || '';
+    form.querySelector('input[name="state"]').value = customerData.state || '';
+    form.querySelector('input[name="zip"]').value = customerData.zip || '';
+
+    if (customerData.house_image) {
+        const imgElement = modal_el.querySelector('#id_image_preview');
+        imgElement.src = customerData.house_image;
+        imgElement.classList.remove("hide");
+    }
+
+    form.setAttribute("onsubmit", "updateCustomerInfo(event)")
+    const modal = new bootstrap.Modal(modal_el);
+    modal._element.addEventListener('hidden.bs.modal', function() {
+        form.reset();
+        form.removeAttribute("onsubmit")
+        const imgElement = modal_el.querySelector('#id_image_preview');
+        imgElement.classList.add("hide");
+        imgElement.src = '';
+    });
+    modal.show();
+}
+
+async function updateCustomerInfo(event) {
+    event.preventDefault()
+    let form  = event.target;
+    const formData = new FormData(form);
+    const updateButton = document.querySelector(`button[form='${form.id}']`);
+
+    const customer_id = sessionStorage.getItem("customer_id");
+    if (!customer_id) {
+        showToast("Error!", "Customer ID not found", "danger-toast");
+        return;
+    }
+    
+    // Validate required fields
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const address = formData.get('address');
+    const city = formData.get('city');
+    const state = formData.get('state');
+    const zip = formData.get('zip');
+    const house_image = formData.get('house_image');
+    
+    if (!name || !email || !address || !city || !state || !zip || !house_image) {
+        showToast("Warning!", "Please fill all required fields", "danger-toast");
+        return;
+    }
+
+    beforeLoad(updateButton)
+    try {
+        let headers = {'X-CSRFToken': getCookie('csrftoken')};
+        let response = await requestAPI(`${API_BASE_URL}customers/${customer_id}`, formData, headers, 'PATCH');
+        if (response.status == 200) {
+            afterLoad(updateButton, "Saved");
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addUserModal'));
+            modal.hide();
+            setTimeout(() => {
+                successModal();
+            }, 500);
+            showToast("Success!", "Customer information updated successfully!", "success-toast");
+        } else {
+            let responseData = await response.json();
+            afterLoad(updateButton, "Save");
+            let errors = extractErrorMessages(responseData);
+            showToast("Warning!", errors[0] || "Failed to update customer", "danger-toast");
+        }
+    } catch (err) {
+        afterLoad(updateButton, "Save");
+        console.error('Error updating customer:', err);
+        showToast("Error!", "An error occurred while updating customer information", "danger-toast");
+    } finally {
+        afterLoad(updateButton, "Save");
+    }
+}
+
+async function checkAllPrinciplesCompleted() {
+    try {
+        await get_principle_status_data();
+        const allCompleted = principle_status_data.every(item => item.status === 'completed');
+        return allCompleted;
+    } catch (err) {
+        console.error('Error checking principle status:', err);
+        return false;
     }
 }

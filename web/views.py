@@ -185,6 +185,7 @@ class SavedgPageTemplateView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context =  super().get_context_data(**kwargs)
         context["title"] = "Saved"
+        context["customerId"] = self.kwargs['pk']
         return context
 
 class HistoryPageTemplateView(LoginRequiredMixin, TemplateView):

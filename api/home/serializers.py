@@ -78,8 +78,23 @@ class ReturnShortAnswerSerializer(serializers.ModelSerializer):
         fields = ['id', 'question', 'details', "customer"]
 
 
-class CustomerSerializer(serializers.ModelSerializer):
-
+class ReturnCustomerSerializer(serializers.ModelSerializer):
+    user = ShortUserSerializer()
     class Meta:
         model = Customer
         fields = "__all__"
+
+class CustomerSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(source='user.name')  
+    email = serializers.EmailField(source='user.email')
+
+    class Meta:
+        model = Customer
+        fields = ["name", "email", "address", "city", "state", "zip", "house_image"]
+
+    def update(self, instance, validated_data):
+        user_serializer = ShortUserSerializer(instance=instance.user, data=validated_data.pop('user'), partial=True)
+        user_serializer.is_valid(raise_exception=True)
+        user = user_serializer.save()
+        validated_data['user'] = user
+        return super().update(instance, validated_data)

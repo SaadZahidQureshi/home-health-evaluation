@@ -1,171 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="keywords" content="app, landing, corporate, Creative, Html Template, Template">
-    <meta name="author" content="web-themes">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1">
 
-    <!-- title -->
-    <title>Saved</title>
-
-    <!-- favicon -->
-    <link href="img/favicon.png" type="image/png" rel="icon">
-
-    <!-- all css here -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <link href="css/responsive.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-
-    <!--========== main-wrapper start ===========-->
-    <main class="main-wrapper">
-        <div class="row g-0">
-            <div class="col-lg-3 main-left-col">
-                <div class="main-left">
-                    <div class="logo_wraper">
-                        <a href="#">
-                            <img src="img/logo.svg" alt="">
-                        </a>
-                        <div class="hamburger-menu d-lg-none">
-                            <span class="line-top"></span>
-                            <span class="line-center"></span>
-                            <span class="line-bottom"></span>
-                        </div>
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Saved{% endblock title %}
+{% block content %}
+<div class="right-mainpart">
+    <div class="saved_box">
+        <div class="save_left">
+            <div class="audit_banner">
+                <img src="img/audit-banner.png" alt="">
+            </div>
+            <div class="audit_title">
+                <h3>Your Energy Audit</h3>
+            </div>
+            <div class="audit_item2">
+                <div class="audit_cnt">
+                    <div class="audit_inner">
+                        <h4>Home: </h4>
+                        <p>Sample NYSERDA <br> 15 Glanwood St <br> Albany, NY 12203</p>
                     </div>
-                    <div class="side_menu">
-                        <ul>
-                            <li>
-                                <a href="#"><span>1</span> Keep It Clean</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>2</span> Keep It Dry</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>3</span> Keep It Pest-Free</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>4</span> Keep It Contaminent-Free</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>5</span> Keep It Safe</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>6</span> Keep It Ventilated</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>7</span> Keep It Comfortable</a>
-                            </li>
-                            <li>
-                                <a href="#"><span>8</span> Keep It Maintained</a>
-                            </li>
-                        </ul>
+                    <img src="img/line-verticle.svg" alt="">
+                </div>
+                <div class="audit_cnt">
+                    <div class="audit_inner">
+                        <h4>Audited By:</h4>
+                        <p>Sandy Micheals <br>New York Testing <br> 123 Bell Street <br> Albany Ny 12203 <br> sandy@snugghome.com</p>
+                    </div>
+                    <img src="img/line-verticle.svg" alt="">
+                </div>
+                <div class="audit_cnt">
+                    <div class="audit_inner">
+                        <h4>Audit Date:</h4>
+                        <p>Jul, 02, 2024 <br>3:01PM</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9 main-right-col">
-                <div class="main-right">
-                    <div class="header_area">
-                        <div class="header_title header_title2">
-                            <div class="hamburger-menu d-lg-none">
-                                <span class="line-top"></span>
-                                <span class="line-center"></span>
-                                <span class="line-bottom"></span>
-                            </div>
-                            <div class="back_btn">
-                                <a href="#"><img src="img/left-arrow.svg" alt=""></a>
-                            </div>
-                            <h2>Saved</h2>
-                        </div>
-                        <div class="header_right">
-                            <ul>
-                                <li><a href="#"><img src="img/save.svg" alt=""></a></li>
-                                <li><a href="#"><img src="img/history.svg" alt=""></a></li>
-                                <li>
-                                    <div class="dropdown">
-                                        <a class="profile_btn" href="#" role="button" id="profile_dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <img src="img/profile.png" alt="">
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="profile_dropdown">
-                                            <li><a class="dropdown-item" href="profile-settings.html">Profile Settings</a></li>
-                                            <li><a class="dropdown-item" href="settings.html">Settings</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="right-mainpart">
-                        <div class="saved_box">
-                            <div class="save_left">
-                                <div class="audit_banner">
-                                    <img src="img/audit-banner.png" alt="">
-                                </div>
-                                <div class="audit_title">
-                                    <h3>Your Energy Audit</h3>
-                                </div>
-                                <div class="audit_item2">
-                                    <div class="audit_cnt">
-                                        <div class="audit_inner">
-                                            <h4>Home: </h4>
-                                            <p>Sample NYSERDA <br> 15 Glanwood St <br> Albany, NY 12203</p>
-                                        </div>
-                                        <img src="img/line-verticle.svg" alt="">
-                                    </div>
-                                    <div class="audit_cnt">
-                                        <div class="audit_inner">
-                                            <h4>Audited By:</h4>
-                                            <p>Sandy Micheals <br>New York Testing <br> 123 Bell Street <br> Albany Ny 12203 <br> sandy@snugghome.com</p>
-                                        </div>
-                                        <img src="img/line-verticle.svg" alt="">
-                                    </div>
-                                    <div class="audit_cnt">
-                                        <div class="audit_inner">
-                                            <h4>Audit Date:</h4>
-                                            <p>Jul, 02, 2024 <br>3:01PM</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="audit_bottom pt-sm-2">
-                                    <h4>Don & Margrey - </h4>
-                                    <p>Thank you for inviting us to do an emergency audit on your beautiful home. We’rve kept your concern in mind during our inspiration and testing. let’s discuss the recommendation found in this report and see what works best for you.</p>
-                                    <ul>
-                                        <li>Thanks,</li>
-                                        <li>Sandy</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="report_box">
-                                <h4>Report</h4>
-                                <ul>
-                                    <li><a href="#">Your Audit Energy</a></li>
-                                    <li><a href="#">Concerns</a></li>
-                                    <li><a href="#">Solutions For our Home</a></li>
-                                    <li><a href="#">Upgrade Details</a></li>
-                                    <li><a href="#">Health & Safety</a></li>
-                                    <li><a href="#">Additional Notes</a></li>
-                                    <li><a href="#">Rebates & Increase</a></li>
-                                    <li><a href="#">Financing</a></li>
-                                    <li><a href="#">Metrics</a></li>
-                                    <li><a href="#">Tech Specs</a></li>
-                                    <li><a href="#">Glossary</a></li>
-                                </ul>
-                            </div>
-                        </div>                                             
-                    </div>               
-                </div>
+            <div class="audit_bottom pt-sm-2">
+                <h4>Don & Margrey - </h4>
+                <p>Thank you for inviting us to do an emergency audit on your beautiful home. We’rve kept your concern in mind during our inspiration and testing. let’s discuss the recommendation found in this report and see what works best for you.</p>
+                <ul>
+                    <li>Thanks,</li>
+                    <li>Sandy</li>
+                </ul>
             </div>
         </div>
-    </main>
-    <!--========== main-wrapper end ===========-->
+        <div class="report_box">
+            <h4>Report</h4>
+            <ul>
+                <li><a href="#">Your Audit Energy</a></li>
+                <li><a href="#">Concerns</a></li>
+                <li><a href="#">Solutions For our Home</a></li>
+                <li><a href="#">Upgrade Details</a></li>
+                <li><a href="#">Health & Safety</a></li>
+                <li><a href="#">Additional Notes</a></li>
+                <li><a href="#">Rebates & Increase</a></li>
+                <li><a href="#">Financing</a></li>
+                <li><a href="#">Metrics</a></li>
+                <li><a href="#">Tech Specs</a></li>
+                <li><a href="#">Glossary</a></li>
+            </ul>
+        </div>
+    </div>                                             
+</div> 
 
-    <!-- all js here -->
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
-</body>
-</html>
+   
+{{principleId|json_script:"principleId"}}
+{{customerId|json_script:"customerId"}}
+{% endblock content %}
+{% block js %}
+<script src="{% static "js/category-base.js" %}"></script>
+{% endblock js %}
