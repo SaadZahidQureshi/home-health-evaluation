@@ -56,6 +56,7 @@ function render_principle_data(data) {
         titleDiv.innerHTML = `<h4>${category.category.name}</h4>`;
         const contentDiv = document.createElement('div');
         contentDiv.className = 'accordian_cnt';
+        
         // Check if category has any pest types or questions
         if (!category.pest_types || category.pest_types.length === 0) {
             const accordionBox = document.createElement('div');
@@ -128,6 +129,10 @@ function render_principle_data(data) {
         innerDiv.className = hasPestTypes ? 'accordian_inner pest_inner' : 'accordian_inner';
         const ul = document.createElement('ul');
         
+        // Collect all questions with answers to check them
+        let questionsWithAnswers = new Set();
+        let allQuestions = [];
+        
         if (hasPestTypes) {
             category.pest_types.forEach((pestType, pestIndex) => {
                 if (pestType.pest_type) {
@@ -146,10 +151,21 @@ function render_principle_data(data) {
                         pestDropdown.style.display = pestIndex === 0 ? 'block' : 'none';
                         
                         pestType.questions.forEach(question => {
+                            allQuestions.push(question);
+                            
+                            // Check if question has an answer
+                            const hasAnswer = question.answer && 
+                                             (question.answer.details || 
+                                              (question.answer.images && question.answer.images.length > 0));
+                            
+                            if (hasAnswer) {
+                                questionsWithAnswers.add(question.question.id.toString());
+                            }
+                            
                             const questionLi = document.createElement('li');
                             questionLi.innerHTML = `
                                 <label class="question-checkbox-label">
-                                    <input type="checkbox" class="question-checkbox" data-question-id="${question.question.id}">
+                                    <input type="checkbox" class="question-checkbox" data-question-id="${question.question.id}" ${hasAnswer ? 'checked' : ''}>
                                     <span class="question-text">${question.question.text}</span>
                                 </label>
                             `;
@@ -180,10 +196,21 @@ function render_principle_data(data) {
             // Handle categories without pest types
             if (category.pest_types[0] && category.pest_types[0].questions.length > 0) {
                 category.pest_types[0].questions.forEach(question => {
+                    allQuestions.push(question);
+                    
+                    // Check if question has an answer
+                    const hasAnswer = question.answer && 
+                                     (question.answer.details || 
+                                      (question.answer.images && question.answer.images.length > 0));
+                    
+                    if (hasAnswer) {
+                        questionsWithAnswers.add(question.question.id.toString());
+                    }
+                    
                     const li = document.createElement('li');
                     li.innerHTML = `
                         <label class="question-checkbox-label">
-                            <input type="checkbox" class="question-checkbox" data-question-id="${question.question.id}">
+                            <input type="checkbox" class="question-checkbox" data-question-id="${question.question.id}" ${hasAnswer ? 'checked' : ''}>
                             <span class="question-text">${question.question.text}</span>
                         </label>
                     `;
@@ -201,22 +228,15 @@ function render_principle_data(data) {
                 ul.appendChild(emptyLi);
             }
         }
+        
         innerDiv.appendChild(ul);
         const formContainer = document.createElement('div');
         formContainer.className = 'form-container';
-        const firstQuestionData = firstPestType?.questions[0];
-        const hasAnswer = firstQuestionData?.answer && 
-                         (firstQuestionData.answer.details || 
-                          (firstQuestionData.answer.images && firstQuestionData.answer.images.length > 0));
         
-        if (hasAnswer) {
-            formContainer.style.display = 'block';
-            contentDiv.classList.add('active');
-            innerDiv.style.display = 'block';
-        } else {
-            formContainer.style.display = 'block';
-            // innerDiv.style.display = 'block';
-        }
+        // Always show the form container and keep it open
+        formContainer.style.display = 'block';
+        contentDiv.classList.add('active');
+        innerDiv.style.display = 'block';
         
         accordionBox.appendChild(titleDiv);
         accordionBox.appendChild(contentDiv);
@@ -259,19 +279,32 @@ function render_principle_data(data) {
             });
         }
         
-        if (firstQuestionId) {
-            const categoryId = category.category.id;
-            if (!selectedQuestionsByCategory.has(categoryId)) {
-                selectedQuestionsByCategory.set(categoryId, new Set());
-            }
-            
+        // Set up selectedQuestionsByCategory and render first question's answer
+        const categoryId = category.category.id;
+        if (!selectedQuestionsByCategory.has(categoryId)) {
+            selectedQuestionsByCategory.set(categoryId, new Set());
+        }
+        
+        // Add all questions with answers to selectedQuestionsByCategory
+        questionsWithAnswers.forEach(questionId => {
+            selectedQuestionsByCategory.get(categoryId).add(questionId);
+        });
+        
+        // If first question doesn't have answer but we need to show it, add it to selection
+        if (firstQuestionId && !questionsWithAnswers.has(firstQuestionId.toString())) {
             const firstCheckbox = accordionBox.querySelector(`input[data-question-id="${firstQuestionId}"]`);
             if (firstCheckbox) {
                 firstCheckbox.checked = true;
                 selectedQuestionsByCategory.get(categoryId).add(firstQuestionId.toString());
-                const selectedQs = contentDiv.querySelector("p");
-                renderQuestionForm(formContainer, Array.from(selectedQuestionsByCategory.get(categoryId)), data, selectedQs);
             }
+        }
+        
+        // Render the form with selected questions (prioritizing first question's answer if it exists)
+        const selectedQs = contentDiv.querySelector("p");
+        const selectedQuestionIds = Array.from(selectedQuestionsByCategory.get(categoryId));
+        
+        if (selectedQuestionIds.length > 0) {
+            renderQuestionForm(formContainer, selectedQuestionIds, data, selectedQs);
         }
     });
     
@@ -344,6 +377,15 @@ async function handleGlobalSubmit(event) {
     let allValid = true;
     const answersList = [];
 
+     // Handle deletions first
+    if (window.questionsToDelete && window.questionsToDelete.size > 0) {
+        for (const questionId of window.questionsToDelete) {
+            await deleteQuestionAnswer(questionId);
+        }
+        // Clear the deletion queue
+        window.questionsToDelete.clear();
+    }
+
     // Validate and collect answers for the current step
     for (const category of principle_data.categories) {
         const categoryId = category.category.id;
@@ -401,7 +443,11 @@ async function handleGlobalSubmit(event) {
         }
 
         if (isLastStep()) {
-            // If this is the last step, check all principles completion
+            // If this is the last step, add a small delay before checking completion
+            // to ensure backend has processed the saved data
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Check all principles completion after the delay
             if (await checkAllPrinciplesCompleted()) {
                 const customer_id = sessionStorage.getItem("customer_id");
                 if (!customer_id) {
@@ -470,7 +516,6 @@ async function saveQuestionDataGlobal(questionIds, details, imageFiles, existing
                 return false;
             }
 
-
             const responseData = await response.json();
             sessionStorage.setItem("customer_id", responseData.data.customer);
             customer_id = responseData.data.customer;
@@ -501,9 +546,67 @@ async function saveQuestionDataGlobal(questionIds, details, imageFiles, existing
     return true;
 }
 
+async function deleteQuestionAnswer(questionId) {
+    const headers = { 'X-CSRFToken': getCookie('csrftoken') };
+    
+    try {
+        let endpoint = `${API_BASE_URL}answers/by-question/${questionId}`;
+        if (customer_id) {
+            endpoint = `${API_BASE_URL}answers/by-question/${questionId}?customer_id=${customer_id}`;
+        }
+
+        const checkResponse = await requestAPI(endpoint, null, headers, 'GET');
+        if (!checkResponse.status == 200) {
+            console.error(`Failed to check existing answer for question ${questionId}`);
+            return false;
+        }
+
+        const answers = await checkResponse.json();
+        
+        if (answers.length > 0) {
+            const deleteResponse = await requestAPI(
+                `${API_BASE_URL}answers/${answers[0].id}`,
+                null,
+                headers,
+                'DELETE'
+            );
+            
+            if (deleteResponse.status !== 200 && deleteResponse.status !== 204) {
+                console.error(`Failed to delete answer for question ${questionId}`);
+                return false;
+            }
+            
+            console.log(`Successfully deleted answer for question ${questionId}`);
+            return true;
+        }
+        
+        return true; // No answer to delete
+    } catch (err) {
+        console.error(`Error deleting answer for question ${questionId}:`, err);
+        return false;
+    }
+}
+
 function setupEventHandlers(data) {
     $(".accordian_cnt").click(function() {
         $(this).toggleClass("active").next().slideToggle();
+    });
+    
+    // Keep track of questions that had answers when initially loaded
+    const questionsWithInitialAnswers = new Set();
+    
+    // Initialize the set with questions that have answers
+    data.categories.forEach(category => {
+        category.pest_types.forEach(pestType => {
+            pestType.questions.forEach(question => {
+                const hasAnswer = question.answer && 
+                                 (question.answer.details || 
+                                  (question.answer.images && question.answer.images.length > 0));
+                if (hasAnswer) {
+                    questionsWithInitialAnswers.add(question.question.id.toString());
+                }
+            });
+        });
     });
     
     document.addEventListener('change', function(e) {
@@ -534,6 +637,19 @@ function setupEventHandlers(data) {
                 categorySelections.add(questionId);
             } else {
                 categorySelections.delete(questionId);
+                
+                // If this question had an initial answer and is now being unchecked,
+                // mark it for deletion
+                if (questionsWithInitialAnswers.has(questionId)) {
+                    // Store questions to be deleted in a global variable or handle immediately
+                    if (!window.questionsToDelete) {
+                        window.questionsToDelete = new Set();
+                    }
+                    window.questionsToDelete.add(questionId);
+                    
+                    // Optionally delete immediately (uncomment if you want immediate deletion)
+                    // deleteQuestionAnswer(questionId);
+                }
             }
             
             // Ensure the accordion is open
