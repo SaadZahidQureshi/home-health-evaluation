@@ -29,7 +29,6 @@ async function get_principle_data(){
         console.log(err);
     }
 }
-
 function render_principle_data(data) {
     let container = document.querySelector(".right-mainpart");
     container.innerHTML = '';
@@ -290,8 +289,11 @@ function render_principle_data(data) {
             selectedQuestionsByCategory.get(categoryId).add(questionId);
         });
         
-        // If first question doesn't have answer but we need to show it, add it to selection
-        if (firstQuestionId && !questionsWithAnswers.has(firstQuestionId.toString())) {
+        // Check if this is an update flow (has customer_id) or creation flow
+        const isUpdateFlow = customer_id && customer_id !== null && customer_id !== '';
+        
+        // Only force first question selection in creation flow
+        if (!isUpdateFlow && firstQuestionId && !questionsWithAnswers.has(firstQuestionId.toString())) {
             const firstCheckbox = accordionBox.querySelector(`input[data-question-id="${firstQuestionId}"]`);
             if (firstCheckbox) {
                 firstCheckbox.checked = true;
