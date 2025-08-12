@@ -29,13 +29,13 @@ async function get_customers_data(){
 
 function render_customers_data(data) {
     if (customers_data){
-        document.getElementById("name").textContent = data.user.name;
-        document.getElementById("email").textContent = data.user.email;
-        document.getElementById("address").textContent = data.address;
-        document.getElementById("city").textContent = data.city;
-        document.getElementById("state").textContent = data.state;
-        document.getElementById("zip").textContent = data.zip;
-        document.getElementById("house_image").src = data.house_image;
+        document.getElementById("name").textContent = data.user.name || "--";
+        document.getElementById("email").textContent = data.user.email || "--";
+        document.getElementById("address").textContent = data.address || "--";
+        document.getElementById("city").textContent = data.city || "--";
+        document.getElementById("state").textContent = data.state || "--";
+        document.getElementById("zip").textContent = data.zip || "--";
+        document.getElementById("house_image").src = data.house_image || "--";
     } 
 }
 
