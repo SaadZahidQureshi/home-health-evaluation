@@ -195,3 +195,14 @@ class HistoryPageTemplateView(LoginRequiredMixin, TemplateView):
         context =  super().get_context_data(**kwargs)
         context["title"] = "History"
         return context
+    
+class PrincipleDetailsPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "principle-details.html"
+
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        principle = Principle.objects.get(id=self.kwargs['pk'])
+        context["title"] = principle.name
+        context["principleId"] = principle.id
+        return context
+    
