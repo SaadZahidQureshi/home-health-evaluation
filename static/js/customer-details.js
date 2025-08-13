@@ -42,5 +42,6 @@ function render_customers_data(data) {
 }
 
 function principleDetails(principleId){
+    sessionStorage.setItem("customer_id", customer_id)
     location.href = `/principle/details/${principleId}`;
 }
