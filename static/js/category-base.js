@@ -528,7 +528,39 @@ function setupEventHandlers(data) {
                 
                 const currentCategoryId = mainCategoryId || subcategoryId;
                 const currentSelections = selectedQuestionsByCategory.get(parseInt(currentCategoryId)) || new Set();
-                renderQuestionForm(formContainer, Array.from(currentSelections), data, contentP, mainCategoryId);
+
+                // Before calling renderQuestionForm, preserve existing form data
+                let preservedDetails = '';
+                let preservedImages = [];
+                const existingForm = formContainer.querySelector('.details-form');
+                if (existingForm) {
+                    const detailsTextarea = existingForm.querySelector('textarea[name="details"]');
+                    if (detailsTextarea) {
+                        preservedDetails = detailsTextarea.value;
+                    }
+                    
+                    // Preserve existing images (both database and preview images)
+                    const existingImageItems = existingForm.querySelectorAll('.added_item');
+                    preservedImages = Array.from(existingImageItems).map(item => {
+                        const img = item.querySelector('.added_image img');
+                        const imageId = item.getAttribute('data-image-id');
+                        
+                        if (imageId) {
+                            // Database image
+                            return {
+                                id: imageId,
+                                image: img.src
+                            };
+                        } else {
+                            // Preview image
+                            return {
+                                src: img.src
+                            };
+                        }
+                    });
+                }
+
+                renderQuestionForm(formContainer, Array.from(currentSelections), data, contentP, mainCategoryId, preservedDetails, preservedImages);
             }
             
             if (subcategoryId) {
@@ -769,7 +801,7 @@ function clearAllCategorySelections(categories, mainCategoryId) {
     });
 }
 
-function renderQuestionForm(container, questionIds, data, selectedQs, categoryId) {
+function renderQuestionForm(container, questionIds, data, selectedQs, categoryId, preservedDetails = '', preservedImages = []) {
     let answerData = null;
     const mainCategory = data.categories.find(cat => cat.id === categoryId);
     if (mainCategory && mainCategory.feedback) {
@@ -778,6 +810,10 @@ function renderQuestionForm(container, questionIds, data, selectedQs, categoryId
             images: mainCategory.feedback.images
         };
     }
+
+    // Use preserved details if available, otherwise use existing answerData
+    const detailsToUse = preservedDetails || answerData?.details || '';
+    const imagesToUse = preservedImages.length > 0 ? preservedImages : (answerData?.images || []);
 
     let formHTML = `
         <div class="accordion_selected">
@@ -789,7 +825,7 @@ function renderQuestionForm(container, questionIds, data, selectedQs, categoryId
                     <div class="col-md-12">
                         <div class="inform_item">
                             <label>Comment</label>
-                            <textarea name="details" placeholder="Description">${answerData?.details || ''}</textarea>
+                            <textarea name="details" placeholder="Description">${detailsToUse}</textarea>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -807,18 +843,34 @@ function renderQuestionForm(container, questionIds, data, selectedQs, categoryId
                             <div class="image-preview-container">
     `;
     
-    if (answerData?.images?.length > 0) {
-        answerData.images.forEach(image => {
-            formHTML += `
-                <div class="added_item" data-image-id="${image.id}">
-                    <div class="added_image">
-                        <img src="${image.image}" alt="">
+    if (imagesToUse.length > 0) {
+        imagesToUse.forEach(image => {
+            // Handle both database images (with id) and preview images (without id)
+            if (image.id) {
+                // Database image
+                formHTML += `
+                    <div class="added_item" data-image-id="${image.id}">
+                        <div class="added_image">
+                            <img src="${image.image}" alt="">
+                        </div>
+                        <div class="delete_icon">
+                            <a href="#"><img src="/static/img/delete.svg" alt=""></a>
+                        </div>
                     </div>
-                    <div class="delete_icon">
-                        <a href="#"><img src="/static/img/delete.svg" alt=""></a>
+                `;
+            } else {
+                // Preview image (from file upload)
+                formHTML += `
+                    <div class="added_item">
+                        <div class="added_image">
+                            <img src="${image.src}" alt="">
+                        </div>
+                        <div class="delete_icon">
+                            <a href="#"><img src="/static/img/delete.svg" alt=""></a>
+                        </div>
                     </div>
-                </div>
-            `;
+                `;
+            }
         });
     }
     
