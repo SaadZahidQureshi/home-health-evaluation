@@ -93,7 +93,7 @@ class PrincipleStatusSerializer(serializers.Serializer):
 
 class AnswerSerializer(serializers.Serializer):
     customer_id = serializers.PrimaryKeyRelatedField(queryset=Customer.objects.all())
-    note = serializers.CharField(required=False, default='')
+    note = serializers.CharField(required=False, default='', allow_blank=True)
 
 
 class SelectionSerializer(serializers.Serializer):

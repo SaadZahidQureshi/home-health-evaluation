@@ -174,20 +174,7 @@ class CategoryViewSet(DotsModelViewSet):
             CategoryApplicability.objects.update_or_create(customer=customer, category=category, defaults={"applicable": True})
         return Response(status=status.HTTP_200_OK)
     
-
-    # @action(detail=True, methods=['POST'], url_path='applicable')
-    # def applicable(self, request, *args, **kwargs):
-    #     applicable_serializer = ApplicableSerializer(data=request.data)
-    #     applicable_serializer.is_valid(raise_exception=True)
-    #     category = self.get_object()
-    #     validated_data = applicable_serializer.validated_data
-    #     customer = validated_data['customer_id']
-    #     with transaction.atomic():
-    #         SelectedOption.objects.filter(customer=customer, category=category).delete()
-    #         Feedback.objects.filter(customer=customer, category=category).delete()
-    #         CategoryApplicability.objects.update_or_create(customer=customer, category=category, defaults={"applicable": False})
-    #     return Response(status=status.HTTP_200_OK)
-
+    
     @action(detail=True, methods=['POST'], url_path='applicable')
     def applicable(self, request, *args, **kwargs):
         applicable_serializer = ApplicableSerializer(data=request.data)
