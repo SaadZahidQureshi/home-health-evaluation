@@ -1292,6 +1292,10 @@ input, textarea {
 	height: -webkit-fill-available;
 }
 
+.customer-info span{
+	word-break: break-all;
+}
+
 .customer-info .row {
 	height: 50%;
 }

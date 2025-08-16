@@ -5,7 +5,9 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-
+from django.db import transaction
+from django.db.models import OuterRef, Exists, Case, When, Value, BooleanField, Subquery, Prefetch
+from django.db.models.functions import Coalesce
 
 class PrincipleViewSet(DotsModelViewSet):
     queryset = Principle.objects.all().order_by("order")
@@ -13,178 +15,252 @@ class PrincipleViewSet(DotsModelViewSet):
     serializer_create_class = PrincipleSerializer
     permission_classes = [IsAuthenticated]
 
-    @action(detail=True, methods=["GET"], url_path="categories/questions")
-    def principle_related_categories_question(self, request, *args, **kwargs):
+    def _get_customer(self, customer_id):
+        try:
+            return Customer.objects.get(id=customer_id)
+        except (Customer.DoesNotExist, ValueError, TypeError):
+            return None
+
+    @action(detail=True, methods=["GET"], url_path="categories")
+    def principle_categories(self, request, *args, **kwargs):
         principle = self.get_object()
         customer_id = self.request.GET.get("customer_id")
-        questions = Question.objects.filter(principle=principle)\
-            .select_related('category', 'pest_type', 'principle')\
-            .order_by("order")
-        principle_data = PrincipleSerializer(principle).data
+        customer = self._get_customer(customer_id) if customer_id else None
 
-        categories = {}
-        for question in questions:
-            category = question.category
-            pest_type = question.pest_type
-            
-            if category.id not in categories:
-                categories[category.id] = {'category': CategoriesSerializer(category).data, 'pest_types': {}}
-            
-            pest_type_key = pest_type.id if pest_type else 'general'
-            if pest_type_key not in categories[category.id]['pest_types']:
-                categories[category.id]['pest_types'][pest_type_key] = { 'pest_type': PestTypeSerializer(pest_type).data if pest_type else None, 'questions': []}
-
-            answer = None
-            if customer_id:
-                try:
-                    customer = Customer.objects.get(id=customer_id)
-                    answer = question.answer_question.filter(customer=customer).first()
-                except Customer.DoesNotExist:
-                    pass
-            
-            categories[category.id]['pest_types'][pest_type_key]['questions'].append(
-                    {
-                        "question": ShortQuestionSerializer(question).data,
-                        "answer": AnswerSerializer(answer).data if answer else None
-                    }
+        def annotated_category_qs():
+            qs = Category.objects.order_by('order')
+            if customer:
+                customer_applicable_qs = CategoryApplicability.objects.filter(customer=customer, category=OuterRef('pk')).values('applicable')[:1]
+                qs = qs.annotate(
+                    is_answered=Exists(SelectedOption.objects.filter(customer=customer, category=OuterRef('pk'), selected=True)),
+                    applicable=Coalesce(Subquery(customer_applicable_qs), Value(True), output_field=BooleanField())
                 )
-        
-        response_data = [
-            {'category': category_data['category'], 'pest_types': list(category_data['pest_types'].values())}
-            for category_data in categories.values()
-        ]
-        
-        return Response({'principle': principle_data,'categories': response_data}, status=200)
+                options_qs = Option.objects.annotate(
+                    is_selected=Case(
+                        When(Exists(SelectedOption.objects.filter(customer=customer, option=OuterRef('pk'), selected=True)), then=True),
+                        default=False,
+                        output_field=BooleanField()
+                    )
+                )
+                qs = qs.prefetch_related(Prefetch('options', queryset=options_qs))
+            else:
+                qs = qs.annotate(applicable=Value(True)).prefetch_related('options')
+            return qs
+
+        if customer:
+            customer_applicable_qs = CategoryApplicability.objects.filter(customer=customer, category=OuterRef('pk')).values('applicable')[:1]
+            options_qs = Option.objects.annotate(
+                is_selected=Case(
+                    When(Exists(SelectedOption.objects.filter(customer=customer, option=OuterRef('pk'), selected=True)), then=True),
+                    default=False,
+                    output_field=BooleanField()
+                )
+            )
+
+            categories = Category.objects.filter(principle=principle, parent__isnull=True) \
+                .order_by('order') \
+                .annotate(
+                    is_answered=Exists(SelectedOption.objects.filter(customer=customer, category=OuterRef('pk'), selected=True)),
+                    applicable=Coalesce(Subquery(customer_applicable_qs), Value(True), output_field=BooleanField())
+                ) \
+                .prefetch_related(
+                    Prefetch('options', queryset=options_qs),
+                    Prefetch('subcategories',queryset=annotated_category_qs().prefetch_related(
+                        Prefetch('subcategories', queryset=annotated_category_qs())
+                        )
+                    )
+                )
+        else:
+            categories = Category.objects.filter(principle=principle, parent__isnull=True) \
+                .order_by('order') \
+                .annotate(applicable=Value(True)) \
+                .prefetch_related('options', 'subcategories__options', 'subcategories__subcategories__options')
+
+        response_data = {'principle': principle, 'categories': categories}
+        serializer = PrincipleCategoriesSerializer(response_data, context={'customer': customer})
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
     @action(detail=False, methods=["GET"], url_path="status")
     def principles_status(self, request, *args, **kwargs):
         principles = self.get_queryset()
-        customer_id = request.GET.get("customer_id")
-        status_list = []
+        customer_id = request.GET.get("customer_id")        
+        status_data = []
+        customer = self._get_customer(customer_id) if customer_id else None
 
         for principle in principles:
-            questions = Question.objects.filter(principle=principle)\
-                .select_related('category').prefetch_related('answer_question')
+            # Get only main categories (categories without parent)
+            main_categories = Category.objects.filter(principle=principle, parent__isnull=True)
+            total_main_categories = main_categories.count()
             
-            answered_categories = set()
-            all_categories = set()
+            answered_count = 0
+            if customer:
+                for main_category in main_categories:
+                    # Check if this main category has subcategories
+                    has_subcategories = Category.objects.filter(parent=main_category).exists()
+                    
+                    if has_subcategories:
+                        # For parent categories with subcategories, check if ANY subcategory has selected options
+                        subcategory_answered = SelectedOption.objects.filter(
+                            customer=customer, 
+                            category__parent=main_category, 
+                            selected=True
+                        ).exists()
+                        
+                        if subcategory_answered:
+                            answered_count += 1
+                    else:
+                        # For categories without subcategories, check if the category itself has selected options
+                        category_answered = SelectedOption.objects.filter(
+                            customer=customer, 
+                            category=main_category, 
+                            selected=True
+                        ).exists()
+                        
+                        if category_answered:
+                            answered_count += 1
             
-            for question in questions:
-                all_categories.add(question.category.id)
-                if customer_id:
-                    try:
-                        customer = Customer.objects.get(id=customer_id)
-                        if question.answer_question.filter(customer=customer).exists():
-                            answered_categories.add(question.category.id)
-                    except Customer.DoesNotExist:
-                        pass
-            
-            # Determine if principle is completed
-            is_completed = len(answered_categories) == len(all_categories) and len(all_categories) > 0
-            
-            status_list.append({
+            is_completed = answered_count == total_main_categories and total_main_categories > 0
+            status_data.append({
                 'id': principle.id,
                 'name': principle.name,
                 'status': 'completed' if is_completed else 'pending',
-                'completed_categories': len(answered_categories),
-                'total_categories': len(all_categories),
-                'progress': f"{len(answered_categories)}/{len(all_categories)}" if all_categories else "0/0"
+                'completed_categories': answered_count,
+                'total_categories': total_main_categories,
+                'progress': f"{answered_count}/{total_main_categories}" if total_main_categories else "0/0"
             })
         
-        return Response(status_list)
+        serializer = PrincipleStatusSerializer(status_data, many=True)        
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
 
-
-class CategoriesViewSet(DotsModelViewSet):
-    queryset = Category.objects.all().order_by("order")
-    serializer_class = CategoriesSerializer
-    serializer_create_class = CategoriesSerializer
-
-
-class PestTypeViewSet(DotsModelViewSet):
-    queryset = PestType.objects.all()
-    serializer_class = PestTypeSerializer
-    serializer_create_class = PestTypeSerializer
-
-
-class QuestionGroupViewSet(DotsModelViewSet):
-    queryset = QuestionGroup.objects.all().order_by("order")
-    serializer_class = QuestionGroupSerializer
-    serializer_create_class = QuestionGroupSerializer
-
-
-class QuestionViewSet(DotsModelViewSet):
-    queryset = Question.objects.all().order_by("order")
-    serializer_class = QuestionSerializer
-    serializer_create_class = QuestionSerializer
-
-
-class AnswerViewSet(DotsModelViewSet):
-    queryset = Answer.objects.all()
-    serializer_class = ReturnShortAnswerSerializer
-    serializer_create_class = ShortAnswerSerializer
+class CategoryViewSet(DotsModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
     permission_classes = [IsAuthenticated]
 
-    def get_serializer_class(self):
-        if self.action in ['list', 'retrieve', 'by_question', 'upload_images']:
-            return AnswerSerializer
-        return super().get_serializer_class()
+    @action(detail=True, methods=['POST'], url_path='feedback')
+    def submit_answer(self, request, pk=None):
+        input_serializer = AnswerSerializer(data=request.data)
+        input_serializer.is_valid(raise_exception=True)
+        category = self.get_object()
+        validated_data = input_serializer.validated_data
+        customer = validated_data['customer_id']
+        note = validated_data['note']
+        with transaction.atomic():
+            feedback, created = Feedback.objects.get_or_create(customer=customer, category=category, defaults={'note': note})
+            if not created:
+                feedback.note = note
+                feedback.save()
+        return Response(status=status.HTTP_201_CREATED)
 
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        queryset = queryset.filter()
-        return queryset
+
+    @action(detail=True, methods=['POST'], url_path='selection')
+    def option_section(self, request, *args, **kwargs):
+        selection_serializer = SelectionSerializer(data=request.data)
+        selection_serializer.is_valid(raise_exception=True)
+        category = self.get_object()
+        validated_data = selection_serializer.validated_data
+        customer = validated_data['customer_id']
+        selected_option_ids = validated_data['selected_options']
+        with transaction.atomic():
+            SelectedOption.objects.filter(customer=customer, category=category).delete()
+            for option_id in selected_option_ids:
+                try:
+                    option = Option.objects.get(id=option_id, category=category)
+                    SelectedOption.objects.create(customer=customer, category=category, option=option, selected=True)
+                except Option.DoesNotExist:
+                    return Response({"error": f"Option {option_id} not found for this category"}, status=status.HTTP_400_BAD_REQUEST)
+            CategoryApplicability.objects.update_or_create(customer=customer, category=category, defaults={"applicable": True})
+        return Response(status=status.HTTP_200_OK)
     
-    def get_customer(self, customer_id):
-        try:
-            return Customer.objects.get(id=customer_id)
-        except Customer.DoesNotExist:
-            return None
+
+    # @action(detail=True, methods=['POST'], url_path='applicable')
+    # def applicable(self, request, *args, **kwargs):
+    #     applicable_serializer = ApplicableSerializer(data=request.data)
+    #     applicable_serializer.is_valid(raise_exception=True)
+    #     category = self.get_object()
+    #     validated_data = applicable_serializer.validated_data
+    #     customer = validated_data['customer_id']
+    #     with transaction.atomic():
+    #         SelectedOption.objects.filter(customer=customer, category=category).delete()
+    #         Feedback.objects.filter(customer=customer, category=category).delete()
+    #         CategoryApplicability.objects.update_or_create(customer=customer, category=category, defaults={"applicable": False})
+    #     return Response(status=status.HTTP_200_OK)
+
+    @action(detail=True, methods=['POST'], url_path='applicable')
+    def applicable(self, request, *args, **kwargs):
+        applicable_serializer = ApplicableSerializer(data=request.data)
+        applicable_serializer.is_valid(raise_exception=True)
+        category = self.get_object()
+        validated_data = applicable_serializer.validated_data
+        customer = validated_data['customer_id']
         
-    def get_or_create_customer(self, customer_id=None):
-        if customer_id:
-            customer = self.get_customer(customer_id)
-            if customer:
-                return customer
-        current_user = self.request.user
-        return Customer.create_default_customer(current_user)
+        with transaction.atomic():
+            SelectedOption.objects.filter(customer=customer, category=category).delete()
+            Feedback.objects.filter(customer=customer, category=category).delete()
+            CategoryApplicability.objects.update_or_create(customer=customer, category=category, defaults={"applicable": False})
+            
+            if category.parent:
+                self._check_and_update_parent_applicability(customer, category.parent)
+            if category.subcategories.exists():
+                # This is a parent category, mark all subcategories as not applicable too
+                subcategories = category.subcategories.all()
+                for subcategory in subcategories:
+                    # Delete selected options and feedback for subcategories
+                    SelectedOption.objects.filter(customer=customer, category=subcategory).delete()
+                    Feedback.objects.filter(customer=customer, category=subcategory).delete()
+                    CategoryApplicability.objects.update_or_create(customer=customer, category=subcategory, defaults={"applicable": False})
+    
+        return Response(status=status.HTTP_200_OK)
 
-    def perform_create(self, serializer):
-        customer_id = self.request.data.get("customer_id", None)
-        customer = self.get_or_create_customer(customer_id)
-        serializer.validated_data["customer"] = customer
-        return super().perform_create(serializer)
+    def _check_and_update_parent_applicability(self, customer, parent_category):
+        subcategories = parent_category.subcategories.all()
+        if not subcategories.exists(): return
+        applicable_subcategories = CategoryApplicability.objects.filter(customer=customer, category__in=subcategories, applicable=True).exists()
+        if not applicable_subcategories:
+            Feedback.objects.filter(customer=customer, category=parent_category).delete()
+            if parent_category.parent:
+                self._check_and_update_parent_applicability(customer, parent_category.parent)
 
-    @action(detail=True, methods=['post'], url_path='upload-images')
+
+    @action(detail=True, methods=['POST'], url_path='upload-images')
     def upload_images(self, request, pk=None):
-        answer = self.get_object()
-        customer_id = request.GET.get("customer_id")
+        category = self.get_object()
+        customer_id = request.data.get('customer_id')
         images = request.FILES.getlist('images')
+        
+        if not customer_id:
+            return Response({"error": "customer_id is required"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        if not images:
+            return Response({"error": "images are required"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            customer = Customer.objects.get(id=customer_id)
+        except Customer.DoesNotExist:
+            return Response({"error": "Customer not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+        feedback, created = Feedback.objects.get_or_create(customer=customer, category=category)
+        uploaded_images = []
         for image in images:
-            if not customer_id:
-                return Response({"error": "customer_id is required"}, status=status.HTTP_400_BAD_REQUEST)
-            customer = self.get_customer(customer_id)
-            photo = Photo.objects.create(image=image, customer=customer)
-            answer.images.add(photo)
-        answer.refresh_from_db()
-        serializer_class = self.get_serializer_class()
-        serializer = serializer_class(answer)
+            photo = Photo.objects.create(image=image)
+            feedback.images.add(photo)
+            uploaded_images.append(photo)
+        response_data = {"message": f"{len(uploaded_images)} images uploaded successfully", "images": uploaded_images}
+        serializer = UploadImagesResponseSerializer(response_data)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    @action(detail=False, methods=['get'], url_path='by-question/(?P<question_id>\d+)')
-    def by_question(self, request, question_id=None):
-        customer_id = request.GET.get("customer_id")
-        if not customer_id:
-                return Response({"error": "customer_id is required"}, status=status.HTTP_400_BAD_REQUEST)
-        customer = self.get_customer(customer_id)
-        answers = self.get_queryset().filter(question_id=question_id, customer=customer)
-        serializer_class = self.get_serializer_class()
-        serializer = serializer_class(answers, many=True)
-        return Response(serializer.data)
-    
 
-class PhotosViewSet(DotsModelViewSet):
+class PhotoViewSet(DotsModelViewSet):
     queryset = Photo.objects.all()
     serializer_class = PhotoSerializer
+    permission_classes = [IsAuthenticated]
+
+
+class FeedbackViewSet(DotsModelViewSet):
+    queryset = Feedback.objects.all()
+    serializer_class = FeedbackSerializer
     permission_classes = [IsAuthenticated]
 
 
@@ -199,3 +275,40 @@ class CustomerViewSet(DotsModelViewSet):
         if self.action in ["list"]:
             queryset = queryset.filter(audit_completed=True)
         return queryset
+
+    def _get_customer(self, customer_id):
+        try:
+            return Customer.objects.get(id=customer_id)
+        except (Customer.DoesNotExist, ValueError, TypeError):
+            return None
+        
+    def get_or_create_customer(self, customer_id=None):
+        if customer_id:
+            customer = self._get_customer(customer_id)
+            if customer:
+                return customer
+        current_user = self.request.user
+        return Customer.create_default_customer(current_user)
+    
+    def create(self, request, *args, **kwargs):
+        if not request.data:
+            customer = self.get_or_create_customer()
+            serializer = self.get_serializer(customer)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.validated_data['created_by'] = request.user
+        
+        if 'address' not in serializer.validated_data:
+            serializer.validated_data['address'] = None
+        if 'city' not in serializer.validated_data:
+            serializer.validated_data['city'] = None
+        if 'state' not in serializer.validated_data:
+            serializer.validated_data['state'] = None
+        if 'zip' not in serializer.validated_data:
+            serializer.validated_data['zip'] = None
+        
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)

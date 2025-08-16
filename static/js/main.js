@@ -3,7 +3,7 @@ const emailRegex = /^[a-z0-9](?:[a-z0-9._%+-]*[a-z0-9])?@[a-z0-9.-]+\.[a-z]{2,}$
 let logout_form = document.querySelector("#logoutForm");
 logout_form?.addEventListener("submit", logoutForm)
 let principle_status_data = null;
-window.addEventListener('load', () =>{_get_me_data(); get_principle_status_data()});
+window.addEventListener('load', () =>{_get_me_data(); _get_principle_data()});
 
 (function ($) {
 
@@ -226,48 +226,74 @@ async function logoutForm(event) {
     }
 }
 
-async function get_principle_status_data(){
+async function get_principle_status_data() {
     let customer_id = sessionStorage.getItem("customer_id") || null;
     try {
         let headers = {
             "Content-Type": "application/json",
-            'X-CSRFToken': getCookie('csrftoken')
+            "X-CSRFToken": getCookie("csrftoken")
         };
-        let enndpoint = `${API_BASE_URL}principles/status`
-        if (customer_id) enndpoint = `${API_BASE_URL}principles/status?customer_id=${customer_id}`
-        let response = await requestAPI(enndpoint, null, headers, 'GET');
-        response.json().then(function(res) {
-            if (response.status == 200) {
-                principle_status_data = res;
-                render_principle_status_data(principle_status_data);
-            }
-            else {
-                console.log(res)
-                return false;
-            }
-        })
-    }
-    catch (err) {
-        console.log(err);
+
+        let endpoint = `${API_BASE_URL}principles/status`;
+        if (customer_id) {
+            endpoint += `?customer_id=${customer_id}`;
+        }
+
+        let response = await requestAPI(endpoint, null, headers, "GET");
+        let res = await response.json();
+
+        if (response.status === 200) {
+            principle_status_data = res;
+            render_principle_status_data(principle_status_data);
+        } else {
+            console.log(res);
+            return false;
+        }
+    } catch (err) {
+        console.error(err);
     }
 }
 
-function render_principle_status_data(data){
+function render_principle_status_data(data) {
     let container = document.querySelector(".side_menu > ul");
     data.forEach(item => {
-        container.querySelector(`#principle-${item.id}`).classList.add(`${item?.status}`)
-    })
+        let el = container.querySelector(`#principle-${item.id}`);
+        if (el) {
+            el.classList.add(item?.status || "");
+        }
+    });
 }
 
-async function addCustomerModal(){
-    let modalId = "addUserModal";
-    let modal_el = document.getElementById(modalId)
-    const modal = new bootstrap.Modal(modal_el);
-    const form = modal_el.querySelector("form");
-    modal._element.addEventListener('hidden.bs.modal', function() {
-        form.reset();
+async function _get_principle_data() {
+    try {
+        let headers = {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCookie("csrftoken")
+        };
+        let endpoint = `${API_BASE_URL}principles`;
+        let response = await requestAPI(endpoint, null, headers, "GET");
+        let res = await response.json();
+        if (response.status === 200) {
+            _attachItemListeners(res.data);
+        } else {
+            console.log(res);
+            return false;
+        }
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+function _attachItemListeners(data) {
+    let items = document.querySelectorAll(".side_menu > ul > li");
+
+    items.forEach((item, index) => {
+        if (data[index]) {
+            item.id = `principle-${data[index].id}`;
+        }
     });
-    modal.show();
+
+    get_principle_status_data();
 }
 
 async function successModal(){
