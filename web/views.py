@@ -19,7 +19,7 @@ class KeepItCleanPageTemplateView(LoginRequiredMixin, TemplateView):
         context =  super().get_context_data(**kwargs)
         context["title"] = "Keep It Clean: Healthy Home Actions"
         context["active_page"] = "keep_it_clean"
-        context["principleId"] = Principle.objects.get(key="CLEAN").id
+        context["principleId"] = Principle.objects.get(order=1).id
         return context
     
 class KeepItCleanItemSelectedPageTemplateView(LoginRequiredMixin, TemplateView):
@@ -29,7 +29,7 @@ class KeepItCleanItemSelectedPageTemplateView(LoginRequiredMixin, TemplateView):
         context =  super().get_context_data(**kwargs)
         context["title"] = "Keep It Clean: Healthy Home Actions"
         context["active_page"] = "keep_it_clean"
-        context["principleId"] = Principle.objects.get(key="CLEAN").id
+        context["principleId"] = Principle.objects.get(order=1).id
         context["questionId"] = self.kwargs['pk']
         return context
 
@@ -40,7 +40,7 @@ class KeepItDryPageTemplateView(LoginRequiredMixin, TemplateView):
         context =  super().get_context_data(**kwargs)
         context["title"] = "Keep It Dry: Healthy Home Actions"
         context["active_page"] = "keep_it_dry"
-        context["principleId"] = Principle.objects.get(key="DRY").id
+        context["principleId"] = Principle.objects.get(order=2).id
         return context
     
 class KeepItDryItemSelectedPageTemplateView(LoginRequiredMixin, TemplateView):
@@ -50,7 +50,7 @@ class KeepItDryItemSelectedPageTemplateView(LoginRequiredMixin, TemplateView):
         context =  super().get_context_data(**kwargs)
         context["title"] = "Keep It Dry: Healthy Home Actions"
         context["active_page"] = "keep_it_dry"
-        context["principleId"] = Principle.objects.get(key="DRY").id
+        context["principleId"] = Principle.objects.get(order=2).id
         return context
 
 class KeepItMaintainedPageTemplateView(LoginRequiredMixin, TemplateView):
@@ -60,7 +60,7 @@ class KeepItMaintainedPageTemplateView(LoginRequiredMixin, TemplateView):
         context =  super().get_context_data(**kwargs)
         context["title"] = "Keep It Maintained: Healthy Home Actions"
         context["active_page"] = "keep_it_maintained"
-        context["principleId"] = Principle.objects.get(key="MANTAINED").id
+        context["principleId"] = Principle.objects.get(order=8).id
         return context
     
 class KeepItMaintainedItemSelectedPageTemplateView(LoginRequiredMixin, TemplateView):
@@ -70,7 +70,7 @@ class KeepItMaintainedItemSelectedPageTemplateView(LoginRequiredMixin, TemplateV
         context =  super().get_context_data(**kwargs)
         context["title"] = "Keep It Maintained: Healthy Home Actions"
         context["active_page"] = "keep_it_maintained"
-        context["principleId"] = Principle.objects.get(key="MANTAINED").id
+        context["principleId"] = Principle.objects.get(order=8).id
         return context
 
 class KeepItSafePageTemplateView(LoginRequiredMixin, TemplateView):
@@ -80,7 +80,7 @@ class KeepItSafePageTemplateView(LoginRequiredMixin, TemplateView):
         context =  super().get_context_data(**kwargs)
         context["title"] = "Keep It Safe: Healthy Home Actions"
         context["active_page"] = "keep_it_safe"
-        context["principleId"] = Principle.objects.get(key="SAFE").id
+        context["principleId"] = Principle.objects.get(order=5).id
         return context
 
 class KeepItPestFreePageTemplateView(LoginRequiredMixin, TemplateView):
@@ -90,7 +90,7 @@ class KeepItPestFreePageTemplateView(LoginRequiredMixin, TemplateView):
         context =  super().get_context_data(**kwargs)
         context["title"] = "Keep It Pest Free: Healthy Home Actions"
         context["active_page"] = "keep_it_pest_free"
-        context["principleId"] = Principle.objects.get(key="PESTFREE").id
+        context["principleId"] = Principle.objects.get(order=3).id
         return context
 
 class KeepItPestFreeItemSelectedPageTemplateView(LoginRequiredMixin, TemplateView):
@@ -100,7 +100,7 @@ class KeepItPestFreeItemSelectedPageTemplateView(LoginRequiredMixin, TemplateVie
         context =  super().get_context_data(**kwargs)
         context["title"] = "Keep It Pest Free: Healthy Home Actions"
         context["active_page"] = "keep_it_pest_free"
-        context["principleId"] = Principle.objects.get(key="PESTFREE").id
+        context["principleId"] = Principle.objects.get(order=3).id
         return context    
 
 class KeepItCleanContaminentFreePageTemplateView(LoginRequiredMixin, TemplateView):
@@ -110,7 +110,7 @@ class KeepItCleanContaminentFreePageTemplateView(LoginRequiredMixin, TemplateVie
         context =  super().get_context_data(**kwargs)
         context["title"] = "Keep It Contaminent-Free: Healthy Home Actions"
         context["active_page"] = "keep_it_contaminent_free"
-        context["principleId"] = Principle.objects.get(key="CONTAMINANTFREE").id
+        context["principleId"] = Principle.objects.get(order=4).id
         return context
 
 class KeepItCleanContaminentFreeItemSelectedPageTemplateView(LoginRequiredMixin, TemplateView):
@@ -120,7 +120,7 @@ class KeepItCleanContaminentFreeItemSelectedPageTemplateView(LoginRequiredMixin,
         context =  super().get_context_data(**kwargs)
         context["title"] = "Keep It Contaminent-Free: Healthy Home Actions"
         context["active_page"] = "keep_it_contaminent_free"
-        context["principleId"] = Principle.objects.get(key="CONTAMINANTFREE").id
+        context["principleId"] = Principle.objects.get(order=4).id
         return context
 
 class KeepItVentilatedPageTemplateView(LoginRequiredMixin, TemplateView):
@@ -130,7 +130,7 @@ class KeepItVentilatedPageTemplateView(LoginRequiredMixin, TemplateView):
         context =  super().get_context_data(**kwargs)
         context["title"] = "Keep It Ventilated: Healthy Home Actions"
         context["active_page"] = "keep_it_ventilated"
-        context["principleId"] = Principle.objects.get(key="VENTILATED").id
+        context["principleId"] = Principle.objects.get(order=6).id
         return context
 
 class KeepItVentilatedItemSelectedPageTemplateView(LoginRequiredMixin, TemplateView):
@@ -140,7 +140,7 @@ class KeepItVentilatedItemSelectedPageTemplateView(LoginRequiredMixin, TemplateV
         context =  super().get_context_data(**kwargs)
         context["title"] = "Keep It Ventilated: Healthy Home Actions"
         context["active_page"] = "keep_it_ventilated"
-        context["principleId"] = Principle.objects.get(key="VENTILATED").id
+        context["principleId"] = Principle.objects.get(order=6).id
         return context    
 
 class KeepItComfortablePageTemplateView(LoginRequiredMixin, TemplateView):
@@ -150,7 +150,7 @@ class KeepItComfortablePageTemplateView(LoginRequiredMixin, TemplateView):
         context =  super().get_context_data(**kwargs)
         context["title"] = "Keep It Comfortable: Healthy Home Actions"
         context["active_page"] = "keep_it_confortable"
-        context["principleId"] = Principle.objects.get(key="COMFORTABLE").id
+        context["principleId"] = Principle.objects.get(order=7).id
         return context
 
 class KeepItComfortableItemSelectedPageTemplateView(LoginRequiredMixin, TemplateView):
@@ -160,7 +160,7 @@ class KeepItComfortableItemSelectedPageTemplateView(LoginRequiredMixin, Template
         context =  super().get_context_data(**kwargs)
         context["title"] = "Keep It Comfortable: Healthy Home Actions"
         context["active_page"] = "keep_it_confortable"
-        context["principleId"] = Principle.objects.get(key="COMFORTABLE").id
+        context["principleId"] = Principle.objects.get(order=7).id
         return context
 
 class ProfileSettingPageTemplateView(LoginRequiredMixin, TemplateView):

@@ -1,8 +1,9 @@
-
 let principleId = JSON.parse(document.getElementById("principleId").textContent) || null;
 let principle_data = null;
 let selectedQuestionsByCategory = new Map();
+let questionsWithInitialAnswers = new Set();
 let customer_id = sessionStorage.getItem("customer_id") || null;
+let notApplicableSelections = new Map();
 window.addEventListener('load', get_principle_data());
 
 async function get_principle_data(){
@@ -11,8 +12,8 @@ async function get_principle_data(){
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
         };
-        let enndpoint = `${API_BASE_URL}principles/${principleId}/categories/questions`
-        if (customer_id) enndpoint = `${API_BASE_URL}principles/${principleId}/categories/questions?customer_id=${customer_id}`
+        let enndpoint = `${API_BASE_URL}principles/${principleId}/categories`
+        if (customer_id) enndpoint = `${API_BASE_URL}principles/${principleId}/categories?customer_id=${customer_id}`
         let response = await requestAPI(enndpoint, null, headers, 'GET');
         response.json().then(function(res) {
             if (response.status == 200) {
@@ -34,7 +35,6 @@ function render_principle_data(data) {
     let container = document.querySelector(".right-mainpart");
     container.innerHTML = '';
     
-    // Check if principle has any categories
     if (!data.categories || data.categories.length === 0) {
         const noDataDiv = document.createElement('div');
         noDataDiv.className = 'no-data-message';
@@ -53,277 +53,325 @@ function render_principle_data(data) {
         accordionBox.className = 'accordian_box';
         const titleDiv = document.createElement('div');
         titleDiv.className = 'accordian_title';
-        titleDiv.innerHTML = `<h4>${category.category.name}</h4>`;
+        titleDiv.innerHTML = `<h4>${category.name}</h4>`;
         const contentDiv = document.createElement('div');
         contentDiv.className = 'accordian_cnt';
         
-        // Check if category has any pest types or questions
-        if (!category.pest_types || category.pest_types.length === 0) {
-            const accordionBox = document.createElement('div');
-            accordionBox.className = 'accordian_box';
-            const titleDiv = document.createElement('div');
-            titleDiv.className = 'accordian_title';
-            titleDiv.innerHTML = `<h4>${category.category.name}</h4>`;
+        if (category.options && category.options.length > 0) {
+            const firstOption = category.applicable ? category.options[0] : {text: 'Not Applicable'};
             
-            const emptyContentDiv = document.createElement('div');
-            emptyContentDiv.className = 'accordian_cnt empty-category';
-            emptyContentDiv.innerHTML = `
-                <div class="empty-category-message">
-                    <img src="/static/img/info-circle.svg" alt="Info" style="width: 20px; height: 20px; opacity: 0.6;">
-                    <span>No pest control measures available for this category</span>
-                </div>
-            `;
-            
-            accordionBox.appendChild(titleDiv);
-            accordionBox.appendChild(emptyContentDiv);
-            container.appendChild(accordionBox);
-            return;
-        }
-        
-        const firstPestType = category.pest_types.find(pt => pt.questions.length > 0);
-        
-        // Check if there are any questions at all in this category
-        const hasAnyQuestions = category.pest_types.some(pt => pt.questions && pt.questions.length > 0);
-        if (!hasAnyQuestions) {
-            const accordionBox = document.createElement('div');
-            accordionBox.className = 'accordian_box';
-            const titleDiv = document.createElement('div');
-            titleDiv.className = 'accordian_title';
-            titleDiv.innerHTML = `<h4>${category.category.name}</h4>`;
-            
-            const emptyContentDiv = document.createElement('div');
-            emptyContentDiv.className = 'accordian_cnt empty-category';
-            emptyContentDiv.innerHTML = `
-                <div class="empty-category-message">
-                    <img src="/static/img/info-circle.svg" alt="Info" style="width: 20px; height: 20px; opacity: 0.6;">
-                    <span>No questions available for this category yet</span>
-                </div>
-            `;
-            
-            accordionBox.appendChild(titleDiv);
-            accordionBox.appendChild(emptyContentDiv);
-            container.appendChild(accordionBox);
-            return;
-        }
-        
-        const firstQuestion = firstPestType?.questions[0]?.question?.text || '';
-        const firstQuestionId = firstPestType?.questions[0]?.question?.id || null;
-        const hasPestTypes = category.pest_types.some(pt => pt.pest_type !== null);
-        
-        if (hasPestTypes) {
-            const pestType = category.pest_types.find(pt => pt.pest_type !== null);
+            // contentDiv.innerHTML = `
+            //     <p>${firstOption?.text || 'No options available'}</p>
+            //     <img src="/static/img/down.svg" alt="">
+            // `;
             contentDiv.innerHTML = `
-                <p>${pestType?.pest_type?.name || ''} 
-                <img src="/static/img/right.svg" alt=""> 
-                ${firstQuestion}</p>
+                <p></p>
                 <img src="/static/img/down.svg" alt="">
             `;
-        } else {
+            
+            const innerDiv = document.createElement('div');
+            innerDiv.className = 'accordian_inner';
+            const ul = document.createElement('ul');
+            
+            const notApplicableLi = document.createElement('li');
+            notApplicableLi.innerHTML = `
+                <label class="question-checkbox-label">
+                    <input type="checkbox" class="question-checkbox not-applicable-option" 
+                           data-question-id="not_applicable_${category.id}" 
+                           data-category-id="${category.id}"
+                           ${!category.applicable ? 'checked' : ''}>
+                    <span class="question-text">Not Applicable</span>
+                </label>
+            `;
+            ul.appendChild(notApplicableLi);
+            
+            category.options.forEach(option => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" 
+                               data-question-id="${option.id}" 
+                               data-category-id="${category.id}"
+                               ${option.is_selected ? 'checked' : ''}
+                               ${!category.applicable ? 'disabled' : ''}>
+                        <span class="question-text">${option.text}</span>
+                    </label>
+                `;
+                ul.appendChild(li);
+            });
+            
+            innerDiv.appendChild(ul);
+            
+            const formContainer = document.createElement('div');
+            formContainer.className = 'form-container';
+            formContainer.style.display = 'block';
+            
+            accordionBox.appendChild(titleDiv);
+            accordionBox.appendChild(contentDiv);
+            accordionBox.appendChild(innerDiv);
+            accordionBox.appendChild(formContainer);
+            container.appendChild(accordionBox);
+            
+            const categoryId = category.id;
+            if (!selectedQuestionsByCategory.has(categoryId)) {
+                selectedQuestionsByCategory.set(categoryId, new Set());
+            }
+            
+            if (!category.applicable) {
+                notApplicableSelections.set(categoryId, true);
+            }
+            
+            if (!category.applicable) {
+                category.options.forEach(option => {
+                    if (option.is_selected) {
+                        selectedQuestionsByCategory.get(categoryId).add(option.id.toString());
+                    }
+                });
+            }
+            
+            renderQuestionForm(formContainer, Array.from(selectedQuestionsByCategory.get(categoryId)), data, contentDiv.querySelector('p'), categoryId);
+            
+        } else if (category.subcategories && category.subcategories.length > 0) {
+            const firstSubcategory = category.subcategories[0];
+            let firstOptionText = '';
+            
+            const findFirstOption = (subcat) => {
+                if (!subcat.applicable) {
+                    return 'Not Applicable';
+                }
+                if (subcat.options && subcat.options.length > 0) {
+                    return subcat.options[0].text;
+                }
+                if (subcat.subcategories && subcat.subcategories.length > 0) {
+                    return findFirstOption(subcat.subcategories[0]);
+                }
+                return 'No options available';
+            };
+            
+            firstOptionText = findFirstOption(firstSubcategory);
+            
             contentDiv.innerHTML = `
-                <p>${firstQuestion}</p>
+                <p><img src="/static/img/right.svg" alt=""></p>
                 <img src="/static/img/down.svg" alt="">
             `;
-        }
-        
-        const innerDiv = document.createElement('div');
-        innerDiv.className = hasPestTypes ? 'accordian_inner pest_inner' : 'accordian_inner';
-        const ul = document.createElement('ul');
-        
-        // Collect all questions with answers to check them
-        let questionsWithAnswers = new Set();
-        let allQuestions = [];
-        
-        if (hasPestTypes) {
-            category.pest_types.forEach((pestType, pestIndex) => {
-                if (pestType.pest_type) {
+            
+            const innerDiv = document.createElement('div');
+            innerDiv.className = 'accordian_inner pest_inner';
+            const ul = document.createElement('ul');
+            
+            const renderSubcategories = (subcategories, parentUl) => {
+                subcategories.forEach(subcat => {
                     const li = document.createElement('li');
-                    li.innerHTML = `
-                        <a href="#" class="question-link pest-type-link" data-pest-index="${pestIndex}">
-                            ${pestType.pest_type.name} 
-                            <img src="/static/img/arrow-right.svg" alt="">
-                        </a>
-                    `;
                     
-                    if (pestType.questions.length > 0) {
-                        const pestDropdown = document.createElement('ul');
-                        pestDropdown.className = 'pest_dropdown';
-                        // Initially hide all dropdowns except the first one
-                        pestDropdown.style.display = pestIndex === 0 ? 'block' : 'none';
+                    if (subcat.subcategories && subcat.subcategories.length > 0) {
+                        li.innerHTML = `
+                            <a href="#" class="question-link pest-type-link" data-subcat-id="${subcat.id}">
+                                ${subcat.name} 
+                                <img src="/static/img/arrow-right.svg" alt="">
+                            </a>
+                        `;
                         
-                        pestType.questions.forEach(question => {
-                            allQuestions.push(question);
-                            
-                            // Check if question has an answer
-                            const hasAnswer = question.answer && 
-                                             (question.answer.details || 
-                                              (question.answer.images && question.answer.images.length > 0));
-                            
-                            if (hasAnswer) {
-                                questionsWithAnswers.add(question.question.id.toString());
-                            }
-                            let is_update = (hasAnswer && customer_id !== null) ? true : false
-
-                            
-                            const questionLi = document.createElement('li');
-                            questionLi.innerHTML = `
+                        const subUl = document.createElement('ul');
+                        subUl.className = 'pest_dropdown';
+                        subUl.style.display = 'none';
+                        
+                        const subcatNotApplicableLi = document.createElement('li');
+                        subcatNotApplicableLi.innerHTML = `
+                            <label class="question-checkbox-label">
+                                <input type="checkbox" class="question-checkbox not-applicable-option subcategory-na" 
+                                       data-question-id="not_applicable_${subcat.id}" 
+                                       data-subcategory-id="${subcat.id}"
+                                       data-main-category-id="${category.id}"
+                                       ${!subcat.applicable ? 'checked' : ''}
+                                       ${!category.applicable ? 'disabled' : ''}>
+                                <span class="question-text">Not Applicable</span>
+                            </label>
+                        `;
+                        subUl.appendChild(subcatNotApplicableLi);
+                        
+                        renderSubcategories(subcat.subcategories, subUl);
+                        li.appendChild(subUl);
+                        
+                    } else if (subcat.options && subcat.options.length > 0) {
+                        li.innerHTML = `
+                            <a href="#" class="question-link pest-type-link" data-subcat-id="${subcat.id}">
+                                ${subcat.name} 
+                                <img src="/static/img/arrow-right.svg" alt="">
+                            </a>
+                        `;
+                        
+                        const optionsUl = document.createElement('ul');
+                        optionsUl.className = 'pest_dropdown';
+                        optionsUl.style.display = 'none';
+                        
+                        const subcatNotApplicableLi = document.createElement('li');
+                        subcatNotApplicableLi.innerHTML = `
+                            <label class="question-checkbox-label">
+                                <input type="checkbox" class="question-checkbox not-applicable-option subcategory-na" 
+                                       data-question-id="not_applicable_${subcat.id}" 
+                                       data-subcategory-id="${subcat.id}"
+                                       data-main-category-id="${category.id}"
+                                       ${!subcat.applicable ? 'checked' : ''}
+                                       ${!category.applicable ? 'disabled' : ''}>
+                                <span class="question-text">Not Applicable</span>
+                            </label>
+                        `;
+                        optionsUl.appendChild(subcatNotApplicableLi);
+                        
+                        subcat.options.forEach(option => {
+                            const optionLi = document.createElement('li');
+                            optionLi.innerHTML = `
                                 <label class="question-checkbox-label">
-                                    <input type="checkbox" class="question-checkbox" data-question-id="${question.question.id}" ${(is_update) ? 'checked' : ''}>
-                                    <span class="question-text">${question.question.text}</span>
+                                    <input type="checkbox" class="question-checkbox" 
+                                           data-question-id="${option.id}" 
+                                           data-subcategory-id="${subcat.id}"
+                                           data-main-category-id="${category.id}"
+                                           ${option.is_selected ? 'checked' : ''}
+                                           ${!subcat.applicable || !category.applicable ? 'disabled' : ''}>
+                                    <span class="question-text">${option.text}</span>
                                 </label>
                             `;
-                            pestDropdown.appendChild(questionLi);
-                        });   
-                        li.appendChild(pestDropdown);
-                    } else {
-                        // Show message if pest type has no questions
-                        const pestDropdown = document.createElement('ul');
-                        pestDropdown.className = 'pest_dropdown';
-                        pestDropdown.style.display = pestIndex === 0 ? 'block' : 'none';
+                            optionsUl.appendChild(optionLi);
+                        });
                         
-                        const emptyQuestionLi = document.createElement('li');
-                        emptyQuestionLi.className = 'empty-questions';
-                        emptyQuestionLi.innerHTML = `
-                            <div class="empty-questions-message">
-                                <img src="/static/img/info-circle.svg" alt="Info" style="width: 16px; height: 16px; opacity: 0.6;">
-                                <span>No questions available for ${pestType.pest_type.name}</span>
+                        li.appendChild(optionsUl);
+                    } else {
+                        li.innerHTML = `
+                            <div class="empty-subcategory">
+                                <span>No options available</span>
                             </div>
                         `;
-                        pestDropdown.appendChild(emptyQuestionLi);
-                        li.appendChild(pestDropdown);
-                    }
-                    ul.appendChild(li);
-                }
-            });
-        } else {
-            // Handle categories without pest types
-            if (category.pest_types[0] && category.pest_types[0].questions.length > 0) {
-                category.pest_types[0].questions.forEach(question => {
-                    allQuestions.push(question);
-                    
-                    // Check if question has an answer
-                    const hasAnswer = question.answer && 
-                                     (question.answer.details || 
-                                      (question.answer.images && question.answer.images.length > 0));
-                    
-                    if (hasAnswer) {
-                        questionsWithAnswers.add(question.question.id.toString());
                     }
                     
-                    const li = document.createElement('li');
-                    li.innerHTML = `
-                        <label class="question-checkbox-label">
-                            <input type="checkbox" class="question-checkbox" data-question-id="${question.question.id}" ${hasAnswer ? 'checked' : ''}>
-                            <span class="question-text">${question.question.text}</span>
-                        </label>
-                    `;
-                    ul.appendChild(li);
+                    parentUl.appendChild(li);
                 });
-            } else {
-                const emptyLi = document.createElement('li');
-                emptyLi.className = 'empty-questions';
-                emptyLi.innerHTML = `
-                    <div class="empty-questions-message">
-                        <img src="/static/img/info-circle.svg" alt="Info" style="width: 16px; height: 16px; opacity: 0.6;">
-                        <span>No questions available for this category</span>
-                    </div>
-                `;
-                ul.appendChild(emptyLi);
+            };
+            
+            renderSubcategories(category.subcategories, ul);
+            innerDiv.appendChild(ul);
+            
+            const formContainer = document.createElement('div');
+            formContainer.className = 'form-container';
+            formContainer.style.display = 'block';
+            
+            accordionBox.appendChild(titleDiv);
+            accordionBox.appendChild(contentDiv);
+            accordionBox.appendChild(innerDiv);
+            accordionBox.appendChild(formContainer);
+            container.appendChild(accordionBox);
+            
+            const categoryId = category.id;
+            if (!selectedQuestionsByCategory.has(categoryId)) {
+                selectedQuestionsByCategory.set(categoryId, new Set());
             }
-        }
-        
-        innerDiv.appendChild(ul);
-        const formContainer = document.createElement('div');
-        formContainer.className = 'form-container';
-        
-        // Always show the form container and keep it open
-        formContainer.style.display = 'block';
-        contentDiv.classList.add('active');
-        innerDiv.style.display = 'block';
-        
-        accordionBox.appendChild(titleDiv);
-        accordionBox.appendChild(contentDiv);
-        accordionBox.appendChild(innerDiv);
-        accordionBox.appendChild(formContainer);
-        container.appendChild(accordionBox);
-        
-        // Add pest type dropdown toggle functionality
-        if (hasPestTypes) {
+            
+            if (!category.applicable) {
+                notApplicableSelections.set(categoryId, true);
+            }
+            
+            const initializeSubcategories = (subcategories) => {
+                subcategories.forEach(subcat => {
+                    if (!selectedQuestionsByCategory.has(subcat.id)) {
+                        selectedQuestionsByCategory.set(subcat.id, new Set());
+                    }
+                    
+                    if (!subcat.applicable) {
+                        notApplicableSelections.set(subcat.id, true);
+                    }
+                    
+                    if (subcat.options && !subcat.applicable && !category.applicable) {
+                        subcat.options.forEach(option => {
+                            if (option.is_selected) {
+                                selectedQuestionsByCategory.get(subcat.id).add(option.id.toString());
+                            }
+                        });
+                    }
+                    if (subcat.subcategories) {
+                        initializeSubcategories(subcat.subcategories);
+                    }
+                });
+            };
+            
+            initializeSubcategories(category.subcategories);
+            
             const pestTypeLinks = accordionBox.querySelectorAll('.pest-type-link');
             pestTypeLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    const pestIndex = parseInt(this.getAttribute('data-pest-index'));
+                    const subcatId = this.getAttribute('data-subcat-id');
                     
-                    // Hide all dropdowns in this category
                     const allDropdowns = accordionBox.querySelectorAll('.pest_dropdown');
                     allDropdowns.forEach(dropdown => {
                         dropdown.style.display = 'none';
                     });
                     
-                    // Show the clicked dropdown
-                    const targetDropdown = allDropdowns[pestIndex];
-                    if (targetDropdown) {
+                    const targetDropdown = this.nextElementSibling;
+                    if (targetDropdown && targetDropdown.classList.contains('pest_dropdown')) {
                         targetDropdown.style.display = 'block';
                     }
                     
-                    // Update the content div to show the selected pest type and its first question
-                    const selectedPestType = category.pest_types.filter(pt => pt.pest_type !== null)[pestIndex];
-                    if (selectedPestType) {
-                        const selectedFirstQuestion = selectedPestType?.questions[0]?.question?.text || 'No questions available';
+                    const findSubcategoryPath = (subcategories, targetId) => {
+                        for (const subcat of subcategories) {
+                            if (!subcat.applicable)
+                                return { name: subcat.name, firstOption: 'Not Applicable' }
+                            if (subcat.id.toString() === targetId) {
+                                return {
+                                    name: subcat.name,
+                                    firstOption: subcat.options?.[0]?.text || 'No options available'
+                                };
+                            }
+                            if (subcat.subcategories) {
+                                const found = findSubcategoryPath(subcat.subcategories, targetId);
+                                if (found) {
+                                    return {
+                                        name: `${subcat.name} > ${found.name}`,
+                                        firstOption: found.firstOption
+                                    };
+                                }
+                            }
+                        }
+                        return null;
+                    };
+                    
+                    const pathInfo = findSubcategoryPath(category.subcategories, subcatId);
+                    if (pathInfo) {
                         contentDiv.innerHTML = `
-                            <p>${selectedPestType?.pest_type?.name || ''} 
-                            <img src="/static/img/right.svg" alt=""> 
-                            ${selectedFirstQuestion}</p>
+                            <p>${pathInfo.name} <img src="/static/img/right.svg" alt=""> ${pathInfo.firstOption}</p>
                             <img src="/static/img/down.svg" alt="">
                         `;
                     }
                 });
             });
-        }
-        
-        // Set up selectedQuestionsByCategory and render first question's answer
-        const categoryId = category.category.id;
-        if (!selectedQuestionsByCategory.has(categoryId)) {
-            selectedQuestionsByCategory.set(categoryId, new Set());
-        }
-        
-        // Add all questions with answers to selectedQuestionsByCategory
-        questionsWithAnswers.forEach(questionId => {
-            selectedQuestionsByCategory.get(categoryId).add(questionId);
-        });
-        
-        // If first question doesn't have answer but we need to show it, add it to selection
-        if (firstQuestionId && !questionsWithAnswers.has(firstQuestionId.toString())) {
-            const firstCheckbox = accordionBox.querySelector(`input[data-question-id="${firstQuestionId}"]`);
-            if (firstCheckbox) {
-                firstCheckbox.checked = true;
-                selectedQuestionsByCategory.get(categoryId).add(firstQuestionId.toString());
-            }
-        }
-        
-        // Render the form with selected questions (prioritizing first question's answer if it exists)
-        const selectedQs = contentDiv.querySelector("p");
-        const selectedQuestionIds = Array.from(selectedQuestionsByCategory.get(categoryId));
-        
-        if (selectedQuestionIds.length > 0) {
-            renderQuestionForm(formContainer, selectedQuestionIds, data, selectedQs);
+            
+            renderQuestionForm(formContainer, [], data, contentDiv.querySelector('p'), categoryId);
+            
+        } else {
+            contentDiv.innerHTML = `
+                <p>No options available</p>
+                <img src="/static/img/down.svg" alt="">
+            `;
+            
+            const innerDiv = document.createElement('div');
+            innerDiv.className = 'accordian_inner empty-category';
+            innerDiv.innerHTML = `
+                <div class="empty-category-message">
+                    <span>No options available for this category</span>
+                </div>
+            `;
+            
+            const formContainer = document.createElement('div');
+            formContainer.className = 'form-container';
+            formContainer.style.display = 'block';
+            
+            accordionBox.appendChild(titleDiv);
+            accordionBox.appendChild(contentDiv);
+            accordionBox.appendChild(innerDiv);
+            accordionBox.appendChild(formContainer);
+            container.appendChild(accordionBox);
+            
+            renderQuestionForm(formContainer, [], data, contentDiv.querySelector('p'), category.id);
         }
     });
-    
-    // Show completion message if no categories were processed
-    const processedCategories = container.querySelectorAll('.accordian_box');
-    if (processedCategories.length === 0) {
-        const noContentDiv = document.createElement('div');
-        noContentDiv.className = 'no-content-message';
-        noContentDiv.innerHTML = `
-            <div class="empty-state">
-                <h3>No Content Available</h3>
-                <p>All categories are empty or have no questions configured. Please contact support for assistance.</p>
-            </div>
-        `;
-        container.appendChild(noContentDiv);
-        return;
-    }
     
     const previousButton = document.createElement('button');
     previousButton.type = "button";
@@ -344,250 +392,9 @@ function render_principle_data(data) {
     buttons_container.classList.add("button-container");
     buttons_container.appendChild(previousButton);
     buttons_container.appendChild(next_submit_button);
-    container.appendChild(buttons_container);    
-    setupEventHandlers(data);
-}
-
-
-function navigateToStep(direction) {
-    const menuItems = [...document.querySelectorAll('.side_menu ul li')];
-    const activeIndex = menuItems.findIndex(li => li.classList.contains('active'));
-
-    if (activeIndex === -1) return; // No active page found
-
-    let targetIndex = activeIndex + (direction === 'next' ? 1 : -1);
-
-    // Prevent going beyond range
-    if (targetIndex < 0 || targetIndex >= menuItems.length) return;
-
-    const targetLink = menuItems[targetIndex].querySelector('a');
-    if (targetLink) {
-        window.location.href = targetLink.getAttribute('href');
-    }
-}
-
-function handlePrevious(event) {
-    event.preventDefault();
-    navigateToStep('prev');
-}
-
-async function handleGlobalSubmit(event) {
-    event.preventDefault();
-    const button = event.target.closest("button");
-    const buttonTextEl = button.querySelector(".btn-text");
-    const originalButtonText = buttonTextEl ? buttonTextEl.textContent : button.textContent;
-
-    let allValid = true;
-    const answersList = [];
-
-     // Handle deletions first
-    if (window.questionsToDelete && window.questionsToDelete.size > 0) {
-        for (const questionId of window.questionsToDelete) {
-            await deleteQuestionAnswer(questionId);
-        }
-        // Clear the deletion queue
-        window.questionsToDelete.clear();
-    }
-
-    // Validate and collect answers for the current step
-    for (const category of principle_data.categories) {
-        const categoryId = category.category.id;
-        const selectedQs = selectedQuestionsByCategory.get(categoryId) || new Set();
-
-        if (selectedQs.size === 0) {
-            showToast("Warning!", `Please answer at least one question in "${category.category.name}"`, "danger-toast");
-            allValid = false;
-            break;
-        }
-
-        const accordionBox = [...document.querySelectorAll('.accordian_box')]
-            .find(box => box.querySelector('.accordian_title h4').textContent === category.category.name);
-
-        if (!accordionBox) continue;
-
-        const form = accordionBox.querySelector('.details-form');
-        if (!form) continue;
-
-        const formData = new FormData(form);
-        const details = formData.get('details');
-        const imageFiles = formData.getAll('images').filter(file => file.size > 0);
-        const existingImages = [...form.querySelectorAll('.added_item[data-image-id]')]
-            .map(item => item.getAttribute('data-image-id'));
-
-        if (!details || (imageFiles.length === 0 && existingImages.length === 0)) {
-            showToast("Warning!", `Please provide a comment and at least one image for "${category.category.name}"`, "danger-toast");
-            allValid = false;
-            break;
-        }
-
-        answersList.push({
-            questionIds: Array.from(selectedQs),
-            details,
-            imageFiles,
-            existingImages
-        });
-    }
-
-    if (!allValid) return;
-
-    button.disabled = true;
-    beforeLoad(button);
-
-    try {
-        // Save data for all answers in this step
-        for (const answer of answersList) {
-            const success = await saveQuestionDataGlobal(
-                answer.questionIds,
-                answer.details,
-                answer.imageFiles,
-                answer.existingImages
-            );
-            if (!success) throw new Error("Failed to save one or more answers.");
-        }
-
-        if (isLastStep()) {
-            // If this is the last step, add a small delay before checking completion
-            // to ensure backend has processed the saved data
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            // Check all principles completion after the delay
-            if (await checkAllPrinciplesCompleted()) {
-                const customer_id = sessionStorage.getItem("customer_id");
-                if (!customer_id) {
-                    showToast("Warning!", "No customer data found. Please complete previous steps first.", "danger-toast");
-                    afterLoad(button, originalButtonText);
-                    button.disabled = false;
-                    return;
-                }
-                afterLoad(button, originalButtonText);
-                // Show customer update modal at last step
-                showCustomerUpdateModal();
-            } else {
-                showToast("Warning!", "Please complete all steps before updating the customer.", "danger-toast");
-                afterLoad(button, originalButtonText);
-                button.disabled = false;
-            }
-        } else {
-            // For non-last steps, move to next step
-            setTimeout(() => {
-                afterLoad(button, "Saved!");
-                navigateToStep('next');
-            }, 800);
-        }
-
-    } catch (error) {
-        console.error("Error in global submit:", error);
-        afterLoad(button, originalButtonText);
-        button.disabled = false;
-        showToast("Error!", error.message || "Something went wrong while saving. Please try again.", "danger-toast");
-    }
-}
-
-async function saveQuestionDataGlobal(questionIds, details, imageFiles, existingImages) {
-    const headers = { 'X-CSRFToken': getCookie('csrftoken') };
-
-    for (const questionId of questionIds) {
-        try {
-            const questionFormData = new FormData();
-            questionFormData.append("question", questionId);
-            questionFormData.append("details", details);
-
-            let enndpoint = `${API_BASE_URL}answers/by-question/${questionId}`
-            if (customer_id) {
-                questionFormData.append("customer_id", customer_id);
-                enndpoint = `${API_BASE_URL}answers/by-question/${questionId}?customer_id=${customer_id}`
-            }
-
-            const checkResponse = await requestAPI(enndpoint, null, headers, 'GET');
-            if (!checkResponse.status == 200) {
-                console.error(`Failed to check existing answer for question ${questionId}`);
-                return false;
-            }
-
-            const answers = await checkResponse.json();
-            let apiUrl = `${API_BASE_URL}answers`;
-            let method = 'POST';
-
-            if (answers.length > 0) {
-                apiUrl = `${API_BASE_URL}answers/${answers[0].id}`;
-                method = 'PATCH';
-            }
-
-            const response = await requestAPI(apiUrl, questionFormData, headers, method);
-            if (response.status !== 200 && response.status !== 201) {
-                console.error(`Failed to save answer for question ${questionId}`);
-                return false;
-            }
-
-            const responseData = await response.json();
-            sessionStorage.setItem("customer_id", responseData.data.customer);
-            customer_id = responseData.data.customer;
-
-            // Upload images if provided
-            if (imageFiles.length > 0) {
-                const imageFormData = new FormData();
-                imageFiles.forEach(file => imageFormData.append('images', file));
-
-                const imageResponse = await requestAPI(
-                    `${API_BASE_URL}answers/${responseData.data.id}/upload-images?customer_id=${customer_id}`,
-                    imageFormData,
-                    headers,
-                    'POST'
-                );
-
-                if (!imageResponse.ok) {
-                    console.error(`Failed to upload images for question ${questionId}`);
-                    return false;
-                }
-            }
-
-        } catch (err) {
-            console.error(`Error saving answer for question ${questionId}:`, err);
-            return false;
-        }
-    }
-    return true;
-}
-
-async function deleteQuestionAnswer(questionId) {
-    const headers = { 'X-CSRFToken': getCookie('csrftoken') };
+    container.appendChild(buttons_container);
     
-    try {
-        let endpoint = `${API_BASE_URL}answers/by-question/${questionId}`;
-        if (customer_id) {
-            endpoint = `${API_BASE_URL}answers/by-question/${questionId}?customer_id=${customer_id}`;
-        }
-
-        const checkResponse = await requestAPI(endpoint, null, headers, 'GET');
-        if (!checkResponse.status == 200) {
-            console.error(`Failed to check existing answer for question ${questionId}`);
-            return false;
-        }
-
-        const answers = await checkResponse.json();
-        
-        if (answers.length > 0) {
-            const deleteResponse = await requestAPI(
-                `${API_BASE_URL}answers/${answers[0].id}`,
-                null,
-                headers,
-                'DELETE'
-            );
-            
-            if (deleteResponse.status !== 200 && deleteResponse.status !== 204) {
-                console.error(`Failed to delete answer for question ${questionId}`);
-                return false;
-            }
-            
-            console.log(`Successfully deleted answer for question ${questionId}`);
-            return true;
-        }
-        
-        return true; // No answer to delete
-    } catch (err) {
-        console.error(`Error deleting answer for question ${questionId}:`, err);
-        return false;
-    }
+    setupEventHandlers(data);
 }
 
 function setupEventHandlers(data) {
@@ -595,21 +402,58 @@ function setupEventHandlers(data) {
         $(this).toggleClass("active").next().slideToggle();
     });
     
-    // Keep track of questions that had answers when initially loaded
-    const questionsWithInitialAnswers = new Set();
+    questionsWithInitialAnswers.clear();
     
-    // Initialize the set with questions that have answers
-    data.categories.forEach(category => {
-        category.pest_types.forEach(pestType => {
-            pestType.questions.forEach(question => {
-                const hasAnswer = question.answer && 
-                                 (question.answer.details || 
-                                  (question.answer.images && question.answer.images.length > 0));
-                if (hasAnswer) {
-                    questionsWithInitialAnswers.add(question.question.id.toString());
-                }
-            });
+    const collectInitialAnswers = (categories) => {
+        categories.forEach(category => {
+            if (category.options) {
+                category.options.forEach(option => {
+                    if (option.is_selected) {
+                        questionsWithInitialAnswers.add(option.id.toString());
+                    }
+                });
+            }
+            if (category.subcategories) {
+                collectInitialAnswers(category.subcategories);
+            }
         });
+    };
+    
+    const initializeSelections = (categories) => {
+        categories.forEach(category => {
+            if (!selectedQuestionsByCategory.has(category.id)) {
+                selectedQuestionsByCategory.set(category.id, new Set());
+            }
+            
+            if (category.options) {
+                category.options.forEach(option => {
+                    if (option.is_selected) {
+                        selectedQuestionsByCategory.get(category.id).add(option.id.toString());
+                    }
+                });
+            }
+            
+            if (category.subcategories) {
+                initializeSelections(category.subcategories);
+            }
+        });
+    };
+    
+    initializeSelections(data.categories);
+    collectInitialAnswers(data.categories);
+    
+    data.categories.forEach(category => {
+        const accordionBox = document.querySelector(`[data-category-id="${category.id}"]`)?.closest('.accordian_box');
+        if (!accordionBox) return;
+        
+        const formContainer = accordionBox.querySelector('.form-container');
+        const contentDiv = accordionBox.querySelector('.accordian_cnt');
+        const contentP = contentDiv.querySelector('p');
+        
+        const currentSelections = selectedQuestionsByCategory.get(category.id) || new Set();
+        renderQuestionForm(formContainer, Array.from(currentSelections), data, contentP, category.id);
+        
+        updateAccordionContentCount(category, contentP);
     });
     
     document.addEventListener('change', function(e) {
@@ -618,140 +462,329 @@ function setupEventHandlers(data) {
             const accordionBox = e.target.closest('.accordian_box');
             const formContainer = accordionBox.querySelector('.form-container');
             const contentDiv = accordionBox.querySelector('.accordian_cnt');
-            const selectedQs = contentDiv.querySelector("p");
-            const categoryElement = accordionBox.querySelector('.accordian_title h4');
-            const categoryName = categoryElement.textContent;
+            const contentP = contentDiv.querySelector('p');
             
-            let categoryId = null;
-            data.categories.forEach(cat => {
-                if (cat.category.name === categoryName) {
-                    categoryId = cat.category.id;
+            // formContainer.style.display = 'block';
+            
+            
+            if (e.target.classList.contains('not-applicable-option')) {
+                if (e.target.classList.contains('main-category-na')) {
+                    handleMainCategoryNotApplicable(e.target, accordionBox, data);
+                } else if (e.target.classList.contains('subcategory-na')) {
+                    handleSubcategoryNotApplicable(e.target, accordionBox, data);
+                } else {
+                    handleRegularCategoryNotApplicable(e.target, accordionBox, data);
                 }
-            });
-            
-            if (!categoryId) return;
-            if (!selectedQuestionsByCategory.has(categoryId)) {
-                selectedQuestionsByCategory.set(categoryId, new Set());
+                
+                const categoryId = e.target.getAttribute('data-category-id') || 
+                                 e.target.getAttribute('data-main-category-id');
+                if (categoryId) {
+                    const category = findCategoryById(data.categories, parseInt(categoryId));
+                    if (category) {
+                        updateAccordionContentCount(category, contentP);
+                    }
+                }
+                // Add this logic after the handlers:
+                // const categoryId = e.target.getAttribute('data-category-id') || 
+                //                 e.target.getAttribute('data-main-category-id');
+                if (categoryId) {
+                    const category = findCategoryById(data.categories, parseInt(categoryId));
+                    if (category) {
+                        // Check if form should be hidden
+                        let shouldHideForm = false;
+                        
+                        if (category.subcategories && category.subcategories.length > 0) {
+                            const allSubcategoriesNotApplicable = category.subcategories.every(subcat => 
+                                notApplicableSelections.has(subcat.id) || checkAllNestedSubcategoriesNotApplicable(subcat)
+                            );
+                            shouldHideForm = allSubcategoriesNotApplicable;
+                        } else {
+                            shouldHideForm = notApplicableSelections.has(category.id);
+                        }
+                        
+                        formContainer.style.display = shouldHideForm ? 'none' : 'block';
+                        updateAccordionContentCount(category, contentP);
+                    }
+                }
+                return;
             }
             
-            const categorySelections = selectedQuestionsByCategory.get(categoryId);
+            const subcategoryId = e.target.getAttribute('data-subcategory-id');
+            const mainCategoryId = e.target.getAttribute('data-main-category-id') || e.target.getAttribute('data-category-id');
             
             if (e.target.checked) {
-                categorySelections.add(questionId);
-            } else {
-                categorySelections.delete(questionId);
+                const currentContainer = e.target.closest('ul') || accordionBox;
+                const notApplicableOptions = currentContainer.querySelectorAll('.not-applicable-option');
                 
-                // If this question had an initial answer and is now being unchecked,
-                // mark it for deletion
-                if (questionsWithInitialAnswers.has(questionId)) {
-                    // Store questions to be deleted in a global variable or handle immediately
-                    if (!window.questionsToDelete) {
-                        window.questionsToDelete = new Set();
+                notApplicableOptions.forEach(naOption => {
+                    if (naOption.checked) {
+                        naOption.checked = false;
+                        const naCategoryId = naOption.getAttribute('data-category-id') || naOption.getAttribute('data-subcategory-id');
+                        if (naCategoryId) {
+                            notApplicableSelections.delete(parseInt(naCategoryId));
+                        }
                     }
-                    window.questionsToDelete.add(questionId);
-                    
-                    // Optionally delete immediately (uncomment if you want immediate deletion)
-                    // deleteQuestionAnswer(questionId);
+                });
+                
+                const currentCategoryId = mainCategoryId || subcategoryId;
+                const currentSelections = selectedQuestionsByCategory.get(parseInt(currentCategoryId)) || new Set();
+                renderQuestionForm(formContainer, Array.from(currentSelections), data, contentP, mainCategoryId);
+            }
+            
+            if (subcategoryId) {
+                handleSubcategoryOptionChange(e.target, subcategoryId, questionId, e.target.checked);
+            } else if (mainCategoryId) {
+                handleMainCategoryOptionChange(e.target, mainCategoryId, questionId, e.target.checked, questionsWithInitialAnswers);
+            }
+            
+            const categoryId = mainCategoryId || subcategoryId;
+            if (categoryId) {
+                const category = findCategoryById(data.categories, parseInt(categoryId));
+                if (category) {
+                    updateAccordionContentCount(category, contentP);
                 }
             }
             
-            // Ensure the accordion is open
             if (!contentDiv.classList.contains('active')) {
                 contentDiv.click();
-            }
-            
-            // Get selected questions from current category only
-            const currentCategoryQuestions = Array.from(categorySelections);
-            
-            if (currentCategoryQuestions.length > 0) {
-                formContainer.style.display = 'block';
-                updateSelectedQuestionDisplay(selectedQs, currentCategoryQuestions, data);
-                renderQuestionForm(formContainer, currentCategoryQuestions, data, selectedQs);
-            } else {
-                formContainer.style.display = 'none';
-                formContainer.innerHTML = '';
             }
         }
     });
 }
 
-function updateSelectedQuestionDisplay(selectedQs, questionIds, data) {
-    if (questionIds.length === 1) {
-        // Single question - show the question text
-        let questionData = findQuestionById(questionIds[0], data);
-        selectedQs.textContent = questionData ? questionData.text : '';
-    } else if (questionIds.length > 1) {
-        // Multiple questions - show count
-        selectedQs.textContent = `${questionIds.length} options selected`;
+function findCategoryById(categories, categoryId) {
+    for (const category of categories) {
+        if (category.id === categoryId) {
+            return category;
+        }
+        if (category.subcategories) {
+            const found = findCategoryById(category.subcategories, categoryId);
+            if (found) return found;
+        }
+    }
+    return null;
+}
+
+function countSelectedOptions(category) {
+    let count = 0;
+    
+    const categorySelections = selectedQuestionsByCategory.get(category.id);
+    if (categorySelections) {
+        count += categorySelections.size;
+    }
+    
+    if (category.subcategories) {
+        category.subcategories.forEach(subcat => {
+            count += countSelectedOptions(subcat);
+        });
+    }
+    
+    return count;
+}
+
+function updateAccordionContentCount(category, contentP) {
+    if (!contentP) return;
+    
+    const selectedCount = countSelectedOptions(category);
+    let currentContent = contentP.innerHTML;
+    
+    let baseContent = currentContent;
+    baseContent = baseContent.replace(/\d+\s+option[s]?\s+selected\s*/i, '');
+    baseContent = baseContent.replace(/Select options\s*/i, '');
+    
+    const imgMatch = baseContent.match(/(<img[^>]*>)/i);
+    const imgTag = imgMatch ? imgMatch[0] : '<img src="/static/img/down.svg" alt="">';
+    
+    baseContent = baseContent.replace(/<img[^>]*>/i, '').trim();
+    
+    if (selectedCount > 0) {
+        const countText = `${selectedCount} option${selectedCount > 1 ? 's' : ''} selected`;
+        contentP.innerHTML = `${baseContent} ${countText}`;
+    } else {
+        contentP.innerHTML = `${baseContent} Select options `;
     }
 }
 
-function findQuestionById(questionId, data) {
-    let questionData = null;
-    data.categories.forEach(category => {
-        category.pest_types.forEach(pestType => {
-            pestType.questions.forEach(question => {
-                if (question.question.id.toString() === questionId) {
-                    questionData = question.question;
-                }
-            });
+function handleMainCategoryNotApplicable(checkbox, accordionBox, data) {
+    const categoryId = parseInt(checkbox.getAttribute('data-category-id'));
+    const formContainer = accordionBox.querySelector('.form-container');
+    
+    if (checkbox.checked) {
+        notApplicableSelections.set(categoryId, true);
+        
+        const allCheckboxes = accordionBox.querySelectorAll('.question-checkbox:not(.main-category-na)');
+        allCheckboxes.forEach(cb => {
+            cb.checked = false;
+            cb.disabled = true;
+            
+            const qId = cb.getAttribute('data-question-id');
+            const subcatId = cb.getAttribute('data-subcategory-id');
+            const mainCatId = cb.getAttribute('data-main-category-id') || cb.getAttribute('data-category-id');
+            
+            if (subcatId) {
+                handleSubcategoryOptionChange(cb, subcatId, qId, false);
+            } else if (mainCatId) {
+                handleMainCategoryOptionChange(cb, mainCatId, qId, false, questionsWithInitialAnswers);
+            }
         });
-    });
-    return questionData;
+        
+        clearAllCategorySelections(data.categories, categoryId);
+        formContainer.style.display = 'block';
+        
+    } else {
+        notApplicableSelections.delete(categoryId);
+        
+        const allCheckboxes = accordionBox.querySelectorAll('.question-checkbox:not(.main-category-na)');
+        allCheckboxes.forEach(cb => {
+            cb.disabled = false;
+        });
+        
+        formContainer.style.display = 'block';
+    }
 }
 
-function renderQuestionForm(container, questionIds, data, selectedQs) {
-    const questions = [];
-    let answerData = null;
+function handleSubcategoryNotApplicable(checkbox, accordionBox, data) {
+    const subcategoryId = parseInt(checkbox.getAttribute('data-subcategory-id'));
+    const mainCategoryId = parseInt(checkbox.getAttribute('data-main-category-id'));
+    const formContainer = accordionBox.querySelector('.form-container');
     
-    // Collect question data and find existing answer data
-    questionIds.forEach(questionId => {
-        data.categories.forEach(category => {
-            category.pest_types.forEach(pestType => {
-                pestType.questions.forEach(question => {
-                    if (question.question.id.toString() === questionId) {
-                        questions.push(question.question);
-                        // Use the first available answer data as template
-                        if (!answerData && question.answer) {
-                            answerData = question.answer;
-                        }
-                    }
-                });
-            });
+    if (checkbox.checked) {
+        notApplicableSelections.set(subcategoryId, true);
+        
+        const subcategoryOptions = accordionBox.querySelectorAll(`[data-subcategory-id="${subcategoryId}"]:not(.subcategory-na)`);
+        subcategoryOptions.forEach(cb => {
+            cb.checked = false;
+            cb.disabled = true;
+            
+            const qId = cb.getAttribute('data-question-id');
+            handleSubcategoryOptionChange(cb, subcategoryId, qId, false);
         });
-    });
+        
+        selectedQuestionsByCategory.set(subcategoryId, new Set());
+        formContainer.style.display = 'block';
+        
+    } else {
+        notApplicableSelections.delete(subcategoryId);
+        
+        const subcategoryOptions = accordionBox.querySelectorAll(`[data-subcategory-id="${subcategoryId}"]:not(.subcategory-na)`);
+        subcategoryOptions.forEach(cb => {
+            cb.disabled = false;
+        });
+        
+        formContainer.style.display = 'block';
+    }
+}
 
-    if (questions.length === 0) {
-        console.error('No question data found for IDs:', questionIds);
-        return;
+function handleRegularCategoryNotApplicable(checkbox, accordionBox, data) {
+    const categoryId = parseInt(checkbox.getAttribute('data-category-id'));
+    const formContainer = accordionBox.querySelector('.form-container');
+    
+    if (checkbox.checked) {
+        notApplicableSelections.set(categoryId, true);
+        
+        const allCheckboxes = accordionBox.querySelectorAll('.question-checkbox:not(.not-applicable-option)');
+        allCheckboxes.forEach(cb => {
+            cb.checked = false;
+            cb.disabled = true;
+            const qId = cb.getAttribute('data-question-id');
+            const catId = cb.getAttribute('data-category-id');
+            handleMainCategoryOptionChange(cb, catId, qId, false, questionsWithInitialAnswers);
+        });
+        
+        selectedQuestionsByCategory.set(categoryId, new Set());
+        formContainer.style.display = 'block';
+        
+    } else {
+        notApplicableSelections.delete(categoryId);
+        
+        const allCheckboxes = accordionBox.querySelectorAll('.question-checkbox:not(.not-applicable-option)');
+        allCheckboxes.forEach(cb => {
+            cb.disabled = false;
+        });
+        
+        formContainer.style.display = 'block';
+    }
+}
+
+function handleMainCategoryOptionChange(checkbox, categoryId, questionId, isChecked, questionsWithInitialAnswers) {
+    if (!selectedQuestionsByCategory.has(parseInt(categoryId))) {
+        selectedQuestionsByCategory.set(parseInt(categoryId), new Set());
+    }
+    
+    const categorySelections = selectedQuestionsByCategory.get(parseInt(categoryId));
+    
+    if (isChecked) {
+        categorySelections.add(questionId);
+    } else {
+        categorySelections.delete(questionId);
+        
+        if (questionsWithInitialAnswers.has(questionId)) {
+            if (!window.questionsToDelete) {
+                window.questionsToDelete = new Set();
+            }
+            window.questionsToDelete.add(questionId);
+        }
+    }
+}
+
+function handleSubcategoryOptionChange(checkbox, subcategoryId, questionId, isChecked) {
+    if (!selectedQuestionsByCategory.has(parseInt(subcategoryId))) {
+        selectedQuestionsByCategory.set(parseInt(subcategoryId), new Set());
+    }
+    
+    const subcategorySelections = selectedQuestionsByCategory.get(parseInt(subcategoryId));
+    
+    if (isChecked) {
+        subcategorySelections.add(questionId);
+    } else {
+        subcategorySelections.delete(questionId);
+        
+        if (questionsWithInitialAnswers.has(questionId)) {
+            if (!window.questionsToDelete) {
+                window.questionsToDelete = new Set();
+            }
+            window.questionsToDelete.add(questionId);
+        }
+    }
+}
+
+function clearAllCategorySelections(categories, mainCategoryId) {
+    categories.forEach(category => {
+        if (category.id === mainCategoryId) {
+            selectedQuestionsByCategory.set(category.id, new Set());
+            
+            if (category.subcategories) {
+                const clearSubcategory = (subcategories) => {
+                    subcategories.forEach(subcat => {
+                        selectedQuestionsByCategory.set(subcat.id, new Set());
+                        notApplicableSelections.set(subcat.id, true);
+                        if (subcat.subcategories) {
+                            clearSubcategory(subcat.subcategories);
+                        }
+                    });
+                };
+                clearSubcategory(category.subcategories);
+            }
+        }
+    });
+}
+
+function renderQuestionForm(container, questionIds, data, selectedQs, categoryId) {
+    let answerData = null;
+    const mainCategory = data.categories.find(cat => cat.id === categoryId);
+    if (mainCategory && mainCategory.feedback) {
+        answerData = {
+            details: mainCategory.feedback.note,
+            images: mainCategory.feedback.images
+        };
     }
 
     let formHTML = `
         <div class="accordion_selected">
-            <div class="template_title hide">
-                <h4 class="hide">${questionIds.length === 1 ? 'Fill your details below' : `Answer for ${questionIds.length} selected questions`}</h4>
-                <a href="#" class="save-btn hide">Save Info</a>
+            <div class="template_title">
+                <h4>Provide feedback for this category</h4>
             </div>
-    `;
-    
-    // Show selected questions list if multiple
-    if (questionIds.length > 1) {
-        formHTML += `
-            <div class="selected-questions-info">
-                <p class="hide"><strong>This answer will be applied to all selected questions:</strong></p>
-                <ul class="selected-questions-list">
-        `;
-        questions.forEach(question => {
-            formHTML += `<li>${question.text}</li>`;
-        });
-        formHTML += `
-                </ul>
-            </div>
-        `;
-    }
-    
-    formHTML += `
-            <form class="details-form" data-question-ids="${questionIds.join(',')}">
+            <form class="details-form" data-category-id="${categoryId}">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="inform_item">
@@ -766,7 +799,7 @@ function renderQuestionForm(container, questionIds, data, selectedQs) {
                         <div class="add_wraper">
                             <div class="add_box">
                                 <label class="custom-upload">
-                                    <input type="file" name="images" multiple class="image-upload"  accept="image/jpeg, image/jpg, image/png"/>
+                                    <input type="file" name="images" multiple class="image-upload" accept="image/jpeg, image/jpg, image/png"/>
                                     <img src="/static/img/download.svg" alt="">
                                     Add Image
                                 </label>
@@ -800,16 +833,12 @@ function renderQuestionForm(container, questionIds, data, selectedQs) {
     
     container.innerHTML = formHTML;
     
-    // Add event listeners
-    container.querySelector('.image-upload').addEventListener('change', function(e) {
-        handleImageUpload(e, container);
-    });
-    
-    container.querySelector('.save-btn').addEventListener('click', function(e) {
-        e.preventDefault();
-        let container = this.closest(".accordion_selected");
-        saveQuestionData(container, questionIds);
-    });
+    const imageUpload = container.querySelector('.image-upload');
+    if (imageUpload) {
+        imageUpload.addEventListener('change', function(e) {
+            handleImageUpload(e, container);
+        });
+    }
     
     container.querySelectorAll('.delete_icon a').forEach(deleteBtn => {
         deleteBtn.addEventListener('click', function(e) {
@@ -879,10 +908,294 @@ async function delete_answer_image(imageId){
     }
 }
 
+async function handleGlobalSubmit(event) {
+    event.preventDefault();
+    const button = event.target.closest("button");
+    const buttonTextEl = button.querySelector(".btn-text");
+    const originalButtonText = buttonTextEl ? buttonTextEl.textContent : button.textContent;
+
+    beforeLoad(button);
+
+    try {
+        if (window.feedbacksToDelete && window.feedbacksToDelete.size > 0) {
+            for (const categoryId of window.feedbacksToDelete) {
+                const category = principle_data.categories.find(cat => cat.id === categoryId);
+                if (category && category.feedback && category.feedback.id) {
+                    await deleteFeedback(category.feedback.id);
+                }
+            }
+            window.feedbacksToDelete.clear();
+        }
+
+        for (const category of principle_data.categories) {
+            const categoryId = category.id;
+            const accordionBox = [...document.querySelectorAll('.accordian_box')]
+                .find(box => box.querySelector('.accordian_title h4').textContent === category.name);
+
+            if (!accordionBox) continue;
+
+            const mainCategoryNotApplicable = notApplicableSelections.has(categoryId);
+
+            if (category.subcategories && category.subcategories.length > 0) {
+                const saveSubcategorySelections = async (subcategories) => {
+                    for (const subcat of subcategories) {
+                        const subcatSelections = selectedQuestionsByCategory.get(subcat.id) || new Set();
+                        const selectionsToSave = notApplicableSelections.has(subcat.id) ? [] : Array.from(subcatSelections);
+                        
+                        const selectionSuccess = await saveCategorySelections(subcat.id, selectionsToSave);
+                        if (!selectionSuccess) {
+                            throw new Error(`Failed to save selections for subcategory in "${category.name}"`);
+                        }
+                        
+                        if (subcat.subcategories) {
+                            await saveSubcategorySelections(subcat.subcategories);
+                        }
+                    }
+                };
+                
+                await saveSubcategorySelections(category.subcategories);
+            } else {
+                const categorySelections = selectedQuestionsByCategory.get(categoryId) || new Set();
+                const selectionsToSave = mainCategoryNotApplicable ? [] : Array.from(categorySelections);
+                
+                const selectionSuccess = await saveCategorySelections(categoryId, selectionsToSave);
+                if (!selectionSuccess) {
+                    throw new Error(`Failed to save selections for "${category.name}"`);
+                }
+            }
+
+            if (!mainCategoryNotApplicable) {
+                const form = accordionBox.querySelector('.details-form');
+                
+                let shouldSaveFeedback = false;
+                let hasAnySelections = false;
+
+                if (category.subcategories && category.subcategories.length > 0) {
+                    const allSubcategoriesNotApplicable = category.subcategories.every(subcat => 
+                        notApplicableSelections.has(subcat.id) || checkAllNestedSubcategoriesNotApplicable(subcat)
+                    );
+
+                    if (!allSubcategoriesNotApplicable) {
+                        const checkForSelections = (subcategories) => {
+                            for (const subcat of subcategories) {
+                                if (!notApplicableSelections.has(subcat.id)) {
+                                    const subcatSelections = selectedQuestionsByCategory.get(subcat.id) || new Set();
+                                    if (subcatSelections.size > 0) {
+                                        return true;
+                                    }
+                                }
+                                if (subcat.subcategories && checkForSelections(subcat.subcategories)) {
+                                    return true;
+                                }
+                            }
+                            return false;
+                        };
+                        
+                        hasAnySelections = checkForSelections(category.subcategories);
+                        shouldSaveFeedback = hasAnySelections;
+                    }
+                } else {
+                    const categorySelections = selectedQuestionsByCategory.get(categoryId) || new Set();
+                    hasAnySelections = categorySelections.size > 0;
+                    shouldSaveFeedback = hasAnySelections;
+                }
+                if (shouldSaveFeedback && form) {
+                    const formData = new FormData(form);
+                    const details = formData.get('details');
+                    const imageFiles = formData.getAll('images').filter(file => file.size > 0);
+                    const existingImages = [...form.querySelectorAll('.added_item[data-image-id]')]
+                        .map(item => item.getAttribute('data-image-id'));
+
+                    if (details.trim() !== '' || imageFiles.length > 0){
+                        const feedbackSuccess = await saveMainCategoryFeedback(categoryId, details, imageFiles, existingImages);
+                        if (!feedbackSuccess) {
+                            throw new Error(`Failed to save feedback for "${category.name}"`);
+                        }
+                    }
+                }
+            }
+        }
+
+        if (isLastStep()) {
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            afterLoad(button, originalButtonText);
+            showCustomerUpdateModal();
+        } else {
+            setTimeout(() => {
+                afterLoad(button, "Saved!");
+                navigateToStep('next');
+            }, 800);
+        }
+    } catch (error) {
+        console.error("Error in global submit:", error);
+        afterLoad(button, originalButtonText);
+        button.disabled = false;
+        showToast("Error!", error.message || "Something went wrong while saving. Please try again.", "danger-toast");
+    }
+}
+
+function checkAllNestedSubcategoriesNotApplicable(subcategory) {
+    if (subcategory.subcategories && subcategory.subcategories.length > 0) {
+        return subcategory.subcategories.every(subcat => 
+            notApplicableSelections.has(subcat.id) || checkAllNestedSubcategoriesNotApplicable(subcat)
+        );
+    }
+    return notApplicableSelections.has(subcategory.id);
+}
+
+async function saveMainCategoryFeedback(categoryId, details, imageFiles, existingImages) {
+    const headers = { 
+        'X-CSRFToken': getCookie('csrftoken'),
+        'Content-Type': 'application/json'
+    };
+
+    try {
+        if (!customer_id) {
+            const customerResponse = await createCustomer();
+            if (!customerResponse) {
+                throw new Error("Failed to create customer");
+            }
+            customer_id = customerResponse.id;
+            sessionStorage.setItem("customer_id", customer_id);
+        }
+
+        const feedbackResponse = await requestAPI(
+            `${API_BASE_URL}categories/${categoryId}/feedback`,
+            JSON.stringify({
+                customer_id: customer_id,
+                note: details
+            }),
+            headers,
+            'POST'
+        );
+
+        if (!feedbackResponse.ok) {
+            console.error(`Failed to save feedback for category ${categoryId}`);
+            return false;
+        }
+
+        if (imageFiles.length > 0) {
+            const imageFormData = new FormData();
+            imageFiles.forEach(file => imageFormData.append('images', file));
+            imageFormData.append('customer_id', customer_id);
+
+            const imageHeaders = { 'X-CSRFToken': getCookie('csrftoken') };
+            const imageResponse = await requestAPI(
+                `${API_BASE_URL}categories/${categoryId}/upload-images`,
+                imageFormData,
+                imageHeaders,
+                'POST'
+            );
+
+            if (!imageResponse.ok) {
+                console.error(`Failed to upload images for category ${categoryId}`);
+                return false;
+            }
+        }
+
+        return true;
+    } catch (err) {
+        console.error(`Error saving feedback for category ${categoryId}:`, err);
+        return false;
+    }
+}
+
+async function saveCategorySelections(categoryId, selectedOptionIds) {
+    const headers = { 
+        'X-CSRFToken': getCookie('csrftoken'),
+        'Content-Type': 'application/json'
+    };
+
+    try {
+        if (!customer_id) {
+            const customerResponse = await createCustomer();
+            if (!customerResponse) {
+                throw new Error("Failed to create customer");
+            }
+            customer_id = customerResponse.id;
+            sessionStorage.setItem("customer_id", customer_id);
+        }
+        console.log(selectedOptionIds)
+
+        if (selectedOptionIds.length === 0) {
+            return await setNotApplicable(categoryId)
+        }
+        let data = {
+            customer_id: customer_id,
+            selected_options: selectedOptionIds
+        }
+        const selectionResponse = await requestAPI(`${API_BASE_URL}categories/${categoryId}/selection`, JSON.stringify(data), headers, 'POST');
+        if (selectionResponse.status !== 200) {
+            console.error(`Failed to save selections for category ${categoryId}`);
+            return false;
+        }
+        return true;
+    } catch (err) {
+        console.error(`Error saving selections for category ${categoryId}:`, err);
+        return false;
+    }
+}
+
+async function setNotApplicable(categoryId) {
+    try {
+        const headers = { 
+            'X-CSRFToken': getCookie('csrftoken'),
+            'Content-Type': 'application/json'
+        };
+        let data = {customer_id: customer_id}
+        const selectionResponse = await requestAPI(`${API_BASE_URL}categories/${categoryId}/applicable`, JSON.stringify(data), headers, 'POST');
+        if (selectionResponse.status !== 200) {
+            console.error(`Failed to update the category ${categoryId}`);
+            return false;
+        }
+        return true;
+    } catch (err) {
+        console.error(`Error updating the category ${categoryId}:`, err);
+        return false;
+    }
+}
+
+async function deleteFeedback(feedbackId) {
+    try {
+        const headers = {
+            'X-CSRFToken': getCookie('csrftoken'),
+            'Content-Type': 'application/json'
+        };
+
+        const response = await requestAPI(
+            `${API_BASE_URL}feedbacks/${feedbackId}`,
+            null,
+            headers,
+            'DELETE'
+        );
+
+        if (!response.ok) {
+            console.error(`Failed to delete feedback ${feedbackId}`);
+            return false;
+        }
+
+        return true;
+    } catch (err) {
+        console.error(`Error deleting feedback ${feedbackId}:`, err);
+        return false;
+    }
+}
+
 function isLastStep() {
     const menuItems = [...document.querySelectorAll('.side_menu ul li')];
     const activeIndex = menuItems.findIndex(li => li.classList.contains('active'));
-    return activeIndex === menuItems.length - 1; // Returns true if it's the last step
+    return activeIndex === menuItems.length - 1;
+}
+
+async function checkAllPrinciplesCompleted() {
+    try {
+        await get_principle_status_data();
+        const allCompleted = principle_status_data.every(item => item.status === 'completed');
+        return allCompleted;
+    } catch (err) {
+        console.error('Error checking principle status:', err);
+        return false;
+    }
 }
 
 async function getCustomerDetails(customerId) {
@@ -1001,13 +1314,60 @@ async function updateCustomerInfo(event) {
     }
 }
 
-async function checkAllPrinciplesCompleted() {
+// Helper functions (keep these as they were)
+function handlePrevious(event) {
+    event.preventDefault();
+    navigateToStep('prev');
+}
+
+function navigateToStep(direction) {
+    const menuItems = [...document.querySelectorAll('.side_menu ul li')];
+    const activeIndex = menuItems.findIndex(li => li.classList.contains('active'));
+
+    if (activeIndex === -1) return;
+
+    let targetIndex = activeIndex + (direction === 'next' ? 1 : -1);
+
+    if (targetIndex < 0 || targetIndex >= menuItems.length) return;
+
+    const targetLink = menuItems[targetIndex].querySelector('a');
+    if (targetLink) {
+        window.location.href = targetLink.getAttribute('href');
+    }
+}
+
+async function createCustomer() {
     try {
-        await get_principle_status_data();
-        const allCompleted = principle_status_data.every(item => item.status === 'completed');
-        return allCompleted;
+        const headers = {
+            'X-CSRFToken': getCookie('csrftoken'),
+            'Content-Type': 'application/json'
+        };
+        
+        const userResponse = await requestAPI(`${API_BASE_URL}me`, null, headers, 'GET');
+        if (!userResponse.ok) {
+            throw new Error("Failed to get current user info");
+        }
+        
+        const userData = await userResponse.json();
+        const createdById = userData.id;
+
+        const response = await requestAPI(
+            `${API_BASE_URL}customers`,
+            JSON.stringify({}),
+            headers,
+            'POST'
+        );
+
+        if (response.ok) {
+            const customerData = await response.json();
+            return customerData;
+        } else {
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Failed to create customer");
+        }
     } catch (err) {
-        console.error('Error checking principle status:', err);
-        return false;
+        console.error("Error creating customer:", err);
+        showToast("Error!", "Failed to create customer record. Please try again.", "danger-toast");
+        return null;
     }
 }
