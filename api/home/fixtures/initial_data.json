@@ -88,6 +88,17 @@
     }
   },
   {
+    "model": "home.Principle",
+    "pk": 9,
+    "fields": {
+      "key": "FINAL",
+      "name": "Final Recommendations",
+      "order": 9,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
     "model": "home.Category",
     "pk": 1,
     "fields": {
@@ -721,6 +732,17 @@
       "principle": 8,
       "name": "Six Steps to Maintaining a Healthy Home",
       "order": 58,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home.Category",
+    "pk": 59,
+    "fields": {
+      "principle": 9,
+      "name": "Final Remarks",
+      "order": 59,
       "created_at": "2023-01-01T00:00:00Z",
       "updated_at": "2023-01-01T00:00:00Z"
     }

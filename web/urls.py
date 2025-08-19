@@ -27,4 +27,6 @@ urlpatterns = [
     path("keep-it-clean-contaminent-free/", KeepItCleanContaminentFreePageTemplateView.as_view(), name="keep_it_clean_contaminent_free_page"),
     path("keep-it-clean-contaminent-free-item-selected/", KeepItCleanContaminentFreeItemSelectedPageTemplateView.as_view(), name="keep_it_clean_contaminent_free_item_selected_page"),
     path("principle/details/<int:pk>", PrincipleDetailsPageTemplateView.as_view(), name="principle_detail_page"),
+    path("final-recommendations/", FinalRecommendationPageTemplateView.as_view(), name="final_recommendations_page"),
+
 ]

@@ -56,7 +56,17 @@ function render_principle_data(data) {
         titleDiv.innerHTML = `<h4>${category.name}</h4>`;
         const contentDiv = document.createElement('div');
         contentDiv.className = 'accordian_cnt';
-        
+
+        if (isLastStep()) {
+            let finalDiv = document.createElement('form');
+            finalDiv.className = 'inform_item';
+            finalDiv.classList.add("details-form")
+            finalDiv.innerHTML = `<textarea name="details" placeholder="Remarks">${category?.feedback?.note || ""}</textarea>`
+                    accordionBox.appendChild(titleDiv);
+                    accordionBox.appendChild(finalDiv);
+            container.appendChild(accordionBox);
+            return;
+        }
         if (category.options && category.options.length > 0) {
             const firstOption = category.applicable ? category.options[0] : {text: 'Not Applicable'};
             
@@ -380,12 +390,11 @@ function render_principle_data(data) {
         <span class="btn-text">Previous</span>
     `;
     previousButton.addEventListener('click', handlePrevious);
-
     const next_submit_button = document.createElement('button');
     next_submit_button.type = "button";
     next_submit_button.innerHTML = `
         <span class="spinner-border hide" role="status" aria-hidden="true"></span>
-        <span class="btn-text">Submit & Next</span>
+        <span class="btn-text">${!isLastStep ? "Submit & Next" : "Submit" }</span>
     `;
     next_submit_button.addEventListener('click', handleGlobalSubmit);
     let buttons_container = document.createElement("div");
@@ -393,7 +402,6 @@ function render_principle_data(data) {
     buttons_container.appendChild(previousButton);
     buttons_container.appendChild(next_submit_button);
     container.appendChild(buttons_container);
-    
     setupEventHandlers(data);
 }
 
@@ -679,30 +687,23 @@ function handleSubcategoryNotApplicable(checkbox, accordionBox, data) {
     const subcategoryId = parseInt(checkbox.getAttribute('data-subcategory-id'));
     const mainCategoryId = parseInt(checkbox.getAttribute('data-main-category-id'));
     const formContainer = accordionBox.querySelector('.form-container');
-    
     if (checkbox.checked) {
         notApplicableSelections.set(subcategoryId, true);
-        
         const subcategoryOptions = accordionBox.querySelectorAll(`[data-subcategory-id="${subcategoryId}"]:not(.subcategory-na)`);
         subcategoryOptions.forEach(cb => {
             cb.checked = false;
-            cb.disabled = true;
-            
+            cb.disabled = true;  
             const qId = cb.getAttribute('data-question-id');
             handleSubcategoryOptionChange(cb, subcategoryId, qId, false);
         });
-        
         selectedQuestionsByCategory.set(subcategoryId, new Set());
         formContainer.style.display = 'block';
-        
     } else {
         notApplicableSelections.delete(subcategoryId);
-        
         const subcategoryOptions = accordionBox.querySelectorAll(`[data-subcategory-id="${subcategoryId}"]:not(.subcategory-na)`);
         subcategoryOptions.forEach(cb => {
             cb.disabled = false;
         });
-        
         formContainer.style.display = 'block';
     }
 }
@@ -1051,7 +1052,20 @@ async function handleGlobalSubmit(event) {
                     hasAnySelections = categorySelections.size > 0;
                     shouldSaveFeedback = hasAnySelections;
                 }
-                if (shouldSaveFeedback && form) {
+                if (!isLastStep && (shouldSaveFeedback && form)) {
+                    const formData = new FormData(form);
+                    const details = formData.get('details');
+                    const imageFiles = formData.getAll('images').filter(file => file.size > 0);
+                    const existingImages = [...form.querySelectorAll('.added_item[data-image-id]')]
+                        .map(item => item.getAttribute('data-image-id'));
+
+                    if (details.trim() !== '' || imageFiles.length > 0){
+                        const feedbackSuccess = await saveMainCategoryFeedback(categoryId, details, imageFiles, existingImages);
+                        if (!feedbackSuccess) {
+                            throw new Error(`Failed to save feedback for "${category.name}"`);
+                        }
+                    }
+                }else{
                     const formData = new FormData(form);
                     const details = formData.get('details');
                     const imageFiles = formData.getAll('images').filter(file => file.size > 0);
@@ -1366,7 +1380,6 @@ async function updateCustomerInfo(event) {
     }
 }
 
-// Helper functions (keep these as they were)
 function handlePrevious(event) {
     event.preventDefault();
     navigateToStep('prev');

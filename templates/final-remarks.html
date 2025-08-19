@@ -1,0 +1,16 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Final Remarks {% endblock title %}
+
+{% block content %}
+<div class="right-mainpart">
+                     
+</div>   
+{{principleId|json_script:"principleId"}}
+{% endblock content %}
+
+{% block js %}
+<script src="{% static "js/category-base.js" %}"></script>
+{% endblock js %}
