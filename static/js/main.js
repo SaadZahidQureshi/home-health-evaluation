@@ -235,10 +235,7 @@ async function get_principle_status_data() {
         };
 
         let endpoint = `${API_BASE_URL}principles/status`;
-        if (customer_id) {
-            endpoint += `?customer_id=${customer_id}`;
-        }
-
+        if (customer_id) {endpoint += `?customer_id=${customer_id}`;}
         let response = await requestAPI(endpoint, null, headers, "GET");
         let res = await response.json();
 

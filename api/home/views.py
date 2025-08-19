@@ -74,7 +74,12 @@ class PrincipleViewSet(DotsModelViewSet):
             categories = Category.objects.filter(principle=principle, parent__isnull=True) \
                 .order_by('order') \
                 .annotate(applicable=Value(True)) \
-                .prefetch_related('options', 'subcategories__options', 'subcategories__subcategories__options')
+                .prefetch_related(
+                    Prefetch('options'),
+                    Prefetch('subcategories', queryset=annotated_category_qs().prefetch_related(
+                        Prefetch('subcategories', queryset=annotated_category_qs())
+                    ))
+                )
 
         response_data = {'principle': principle, 'categories': categories}
         serializer = PrincipleCategoriesSerializer(response_data, context={'customer': customer})
@@ -89,36 +94,24 @@ class PrincipleViewSet(DotsModelViewSet):
         customer = self._get_customer(customer_id) if customer_id else None
 
         for principle in principles:
-            # Get only main categories (categories without parent)
             main_categories = Category.objects.filter(principle=principle, parent__isnull=True)
             total_main_categories = main_categories.count()
             
             answered_count = 0
             if customer:
                 for main_category in main_categories:
-                    # Check if this main category has subcategories
                     has_subcategories = Category.objects.filter(parent=main_category).exists()
                     
                     if has_subcategories:
-                        # For parent categories with subcategories, check if ANY subcategory has selected options
-                        subcategory_answered = SelectedOption.objects.filter(
-                            customer=customer, 
-                            category__parent=main_category, 
-                            selected=True
-                        ).exists()
-                        
-                        if subcategory_answered:
+                        subcategory_answered = SelectedOption.objects.filter(customer=customer, category__parent=main_category, selected=True).exists()
+                        subcategory_applicable = CategoryApplicability.objects.filter(customer=customer, category__parent=main_category, applicable=False).exists()
+                        if subcategory_applicable or subcategory_answered:
                             answered_count += 1
                     else:
-                        # For categories without subcategories, check if the category itself has selected options
-                        category_answered = SelectedOption.objects.filter(
-                            customer=customer, 
-                            category=main_category, 
-                            selected=True
-                        ).exists()
-                        
-                        if category_answered:
-                            answered_count += 1
+                        category_answered = SelectedOption.objects.filter(customer=customer, category=main_category, selected=True).exists()
+                        category_applicable = CategoryApplicability.objects.filter(customer=customer, category=main_category, applicable=False).exists()
+                        if category_answered or category_applicable:
+                            answered_count += 1                    
             
             is_completed = answered_count == total_main_categories and total_main_categories > 0
             status_data.append({
