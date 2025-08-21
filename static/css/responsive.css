@@ -171,9 +171,20 @@ Medium devices (tablets, 767px and down)
 	}
 
 	.add_wraper {
-		display: grid;
+		/* display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		grid-gap: 1rem;
+		grid-gap: 1rem; */
+		display: flex;
+		gap: 1rem;
+	}
+
+	.add_box {
+		min-width: 120px;
+	}
+
+	.image-preview-container{
+		min-width: calc(100% - 120px);
+    	overflow: auto;
 	}
 
 	.custom-upload {
@@ -182,6 +193,7 @@ Medium devices (tablets, 767px and down)
 
 	.added_item {
 		width: 100%;
+		min-width: 120px;
 	}
 
 	.accordian_cnt p {

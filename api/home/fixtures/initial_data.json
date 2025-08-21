@@ -327,7 +327,18 @@
       "updated_at": "2023-01-01T00:00:00Z"
     }
   },
-  
+  {
+    "model": "home.Category",
+    "pk": 22,
+    "fields": {
+      "principle": 3,
+      "name": "Rodents",
+      "parent": 21,
+      "order": 22,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
   {
     "model": "home.Category",
     "pk": 23,
@@ -1335,7 +1346,6 @@
 },
 {
   "model": "home.Option",
-  "pk": 58,
   "fields": {
     "category": 22,
     "text": "Develop and maintain a cleaning schedule.",

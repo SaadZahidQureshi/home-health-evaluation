@@ -227,7 +227,7 @@ class CategoryViewSet(DotsModelViewSet):
             photo = Photo.objects.create(image=image)
             feedback.images.add(photo)
             uploaded_images.append(photo)
-        response_data = {"message": f"{len(uploaded_images)} images uploaded successfully", "images": uploaded_images}
+        response_data = {"message": f"{len(uploaded_images)} images uploaded successfully", "images": uploaded_images, "feedback": FeedbackSerializer(feedback).data}
         serializer = UploadImagesResponseSerializer(response_data)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 

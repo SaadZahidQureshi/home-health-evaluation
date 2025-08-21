@@ -901,7 +901,7 @@ function renderQuestionForm(container, questionIds, data, selectedQs, categoryId
         });
     });
 }
-
+let selectedFiles = {};
 function handleImageUpload(event, container) {
     const files = Array.from(event.target.files).filter(file => file.size > 0);
     const previewContainer = container.querySelector('.image-preview-container');
@@ -927,6 +927,11 @@ function handleImageUpload(event, container) {
                 </div>
             `;
             previewContainer.appendChild(previewItem);
+            selectedFiles.categoryId = container.querySelector('.details-form').getAttribute('data-category-id');
+            if (!selectedFiles[selectedFiles.categoryId]) {
+                selectedFiles[selectedFiles.categoryId] = [];
+            }
+            selectedFiles[selectedFiles.categoryId].push(file);
             
             previewItem.querySelector('.delete_icon a').addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1055,7 +1060,8 @@ async function handleGlobalSubmit(event) {
                 if (!isLastStep && (shouldSaveFeedback && form)) {
                     const formData = new FormData(form);
                     const details = formData.get('details');
-                    const imageFiles = formData.getAll('images').filter(file => file.size > 0);
+                    // const imageFiles = formData.getAll('images').filter(file => file.size > 0);
+                    const imageFiles = selectedFiles[categoryId] || [];
                     const existingImages = [...form.querySelectorAll('.added_item[data-image-id]')]
                         .map(item => item.getAttribute('data-image-id'));
 
@@ -1068,7 +1074,8 @@ async function handleGlobalSubmit(event) {
                 }else{
                     const formData = new FormData(form);
                     const details = formData.get('details');
-                    const imageFiles = formData.getAll('images').filter(file => file.size > 0);
+                    // const imageFiles = formData.getAll('images').filter(file => file.size > 0);
+                    const imageFiles = selectedFiles[categoryId] || [];
                     const existingImages = [...form.querySelectorAll('.added_item[data-image-id]')]
                         .map(item => item.getAttribute('data-image-id'));
 
@@ -1089,7 +1096,7 @@ async function handleGlobalSubmit(event) {
         } else {
             setTimeout(() => {
                 afterLoad(button, "Saved!");
-                navigateToStep('next');
+                // navigateToStep('next');
             }, 800);
         }
     } catch (error) {
@@ -1157,6 +1164,7 @@ async function saveMainCategoryFeedback(categoryId, details, imageFiles, existin
                 console.error(`Failed to upload images for category ${categoryId}`);
                 return false;
             }
+            selectedFiles = [];
         }
 
         return true;
@@ -1181,7 +1189,6 @@ async function saveCategorySelections(categoryId, selectedOptionIds) {
             customer_id = customerResponse.id;
             sessionStorage.setItem("customer_id", customer_id);
         }
-        console.log(selectedOptionIds)
 
         if (selectedOptionIds.length === 0) {
             return await setNotApplicable(categoryId)

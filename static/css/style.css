@@ -447,6 +447,7 @@ body {
 	border: 1px solid #71BF1E;
 	border-radius: 1rem;
 	position: relative;
+	min-width: 13.4rem;
 }
 
 .added_image {
@@ -677,6 +678,8 @@ body {
 	right: 0;
 	top: 95%;
 	z-index: 9;
+	max-height: 300px;
+	overflow-y: auto;
 }
 
 .ventilated_dropdown {

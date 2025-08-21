@@ -114,6 +114,7 @@ class UploadImagesSerializer(serializers.Serializer):
 class UploadImagesResponseSerializer(serializers.Serializer):
     message = serializers.CharField()
     images = PhotoSerializer(many=True)
+    feedback = serializers.JSONField()
 
 
 class ReturnCustomerSerializer(serializers.ModelSerializer):
