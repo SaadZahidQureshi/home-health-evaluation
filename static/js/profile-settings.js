@@ -118,3 +118,76 @@ function handleProfileUpdateError(errorResponse) {
     let errors = extractErrorMessages(errorResponse);
     showToast("Warning!", errors[0] || "Update failed", "danger-toast");
 }
+
+function openUpdatePasswordModal() {
+    let modalId = "updatePassword";
+    let modal = document.querySelector(`#${modalId}`);
+    let form = modal.querySelector("form");
+    modal.addEventListener('hidden.bs.modal', event => {
+        form.reset();
+    })
+    document.querySelector(`.${modalId}`).click();
+}
+
+let passwordChangeForm = document.querySelector('#UpdatePasswordForm');
+passwordChangeForm.addEventListener('submit', async (event) => {
+    event.preventDefault(); 
+    const formData = new FormData(passwordChangeForm);
+    const data = Object.fromEntries(formData);
+    let button = document.querySelector("button[form='UpdatePasswordForm']");
+    let buttonText = button.querySelector(".btn-text").textContent;
+
+    if (!data.old_password) {
+        showToast("Warning!", "Current password is required", "danger-toast");
+        return false;
+    }
+
+    if (!data.new_password || data.new_password.length < 8) {
+        showToast("Warning!", "New password must be at least 8 characters", "danger-toast");
+        return false;
+    }
+
+    if (data.new_password !== data.confirm_password) {
+        showToast("Warning!", "Passwords do not match", "danger-toast");
+        return false;
+    }
+
+    if (data.new_password === data.old_password) {
+        showToast("Warning!", "New password cannot be the same as current password", "danger-toast");
+        return false;
+    }
+
+    try {
+        let headers = {
+            "X-CSRFToken": getCookie('csrftoken'),
+            "Content-Type": "application/json" 
+        };
+        beforeLoad(button);
+        const jsonData = JSON.stringify({
+            old_password: data.old_password,
+            new_password: data.new_password,
+            confirm_password: data.confirm_password
+        });
+        let response = await requestAPI(`/api/user/password/update`, jsonData, headers, 'PATCH');
+        if (response.status == 200) {
+            showToast("Success", "Password updated successfully!", "success-toast");
+            afterLoad(button, 'Updated');
+            button.disabled = true;
+            setTimeout(() => {
+                button.disabled = false;
+                afterLoad(button, buttonText);
+                closeCurrentModal();
+                passwordChangeForm.reset();
+            }, 1500);
+        } else {
+            afterLoad(button, buttonText);
+            const result = await response.json();
+            let errors = extractErrorMessages(result);
+            showToast("Warning!", errors[0] || "Password update failed", "danger-toast");
+        }
+    } catch (err) {
+        afterLoad(button, buttonText);
+        showToast("Error!", "An error occurred while updating password", "danger-toast");
+        console.error("Password update error:", err);
+    }
+});

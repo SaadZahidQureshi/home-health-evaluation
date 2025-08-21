@@ -3,7 +3,8 @@ from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-from . serializers import LoginUserSerializer, RegisterUserSerializer, UserSerializer
+from rest_framework.decorators import action
+from . serializers import LoginUserSerializer, RegisterUserSerializer, UpdatePasswordSerializer, UserSerializer
 from api.core.pagination import Pagination
 from api.core.mixin import DotsModelViewSet
 User = get_user_model()
@@ -14,6 +15,13 @@ class UserViewSet(DotsModelViewSet):
     serializer_create_class = RegisterUserSerializer
     permission_classes = [AllowAny]
     pagination_class = Pagination
+
+    @action(detail=False, methods=["PATCH"], url_path="password/update", permission_classes=[IsAuthenticated])
+    def update_password(self, request, *args, **kwargs):
+        serializer = UpdatePasswordSerializer(data=request.data, context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        serializer.update(request.user, serializer.validated_data)
+        return Response(status=status.HTTP_200_OK)
 
 class LoginUserAPIView(APIView):
 

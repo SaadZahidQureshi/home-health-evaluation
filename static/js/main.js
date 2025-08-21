@@ -333,3 +333,11 @@ function formatDate(inputDate) {
     const year = date.getFullYear();
     return `${day}-${month}-${year}`;
 }
+
+function closeCurrentModal() {
+    let currentModal = document.querySelector('.modal.show');
+    if (currentModal) {
+        let bootstrapModal = bootstrap.Modal.getInstance(currentModal);
+        bootstrapModal.hide();
+    }
+}

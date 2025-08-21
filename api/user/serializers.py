@@ -1,6 +1,6 @@
 from hmac import compare_digest
 from rest_framework import serializers
-from django.contrib.auth import get_user_model, authenticate
+from django.contrib.auth import get_user_model, authenticate, login
 from api.core.choices import Roles
 from api.core.validators import PasswordValidator, DotsValidationError, phone_regex
 User = get_user_model()
@@ -92,3 +92,37 @@ class ShortUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ["name", "email", "role"]
+
+class UpdatePasswordSerializer(serializers.Serializer):
+    old_password = serializers.CharField(write_only=True, required=True)
+    new_password = serializers.CharField(
+        write_only=True,
+        required=True,
+        validators=[
+            PasswordValidator.one_symbol,
+            PasswordValidator.lower_letter,
+            PasswordValidator.upper_letter,
+            PasswordValidator.number,
+            PasswordValidator.length,
+        ],
+    )
+    confirm_password = serializers.CharField(write_only=True, required=True)
+
+    def validate(self, attrs):
+        user = self.context['request'].user
+        if not compare_digest(attrs['new_password'], attrs['confirm_password']):
+            raise serializers.ValidationError({"new_password": "New password and confirm password do not match"})
+        if not user.check_password(attrs['old_password']):
+            raise serializers.ValidationError({"old_password": "Old password is incorrect"})
+        if attrs['new_password'] == attrs['old_password']:
+            raise serializers.ValidationError({"new_password": "New password cannot be the same as old password"}) 
+        return attrs
+    
+    def update(self, instance, validated_data):
+        new_password = validated_data.get('new_password')
+        instance.set_password(new_password)
+        instance.save()
+        request = self.context.get('request')
+        if request:
+            login(request, instance)
+        return instance
