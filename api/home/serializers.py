@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from django.db.models import Exists, OuterRef, Case, When, BooleanField
+from api.user.serializers import PhotoSerializer
 from .models import *
 
 
@@ -22,12 +22,6 @@ class SelectedOptionSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = SelectedOption
-        fields = "__all__"
-
-
-class PhotoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Photo
         fields = "__all__"
 
 
@@ -77,6 +71,7 @@ class CategorySerializer(serializers.ModelSerializer):
         subcategories = obj.subcategories.all().order_by('order')
         return CategorySerializer(subcategories, many=True, context=self.context).data
 
+
 class PrincipleCategoriesSerializer(serializers.Serializer):
     principle = PrincipleSerializer()
     categories = CategorySerializer(many=True)
@@ -100,8 +95,10 @@ class SelectionSerializer(serializers.Serializer):
     customer_id = serializers.PrimaryKeyRelatedField(queryset=Customer.objects.all())
     selected_options = serializers.ListField(child=serializers.IntegerField(), required=True, allow_empty=False)
 
+
 class ApplicableSerializer(serializers.Serializer):
     customer_id = serializers.PrimaryKeyRelatedField(queryset=Customer.objects.all())
+
 
 class UploadImagesSerializer(serializers.Serializer):
     customer_id = serializers.IntegerField()
@@ -116,27 +113,3 @@ class UploadImagesResponseSerializer(serializers.Serializer):
     images = PhotoSerializer(many=True)
     feedback = serializers.JSONField()
 
-
-class ReturnCustomerSerializer(serializers.ModelSerializer):
-    user = ShortUserSerializer()
-    
-    class Meta:
-        model = Customer
-        fields = "__all__"
-
-
-class CustomerSerializer(serializers.ModelSerializer):
-    name = serializers.CharField(source='user.name')  
-    email = serializers.EmailField(source='user.email')
-
-    class Meta:
-        model = Customer
-        fields = ["name", "email", "address", "city", "state", "zip", "house_image", "audit_completed"]
-
-    def update(self, instance, validated_data):
-        user_serializer = ShortUserSerializer(instance=instance.user, data=validated_data.pop('user'), partial=True)
-        user_serializer.is_valid(raise_exception=True)
-        user = user_serializer.save()
-        validated_data['user'] = user
-        validated_data["audit_completed"] = True
-        return super().update(instance, validated_data)

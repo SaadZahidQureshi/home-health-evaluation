@@ -1,5 +1,6 @@
 from .serializers import *
 from . models import *
+from api.user.models import Customer
 from api.core.mixin import DotsModelViewSet
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
@@ -84,7 +85,6 @@ class PrincipleViewSet(DotsModelViewSet):
         response_data = {'principle': principle, 'categories': categories}
         serializer = PrincipleCategoriesSerializer(response_data, context={'customer': customer})
         return Response(serializer.data, status=status.HTTP_200_OK)
-
 
     @action(detail=False, methods=["GET"], url_path="status")
     def principles_status(self, request, *args, **kwargs):
@@ -232,63 +232,8 @@ class CategoryViewSet(DotsModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-class PhotoViewSet(DotsModelViewSet):
-    queryset = Photo.objects.all()
-    serializer_class = PhotoSerializer
-    permission_classes = [IsAuthenticated]
-
-
 class FeedbackViewSet(DotsModelViewSet):
     queryset = Feedback.objects.all()
     serializer_class = FeedbackSerializer
     permission_classes = [IsAuthenticated]
 
-
-class CustomerViewSet(DotsModelViewSet):
-    queryset = Customer.objects.all()
-    serializer_class = ReturnCustomerSerializer
-    serializer_create_class = CustomerSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        queryset = super().get_queryset().filter(created_by=self.request.user)
-        if self.action in ["list"]:
-            queryset = queryset.filter(audit_completed=True)
-        return queryset
-
-    def _get_customer(self, customer_id):
-        try:
-            return Customer.objects.get(id=customer_id)
-        except (Customer.DoesNotExist, ValueError, TypeError):
-            return None
-        
-    def get_or_create_customer(self, customer_id=None):
-        if customer_id:
-            customer = self._get_customer(customer_id)
-            if customer:
-                return customer
-        current_user = self.request.user
-        return Customer.create_default_customer(current_user)
-    
-    def create(self, request, *args, **kwargs):
-        if not request.data:
-            customer = self.get_or_create_customer()
-            serializer = self.get_serializer(customer)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.validated_data['created_by'] = request.user
-        
-        if 'address' not in serializer.validated_data:
-            serializer.validated_data['address'] = None
-        if 'city' not in serializer.validated_data:
-            serializer.validated_data['city'] = None
-        if 'state' not in serializer.validated_data:
-            serializer.validated_data['state'] = None
-        if 'zip' not in serializer.validated_data:
-            serializer.validated_data['zip'] = None
-        
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)

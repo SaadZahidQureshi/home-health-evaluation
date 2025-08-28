@@ -1096,7 +1096,7 @@ async function handleGlobalSubmit(event) {
         } else {
             setTimeout(() => {
                 afterLoad(button, "Saved!");
-                // navigateToStep('next');
+                navigateToStep('next');
             }, 800);
         }
     } catch (error) {
@@ -1415,7 +1415,7 @@ async function createCustomer() {
             'Content-Type': 'application/json'
         };
         
-        const userResponse = await requestAPI(`${API_BASE_URL}me`, null, headers, 'GET');
+        const userResponse = await requestAPI(`${API_BASE_URL}user/me`, null, headers, 'GET');
         if (!userResponse.ok) {
             throw new Error("Failed to get current user info");
         }

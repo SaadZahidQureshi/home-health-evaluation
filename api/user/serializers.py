@@ -3,6 +3,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model, authenticate, login
 from api.core.choices import Roles
 from api.core.validators import PasswordValidator, DotsValidationError, phone_regex
+from .models import Photo, Customer
 User = get_user_model()
 
 
@@ -70,7 +71,6 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         return super().update(instance, validated_data)
     
 
-
 class LoginUserSerializer(serializers.Serializer):
     email = serializers.EmailField(write_only=True)
     password = serializers.CharField(write_only=True)
@@ -92,6 +92,7 @@ class ShortUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ["name", "email", "role"]
+
 
 class UpdatePasswordSerializer(serializers.Serializer):
     old_password = serializers.CharField(write_only=True, required=True)
@@ -126,3 +127,34 @@ class UpdatePasswordSerializer(serializers.Serializer):
         if request:
             login(request, instance)
         return instance
+
+
+class ReturnCustomerSerializer(serializers.ModelSerializer):
+    user = ShortUserSerializer()
+    
+    class Meta:
+        model = Customer
+        fields = "__all__"
+
+
+class CustomerSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(source='user.name')  
+    email = serializers.EmailField(source='user.email')
+
+    class Meta:
+        model = Customer
+        fields = ["name", "email", "address", "city", "state", "zip", "house_image", "audit_completed"]
+
+    def update(self, instance, validated_data):
+        user_serializer = ShortUserSerializer(instance=instance.user, data=validated_data.pop('user'), partial=True)
+        user_serializer.is_valid(raise_exception=True)
+        user = user_serializer.save()
+        validated_data['user'] = user
+        validated_data["audit_completed"] = True
+        return super().update(instance, validated_data)
+    
+
+class PhotoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Photo
+        fields = "__all__"

@@ -6,7 +6,5 @@ admin.site.register(Option)
 admin.site.register(SelectedOption)
 admin.site.register(Feedback)
 admin.site.register(Category)
-admin.site.register(Photo)
-admin.site.register(Customer)
 admin.site.register(CategoryApplicability)
 

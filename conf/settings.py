@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "web",
     "api.user",
-    "api.home"
+    "api.home",
+    "api.home_energy"
 ]
 
 MIDDLEWARE = [
