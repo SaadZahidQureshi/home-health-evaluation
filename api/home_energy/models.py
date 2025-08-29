@@ -34,6 +34,7 @@ class Option(BaseModel):
 
 class SelectedOptions(BaseModel):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="home_energy_customer_selected_options")
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name="home_energy_customer_selected_options_question", null=True, blank=True)
     option = models.ForeignKey(Option, on_delete=models.CASCADE, related_name="home_energy_selected_options")
 
 

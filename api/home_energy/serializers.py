@@ -49,6 +49,14 @@ class FeedbackSerializer(serializers.ModelSerializer):
         return response
 
 
+class FeedbackSerializer(serializers.ModelSerializer):
+    images = PhotoSerializer(many=True, read_only=True)
+    class Meta:
+        model = Feedback
+        fields = ["id", "question_group", "customer", "text","images"]
+
+
+
 # -----------------------------------
 
 class OptionWithSelectionSerializer(serializers.ModelSerializer):
@@ -73,3 +81,44 @@ class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
         fields = ["id", "text"]
+
+
+class QuestionAnswerSerializer(serializers.Serializer):
+    customer_id = serializers.PrimaryKeyRelatedField(queryset=Customer.objects.all())
+    text = serializers.CharField(required=False, default='', allow_blank=True)
+
+
+class HomeEnergyAnswerSerializer(serializers.Serializer):
+    customer_id = serializers.PrimaryKeyRelatedField(queryset=Customer.objects.all())
+    text = serializers.CharField(required=False, default='', allow_blank=True)
+
+
+class SelectionSerializer(serializers.Serializer):
+    customer_id = serializers.PrimaryKeyRelatedField(queryset=Customer.objects.all())
+    selected_options = serializers.ListField(child=serializers.IntegerField(), required=True, allow_empty=False)
+
+
+class ShortQuestionGroupSerialzier(serializers.ModelSerializer):
+    class Meta:
+        model = QuestionGroup
+        fields = "__all__"
+
+
+class QuestionGroupSerialzier(serializers.ModelSerializer):
+    question = QuestionSerializer(many=True)
+    feedback = serializers.SerializerMethodField()
+    class Meta:
+        model = QuestionGroup
+        fields = ["id", "step", "question", "feedback"]
+
+    
+    def get_feedback(self, obj):
+        customer = Customer.objects.get(id=self.context.get("customer_id"))
+        feedbacks = Feedback.objects.filter(customer=customer, question_group=obj)
+        return FeedbackSerializer(feedbacks, many=True).data
+
+class UploadImagesResponseSerializer(serializers.Serializer):
+    message = serializers.CharField()
+    feedback = serializers.JSONField()
+
+    

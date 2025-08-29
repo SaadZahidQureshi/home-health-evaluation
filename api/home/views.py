@@ -203,7 +203,6 @@ class CategoryViewSet(DotsModelViewSet):
             if parent_category.parent:
                 self._check_and_update_parent_applicability(customer, parent_category.parent)
 
-
     @action(detail=True, methods=['POST'], url_path='upload-images')
     def upload_images(self, request, pk=None):
         category = self.get_object()

@@ -1,8 +1,9 @@
 from .models import *
 from .serializers import *
 from django.db.models import Exists, OuterRef, Value, Case, When, BooleanField, Subquery, Prefetch
+from django.db import transaction
 from api.core.mixin import DotsModelViewSet
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework import status
 from rest_framework.response import Response
@@ -83,15 +84,107 @@ class StepViewSet(DotsModelViewSet):
         response_data = {"step": StepSerializer(step).data, "groups": data_groups}
         return Response(response_data, status=status.HTTP_200_OK)
     
+
+class QuestionGroupViewSet(DotsModelViewSet):
+    queryset = QuestionGroup.objects.all()
+    serializer_class = QuestionGroupSerialzier
+    permission_classes = [AllowAny]
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context["customer_id"] = self.request.GET.get("customer_id")
+        return context
     
+    @action(detail=True, methods=['POST'], url_path='feedback')
+    def feedback(self, request, pk=None):
+        input_serializer = HomeEnergyAnswerSerializer(data=request.data)
+        input_serializer.is_valid(raise_exception=True)
+        question_group = self.get_object()
+        validated_data = input_serializer.validated_data
+        customer = validated_data['customer_id']
+        text = validated_data['text']
+        with transaction.atomic():
+            feedback, created = Feedback.objects.get_or_create(customer=customer, question_group=question_group, defaults={'text':text})
+            if not created:
+                feedback.text = text
+                feedback.save()
+        serializer = self.get_serializer(question_group)        
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+    @action(detail=True, methods=['POST'], url_path='upload-images')
+    def upload_images(self, request, pk=None):
+        question_group = self.get_object()
+        customer_id = request.data.get('customer_id')
+        images = request.FILES.getlist('images')
+        
+        if not customer_id:
+            return Response({"error": "customer_id is required"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        if not images:
+            return Response({"error": "images are required"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            customer = Customer.objects.get(id=customer_id)
+        except Customer.DoesNotExist:
+            return Response({"error": "Customer not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+        feedback, created = Feedback.objects.get_or_create(customer=customer, question_group=question_group)
+        uploaded_images = []
+        for image in images:
+            photo = Photo.objects.create(image=image)
+            feedback.images.add(photo)
+            uploaded_images.append(photo)
+        response_data = {"message": f"{len(uploaded_images)} images uploaded successfully", "feedback": FeedbackSerializer(feedback).data}
+        serializer = UploadImagesResponseSerializer(response_data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+
 class QuestionsViewSet(DotsModelViewSet):
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
     permission_classes = [AllowAny]
 
+    @action(detail=True, methods=['POST'], url_path='selection')
+    def selection(self, request, *args, **kwargs):
+        selection_serializer = SelectionSerializer(data=request.data)
+        selection_serializer.is_valid(raise_exception=True)
+        question = self.get_object()
+        validated_data = selection_serializer.validated_data
+        customer = validated_data['customer_id']
+        selected_option_ids = validated_data['selected_options']
+        with transaction.atomic(): 
+            SelectedOptions.objects.filter(customer=customer, question=question).delete()
+            for option_id in selected_option_ids:
+                try:
+                    option = Option.objects.get(id=option_id, question=question)
+                    SelectedOptions.objects.create(customer=customer, question=question, option=option)
+                except Option.DoesNotExist:
+                    return Response({"error": f"Option {option_id} not found for this category"}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_200_OK)
+    
+    @action(detail=True, methods=['POST'], url_path='answer')
+    def answer(self, request, *args, **kwargs):
+        selection_serializer = AnswerSerializer(data=request.data)
+        selection_serializer.is_valid(raise_exception=True)
+        question = self.get_object()
+        validated_data = selection_serializer.validated_data
+        customer = validated_data['customer_id']
+        text = validated_data['text']
+        with transaction.atomic():
+            answer, created = Answer.objects.get_or_create(customer=customer, question=question,  defaults={'text': text})
+            if not created:
+                answer.text = text
+                answer.save()
+        return Response(status=status.HTTP_201_CREATED)
 
-class FeedbackeViewSet(DotsModelViewSet):
+
+class QuestionGroupFeedbackViewSet(DotsModelViewSet):
     queryset = Feedback.objects.all()
     serializer_class = FeedbackSerializer
+    permission_classes = [AllowAny]
 
 
+class AnswerViewSet(DotsModelViewSet):
+    queryset = Answer.objects.all()
+    serializer_class = AnswerSerializer
+    permission_classes = [AllowAny]

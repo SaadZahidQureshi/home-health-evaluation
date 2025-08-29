@@ -102,10 +102,7 @@ class ApplicableSerializer(serializers.Serializer):
 
 class UploadImagesSerializer(serializers.Serializer):
     customer_id = serializers.IntegerField()
-    images = serializers.ListField(
-        child=serializers.ImageField(),
-        required=True
-    )
+    images = serializers.ListField(child=serializers.ImageField(), required=True)
 
 
 class UploadImagesResponseSerializer(serializers.Serializer):
