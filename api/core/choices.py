@@ -22,6 +22,4 @@ QUESTION_CHOICES=[
 class QuestionFieldType(models.TextChoices):
     TEXT = "text", "Text",
     NUMBER = "number", "Number",
-    DROPDOWN = "dropdown", "Dropdown",
-    COMMENT = "comment", "Comment",
-    IMAGE = "image", "Image",
+    DROPDOWN = "dropdown", "Dropdown"
