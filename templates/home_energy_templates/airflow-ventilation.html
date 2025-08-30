@@ -1,0 +1,276 @@
+{% extends "home-energy-base.html" %}
+{% load static %}
+{% block title %}Airflow & Ventilation{% endblock title %}
+
+{% block content %}
+<div class="right-mainpart">
+    <div class="accordian_box">
+        <div class="accordian_title">
+            <h4>Identify and determine what type mechanical ventilation system in home.</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p> Select options </p>
+            <img src="{% static 'img/down.svg' %}" alt="down-arrow" />
+        </div>
+        <div class="accordian_inner">
+            <ul>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Supply</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="form-container" style="display: block;">
+            <div class="accordion_selected">
+                <div class="template_title inform_item">
+                    <h4>Fill your details below</h4>
+                </div>
+                <div class="col-md-12">
+                    <div class="inform_item">
+                        <label>Comment</label>
+                        <textarea name="details" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="inform_item">
+                        <label>Images</label>
+                    </div>
+                    <div class="add_wraper">
+                        <div class="add_box">
+                            <label class="custom-upload">
+                                <input type="file" name="images" multiple="" class="image-upload" accept="image/jpeg, image/jpg, image/png">
+                                <img src="{% static 'img/download.svg' %}" alt="download-icon" />
+                                Add Image
+                            </label>
+                        </div>
+                        <div class="image-preview-container">
+                            <div class="added_item">
+                                <div class="added_image">
+                                    <img src="{% static 'img/image-1.png' %}" alt="">
+                                </div>
+                                <div class="delete_icon">
+                                    <a href="#"><img src="{% static 'img/delete.svg' %}" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="added_item">
+                                <div class="added_image">
+                                    <img src="{% static 'img/image-2.png' %}" alt="">
+                                </div>
+                                <div class="delete_icon">
+                                    <a href="#"><img src="{% static 'img/delete.svg' %}" alt="delete-icon"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordian_box">
+        <div class="accordian_title">
+            <h4>Check the status of bathroom exhaust fans and assess for deficiencies and concerns</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p> Select options </p>
+            <img src="{% static 'img/down.svg' %}" alt="down-arrow" />
+        </div>
+        <div class="accordian_inner">
+            <ul>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Bathroom exhaust fans present</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="form-container" style="display: block;">
+            <div class="accordion_selected">
+                <div class="template_title inform_item">
+                    <h4>Fill your details below</h4>
+                </div>
+                <div class="col-md-12">
+                    <div class="inform_item">
+                        <label>Comment</label>
+                        <textarea name="details" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="inform_item">
+                        <label>Images</label>
+                    </div>
+                    <div class="add_wraper">
+                        <div class="add_box">
+                            <label class="custom-upload">
+                                <input type="file" name="images" multiple="" class="image-upload" accept="image/jpeg, image/jpg, image/png">
+                                <img src="{% static 'img/download.svg' %}" alt="download-icon" />
+                                Add Image
+                            </label>
+                        </div>
+                        <div class="image-preview-container">
+                            <div class="added_item">
+                                <div class="added_image">
+                                    <img src="{% static 'img/image-1.png' %}" alt="">
+                                </div>
+                                <div class="delete_icon">
+                                    <a href="#"><img src="{% static 'img/delete.svg' %}" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="added_item">
+                                <div class="added_image">
+                                    <img src="{% static 'img/image-2.png' %}" alt="">
+                                </div>
+                                <div class="delete_icon">
+                                    <a href="#"><img src="{% static 'img/delete.svg' %}" alt="delete-icon"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordian_box">
+        <div class="accordian_title">
+            <h4>Perform a HVAC duct leak test if able</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p> Select options </p>
+            <img src="{% static 'img/down.svg' %}" alt="down-arrow" />
+        </div>
+        <div class="accordian_inner">
+            <ul>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Kinked ductwork</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="form-container" style="display: block;">
+            <div class="accordion_selected">
+                <div class="template_title inform_item">
+                    <h4>Fill your details below</h4>
+                </div>
+                <div class="col-md-12">
+                    <div class="inform_item">
+                        <label>Comment</label>
+                        <textarea name="details" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="inform_item">
+                        <label>Images</label>
+                    </div>
+                    <div class="add_wraper">
+                        <div class="add_box">
+                            <label class="custom-upload">
+                                <input type="file" name="images" multiple="" class="image-upload" accept="image/jpeg, image/jpg, image/png">
+                                <img src="{% static 'img/download.svg' %}" alt="download-icon" />
+                                Add Image
+                            </label>
+                        </div>
+                        <div class="image-preview-container">
+                            <div class="added_item">
+                                <div class="added_image">
+                                    <img src="{% static 'img/image-1.png' %}" alt="">
+                                </div>
+                                <div class="delete_icon">
+                                    <a href="#"><img src="{% static 'img/delete.svg' %}" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="added_item">
+                                <div class="added_image">
+                                    <img src="{% static 'img/image-2.png' %}" alt="">
+                                </div>
+                                <div class="delete_icon">
+                                    <a href="#"><img src="{% static 'img/delete.svg' %}" alt="delete-icon"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordian_box">
+        <div class="accordian_title">
+            <h4>Assess factors that could negatively affect ventilation system performance</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p> Select options </p>
+            <img src="{% static 'img/down.svg' %}" alt="down-arrow" />
+        </div>
+        <div class="accordian_inner">
+            <ul>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Reduction or oversize of duct size</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="form-container" style="display: block;">
+            <div class="accordion_selected">
+                <div class="template_title inform_item">
+                    <h4>Fill your details below</h4>
+                </div>
+                <div class="col-md-12">
+                    <div class="inform_item">
+                        <label>Comment</label>
+                        <textarea name="details" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="inform_item">
+                        <label>Images</label>
+                    </div>
+                    <div class="add_wraper">
+                        <div class="add_box">
+                            <label class="custom-upload">
+                                <input type="file" name="images" multiple="" class="image-upload" accept="image/jpeg, image/jpg, image/png">
+                                <img src="{% static 'img/download.svg' %}" alt="download-icon" />
+                                Add Image
+                            </label>
+                        </div>
+                        <div class="image-preview-container">
+                            <div class="added_item">
+                                <div class="added_image">
+                                    <img src="{% static 'img/image-1.png' %}" alt="">
+                                </div>
+                                <div class="delete_icon">
+                                    <a href="#"><img src="{% static 'img/delete.svg' %}" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="added_item">
+                                <div class="added_image">
+                                    <img src="{% static 'img/image-2.png' %}" alt="">
+                                </div>
+                                <div class="delete_icon">
+                                    <a href="#"><img src="{% static 'img/delete.svg' %}" alt="delete-icon"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="button-container"><button type="button">
+            <span class="spinner-border hide" role="status" aria-hidden="true"></span>
+            <span class="btn-text">Previous</span>
+        </button><button type="button">
+            <span class="spinner-border hide" role="status" aria-hidden="true"></span>
+            <span class="btn-text">Submit</span>
+        </button>
+    </div>
+</div>
+{{principleId|json_script:"principleId"}}
+{% endblock content %}
+{% block js %}
+<script src="{% static " js/category-base.js" %}"></script>
+{% endblock js %}

@@ -157,6 +157,7 @@ body {
 }
 
 .side_menu ul li a {
+	width: 100%;
 	font-size: 1.8rem;
 	font-style: normal;
 	font-weight: 600;
@@ -186,6 +187,7 @@ body {
 	position: relative;
 	z-index: 9;
 	transition: 0.2s all ease;
+	flex-shrink: 0;
 }
 
 .side_menu ul li a span::after {
@@ -1382,4 +1384,94 @@ input, textarea {
 	top: 10px;
 	right: 10px;
 	cursor: pointer;
+}
+
+
+.side-selection-container {
+	display: flex;
+	align-items: center;
+	gap: 3rem;
+	justify-content: space-between;
+}
+
+.side-selection {
+	width: 100%;
+	text-align: center;
+}
+
+.side-selection > label {
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	border: 1px solid #E7E7E7;
+	border-radius: 10px;
+	padding: 4rem;
+	cursor: pointer;
+}
+
+.side-selection > input:checked + label {
+	position: relative;
+	border: none;
+}
+
+.side-selection > input:checked + label::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: 10px;
+	padding: 1px; /* border thickness */
+	background: linear-gradient(180deg, #71BF1E, #02A0E9);
+	-webkit-mask: 
+		linear-gradient(#fff 0 0) content-box, 
+		linear-gradient(#fff 0 0);
+	-webkit-mask-composite: destination-out;
+	mask-composite: exclude;
+	pointer-events: none;
+	z-index: -1;
+}
+
+.side-selection svg {
+	width: 100%;
+	height: 100%;
+}
+
+.side-selection > span {
+	font-size: 2.4rem;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+	color: #2B2B2B;
+
+	display: inline-block;
+	margin-top: 1rem;
+}
+
+.side-selection-bottom {
+	padding-top: 3rem;
+}
+
+
+.home-energy-side-menu ul li a span:last-of-type {
+	font-size: 2.2rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	color: #FFF;
+	width: 100%;
+	height: unset;
+	display: inline;
+	text-align: left;
+	background: transparent;
+	border-radius: unset;
+	position: relative;
+	z-index: 0;
+	transition: 0.2s all ease;
+
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+	flex-shrink: unset;
+}
+
+.home-energy-side-menu ul li a span:last-of-type::after {
+	content: none;
 }

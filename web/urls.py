@@ -7,6 +7,7 @@ urlpatterns = [
     path("home/", LandingPageTemplateView.as_view(), name="landing_page"),
     path("", LoginPageTemplateView.as_view(), name="login_page"),
     path("register/", RegisterPageTemplateView.as_view(), name="register_page"),
+    path("side-selection/", SideSelectionPageTemplateView.as_view(), name="side_selection"),
     path("settings/", SettingPageTemplateView.as_view(), name="settings_page"),
     path("profile-settings/", ProfileSettingPageTemplateView.as_view(), name="profile_settings_page"),
     path("saved/<int:pk>", SavedgPageTemplateView.as_view(), name="saved_page"),
@@ -29,4 +30,12 @@ urlpatterns = [
     path("principle/details/<int:pk>", PrincipleDetailsPageTemplateView.as_view(), name="principle_detail_page"),
     path("final-recommendations/", FinalRecommendationPageTemplateView.as_view(), name="final_recommendations_page"),
 
+
+    # Home Energy Side URLs
+    
+    path("exterior-evaluation/", ExteriorEvaluationFuelLeakTestingPageTemplateView.as_view(), name="exterior_evaluation"),
+    path("interior-safety-evaluation/", InteriorSafetyEvaluationPageTemplateView.as_view(), name="interior_safety_evaluation"),
+    path("doors-windows/", DoorsWindowsPageTemplateView.as_view(), name="doors_windows"),
+    path("building-components/", BuildingComponentsConstructionPageTemplateView.as_view(), name="building_components"),
+    path("airflow-ventilation/", AirflowVentilationPageTemplateView.as_view(), name="airflow_ventilation"),
 ]

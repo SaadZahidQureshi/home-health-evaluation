@@ -1,0 +1,522 @@
+{% extends "home-energy-base.html" %}
+{% load static %}
+{% block title %}Building Components & Construction{% endblock title %}
+
+{% block content %}
+<div class="right-mainpart">
+    <div class="accordian_box">
+        <div class="accordian_title">
+            <h4>Attic space classification</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p> Select options </p>
+            <img src="{% static 'img/down.svg' %}" alt="down-arrow" />
+        </div>
+        <div class="accordian_inner">
+            <ul>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Conditioned</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="7" data-category-id="2">
+                        <span class="question-text">Unconditioned</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="accordian_title inform_item">
+            <h4>Crawlspace classification</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p> Select options </p>
+            <img src="{% static 'img/down.svg' %}" alt="down-arrow" />
+        </div>
+        <div class="accordian_inner">
+            <ul>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Conditioned</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="7" data-category-id="2">
+                        <span class="question-text">Unconditioned</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="accordian_title inform_item">
+            <h4>Foundation type</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p> Select options </p>
+            <img src="{% static 'img/down.svg' %}" alt="down-arrow" />
+        </div>
+        <div class="accordian_inner">
+            <ul>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Fair</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="7" data-category-id="2">
+                        <span class="question-text">Good</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-12">
+            <div class="inform_item">
+                <label>Estimated wall insulation R-value</label>
+                <input type="text" placeholder="10" />
+            </div>
+        </div>
+        <div class="form-container" style="display: block;">
+            <div class="accordion_selected">
+                <div class="template_title inform_item">
+                    <h4>Fill your details below</h4>
+                </div>
+                <div class="col-md-12">
+                    <div class="inform_item">
+                        <label>Comment</label>
+                        <textarea name="details" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="inform_item">
+                        <label>Images</label>
+                    </div>
+                    <div class="add_wraper">
+                        <div class="add_box">
+                            <label class="custom-upload">
+                                <input type="file" name="images" multiple="" class="image-upload" accept="image/jpeg, image/jpg, image/png">
+                                <img src="{% static 'img/download.svg' %}" alt="download-icon" />
+                                Add Image
+                            </label>
+                        </div>
+                        <div class="image-preview-container">
+                            <div class="added_item">
+                                <div class="added_image">
+                                    <img src="{% static 'img/image-1.png' %}" alt="">
+                                </div>
+                                <div class="delete_icon">
+                                    <a href="#"><img src="{% static 'img/delete.svg' %}" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="added_item">
+                                <div class="added_image">
+                                    <img src="{% static 'img/image-2.png' %}" alt="">
+                                </div>
+                                <div class="delete_icon">
+                                    <a href="#"><img src="{% static 'img/delete.svg' %}" alt="delete-icon"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordian_box">
+        <div class="accordian_title">
+            <h4>Air Infiltration Points</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p> Select options </p>
+            <img src="{% static 'img/down.svg' %}" alt="down-arrow" />
+        </div>
+        <div class="accordian_inner">
+            <ul>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Top plates</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="7" data-category-id="2">
+                        <span class="question-text">Dropped ceilings</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Recessed lights</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Chimneys</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Leaky attics or crawslspaces</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="form-container" style="display: block;">
+            <div class="accordion_selected">
+                <div class="template_title inform_item">
+                    <h4>Fill your details below</h4>
+                </div>
+                <div class="col-md-12">
+                    <div class="inform_item">
+                        <label>Comment</label>
+                        <textarea name="details" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="inform_item">
+                        <label>Images</label>
+                    </div>
+                    <div class="add_wraper">
+                        <div class="add_box">
+                            <label class="custom-upload">
+                                <input type="file" name="images" multiple="" class="image-upload" accept="image/jpeg, image/jpg, image/png">
+                                <img src="{% static 'img/download.svg' %}" alt="download-icon" />
+                                Add Image
+                            </label>
+                        </div>
+                        <div class="image-preview-container">
+                            <div class="added_item">
+                                <div class="added_image">
+                                    <img src="{% static 'img/image-1.png' %}" alt="">
+                                </div>
+                                <div class="delete_icon">
+                                    <a href="#"><img src="{% static 'img/delete.svg' %}" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="added_item">
+                                <div class="added_image">
+                                    <img src="{% static 'img/image-2.png' %}" alt="">
+                                </div>
+                                <div class="delete_icon">
+                                    <a href="#"><img src="{% static 'img/delete.svg' %}" alt="delete-icon"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordian_box">
+        <div class="accordian_title">
+            <h4>Garage door insulation adequacy</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p> Select options </p>
+            <img src="{% static 'img/down.svg' %}" alt="down-arrow" />
+        </div>
+        <div class="accordian_inner">
+            <ul>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Insufficient garage door insulation</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="7" data-category-id="2">
+                        <span class="question-text">Improper or leaky exterior garage door seals</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Leaky HVAC ductwork in garage unit</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="accordian_title inform_item">
+            <h4>Garage door seals condition</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p> Select options </p>
+            <img src="{% static 'img/down.svg' %}" alt="down-arrow" />
+        </div>
+        <div class="accordian_inner">
+            <ul>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Fair</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="7" data-category-id="2">
+                        <span class="question-text">Good</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="form-container" style="display: block;">
+            <div class="accordion_selected">
+                <div class="template_title inform_item">
+                    <h4>Fill your details below</h4>
+                </div>
+                <div class="col-md-12">
+                    <div class="inform_item">
+                        <label>Comment</label>
+                        <textarea name="details" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="inform_item">
+                        <label>Images</label>
+                    </div>
+                    <div class="add_wraper">
+                        <div class="add_box">
+                            <label class="custom-upload">
+                                <input type="file" name="images" multiple="" class="image-upload" accept="image/jpeg, image/jpg, image/png">
+                                <img src="{% static 'img/download.svg' %}" alt="download-icon" />
+                                Add Image
+                            </label>
+                        </div>
+                        <div class="image-preview-container">
+                            <div class="added_item">
+                                <div class="added_image">
+                                    <img src="{% static 'img/image-1.png' %}" alt="">
+                                </div>
+                                <div class="delete_icon">
+                                    <a href="#"><img src="{% static 'img/delete.svg' %}" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="added_item">
+                                <div class="added_image">
+                                    <img src="{% static 'img/image-2.png' %}" alt="">
+                                </div>
+                                <div class="delete_icon">
+                                    <a href="#"><img src="{% static 'img/delete.svg' %}" alt="delete-icon"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordian_box">
+        <div class="accordian_title">
+            <h4>Attic Ventilation</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p> Select options </p>
+            <img src="{% static 'img/down.svg' %}" alt="down-arrow" />
+        </div>
+        <div class="accordian_inner">
+            <ul>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Box</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="7" data-category-id="2">
+                        <span class="question-text">Soffit</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Ridge</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Gable vents</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="form-container" style="display: block;">
+            <div class="accordion_selected">
+                <div class="template_title inform_item">
+                    <h4>Fill your details below</h4>
+                </div>
+                <div class="col-md-12">
+                    <div class="inform_item">
+                        <label>Comment</label>
+                        <textarea name="details" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="inform_item">
+                        <label>Images</label>
+                    </div>
+                    <div class="add_wraper">
+                        <div class="add_box">
+                            <label class="custom-upload">
+                                <input type="file" name="images" multiple="" class="image-upload" accept="image/jpeg, image/jpg, image/png">
+                                <img src="{% static 'img/download.svg' %}" alt="download-icon" />
+                                Add Image
+                            </label>
+                        </div>
+                        <div class="image-preview-container">
+                            <div class="added_item">
+                                <div class="added_image">
+                                    <img src="{% static 'img/image-1.png' %}" alt="">
+                                </div>
+                                <div class="delete_icon">
+                                    <a href="#"><img src="{% static 'img/delete.svg' %}" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="added_item">
+                                <div class="added_image">
+                                    <img src="{% static 'img/image-2.png' %}" alt="">
+                                </div>
+                                <div class="delete_icon">
+                                    <a href="#"><img src="{% static 'img/delete.svg' %}" alt="delete-icon"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordian_box">
+        <div class="accordian_title">
+            <h4>Attic ventilation for deficiencies</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p> Select options </p>
+            <img src="{% static 'img/down.svg' %}" alt="down-arrow" />
+        </div>
+        <div class="accordian_inner">
+            <ul>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="7" data-category-id="2">
+                        <span class="question-text">Soffit</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Improperly installed baffles</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Undersized vents</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-12">
+            <div class="inform_item">
+                <label>Assess Attic Thickness</label>
+                <input type="text" placeholder="10" />
+            </div>
+        </div>
+        <div class="accordian_title inform_item">
+            <h4>Type</h4>
+        </div>
+        <div class="accordian_cnt">
+            <p> Select options </p>
+            <img src="{% static 'img/down.svg' %}" alt="down-arrow" />
+        </div>
+        <div class="accordian_inner">
+            <ul>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="6" data-category-id="2">
+                        <span class="question-text">Fair</span>
+                    </label>
+                </li>
+                <li>
+                    <label class="question-checkbox-label">
+                        <input type="checkbox" class="question-checkbox" data-question-id="7" data-category-id="2">
+                        <span class="question-text">Good</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-12">
+            <div class="inform_item">
+                <label>Estimated wall insulation R-value</label>
+                <input type="text" placeholder="10" />
+            </div>
+        </div>
+        <div class="form-container" style="display: block;">
+            <div class="accordion_selected">
+                <div class="template_title inform_item">
+                    <h4>Fill your details below</h4>
+                </div>
+                <div class="col-md-12">
+                    <div class="inform_item">
+                        <label>Comment</label>
+                        <textarea name="details" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="inform_item">
+                        <label>Images</label>
+                    </div>
+                    <div class="add_wraper">
+                        <div class="add_box">
+                            <label class="custom-upload">
+                                <input type="file" name="images" multiple="" class="image-upload" accept="image/jpeg, image/jpg, image/png">
+                                <img src="{% static 'img/download.svg' %}" alt="download-icon" />
+                                Add Image
+                            </label>
+                        </div>
+                        <div class="image-preview-container">
+                            <div class="added_item">
+                                <div class="added_image">
+                                    <img src="{% static 'img/image-1.png' %}" alt="">
+                                </div>
+                                <div class="delete_icon">
+                                    <a href="#"><img src="{% static 'img/delete.svg' %}" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="added_item">
+                                <div class="added_image">
+                                    <img src="{% static 'img/image-2.png' %}" alt="">
+                                </div>
+                                <div class="delete_icon">
+                                    <a href="#"><img src="{% static 'img/delete.svg' %}" alt="delete-icon"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="button-container"><button type="button">
+            <span class="spinner-border hide" role="status" aria-hidden="true"></span>
+            <span class="btn-text">Previous</span>
+        </button><button type="button">
+            <span class="spinner-border hide" role="status" aria-hidden="true"></span>
+            <span class="btn-text">Submit</span>
+        </button>
+    </div>
+</div>
+{{principleId|json_script:"principleId"}}
+{% endblock content %}
+{% block js %}
+<script src="{% static " js/category-base.js" %}"></script>
+{% endblock js %}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="app, landing, corporate, Creative, Html Template, Template">
+    <meta name="author" content="web-themes">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <!-- title -->
+    <title>Side Selection</title>
+
+    <!-- favicon -->
+    <link href="{% static "img\favicon.png" %}" type="image/png" rel="icon">
+
+    <!-- all css here -->
+    <link href="{% static "css\bootstrap.min.css" %}" rel="stylesheet" type="text/css" />
+    <link href="{% static "css\style.css" %}" rel="stylesheet" type="text/css" />
+    <link href="{% static "css\responsive.css" %}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <!-- signin_wrapper start -->
+    <main class="signin_wrapper">
+        <div class="signin_main">
+            <div class="signin_circle">
+                <img src="{% static 'img/circle.svg' %}" alt="">
+            </div>
+            <div class="signin_box">
+                <div class="signin_logo">
+                    <a href="#">
+                        <img src="{% static 'img/logo-2.svg' %}" alt="">
+                    </a>
+                </div>
+                <div class="line_border">
+                    <img src="{% static 'img/line-2.svg' %}" alt="">
+                </div>
+                <div class="sign_title text-center">
+                    <h3>Choose Your Experience</h3>
+                </div>
+                <form action="#" id="sideSelectionForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.GET.next }}">
+                    <div class="sign_details">
+                        <div class="side-selection-container">
+                            <div class="side-selection">
+                                <input class="d-none" type="radio" name="side" id="healthy-home" value="healthy_home" checked />
+                                <label for="healthy-home">
+                                    <svg width="237" height="237" viewBox="0 0 237 237" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M203.432 132.715V202.08C203.432 204.585 202.517 206.752 200.686 208.583C198.856 210.413 196.688 211.328 194.184 211.328H138.692V155.836H101.697V211.328H46.2052C43.7003 211.328 41.5327 210.413 39.7022 208.583C37.8717 206.752 36.9565 204.585 36.9565 202.08V132.715C36.9565 132.619 36.9806 132.474 37.0288 132.281C37.0769 132.089 37.101 131.944 37.101 131.848L120.194 63.35L203.288 131.848C203.384 132.04 203.432 132.329 203.432 132.715ZM235.658 122.744L226.698 133.437C225.928 134.304 224.916 134.834 223.664 135.027H223.23C221.978 135.027 220.966 134.69 220.195 134.015L120.194 50.6331L20.1933 134.015C19.0373 134.786 17.8812 135.123 16.7251 135.027C15.4727 134.834 14.4611 134.304 13.6904 133.437L4.73075 122.744C3.96003 121.78 3.62284 120.648 3.71918 119.348C3.81552 118.047 4.34539 117.011 5.30879 116.241L109.212 29.6791C112.294 27.1743 115.955 25.9219 120.194 25.9219C124.433 25.9219 128.094 27.1743 131.177 29.6791L166.438 59.1592V30.9797C166.438 29.631 166.871 28.5231 167.738 27.656C168.605 26.7889 169.713 26.3554 171.062 26.3554H198.808C200.157 26.3554 201.265 26.7889 202.132 27.656C202.999 28.5231 203.432 29.631 203.432 30.9797V89.9399L235.08 116.241C236.043 117.011 236.573 118.047 236.669 119.348C236.766 120.648 236.429 121.78 235.658 122.744Z" fill="url(#paint0_linear_708_379)"/>
+                                        <defs>
+                                            <linearGradient id="paint0_linear_708_379" x1="120.194" y1="25.9219" x2="120.194" y2="211.328" gradientUnits="userSpaceOnUse">
+                                                <stop stop-color="#71BF1E"/>
+                                                <stop offset="1" stop-color="#02A0E9"/>
+                                            </linearGradient>
+                                        </defs>
+                                    </svg>
+                                </label>
+                                <span>Healthy Home</span>
+                            </div>
+                            <div class="side-selection">
+                                <input class="d-none" type="radio" name="side" id="residential-home" value="residential_home" />
+                                <label for="residential-home">
+                                    <svg width="237" height="237" viewBox="0 0 237 237" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M118.5 185.539C116.83 185.539 115.229 186.212 114.049 187.409C112.868 188.607 112.205 190.231 112.205 191.924V211.078H124.795V191.924C124.795 190.231 124.132 188.607 122.951 187.409C121.771 186.212 120.17 185.539 118.5 185.539ZM118.5 25.9219C101.434 25.9672 84.8329 31.5617 71.1341 41.8836H165.879C152.176 31.5591 135.57 25.9645 118.5 25.9219ZM55.5469 48.2683H181.453V54.653H55.5469V48.2683Z" fill="url(#paint0_linear_706_264)"/>
+                                        <path d="M74.4351 211.078H105.912V191.924C105.912 188.538 107.238 185.29 109.599 182.895C111.961 180.5 115.163 179.155 118.502 179.155C121.841 179.155 125.044 180.5 127.405 182.895C129.766 185.29 131.093 188.538 131.093 191.924V211.078H162.569V61.0378H74.4351V211.078ZM140.536 70.6149H153.126V83.3843H140.536V70.6149ZM140.536 96.1537H153.126V108.923H140.536V96.1537ZM140.536 121.692H153.126V134.462H140.536V121.692ZM140.536 147.231H153.126V160.001H140.536V147.231ZM140.536 172.77H153.126V201.501H140.536V172.77ZM112.207 70.6149H124.798V83.3843H112.207V70.6149ZM112.207 96.1537H124.798V108.923H112.207V96.1537ZM112.207 121.692H124.798V134.462H112.207V121.692ZM112.207 147.231H124.798V160.001H112.207V147.231ZM83.878 70.6149H96.4687V83.3843H83.878V70.6149ZM83.878 96.1537H96.4687V108.923H83.878V96.1537ZM83.878 121.692H96.4687V134.462H83.878V121.692ZM83.878 147.231H96.4687V160.001H83.878V147.231ZM83.878 172.77H96.4687V201.501H83.878V172.77Z" fill="url(#paint1_linear_706_264)"/>
+                                        <defs>
+                                            <linearGradient id="paint0_linear_706_264" x1="118.5" y1="25.9219" x2="118.5" y2="211.078" gradientUnits="userSpaceOnUse">
+                                                <stop stop-color="#71BF1E"/>
+                                                <stop offset="1" stop-color="#02A0E9"/>
+                                            </linearGradient>
+                                            <linearGradient id="paint1_linear_706_264" x1="118.502" y1="61.0378" x2="118.502" y2="211.078" gradientUnits="userSpaceOnUse">
+                                                <stop stop-color="#71BF1E"/>
+                                                <stop offset="1" stop-color="#02A0E9"/>
+                                            </linearGradient>
+                                        </defs>
+                                    </svg>
+                                </label>
+                                <span>Residencial Home</span>
+                            </div>
+                        </div>
+                        <div class="sign_bottom side-selection-bottom">
+                            <div class="sign_btn">
+                                <button type="submit">
+                                    <span class="spinner-border hide" role="status" aria-hidden="true"></span>
+                                    <span class="btn-text">Continue</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>                
+            </div>
+        </div>
+    </main>
+    <!-- signin_wrapper end -->
+    {{API_BASE_URL|json_script:"API_BASE_URL"}}
+    <!-- all js here -->
+    <script src="{% static "js\jquery-3.4.1.min.js" %}"></script>
+    <script src="{% static "js\bootstrap.bundle.min.js" %}"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+        let sideSelectionForm = document.getElementById("sideSelectionForm");
+        sideSelectionForm.addEventListener("submit", selectionForm);
+
+        function selectionForm(event) {
+            event.preventDefault();
+            let form = event.currentTarget;
+            let formData = new FormData(form);
+            
+            if (formData.get("side") == "healthy_home")
+                location.pathname = "/keep-it-clean/";
+            else
+                location.pathname = "exterior-evaluation";
+        }
+    </script>
+</body>
+</html>

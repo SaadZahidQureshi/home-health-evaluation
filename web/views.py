@@ -12,6 +12,9 @@ class LoginPageTemplateView(TemplateView):
 class RegisterPageTemplateView(TemplateView):
     template_name = "sign-up.html"
 
+class SideSelectionPageTemplateView(TemplateView):
+    template_name = "side-selection.html"
+
 class KeepItCleanPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "keep-it-clean.html"
 
@@ -216,4 +219,56 @@ class FinalRecommendationPageTemplateView(LoginRequiredMixin, TemplateView):
         context["title"] = "Final Recommendations"
         context["active_page"] = "final_remarks"
         return context
-    
+
+
+# Home Energy Side templates
+
+
+class ExteriorEvaluationFuelLeakTestingPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/exterior-evaluation.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Exterior Evaluation & Fuel Leak Testing"
+        context["active_page"] = "exterior_evaluation"
+        return context
+
+
+class InteriorSafetyEvaluationPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/interior-safety-evaluation.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Interior Safety Evaluation"
+        context["active_page"] = "interior_safety_evaluation"
+        return context
+
+
+class DoorsWindowsPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/doors-windows.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Doors & Windows"
+        context["active_page"] = "doors_windows"
+        return context
+
+
+class BuildingComponentsConstructionPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/building-components-construction.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Building Components & Construction"
+        context["active_page"] = "building_components_construction"
+        return context
+
+
+class AirflowVentilationPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/airflow-ventilation.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Airflow & Ventilation"
+        context["active_page"] = "airflow_ventilation"
+        return context
