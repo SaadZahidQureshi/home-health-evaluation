@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView
 from api.core.mixin import LoginRequiredMixin
 from api.home.models import *
+from api.home_energy.models import Step
 
 # Create your views here.
 class LandingPageTemplateView(TemplateView):
@@ -229,6 +230,7 @@ class ExteriorEvaluationFuelLeakTestingPageTemplateView(LoginRequiredMixin, Temp
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["principleId"] = Step.objects.get(order=1).id
         context["title"] = "Exterior Evaluation & Fuel Leak Testing"
         context["active_page"] = "exterior_evaluation"
         return context
@@ -271,4 +273,44 @@ class AirflowVentilationPageTemplateView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context["title"] = "Airflow & Ventilation"
         context["active_page"] = "airflow_ventilation"
+        return context
+
+
+class HVACCombustionSafetyTestingPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/hvac-combustion-safety-testing.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "HVAC & Combustion Safety Testing"
+        context["active_page"] = "hvac_combustion_safety"
+        return context
+
+
+class BlowerDoorTestingPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/blower-door-testing.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Blower Door Testing"
+        context["active_page"] = "blower_door_testing"
+        return context
+
+
+class AppliancesLightingPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/appliances-lighting.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Appliances and Lighting"
+        context["active_page"] = "appliances_lighting"
+        return context
+
+
+class BaseloadEnergyConsumptionPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/baseload-energy-consumption.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Baseload Energy Consumption"
+        context["active_page"] = "baseload_enery_consumption"
         return context

@@ -1,12 +1,13 @@
 {% extends "home-energy-base.html" %}
 {% load static %}
-{% block title %}Exterior Evaluation & Fuel Leak Testing{% endblock title %}
+{% block title %}Baseload Energy Consumption{% endblock title %}
 
 {% block content %}
 <div class="right-mainpart">
+    
 </div>
 {{principleId|json_script:"principleId"}}
 {% endblock content %}
 {% block js %}
-<script src="{% static "js/step-base.js" %}"></script>
+<script src="{% static "js/category-base.js" %}"></script>
 {% endblock js %}

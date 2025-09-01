@@ -38,4 +38,8 @@ urlpatterns = [
     path("doors-windows/", DoorsWindowsPageTemplateView.as_view(), name="doors_windows"),
     path("building-components/", BuildingComponentsConstructionPageTemplateView.as_view(), name="building_components"),
     path("airflow-ventilation/", AirflowVentilationPageTemplateView.as_view(), name="airflow_ventilation"),
+    path("hvac-combustion-safety-testing/", HVACCombustionSafetyTestingPageTemplateView.as_view(), name="hvac_combustion_safety_testing"),
+    path("blower-door-testing/", BlowerDoorTestingPageTemplateView.as_view(), name="blower_door_testing"),
+    path("appliances-lighting/", AppliancesLightingPageTemplateView.as_view(), name="appliances_lighting"),
+    path("baseload-energy-consumption/", BaseloadEnergyConsumptionPageTemplateView.as_view(), name="baseload_energy_consumption"),
 ]
