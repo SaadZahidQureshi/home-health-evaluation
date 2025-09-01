@@ -42,7 +42,7 @@ class UserViewSet(DotsModelViewSet):
     def me(self, request, *args, **kwargs):
         serializer = UserSerializer(self.request.user, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
-    
+
 
 class CustomerViewSet(DotsModelViewSet):
     queryset = Customer.objects.all()
@@ -52,8 +52,13 @@ class CustomerViewSet(DotsModelViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset().filter(created_by=self.request.user)
+        
+        if hasattr(self, "type"):
+            queryset = queryset.filter(type=self.type)
+
         if self.action in ["list"]:
             queryset = queryset.filter(audit_completed=True)
+
         return queryset
 
     def _get_customer(self, customer_id):
@@ -73,13 +78,16 @@ class CustomerViewSet(DotsModelViewSet):
     def create(self, request, *args, **kwargs):
         if not request.data:
             customer = self.get_or_create_customer()
+            customer.type = getattr(self, "type", CustomerTypes.HEALTHY_HOME)
+            customer.save()
             serializer = self.get_serializer(customer)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        
+
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.validated_data['created_by'] = request.user
-        
+        serializer.validated_data['type'] = getattr(self, "type", CustomerTypes.HEALTHY_HOME)
+
         if 'address' not in serializer.validated_data:
             serializer.validated_data['address'] = None
         if 'city' not in serializer.validated_data:
@@ -88,10 +96,18 @@ class CustomerViewSet(DotsModelViewSet):
             serializer.validated_data['state'] = None
         if 'zip' not in serializer.validated_data:
             serializer.validated_data['zip'] = None
-        
+
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+class HealthyHomeCustomer(CustomerViewSet):
+    type = CustomerTypes.HEALTHY_HOME
+
+
+class ResidentialHomeCustomer(CustomerViewSet):
+    type = CustomerTypes.RESIDENTIAL_HOME
 
 
 class PhotoViewSet(DotsModelViewSet):

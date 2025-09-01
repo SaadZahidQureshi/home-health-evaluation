@@ -2,7 +2,7 @@ from conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from api.core.abstract import BaseModel
-from api.core.choices import CharFieldSizes, Roles
+from api.core.choices import CharFieldSizes, CustomerTypes, Roles
 from api.core.validators import phone_regex
 
 
@@ -54,6 +54,7 @@ class Customer(BaseModel):
     state = models.CharField(max_length=CharFieldSizes.SMALL, null=True)
     zip = models.CharField(max_length=CharFieldSizes.SMALL, null=True)
     audit_completed = models.BooleanField(default=False)
+    type = models.CharField(choices=CustomerTypes.choices, max_length=CharFieldSizes.SMALL, default=CustomerTypes.HEALTHY_HOME)
 
     @classmethod
     def create_default_customer(self, obj):

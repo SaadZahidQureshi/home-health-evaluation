@@ -6,6 +6,10 @@ class Roles(models.TextChoices):
     USER = "user", "User"
     CUSTOMER = "customer", "Customer"
 
+class CustomerTypes(models.TextChoices):
+    HEALTHY_HOME = "healthy_home", "Healthy Home"
+    RESIDENTIAL_HOME = "residential_home", "Residential Home"
+
 class CharFieldSizes(models.IntegerChoices):
     SMALL = 50
     MEDIUM = 100
