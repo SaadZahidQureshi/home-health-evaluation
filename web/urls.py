@@ -42,5 +42,9 @@ urlpatterns = [
     path("blower-door-testing/", BlowerDoorTestingPageTemplateView.as_view(), name="blower_door_testing"),
     path("appliances-lighting/", AppliancesLightingPageTemplateView.as_view(), name="appliances_lighting"),
     path("baseload-energy-consumption/", BaseloadEnergyConsumptionPageTemplateView.as_view(), name="baseload_energy_consumption"),
-    path("home-energy/final-remarks", FinalRemarksPageTemplateView.as_view(), name="final_remarks"),
+    path("home-energy/final-remarks/", FinalRemarksPageTemplateView.as_view(), name="final_remarks"),
+    path("home-energy/history/", HomeEnergyHistoryPageTemplateView.as_view(), name="home_energy_history"),
+    path("home-energy/saved/<int:pk>", HomeEnergySavedPageTemplateView.as_view(), name="home_energy_saved"),
+    path("step/details/<int:pk>", StepDetailsPageTemplateView.as_view(), name="step_detail_page"),
+    path("home-energy/profile-settings/", HomeEnergyProfileSettingPageTemplateView.as_view(), name="home_energy_profile_settings_page"),
 ]

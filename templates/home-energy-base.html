@@ -72,7 +72,7 @@
                                 <a href="/baseload-energy-consumption/"><span class="">9</span> <span>Baseload Energy Consumption</span></a>
                             </li>
                             <li data-order="10" class="{% if active_page == "final_remarks" %}active{% endif %}">
-                                <a href="/home-energy/final-remarks"><span class="">10</span><span>Final Recommendations</span></a>
+                                <a href="/home-energy/final-remarks/"><span class="">10</span><span>Final Recommendations</span></a>
                             </li>
                         </ul>
                     </div>
@@ -100,14 +100,14 @@
                                     </svg> 
                                 </a></li>
                                 <li class="hide"><a href="/saved/"><img src="{% static "img\save.svg" %}" alt=""></a></li>
-                                <li><a href="/history/"><img src="{% static "img\history.svg" %}" alt=""></a></li>
+                                <li><a href="/home-energy/history/"><img src="{% static "img\history.svg" %}" alt=""></a></li>
                                 <li>
                                     <div class="dropdown">
                                         <a class="profile_btn" href="#" role="button" id="profile_dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                             <img id="image" src="{% static "img\profile.png" %}" alt="">
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="profile_dropdown">
-                                            <li><a class="dropdown-item" href="/profile-settings/">Profile Settings</a></li>
+                                            <li><a class="dropdown-item" href="/home-energy/profile-settings/">Profile Settings</a></li>
                                             <li class="hide"><a class="dropdown-item" href="/settings/">Settings</a></li>
                                             <li><a class="dropdown-item" onclick="handleLogout()" href="javascript:void(0)">Logout</a></li>
                                         </ul>

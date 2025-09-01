@@ -209,7 +209,6 @@ class PrincipleDetailsPageTemplateView(LoginRequiredMixin, TemplateView):
         context["title"] = principle.name
         context["principleId"] = principle.id
         return context
-    
 
 class FinalRecommendationPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "final-remarks.html"
@@ -332,4 +331,40 @@ class FinalRemarksPageTemplateView(LoginRequiredMixin, TemplateView):
         context["title"] = "Final Recommendations"
         context["principleId"] = Step.objects.get(order=10).id
         context["active_page"] = "final_remarks"
+        return context
+    
+class HomeEnergyHistoryPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/history.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "History"
+        return context
+
+class HomeEnergySavedPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/saved.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Saved"
+        context["customerId"] = self.kwargs['pk']
+        return context
+
+class StepDetailsPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/principle-details.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        principle = Step.objects.get(id=self.kwargs['pk'])
+        context["title"] = principle.title
+        context["principleId"] = principle.id
+        return context
+
+
+class HomeEnergyProfileSettingPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/profile-settings.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Profile Settings"
         return context

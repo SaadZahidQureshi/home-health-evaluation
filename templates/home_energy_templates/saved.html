@@ -1,0 +1,469 @@
+
+
+{% extends "home-energy-base.html" %}
+{% load static %}
+{% block css %}
+<link href="{% static "css/home_energy/saved.css" %}" rel="stylesheet" type="text/css" />
+{% endblock css %}
+
+{% block title %}Saved{% endblock title %}
+
+{% block content %}
+<div class="right-mainpart">
+    <div class="saved_box">
+        <div class="save_left">
+            <div class="audit_item">
+                <div class="audit_title">
+                    <h3>Customer Information</h3>
+                </div>
+                <div class="">
+                    <img id="house_image" src="{% static "img\default-image.jpg" %}" alt="">
+                    <div class="customer-info w-100">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="name">
+                                    <h4>Customer Name</h4>
+                                    <span id="name">test</span>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="name">
+                                    <h4>Email Address</h4>
+                                    <span id="email">test</span>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="name">
+                                    <h4>Address</h4>
+                                    <span id="address">test</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="name">
+                                    <h4>City</h4>
+                                    <span id="city">test</span>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="name">
+                                    <h4>State</h4>
+                                    <span id="state">test</span>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="name">
+                                    <h4>Zip Code</h4>
+                                    <span id="zip">test</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="audit_bottom">
+                <div class="audit_title">
+                    <h3>Your Energy Audit</h3>
+                </div>
+                <div class="energy-item-container">
+                    <div class="energy-item">
+                        <div class="icon" >
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M66 56.9992C66 58.5905 65.3679 60.1166 64.2426 61.2418C63.1174 62.3671 61.5913 62.9992 60 62.9992H12C10.4087 62.9992 8.88258 62.3671 7.75736 61.2418C6.63214 60.1166 6 58.5905 6 56.9992V23.9992C5.99934 22.8693 6.31772 21.7622 6.91851 20.8053C7.5193 19.8484 8.37808 19.0806 9.396 18.5902L33.246 6.6682C34.0978 6.22785 35.0426 5.99805 36.0015 5.99805C36.9604 5.99805 37.9052 6.22785 38.757 6.6682L62.601 18.5902C63.6195 19.0801 64.4789 19.8478 65.0802 20.8047C65.6816 21.7617 66.0004 22.869 66 23.9992V56.9992Z" stroke="url(#paint0_linear_605_8407)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M22 44H51" stroke="url(#paint1_linear_605_8407)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M51 63V36.4167C51 35.7757 50.7454 35.161 50.2922 34.7078C49.839 34.2546 49.2243 34 48.5833 34H24.4167C23.7757 34 23.161 34.2546 22.7078 34.7078C22.2546 35.161 22 35.7757 22 36.4167V63" stroke="url(#paint2_linear_605_8407)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M22 53H51" stroke="url(#paint3_linear_605_8407)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <defs>
+                                <linearGradient id="paint0_linear_605_8407" x1="36" y1="5.99805" x2="36" y2="62.9992" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_605_8407" x1="36.5" y1="44" x2="36.5" y2="45" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint2_linear_605_8407" x1="36.5" y1="34" x2="36.5" y2="63" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint3_linear_605_8407" x1="36.5" y1="53" x2="36.5" y2="54" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                </defs>
+                            </svg>
+                            <span>Exterior Evaluation</span>
+                        </div>
+                    </div>
+                    <div class="energy-item">
+                        <div class="icon" >
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 66H45" stroke="url(#paint0_linear_605_8415)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 27H42" stroke="url(#paint1_linear_605_8415)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M42 66V12C42 10.4087 41.3679 8.88258 40.2426 7.75736C39.1174 6.63214 37.5913 6 36 6H18C16.4087 6 14.8826 6.63214 13.7574 7.75736C12.6321 8.88258 12 10.4087 12 12V66" stroke="url(#paint2_linear_605_8415)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M42 39H48C49.5913 39 51.1174 39.6321 52.2426 40.7574C53.3679 41.8826 54 43.4087 54 45V51C54 52.5913 54.6321 54.1174 55.7574 55.2426C56.8826 56.3679 58.4087 57 60 57C61.5913 57 63.1174 56.3679 64.2426 55.2426C65.3679 54.1174 66 52.5913 66 51V29.49C66.0006 28.6983 65.8446 27.9142 65.5408 27.1831C65.237 26.452 64.7915 25.7882 64.23 25.23L54 15" stroke="url(#paint3_linear_605_8415)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <defs>
+                                <linearGradient id="paint0_linear_605_8415" x1="27" y1="66" x2="27" y2="67" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_605_8415" x1="27" y1="27" x2="27" y2="28" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint2_linear_605_8415" x1="27" y1="6" x2="27" y2="66" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint3_linear_605_8415" x1="54" y1="15" x2="54" y2="57" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                </defs>
+                            </svg>
+                            <span>Combustible Fuel</span>
+                        </div>
+                    </div>
+                    <div class="energy-item">
+                        <div class="icon" >
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M33 63C33 55.5 39 55.5 39 48" stroke="url(#paint0_linear_605_8421)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M48 63C48 55.5 54 55.5 54 48" stroke="url(#paint1_linear_605_8421)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M57 24L54.6 33C54.4298 33.8345 53.9806 34.5863 53.3263 35.1316C52.672 35.6768 51.8516 35.9831 51 36H21C20.1484 35.9831 19.328 35.6768 18.6737 35.1316C18.0194 34.5863 17.5702 33.8345 17.4 33L15 24" stroke="url(#paint2_linear_605_8421)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M63 9C63.7956 9 64.5587 9.31607 65.1213 9.87868C65.6839 10.4413 66 11.2044 66 12V18C66 19.5913 65.3679 21.1174 64.2426 22.2426C63.1174 23.3679 61.5913 24 60 24H12C10.4087 24 8.88258 23.3679 7.75736 22.2426C6.63214 21.1174 6 19.5913 6 18V12C6 11.2044 6.31607 10.4413 6.87868 9.87868C7.44129 9.31607 8.20435 9 9 9H63Z" stroke="url(#paint3_linear_605_8421)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M18 63C18 55.5 24 55.5 24 48" stroke="url(#paint4_linear_605_8421)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <defs>
+                                <linearGradient id="paint0_linear_605_8421" x1="36" y1="48" x2="36" y2="63" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_605_8421" x1="51" y1="48" x2="51" y2="63" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint2_linear_605_8421" x1="36" y1="24" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint3_linear_605_8421" x1="36" y1="9" x2="36" y2="24" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint4_linear_605_8421" x1="21" y1="48" x2="21" y2="63" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                </defs>
+                            </svg>
+                            <span>Interior Safety</span>
+                        </div>
+                    </div>
+                    <div class="energy-item">
+                        <div class="icon" >
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30 36H30.03" stroke="url(#paint0_linear_605_8428)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M54 60V18C54 16.4087 53.3679 14.8826 52.2426 13.7574C51.1174 12.6321 49.5913 12 48 12H24C22.4087 12 20.8826 12.6321 19.7574 13.7574C18.6321 14.8826 18 16.4087 18 18V60" stroke="url(#paint1_linear_605_8428)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 60H66" stroke="url(#paint2_linear_605_8428)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <defs>
+                                <linearGradient id="paint0_linear_605_8428" x1="30.015" y1="36" x2="30.015" y2="37" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_605_8428" x1="36" y1="12" x2="36" y2="60" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint2_linear_605_8428" x1="36" y1="60" x2="36" y2="61" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                </defs>
+                            </svg>
+                            <span>Doors & Windows</span>
+                        </div>
+                    </div>
+                    <div class="energy-item">
+                        <div class="icon" >
+                            <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M36 30H36.03" stroke="url(#paint0_linear_605_8433)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M36 42H36.03" stroke="url(#paint1_linear_605_8433)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M36 18H36.03" stroke="url(#paint2_linear_605_8433)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M48 30H48.03" stroke="url(#paint3_linear_605_8433)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M48 42H48.03" stroke="url(#paint4_linear_605_8433)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M48 18H48.03" stroke="url(#paint5_linear_605_8433)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M24 30H24.03" stroke="url(#paint6_linear_605_8433)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M24 42H24.03" stroke="url(#paint7_linear_605_8433)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M24 18H24.03" stroke="url(#paint8_linear_605_8433)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M27 66V57C27 56.2044 27.3161 55.4413 27.8787 54.8787C28.4413 54.3161 29.2044 54 30 54H42C42.7956 54 43.5587 54.3161 44.1213 54.8787C44.6839 55.4413 45 56.2044 45 57V66" stroke="url(#paint9_linear_605_8433)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M54 6H18C14.6863 6 12 8.68629 12 12V60C12 63.3137 14.6863 66 18 66H54C57.3137 66 60 63.3137 60 60V12C60 8.68629 57.3137 6 54 6Z" stroke="url(#paint10_linear_605_8433)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <defs>
+                                <linearGradient id="paint0_linear_605_8433" x1="36.015" y1="30" x2="36.015" y2="31" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_605_8433" x1="36.015" y1="42" x2="36.015" y2="43" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint2_linear_605_8433" x1="36.015" y1="18" x2="36.015" y2="19" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint3_linear_605_8433" x1="48.015" y1="30" x2="48.015" y2="31" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint4_linear_605_8433" x1="48.015" y1="42" x2="48.015" y2="43" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint5_linear_605_8433" x1="48.015" y1="18" x2="48.015" y2="19" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint6_linear_605_8433" x1="24.015" y1="30" x2="24.015" y2="31" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint7_linear_605_8433" x1="24.015" y1="42" x2="24.015" y2="43" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint8_linear_605_8433" x1="24.015" y1="18" x2="24.015" y2="19" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint9_linear_605_8433" x1="36" y1="54" x2="36" y2="66" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint10_linear_605_8433" x1="36" y1="6" x2="36" y2="66" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                </defs>
+                            </svg>
+                            <span>Building Components & Construction</span>
+                        </div>
+                    </div>
+                    <div class="energy-item">
+                        <div class="icon" >
+                            <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M81.2025 122.842C73.3436 126.814 64.5033 128.426 55.7485 127.483C46.9938 126.541 38.6988 123.085 31.8648 117.533C25.0308 111.98 19.95 104.569 17.2355 96.1922C14.5211 87.8157 14.2891 78.8326 16.5675 70.3272L57.1575 81.2022C53.1861 73.3433 51.5741 64.503 52.5162 55.7482C53.4583 46.9935 56.9142 38.6985 62.4667 31.8645C68.0192 25.0305 75.431 19.9497 83.8075 17.2352C92.184 14.5208 101.167 14.2888 109.672 16.5672L98.7975 57.1572C106.656 53.1858 115.497 51.5738 124.251 52.5159C133.006 53.458 141.301 56.9139 148.135 62.4664C154.969 68.0189 160.05 75.4307 162.764 83.8072C165.479 92.1837 165.711 101.167 163.432 109.672L122.842 98.7972C126.814 106.656 128.426 115.496 127.484 124.251C126.542 133.006 123.086 141.301 117.533 148.135C111.981 154.969 104.569 160.05 96.1925 162.764C87.816 165.479 78.8329 165.711 70.3275 163.432L81.2025 122.842Z" stroke="url(#paint0_linear_388_793)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M90 90V90.075" stroke="url(#paint1_linear_388_793)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <defs>
+                                <linearGradient id="paint0_linear_388_793" x1="90" y1="15.0137" x2="90" y2="164.986" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_388_793" x1="90.5" y1="90" x2="90.5" y2="90.075" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                </defs>
+                            </svg>
+                            <span>Building Airflow & Ventilation</span>
+                        </div>
+                    </div>
+                    <div class="energy-item">
+                        <div class="icon" >
+                           <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M75 157.5V150" stroke="url(#paint0_linear_388_804)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M75 30V22.5" stroke="url(#paint1_linear_388_804)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M75 67.5C69.0326 67.5 63.3097 69.8705 59.0901 74.0901C54.8705 78.3097 52.5 84.0326 52.5 90C52.5 95.9674 54.8705 101.69 59.0901 105.91C63.3097 110.129 69.0326 112.5 75 112.5" stroke="url(#paint2_linear_388_804)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M105 150L114.375 131.25L135 135" stroke="url(#paint3_linear_388_804)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M105 30L114.375 48.75L135 45" stroke="url(#paint4_linear_388_804)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M127.5 157.5L105 112.5L116.25 90H165" stroke="url(#paint5_linear_388_804)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M127.5 22.5L105 67.5L116.25 90" stroke="url(#paint6_linear_388_804)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15 90H22.5" stroke="url(#paint7_linear_388_804)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M150 75L138.75 90L150 105" stroke="url(#paint8_linear_388_804)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M27.3 137.7L32.55 132.45" stroke="url(#paint9_linear_388_804)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M32.55 47.5498L27.3 42.2998" stroke="url(#paint10_linear_388_804)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                                <defs>
+                                <linearGradient id="paint0_linear_388_804" x1="75.5" y1="150" x2="75.5" y2="157.5" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_388_804" x1="75.5" y1="22.5" x2="75.5" y2="30" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint2_linear_388_804" x1="63.75" y1="67.5" x2="63.75" y2="112.5" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint3_linear_388_804" x1="120" y1="131.25" x2="120" y2="150" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint4_linear_388_804" x1="120" y1="30" x2="120" y2="48.75" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint5_linear_388_804" x1="135" y1="90" x2="135" y2="157.5" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint6_linear_388_804" x1="116.25" y1="22.5" x2="116.25" y2="90" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint7_linear_388_804" x1="18.75" y1="90" x2="18.75" y2="91" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint8_linear_388_804" x1="144.375" y1="75" x2="144.375" y2="105" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint9_linear_388_804" x1="29.925" y1="132.45" x2="29.925" y2="137.7" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint10_linear_388_804" x1="29.925" y1="42.2998" x2="29.925" y2="47.5498" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                </defs>
+                            </svg>
+                            <span>Heating, Cooling & Wate</span>
+                        </div>
+                    </div>
+                    <div class="energy-item">
+                        <div class="icon" >
+                           <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M112.5 90L42.2026 160.297C40.7252 161.775 38.9712 162.948 37.0407 163.748C35.1103 164.548 33.0411 164.96 30.9515 164.96C26.7312 164.961 22.6835 163.285 19.6988 160.301C16.7141 157.318 15.037 153.27 15.0363 149.05C15.0356 144.83 16.7114 140.782 19.6951 137.797L90.0001 67.5" stroke="url(#paint0_linear_388_823)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M135 112.5L165 82.5" stroke="url(#paint1_linear_388_823)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M161.25 86.25L146.895 71.895C144.082 69.0826 142.501 65.2679 142.5 61.29V58.71C142.499 54.7321 140.918 50.9174 138.105 48.105L125.677 35.6775C117.241 27.2424 105.8 22.5025 93.87 22.5H67.5L76.8225 31.8225C85.2595 40.2609 89.9994 51.7048 90 63.6375V75L105 90H113.79C117.768 90.0008 121.583 91.5818 124.395 94.395L138.75 108.75" stroke="url(#paint2_linear_388_823)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                                <defs>
+                                <linearGradient id="paint0_linear_388_823" x1="63.7682" y1="67.5" x2="63.7682" y2="164.96" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_388_823" x1="150" y1="82.5" x2="150" y2="112.5" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint2_linear_388_823" x1="114.375" y1="22.5" x2="114.375" y2="108.75" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                </defs>
+                            </svg>
+                            <span>Combustion Safety</span>
+                        </div>
+                    </div>
+                    <div class="energy-item">
+                        <div class="icon" >
+                           <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M30 36H30.03" stroke="url(#paint0_linear_605_8446)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M54 27V18C54 16.4087 53.3679 14.8826 52.2426 13.7574C51.1174 12.6321 49.5913 12 48 12H24C22.4087 12 20.8826 12.6321 19.7574 13.7574C18.6321 14.8826 18 16.4087 18 18V60" stroke="url(#paint1_linear_605_8446)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 60H30" stroke="url(#paint2_linear_605_8446)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M60 51V45C60 43.4087 59.3679 41.8826 58.2426 40.7574C57.1174 39.6321 55.5913 39 54 39C52.4087 39 50.8826 39.6321 49.7574 40.7574C48.6321 41.8826 48 43.4087 48 45V51" stroke="url(#paint3_linear_605_8446)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M63 51H45C43.3431 51 42 52.3431 42 54V63C42 64.6569 43.3431 66 45 66H63C64.6569 66 66 64.6569 66 63V54C66 52.3431 64.6569 51 63 51Z" stroke="url(#paint4_linear_605_8446)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <defs>
+                                <linearGradient id="paint0_linear_605_8446" x1="30.015" y1="36" x2="30.015" y2="37" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_605_8446" x1="36" y1="12" x2="36" y2="60" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint2_linear_605_8446" x1="18" y1="60" x2="18" y2="61" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint3_linear_605_8446" x1="54" y1="39" x2="54" y2="51" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint4_linear_605_8446" x1="54" y1="51" x2="54" y2="66" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                </defs>
+                            </svg>
+                            <span>Blower Door Testing</span>
+                        </div>
+                    </div>
+                    <div class="energy-item">
+                        <div class="icon" >
+                           <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 18C15 14.8174 16.2643 11.7652 18.5147 9.51472C20.7652 7.26428 23.8174 6 27 6H45C48.1826 6 51.2348 7.26428 53.4853 9.51472C55.7357 11.7652 57 14.8174 57 18V60C57 61.5913 56.3679 63.1174 55.2426 64.2426C54.1174 65.3679 52.5913 66 51 66H21C19.4087 66 17.8826 65.3679 16.7574 64.2426C15.6321 63.1174 15 61.5913 15 60V18Z" stroke="url(#paint0_linear_605_8453)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15 30H57" stroke="url(#paint1_linear_605_8453)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M45 21V39" stroke="url(#paint2_linear_605_8453)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <defs>
+                                <linearGradient id="paint0_linear_605_8453" x1="36" y1="6" x2="36" y2="66" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_605_8453" x1="36" y1="30" x2="36" y2="31" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint2_linear_605_8453" x1="45.5" y1="21" x2="45.5" y2="39" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                </defs>
+                            </svg>
+                            <span>Appliances and Lighting</span>
+                        </div>
+                    </div>
+                    <div class="energy-item">
+                        <div class="icon" >
+                           <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.0005 42C11.4328 42.0019 10.8762 41.8428 10.3953 41.5409C9.91449 41.2391 9.52917 40.8071 9.28411 40.295C9.03906 39.7829 8.94434 39.2118 9.01096 38.648C9.07758 38.0842 9.30281 37.5509 9.66047 37.11L39.3605 6.51C39.5833 6.25284 39.8868 6.07907 40.2214 6.0172C40.556 5.95533 40.9016 6.00904 41.2017 6.16951C41.5017 6.32999 41.7382 6.58769 41.8725 6.90032C42.0067 7.21296 42.0307 7.56195 41.9405 7.89L36.1805 25.95C36.0106 26.4046 35.9536 26.8936 36.0142 27.375C36.0749 27.8565 36.2514 28.316 36.5287 28.7143C36.806 29.1125 37.1758 29.4375 37.6063 29.6615C38.0368 29.8854 38.5152 30.0016 39.0005 30H60.0005C60.5682 29.9981 61.1248 30.1573 61.6056 30.4591C62.0864 30.7609 62.4718 31.1929 62.7168 31.705C62.9619 32.2171 63.0566 32.7882 62.99 33.352C62.9233 33.9158 62.6981 34.4491 62.3405 34.89L32.6405 65.49C32.4177 65.7472 32.1141 65.9209 31.7795 65.9828C31.445 66.0447 31.0993 65.991 30.7993 65.8305C30.4993 65.67 30.2627 65.4123 30.1285 65.0997C29.9942 64.787 29.9702 64.4381 30.0605 64.11L35.8205 46.05C35.9903 45.5954 36.0474 45.1064 35.9867 44.625C35.926 44.1435 35.7495 43.684 35.4722 43.2857C35.1949 42.8875 34.8251 42.5625 34.3946 42.3385C33.9641 42.1146 33.4857 41.9984 33.0005 42H12.0005Z" stroke="url(#paint0_linear_605_8458)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <defs>
+                                <linearGradient id="paint0_linear_605_8458" x1="36.0005" y1="5.99219" x2="36.0005" y2="66.0078" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                </defs>
+                            </svg>
+                            <span>Baseload Energy</span>
+                        </div>
+                    </div>
+                    <div class="energy-item">
+                        <div class="icon" >
+                           <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M45 6H27C25.3431 6 24 7.34315 24 9V15C24 16.6569 25.3431 18 27 18H45C46.6569 18 48 16.6569 48 15V9C48 7.34315 46.6569 6 45 6Z" stroke="url(#paint0_linear_605_8382)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M48 12H54C55.5913 12 57.1174 12.6321 58.2426 13.7574C59.3679 14.8826 60 16.4087 60 18V60C60 61.5913 59.3679 63.1174 58.2426 64.2426C57.1174 65.3679 55.5913 66 54 66H18C16.4087 66 14.8826 65.3679 13.7574 64.2426C12.6321 63.1174 12 61.5913 12 60V18C12 16.4087 12.6321 14.8826 13.7574 13.7574C14.8826 12.6321 16.4087 12 18 12H24" stroke="url(#paint1_linear_605_8382)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M42 33L31 44L26 39" stroke="url(#paint2_linear_605_8382)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M46 37L38.5 44.5L37 43" stroke="url(#paint3_linear_605_8382)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <defs>
+                                <linearGradient id="paint0_linear_605_8382" x1="36" y1="6" x2="36" y2="18" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint1_linear_605_8382" x1="36" y1="12" x2="36" y2="66" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint2_linear_605_8382" x1="34" y1="33" x2="34" y2="44" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                <linearGradient id="paint3_linear_605_8382" x1="41.5" y1="37" x2="41.5" y2="44.5" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#71BF1E"/>
+                                <stop offset="1" stop-color="#02A0E9"/>
+                                </linearGradient>
+                                </defs>
+                            </svg>
+                            <span>Final Recommendation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>                                             
+</div>  
+{{customerId|json_script:"customerId"}}
+{% endblock content %}
+{% block js %}
+<script src="{% static "js/home_energy/customer-details.js" %}"></script>
+{% endblock js %}
+
+
