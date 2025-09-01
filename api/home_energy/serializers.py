@@ -36,11 +36,11 @@ class PhotoSerializer(serializers.ModelSerializer):
 
 class FeedbackSerializer(serializers.ModelSerializer):
     images = PhotoSerializer(many=True, read_only=True)
-    image_ids = serializers.PrimaryKeyRelatedField(queryset=Photo.objects.all(), many=True, write_only=True, required=False)
+    # image_ids = serializers.PrimaryKeyRelatedField(queryset=Photo.objects.all(), many=True, write_only=True, required=False)
 
     class Meta:
         model = Feedback
-        fields = ["id", "question", "customer", "text_answer", "numeric_answer", "selected_option", "images", "image_ids"]
+        fields = ["id", "question_group", "customer", "text", "images"]
 
     def create(self, validated_data):
         image_ids = validated_data.pop("image_ids", [])
@@ -49,11 +49,11 @@ class FeedbackSerializer(serializers.ModelSerializer):
         return response
 
 
-class FeedbackSerializer(serializers.ModelSerializer):
-    images = PhotoSerializer(many=True, read_only=True)
-    class Meta:
-        model = Feedback
-        fields = ["id", "question_group", "customer", "text","images"]
+# class FeedbackSerializer(serializers.ModelSerializer):
+#     images = PhotoSerializer(many=True, read_only=True)
+#     class Meta:
+#         model = Feedback
+#         fields = ["id", "question_group", "customer", "text", "images"]
 
 
 

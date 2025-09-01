@@ -13,7 +13,7 @@ class LoginPageTemplateView(TemplateView):
 class RegisterPageTemplateView(TemplateView):
     template_name = "sign-up.html"
 
-class SideSelectionPageTemplateView(TemplateView):
+class SideSelectionPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "side-selection.html"
 
 class KeepItCleanPageTemplateView(LoginRequiredMixin, TemplateView):

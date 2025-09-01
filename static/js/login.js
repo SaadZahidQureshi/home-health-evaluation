@@ -35,7 +35,7 @@ async function loginForm(event) {
             showToast("Success", "Logged in successfully!", "success-toast");
             setTimeout(() => {
                 afterLoad(button, "Signed in");
-                location.href = `/keep-it-clean/`;
+                location.href = `/side-selection/`;
             }, 1000);
         } else {
             const result = await response.json();

@@ -132,14 +132,14 @@ class QuestionGroupViewSet(DotsModelViewSet):
         input_serializer.is_valid(raise_exception=True)
         question_group = self.get_object()
         validated_data = input_serializer.validated_data
-        customer = validated_data['customer_id']
+        customer = validated_data["customer_id"]
         text = validated_data['text']
         with transaction.atomic():
             feedback, created = Feedback.objects.get_or_create(customer=customer, question_group=question_group, defaults={'text':text})
             if not created:
                 feedback.text = text
-                feedback.save()
-        serializer = self.get_serializer(question_group)        
+            feedback.save()
+        serializer = self.get_serializer(question_group, context={"customer_id": customer.id})
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     
     @action(detail=True, methods=['POST'], url_path='upload-images')

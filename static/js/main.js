@@ -301,7 +301,7 @@ async function successModal(){
     modal._element.addEventListener('hidden.bs.modal', function() {
         form.reset();
         sessionStorage.removeItem("customer_id");
-        location.href = "/keep-it-clean/";
+        location.href = location.pathname.includes("/home-energy/final-remarks/") ? "/exterior-evaluation/" : "/keep-it-clean/";
     });
     modal.show();
 }
@@ -320,10 +320,10 @@ function uploadIdImage(event) {
     }
 }
 
-function addNewCustomerRecord(event){
+function addNewCustomerRecord(event, type=null) {
     event.preventDefault();
     sessionStorage.removeItem("customer_id");
-    location.href = "/keep-it-clean/";
+    location.href = type == "home_energy" ? "/exterior-evaluation/" : "/keep-it-clean/";
 }
 
 function formatDate(inputDate) {

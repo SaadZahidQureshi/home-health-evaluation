@@ -3,7 +3,7 @@ let principle_data = null;
 let selectedQuestionsByGroup = new Map();
 let questionsWithInitialAnswers = new Set();
 let customer_id = sessionStorage.getItem("customer_id") || null;
-window.addEventListener('load', get_principle_data());
+window.addEventListener('load', get_principle_data);
 
 
 async function get_principle_data() {
@@ -17,7 +17,6 @@ async function get_principle_data() {
         let response = await requestAPI(enndpoint, null, headers, 'GET');
         response.json().then(function(res) {
             if (response.status == 200) {
-                console.log(res);
                 principle_data = res;
                 render_principle_data(principle_data);
             }
@@ -51,7 +50,7 @@ function render_principle_data(data) {
     }
     
     data.groups.forEach((group, index) => {
-        const accordionBox = document.createElement('form');
+        const accordionBox = document.createElement('div');
         accordionBox.className = 'accordian_box';
         accordionBox.setAttribute("data-group", group.id);
 
@@ -59,8 +58,13 @@ function render_principle_data(data) {
             let finalDiv = document.createElement('form');
             finalDiv.className = 'inform_item';
             finalDiv.classList.add("details-form")
-            finalDiv.innerHTML = `<textarea name="details" placeholder="Remarks">${group?.feedback?.note || ""}</textarea>`
-            // accordionBox.appendChild(titleDiv);
+            finalDiv.innerHTML = `<textarea name="details" placeholder="Remarks">${group?.feedback?.text || ""}</textarea>`
+            
+            let titleDiv = document.createElement("div");
+            titleDiv.className = 'accordian_title';
+            titleDiv.innerHTML = `<h4>${group.questions[0].text}</h4>`
+            
+            accordionBox.appendChild(titleDiv);
             accordionBox.appendChild(finalDiv);
             container.appendChild(accordionBox);
             return;
@@ -96,7 +100,7 @@ function render_principle_data(data) {
                             <label class="question-checkbox-label">
                                 <input type="checkbox" class="question-checkbox" 
                                     value="${option.id}" name="dropdown_question_${question.id}"
-                                    data-question-id="${option.id}" data-category-id="${group.id}"
+                                    data-question-id="${question.id}"
                                     ${option.is_selected ? 'checked' : ''}>
                                 <span class="question-text">${option.text}</span>
                             </label>
@@ -110,7 +114,7 @@ function render_principle_data(data) {
                     let innerContentDiv = document.createElement("div");
                     innerContentDiv.className = 'inform_item';
                     innerContentDiv.innerHTML = `
-                        <input type="${question.field_type}" name="text" data-question-id="${question.id}" data-category-id="${group.id}" value=""${question.answer || ''}" placeholder="10" />
+                        <input type="${question.field_type}" name="text" data-question-id="${question.id}" value="${question?.answer?.text || ''}" placeholder="10" />
                     `;
                     questionDiv.appendChild(innerContentDiv);
                 }
@@ -133,12 +137,12 @@ function render_principle_data(data) {
                 if (question.field_type === 'dropdown' && question.options) {
                     question.options.forEach(option => {
                         if (option.is_selected) {
-                            selectedQuestionsByGroup.get(groupId).add(question.id.toString());
+                            selectedQuestionsByGroup.get(groupId).add(`${question.id}_${option.id}`);
                             questionsWithInitialAnswers.add(question.id.toString());
                         }
                     });
                 } else if (question.answer) {
-                    selectedQuestionsByGroup.get(groupId).add(question.id.toString());
+                    // selectedQuestionsByGroup.get(groupId).add(question.id.toString());
                     questionsWithInitialAnswers.add(question.id.toString());
                 }
             });
@@ -233,8 +237,6 @@ function setupEventHandlers(data) {
                         selectedQuestionsByGroup.get(group.id).add(`${question.id}_${option.id}`);
                     }
                 });
-            } else if (question.answer) {
-                selectedQuestionsByGroup.get(group.id).add(question.id.toString());
             }
         });
     });
@@ -342,10 +344,10 @@ function updateAccordionContentCount(group, contentP) {
     const selectedCount = countSelectedQuestions(group);
     
     if (selectedCount > 0) {
-        const countText = `${selectedCount} question${selectedCount > 1 ? 's' : ''} answered`;
+        const countText = `${selectedCount} option${selectedCount > 1 ? 's' : ''} selected`;
         contentP.innerHTML = countText;
     } else {
-        contentP.innerHTML = 'Select questions';
+        contentP.innerHTML = 'Select options';
     }
 }
 
@@ -353,7 +355,7 @@ function renderQuestionForm(container, group, data, preservedDetails = '', prese
     let answerData = null;
     if (group && group.feedback) {
         answerData = {
-            details: group.feedback.note,
+            details: group.feedback.text,
             images: group.feedback.images
         };
     }
@@ -563,120 +565,103 @@ async function handleGlobalSubmit(event) {
             window.feedbacksToDelete.clear();
         }
 
-        for (const category of principle_data.groups) {
-            const categoryId = category.id;
-            const accordionBox = [...document.querySelectorAll('.accordian_box')]
-                .find(box => box.querySelector('.accordian_title h4').textContent === category.name);
-
-            if (!accordionBox) continue;
-
-            const mainCategoryNotApplicable = notApplicableSelections.has(categoryId);
-
-            if (category.subcategories && category.subcategories.length > 0) {
-                const saveSubcategorySelections = async (subcategories) => {
-                    for (const subcat of subcategories) {
-                        const subcatSelections = selectedQuestionsByCategory.get(subcat.id) || new Set();
-                        const selectionsToSave = notApplicableSelections.has(subcat.id) ? [] : Array.from(subcatSelections);
-                        
-                        const selectionSuccess = await saveCategorySelections(subcat.id, selectionsToSave);
-                        if (!selectionSuccess) {
-                            throw new Error(`Failed to save selections for subcategory in "${category.name}"`);
-                        }
-                        
-                        if (subcat.subcategories) {
-                            await saveSubcategorySelections(subcat.subcategories);
-                        }
-                    }
-                };
-                
-                await saveSubcategorySelections(category.subcategories);
-            } else {
-                const categorySelections = selectedQuestionsByCategory.get(categoryId) || new Set();
-                const selectionsToSave = mainCategoryNotApplicable ? [] : Array.from(categorySelections);
-                
-                const selectionSuccess = await saveCategorySelections(categoryId, selectionsToSave);
-                if (!selectionSuccess) {
-                    throw new Error(`Failed to save selections for "${category.name}"`);
+        try {
+            // Ensure customer_id exists
+            if (!customer_id) {
+                const customerResponse = await createCustomer();
+                if (!customerResponse) {
+                    throw new Error("Failed to create customer");
                 }
+                customer_id = customerResponse.id;
+                sessionStorage.setItem("customer_id", customer_id);
             }
+            
+            let headers = {
+                "Content-Type": "application/json",
+                'X-CSRFToken': getCookie('csrftoken')
+            };
 
-            if (!mainCategoryNotApplicable) {
-                const form = accordionBox.querySelector('.details-form');
-                
-                let shouldSaveFeedback = false;
-                let hasAnySelections = false;
-
-                if (category.subcategories && category.subcategories.length > 0) {
-                    const allSubcategoriesNotApplicable = category.subcategories.every(subcat => 
-                        notApplicableSelections.has(subcat.id) || checkAllNestedSubcategoriesNotApplicable(subcat)
-                    );
-
-                    if (!allSubcategoriesNotApplicable) {
-                        const checkForSelections = (subcategories) => {
-                            for (const subcat of subcategories) {
-                                if (!notApplicableSelections.has(subcat.id)) {
-                                    const subcatSelections = selectedQuestionsByCategory.get(subcat.id) || new Set();
-                                    if (subcatSelections.size > 0) {
-                                        return true;
-                                    }
-                                }
-                                if (subcat.subcategories && checkForSelections(subcat.subcategories)) {
-                                    return true;
+            // Process each group
+            for (const group of principle_data.groups) {
+                // Handle questions
+                if (group.questions && group.questions.length > 0) {
+                    for (const question of group.questions) {
+                        if (question.field_type === 'dropdown') {
+                            // Get selected options
+                            const checkboxes = document.querySelectorAll(`input[name="dropdown_question_${question.id}"]:checked`);
+                            const selectedOptions = Array.from(checkboxes).map(cb => parseInt(cb.value));
+                            
+                            if (selectedOptions.length > 0) {
+                                const response = await requestAPI(`${API_BASE_URL}question/${question.id}/selection`, JSON.stringify({customer_id: customer_id, selected_options: selectedOptions}), headers, 'POST');
+                                if (response.status !== 200 && response.status !== 201) {
+                                    throw new Error(`Failed to save selection for question ${question.id}`);
                                 }
                             }
-                            return false;
-                        };
-                        
-                        hasAnySelections = checkForSelections(category.subcategories);
-                        shouldSaveFeedback = hasAnySelections;
-                    }
-                } else {
-                    const categorySelections = selectedQuestionsByCategory.get(categoryId) || new Set();
-                    hasAnySelections = categorySelections.size > 0;
-                    shouldSaveFeedback = hasAnySelections;
-                }
-                if (!isLastStep && (shouldSaveFeedback && form)) {
-                    const formData = new FormData(form);
-                    const details = formData.get('details');
-                    // const imageFiles = formData.getAll('images').filter(file => file.size > 0);
-                    const imageFiles = selectedFiles[categoryId] || [];
-                    const existingImages = [...form.querySelectorAll('.added_item[data-image-id]')]
-                        .map(item => item.getAttribute('data-image-id'));
-
-                    if (details.trim() !== '' || imageFiles.length > 0){
-                        const feedbackSuccess = await saveMainCategoryFeedback(categoryId, details, imageFiles, existingImages);
-                        if (!feedbackSuccess) {
-                            throw new Error(`Failed to save feedback for "${category.name}"`);
+                        } else {
+                            // Handle text inputs
+                            const input = document.querySelector(`input[data-question-id="${question.id}"]`);
+                            if (input && input.value.trim()) {
+                                const response = await requestAPI(`${API_BASE_URL}question/${question.id}/answer`, JSON.stringify({text: input.value.trim(), customer_id: customer_id }), headers, 'POST');
+                                if (response.status !== 200 && response.status !== 201) {
+                                    throw new Error(`Failed to save answer for question ${question.id}`);
+                                }
+                            }
                         }
                     }
-                }else{
-                    const formData = new FormData(form);
-                    const details = formData.get('details');
-                    // const imageFiles = formData.getAll('images').filter(file => file.size > 0);
-                    const imageFiles = selectedFiles[categoryId] || [];
-                    const existingImages = [...form.querySelectorAll('.added_item[data-image-id]')]
+                }
+                
+                // Handle group feedback text
+                const accordianBox = document.querySelector(`div[data-group="${group.id}"]`);
+                if (accordianBox) {
+                    const textarea = accordianBox.querySelector('textarea[name="details"]');
+                    const imageFiles = selectedFiles[group.id] || [];
+                    const existingImages = [...accordianBox.querySelectorAll('.added_item[data-image-id]')]
                         .map(item => item.getAttribute('data-image-id'));
 
-                    if (details.trim() !== '' || imageFiles.length > 0){
-                        const feedbackSuccess = await saveMainCategoryFeedback(categoryId, details, imageFiles, existingImages);
-                        if (!feedbackSuccess) {
-                            throw new Error(`Failed to save feedback for "${category.name}"`);
+                    // Save feedback text
+                    if (textarea && textarea.value.trim()) {
+                        const response = await requestAPI(`${API_BASE_URL}question-group/${group.id}/feedback?customer_id=${customer_id}`, JSON.stringify({customer_id: customer_id, text: textarea.value.trim() }), headers, 'POST');
+                        if (response.status !== 200 && response.status !== 201) {
+                            throw new Error(`Failed to save feedback for group ${group.id}`);
+                        }
+                    }
+
+                    // Upload images
+                    if (imageFiles.length > 0) {
+                        const formData = new FormData();
+                        formData.append('customer_id', customer_id);
+                        imageFiles.forEach(image => {
+                            formData.append('images', image);
+                        });
+                        
+                        const imageHeaders = { 'X-CSRFToken': getCookie('csrftoken') };
+                        
+                        const response = await requestAPI(`${API_BASE_URL}question-group/${group.id}/upload-images`, formData, imageHeaders, 'POST');
+                        if (response.status !== 200 && response.status !== 201) {
+                            throw new Error(`Failed to upload images for group ${group.id}`);
                         }
                     }
                 }
             }
+
+            if (isLastStep()) {
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                afterLoad(button, originalButtonText);
+                showCustomerUpdateModal();
+            } else {
+                setTimeout(() => {
+                    afterLoad(button, "Saved!");
+                    navigateToStep('next');
+                }, 800);
+            }
+            
+            console.log('Form submitted successfully');
+            
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            return false;
         }
 
-        if (isLastStep()) {
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            afterLoad(button, originalButtonText);
-            showCustomerUpdateModal();
-        } else {
-            setTimeout(() => {
-                afterLoad(button, "Saved!");
-                navigateToStep('next');
-            }, 800);
-        }
     } catch (error) {
         console.error("Error in global submit:", error);
         afterLoad(button, originalButtonText);
@@ -730,6 +715,134 @@ async function showCustomerUpdateModal() {
 }
 
 
+async function updateCustomerInfo(event) {
+    event.preventDefault()
+    let form  = event.target;
+    const formData = new FormData(form);
+    const updateButton = document.querySelector(`button[form='${form.id}']`);
+
+    const customer_id = sessionStorage.getItem("customer_id");
+    if (!customer_id) {
+        showToast("Error!", "Customer ID not found", "danger-toast");
+        return;
+    }
+    
+    // Validate required fields
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const address = formData.get('address');
+    const city = formData.get('city');
+    const state = formData.get('state');
+    const zip = formData.get('zip');
+    const house_image = formData.get('house_image');
+    
+    if (!name || !email || !address || !city || !state || !zip || !house_image) {
+        showToast("Warning!", "Please fill all required fields", "danger-toast");
+        return;
+    }
+
+    beforeLoad(updateButton)
+    try {
+        let headers = {'X-CSRFToken': getCookie('csrftoken')};
+        let response = await requestAPI(`${API_BASE_URL}customers/residential-home/${customer_id}`, formData, headers, 'PATCH');
+        if (response.status == 200) {
+            afterLoad(updateButton, "Saved");
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addUserModal'));
+            modal.hide();
+            setTimeout(() => {
+                successModal();
+            }, 500);
+            showToast("Success!", "Customer information updated successfully!", "success-toast");
+        } else {
+            let responseData = await response.json();
+            afterLoad(updateButton, "Save");
+            let errors = extractErrorMessages(responseData);
+            showToast("Warning!", errors[0] || "Failed to update customer", "danger-toast");
+        }
+    } catch (err) {
+        afterLoad(updateButton, "Save");
+        console.error('Error updating customer:', err);
+        showToast("Error!", "An error occurred while updating customer information", "danger-toast");
+    } finally {
+        afterLoad(updateButton, "Save");
+    }
+}
+
+
+async function getCustomerDetails(customerId) {
+    try {
+        let headers = {
+            "Content-Type": "application/json",
+            'X-CSRFToken': getCookie('csrftoken')
+        };
+        let response = await requestAPI(`${API_BASE_URL}customers/residential-home/${customerId}`, null, headers, 'GET');
+        if (response.status == 200) {
+            const customerData = await response.json();
+            return customerData.data;
+        } else {
+            console.error('Failed to get customer details');
+            return null;
+        }
+    } catch (err) {
+        console.error('Error getting customer details:', err);
+        return null;
+    }
+}
+
+
+async function saveQuestionGroupFeedback(categoryId, details, imageFiles, existingImages) {
+    const headers = { 
+        'X-CSRFToken': getCookie('csrftoken'),
+        'Content-Type': 'application/json'
+    };
+
+    try {
+        if (!customer_id) {
+            const customerResponse = await createCustomer();
+            if (!customerResponse) {
+                throw new Error("Failed to create customer");
+            }
+            customer_id = customerResponse.id;
+            sessionStorage.setItem("customer_id", customer_id);
+        }
+
+        const feedbackResponse = await requestAPI(
+            `${API_BASE_URL}question-group/${categoryId}/feedback`,
+            JSON.stringify({
+                customer_id: customer_id,
+                text: details
+            }),
+            headers,
+            'POST'
+        );
+
+        if (!feedbackResponse.ok) {
+            console.error(`Failed to save feedback for category ${categoryId}`);
+            return false;
+        }
+
+        if (imageFiles.length > 0) {
+            const imageFormData = new FormData();
+            imageFiles.forEach(file => imageFormData.append('images', file));
+            imageFormData.append('customer_id', customer_id);
+
+            const imageHeaders = { 'X-CSRFToken': getCookie('csrftoken') };
+            const imageResponse = await requestAPI(`${API_BASE_URL}question-group/${categoryId}/upload-images`, imageFormData, imageHeaders, 'POST');
+            if (!imageResponse.ok) {
+                console.error(`Failed to upload images for category ${categoryId}`);
+                return false;
+            }
+            selectedFiles = [];
+        }
+
+        return true;
+    } catch (err) {
+        console.error(`Error saving feedback for category ${categoryId}:`, err);
+        return false;
+    }
+}
+
+
 async function deleteFeedback(feedbackId) {
     try {
         const headers = {
@@ -753,5 +866,37 @@ async function deleteFeedback(feedbackId) {
     } catch (err) {
         console.error(`Error deleting feedback ${feedbackId}:`, err);
         return false;
+    }
+}
+
+
+async function createCustomer() {
+    try {
+        const headers = {
+            'X-CSRFToken': getCookie('csrftoken'),
+            'Content-Type': 'application/json'
+        };
+        
+        const userResponse = await requestAPI(`${API_BASE_URL}user/me`, null, headers, 'GET');
+        if (!userResponse.ok) {
+            throw new Error("Failed to get current user info");
+        }
+        
+        const userData = await userResponse.json();
+        const createdById = userData.id;
+
+        const response = await requestAPI(`${API_BASE_URL}customers/residential-home`, JSON.stringify({}), headers, 'POST');
+
+        if (response.ok) {
+            const customerData = await response.json();
+            return customerData;
+        } else {
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Failed to create customer");
+        }
+    } catch (err) {
+        console.error("Error creating customer:", err);
+        showToast("Error!", "Failed to create customer record. Please try again.", "danger-toast");
+        return null;
     }
 }

@@ -29,7 +29,7 @@ async function get_customers_data(){
 }
 
 function render_customers_data(data) {
-    if (customers_data){
+    if (data){
         document.getElementById("name").textContent = data.user.name || "--";
         document.getElementById("email").textContent = data.user.email || "--";
         document.getElementById("address").textContent = data.address || "--";
@@ -53,7 +53,7 @@ async function get_principle_data(){
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
         };
-        let enndpoint = `${API_BASE_URL}principles`
+        let enndpoint = `${API_BASE_URL}steps`
         let response = await requestAPI(enndpoint, null, headers, 'GET');
         response.json().then(function(res) {
             if (response.status == 200) {

@@ -1558,8 +1558,8 @@
     "model": "home_energy.option",
     "pk": 13,
     "fields": {
-      "question": 9,
-      "text": "Smoke detectors present and working",
+      "question": 6,
+      "text": "Gas",
       "created_at": "2023-01-01T00:00:00Z",
       "updated_at": "2023-01-01T00:00:00Z"
     }
@@ -1568,15 +1568,55 @@
     "model": "home_energy.option",
     "pk": 14,
     "fields": {
+      "question": 6,
+      "text": "Propane",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 15,
+    "fields": {
+      "question": 6,
+      "text": "Heating Oil",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 16,
+    "fields": {
+      "question": 6,
+      "text": "Multiple System",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 17,
+    "fields": {
+      "question": 9,
+      "text": "Smoke detectors present and working",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 18,
+    "fields": {
       "question": 9,
       "text": "CO detectors present and working",
       "created_at": "2023-01-01T00:00:00Z",
       "updated_at": "2023-01-01T00:00:00Z"
     }
   },
-   {
+  {
     "model": "home_energy.option",
-    "pk": 15,
+    "pk": 19,
     "fields": {
       "question": 10,
       "text": "Extension cords",
@@ -1586,7 +1626,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 16,
+    "pk": 20,
     "fields": {
       "question": 10,
       "text": "Overloaded surge",
@@ -1594,9 +1634,9 @@
       "updated_at": "2023-01-01T00:00:00Z"
     }
   },
-    {
+  {
     "model": "home_energy.option",
-    "pk": 17,
+    "pk": 21,
     "fields": {
       "question": 10,
       "text": "Faulty or exposed wiring",
@@ -1606,7 +1646,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 18,
+    "pk": 22,
     "fields": {
       "question": 10,
       "text": "Electrical box deficiencies and old age",
@@ -1616,7 +1656,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 19,
+    "pk": 23,
     "fields": {
       "question": 15,
       "text": "Asbestos or asbestos-containing materials identified",
@@ -1626,7 +1666,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 20,
+    "pk": 24,
     "fields": {
       "question": 15,
       "text": "Vermiculite insulation present",
@@ -1636,7 +1676,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 21,
+    "pk": 25,
     "fields": {
       "question": 15,
       "text": "Lead paint concerns (pre-1978 construction)",
@@ -1646,51 +1686,10 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 22,
+    "pk": 26,
     "fields": {
       "question": 15,
       "text": "Lead water piping concerns",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-
-  {
-    "model": "home_energy.option",
-    "pk": 23,
-    "fields": {
-      "question": 16,
-      "text": "Wood",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.option",
-    "pk": 24,
-    "fields": {
-      "question": 16,
-      "text": "Steel",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.option",
-    "pk": 25,
-    "fields": {
-      "question": 16,
-      "text": "Fiberglass",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.option",
-    "pk": 26,
-    "fields": {
-      "question": 16,
-      "text": "Glass",
       "created_at": "2023-01-01T00:00:00Z",
       "updated_at": "2023-01-01T00:00:00Z"
     }
@@ -1700,7 +1699,7 @@
     "pk": 27,
     "fields": {
       "question": 16,
-      "text": "PVC",
+      "text": "Wood",
       "created_at": "2023-01-01T00:00:00Z",
       "updated_at": "2023-01-01T00:00:00Z"
     }
@@ -1709,8 +1708,8 @@
     "model": "home_energy.option",
     "pk": 28,
     "fields": {
-      "question": 17,
-      "text": "Good",
+      "question": 16,
+      "text": "Steel",
       "created_at": "2023-01-01T00:00:00Z",
       "updated_at": "2023-01-01T00:00:00Z"
     }
@@ -1719,8 +1718,8 @@
     "model": "home_energy.option",
     "pk": 29,
     "fields": {
-      "question": 17,
-      "text": "Fair",
+      "question": 16,
+      "text": "Fiberglass",
       "created_at": "2023-01-01T00:00:00Z",
       "updated_at": "2023-01-01T00:00:00Z"
     }
@@ -1729,8 +1728,8 @@
     "model": "home_energy.option",
     "pk": 30,
     "fields": {
-      "question": 17,
-      "text": "Bad",
+      "question": 16,
+      "text": "Glass",
       "created_at": "2023-01-01T00:00:00Z",
       "updated_at": "2023-01-01T00:00:00Z"
     }
@@ -1739,8 +1738,8 @@
     "model": "home_energy.option",
     "pk": 31,
     "fields": {
-      "question": 18,
-      "text": "Good",
+      "question": 16,
+      "text": "PVC",
       "created_at": "2023-01-01T00:00:00Z",
       "updated_at": "2023-01-01T00:00:00Z"
     }
@@ -1749,6 +1748,46 @@
     "model": "home_energy.option",
     "pk": 32,
     "fields": {
+      "question": 17,
+      "text": "Good",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 33,
+    "fields": {
+      "question": 17,
+      "text": "Fair",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 34,
+    "fields": {
+      "question": 17,
+      "text": "Bad",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 35,
+    "fields": {
+      "question": 18,
+      "text": "Good",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 36,
+    "fields": {
       "question": 18,
       "text": "Fair",
       "created_at": "2023-01-01T00:00:00Z",
@@ -1757,7 +1796,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 33,
+    "pk": 37,
     "fields": {
       "question": 18,
       "text": "Bad",
@@ -1767,7 +1806,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 34,
+    "pk": 38,
     "fields": {
       "question": 19,
       "text": "Good",
@@ -1777,7 +1816,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 35,
+    "pk": 39,
     "fields": {
       "question": 19,
       "text": "Fair",
@@ -1787,7 +1826,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 36,
+    "pk": 40,
     "fields": {
       "question": 19,
       "text": "Bad",
@@ -1797,7 +1836,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 37,
+    "pk": 41,
     "fields": {
       "question": 20,
       "text": "Wood",
@@ -1807,7 +1846,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 38,
+    "pk": 42,
     "fields": {
       "question": 20,
       "text": "Aluminium",
@@ -1817,7 +1856,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 39,
+    "pk": 43,
     "fields": {
       "question": 20,
       "text": "Vinyl",
@@ -1827,7 +1866,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 40,
+    "pk": 44,
     "fields": {
       "question": 20,
       "text": "Fiberglass",
@@ -1837,7 +1876,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 41,
+    "pk": 45,
     "fields": {
       "question": 21,
       "text": "Sliding",
@@ -1847,7 +1886,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 42,
+    "pk": 46,
     "fields": {
       "question": 21,
       "text": "Single-Hung",
@@ -1857,7 +1896,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 43,
+    "pk": 47,
     "fields": {
       "question": 21,
       "text": "Double-Hung",
@@ -1867,7 +1906,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 44,
+    "pk": 48,
     "fields": {
       "question": 21,
       "text": "Casement",
@@ -1877,7 +1916,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 45,
+    "pk": 49,
     "fields": {
       "question": 21,
       "text": "Fixed",
@@ -1887,47 +1926,47 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 46,
-    "fields": {
-      "question": 22,
-      "text": "Conditioned",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.option",
-    "pk": 47,
-    "fields": {
-      "question": 22,
-      "text": "Unconditioned",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.option",
-    "pk": 48,
-    "fields": {
-      "question": 23,
-      "text": "Conditioned",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.option",
-    "pk": 49,
-    "fields": {
-      "question": 23,
-      "text": "Unconditioned",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.option",
     "pk": 50,
+    "fields": {
+      "question": 22,
+      "text": "Conditioned",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 51,
+    "fields": {
+      "question": 22,
+      "text": "Unconditioned",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 52,
+    "fields": {
+      "question": 23,
+      "text": "Conditioned",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 53,
+    "fields": {
+      "question": 23,
+      "text": "Unconditioned",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 54,
     "fields": {
       "question": 24,
       "text": "Good",
@@ -1937,7 +1976,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 51,
+    "pk": 55,
     "fields": {
       "question": 24,
       "text": "Fair",
@@ -1947,7 +1986,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 52,
+    "pk": 56,
     "fields": {
       "question": 24,
       "text": "Bad",
@@ -1957,7 +1996,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 53,
+    "pk": 57,
     "fields": {
       "question": 26,
       "text": "Top plates - air leakage identified",
@@ -1967,7 +2006,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 54,
+    "pk": 58,
     "fields": {
       "question": 26,
       "text": "Dropped ceilings - air leakage",
@@ -1977,7 +2016,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 55,
+    "pk": 59,
     "fields": {
       "question": 27,
       "text": "Adequate",
@@ -1987,7 +2026,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 56,
+    "pk": 60,
     "fields": {
       "question": 27,
       "text": "Inadequate",
@@ -1997,7 +2036,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 57,
+    "pk": 61,
     "fields": {
       "question": 28,
       "text": "Good",
@@ -2007,7 +2046,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 58,
+    "pk": 62,
     "fields": {
       "question": 28,
       "text": "Fair",
@@ -2017,7 +2056,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 59,
+    "pk": 63,
     "fields": {
       "question": 28,
       "text": "Bad",
@@ -2027,49 +2066,9 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 60,
-    "fields": {
-      "question": 29,
-      "text": "Soffit Vents",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.option",
-    "pk": 61,
-    "fields": {
-      "question": 29,
-      "text": "Ridge Vents",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.option",
-    "pk": 62,
-    "fields": {
-      "question": 29,
-      "text": "Gable Vents",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.option",
-    "pk": 63,
-    "fields": {
-      "question": 29,
-      "text": "Roof Vents",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.option",
     "pk": 64,
     "fields": {
-      "question": 30,
+      "question": 29,
       "text": "Soffit Vents",
       "created_at": "2023-01-01T00:00:00Z",
       "updated_at": "2023-01-01T00:00:00Z"
@@ -2079,7 +2078,7 @@
     "model": "home_energy.option",
     "pk": 65,
     "fields": {
-      "question": 30,
+      "question": 29,
       "text": "Ridge Vents",
       "created_at": "2023-01-01T00:00:00Z",
       "updated_at": "2023-01-01T00:00:00Z"
@@ -2089,7 +2088,7 @@
     "model": "home_energy.option",
     "pk": 66,
     "fields": {
-      "question": 30,
+      "question": 29,
       "text": "Gable Vents",
       "created_at": "2023-01-01T00:00:00Z",
       "updated_at": "2023-01-01T00:00:00Z"
@@ -2099,7 +2098,7 @@
     "model": "home_energy.option",
     "pk": 67,
     "fields": {
-      "question": 30,
+      "question": 29,
       "text": "Roof Vents",
       "created_at": "2023-01-01T00:00:00Z",
       "updated_at": "2023-01-01T00:00:00Z"
@@ -2109,6 +2108,46 @@
     "model": "home_energy.option",
     "pk": 68,
     "fields": {
+      "question": 30,
+      "text": "Soffit Vents",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 69,
+    "fields": {
+      "question": 30,
+      "text": "Ridge Vents",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 70,
+    "fields": {
+      "question": 30,
+      "text": "Gable Vents",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 71,
+    "fields": {
+      "question": 30,
+      "text": "Roof Vents",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 72,
+    "fields": {
       "question": 32,
       "text": "Good",
       "created_at": "2023-01-01T00:00:00Z",
@@ -2117,7 +2156,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 69,
+    "pk": 73,
     "fields": {
       "question": 32,
       "text": "Fair",
@@ -2127,7 +2166,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 70,
+    "pk": 74,
     "fields": {
       "question": 32,
       "text": "Bad",
@@ -2137,7 +2176,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 71,
+    "pk": 75,
     "fields": {
       "question": 34,
       "text": "Supply",
@@ -2147,7 +2186,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 72,
+    "pk": 76,
     "fields": {
       "question": 34,
       "text": "Exhaust",
@@ -2157,7 +2196,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 73,
+    "pk": 77,
     "fields": {
       "question": 34,
       "text": "Balanced",
@@ -2167,7 +2206,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 74,
+    "pk": 78,
     "fields": {
       "question": 35,
       "text": "Bathroom exhaust fans present",
@@ -2177,7 +2216,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 75,
+    "pk": 79,
     "fields": {
       "question": 35,
       "text": "Bathroom exhaust fans are not present",
@@ -2187,7 +2226,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 76,
+    "pk": 80,
     "fields": {
       "question": 35,
       "text": "Bathroom exhaust fans are not functional",
@@ -2197,7 +2236,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 77,
+    "pk": 81,
     "fields": {
       "question": 36,
       "text": "Long uninterrupted runs",
@@ -2207,7 +2246,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 78,
+    "pk": 82,
     "fields": {
       "question": 36,
       "text": "Kinked ductwork",
@@ -2217,7 +2256,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 79,
+    "pk": 83,
     "fields": {
       "question": 36,
       "text": "Un-insulated ducts",
@@ -2227,7 +2266,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 80,
+    "pk": 84,
     "fields": {
       "question": 36,
       "text": "Disconnected ductwork exhausting into the attic",
@@ -2237,7 +2276,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 81,
+    "pk": 85,
     "fields": {
       "question": 37,
       "text": "Reduction or oversize of duct size",
@@ -2247,7 +2286,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 82,
+    "pk": 86,
     "fields": {
       "question": 37,
       "text": "Bird or vermin nests",
@@ -2257,7 +2296,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 83,
+    "pk": 87,
     "fields": {
       "question": 37,
       "text": "Dirty fans",
@@ -2267,7 +2306,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 84,
+    "pk": 88,
     "fields": {
       "question": 37,
       "text": "Broken fans",
@@ -2277,7 +2316,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 85,
+    "pk": 89,
     "fields": {
       "question": 38,
       "text": "80% Standard Efficiency Furnace",
@@ -2285,9 +2324,9 @@
       "updated_at": "2023-01-01T00:00:00Z"
     }
   },
-   {
+  {
     "model": "home_energy.option",
-    "pk": 86,
+    "pk": 90,
     "fields": {
       "question": 38,
       "text": "90%+ High Efficiency Furnace",
@@ -2297,7 +2336,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 87,
+    "pk": 91,
     "fields": {
       "question": 39,
       "text": "Central Ac",
@@ -2305,9 +2344,9 @@
       "updated_at": "2023-01-01T00:00:00Z"
     }
   },
-   {
+  {
     "model": "home_energy.option",
-    "pk": 88,
+    "pk": 92,
     "fields": {
       "question": 39,
       "text": "Window Ac",
@@ -2315,9 +2354,9 @@
       "updated_at": "2023-01-01T00:00:00Z"
     }
   },
-   {
+  {
     "model": "home_energy.option",
-    "pk": 89,
+    "pk": 93,
     "fields": {
       "question": 39,
       "text": "Split Ac",
@@ -2325,9 +2364,9 @@
       "updated_at": "2023-01-01T00:00:00Z"
     }
   },
-   {
+  {
     "model": "home_energy.option",
-    "pk": 90,
+    "pk": 94,
     "fields": {
       "question": 40,
       "text": "Good",
@@ -2337,7 +2376,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 91,
+    "pk": 95,
     "fields": {
       "question": 40,
       "text": "Fair",
@@ -2347,7 +2386,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 92,
+    "pk": 96,
     "fields": {
       "question": 40,
       "text": "Bad",
@@ -2355,9 +2394,9 @@
       "updated_at": "2023-01-01T00:00:00Z"
     }
   },
-    {
+  {
     "model": "home_energy.option",
-    "pk": 93,
+    "pk": 97,
     "fields": {
       "question": 41,
       "text": "Gas Storage",
@@ -2365,9 +2404,9 @@
       "updated_at": "2023-01-01T00:00:00Z"
     }
   },
-    {
+  {
     "model": "home_energy.option",
-    "pk": 94,
+    "pk": 98,
     "fields": {
       "question": 41,
       "text": "Solar",
@@ -2375,9 +2414,9 @@
       "updated_at": "2023-01-01T00:00:00Z"
     }
   },
-    {
+  {
     "model": "home_energy.option",
-    "pk": 126,
+    "pk": 99,
     "fields": {
       "question": 43,
       "text": "Atmospheric",
@@ -2385,9 +2424,9 @@
       "updated_at": "2023-01-01T00:00:00Z"
     }
   },
-    {
+  {
     "model": "home_energy.option",
-    "pk": 95,
+    "pk": 100,
     "fields": {
       "question": 43,
       "text": "Direct Vent",
@@ -2395,9 +2434,9 @@
       "updated_at": "2023-01-01T00:00:00Z"
     }
   },
-   {
+  {
     "model": "home_energy.option",
-    "pk": 96,
+    "pk": 101,
     "fields": {
       "question": 43,
       "text": "Power Vent",
@@ -2407,7 +2446,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 97,
+    "pk": 102,
     "fields": {
       "question": 44,
       "text": "Natural Gas",
@@ -2417,7 +2456,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 98,
+    "pk": 103,
     "fields": {
       "question": 44,
       "text": "Propane",
@@ -2427,7 +2466,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 99,
+    "pk": 104,
     "fields": {
       "question": 44,
       "text": "Oil",
@@ -2437,7 +2476,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 100,
+    "pk": 105,
     "fields": {
       "question": 45,
       "text": "Clean",
@@ -2447,7 +2486,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 101,
+    "pk": 106,
     "fields": {
       "question": 45,
       "text": "Dry",
@@ -2457,60 +2496,10 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 102,
-    "fields": {
-      "question": 46,
-      "text": "Good",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.option",
-    "pk": 103,
-    "fields": {
-      "question": 46,
-      "text": "Fair",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.option",
-    "pk": 104,
-    "fields": {
-      "question": 46,
-      "text": "Bad",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.option",
-    "pk": 105,
-    "fields": {
-      "question": 47,
-      "text": "Good",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.option",
-    "pk": 106,
-    "fields": {
-      "question": 47,
-      "text": "Fair",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.option",
     "pk": 107,
     "fields": {
-      "question": 47,
-      "text": "Bad",
+      "question": 46,
+      "text": "Good",
       "created_at": "2023-01-01T00:00:00Z",
       "updated_at": "2023-01-01T00:00:00Z"
     }
@@ -2518,6 +2507,56 @@
   {
     "model": "home_energy.option",
     "pk": 108,
+    "fields": {
+      "question": 46,
+      "text": "Fair",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 109,
+    "fields": {
+      "question": 46,
+      "text": "Bad",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 110,
+    "fields": {
+      "question": 47,
+      "text": "Good",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 111,
+    "fields": {
+      "question": 47,
+      "text": "Fair",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 112,
+    "fields": {
+      "question": 47,
+      "text": "Bad",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 113,
     "fields": {
       "question": 48,
       "text": "Natural Gas",
@@ -2527,7 +2566,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 109,
+    "pk": 114,
     "fields": {
       "question": 48,
       "text": "Propane",
@@ -2537,7 +2576,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 110,
+    "pk": 115,
     "fields": {
       "question": 48,
       "text": "Oil",
@@ -2547,7 +2586,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 111,
+    "pk": 116,
     "fields": {
       "question": 50,
       "text": "Acceptable",
@@ -2557,7 +2596,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 112,
+    "pk": 117,
     "fields": {
       "question": 50,
       "text": "Elevated",
@@ -2567,7 +2606,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 127,
+    "pk": 118,
     "fields": {
       "question": 50,
       "text": "Unsafe",
@@ -2577,7 +2616,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 113,
+    "pk": 119,
     "fields": {
       "question": 54,
       "text": "Hot ashes in fireplace",
@@ -2587,7 +2626,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 114,
+    "pk": 120,
     "fields": {
       "question": 54,
       "text": "Open combustion appliances operating",
@@ -2597,7 +2636,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 115,
+    "pk": 121,
     "fields": {
       "question": 54,
       "text": "Strong winds or severe weather conditions",
@@ -2607,7 +2646,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 116,
+    "pk": 122,
     "fields": {
       "question": 55,
       "text": "Pressurization",
@@ -2617,7 +2656,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 117,
+    "pk": 123,
     "fields": {
       "question": 55,
       "text": "Depressurization",
@@ -2627,7 +2666,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 118,
+    "pk": 124,
     "fields": {
       "question": 56,
       "text": "Pressurization",
@@ -2637,7 +2676,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 119,
+    "pk": 125,
     "fields": {
       "question": 56,
       "text": "Depressurization",
@@ -2647,7 +2686,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 120,
+    "pk": 126,
     "fields": {
       "question": 57,
       "text": "Leaky Doors",
@@ -2657,7 +2696,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 121,
+    "pk": 127,
     "fields": {
       "question": 57,
       "text": "Windows identified",
@@ -2667,7 +2706,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 122,
+    "pk": 128,
     "fields": {
       "question": 57,
       "text": "Attic",
@@ -2677,7 +2716,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 123,
+    "pk": 129,
     "fields": {
       "question": 57,
       "text": "Crawlspace",
@@ -2687,7 +2726,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 124,
+    "pk": 130,
     "fields": {
       "question": 58,
       "text": "Zonal pressure readings conducted",
@@ -2697,7 +2736,7 @@
   },
   {
     "model": "home_energy.option",
-    "pk": 125,
+    "pk": 131,
     "fields": {
       "question": 58,
       "text": "Zonal pressure readings not conducted",
