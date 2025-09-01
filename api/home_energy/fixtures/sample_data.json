@@ -3,78 +3,8 @@
     "model": "home_energy.step",
     "pk": 1,
     "fields": {
-      "title": "Basic Information",
+      "title": "Exterior Evaluation & Fuel Leak Testing",
       "order": 1,
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.step",
-    "pk": 2,
-    "fields": {
-      "title": "Home Condition",
-      "order": 2,
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.question",
-    "pk": 1,
-    "fields": {
-      "text": "What is your full name?",
-      "field_type": "text",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.question",
-    "pk": 2,
-    "fields": {
-      "text": "What is your age?",
-      "field_type": "numeric",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.question",
-    "pk": 3,
-    "fields": {
-      "text": "Do you notice any visible mold?",
-      "field_type": "dropdown",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.option",
-    "pk": 1,
-    "fields": {
-      "question": 3,
-      "text": "Yes",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.option",
-    "pk": 2,
-    "fields": {
-      "question": 3,
-      "text": "No",
-      "created_at": "2023-01-01T00:00:00Z",
-      "updated_at": "2023-01-01T00:00:00Z"
-    }
-  },
-  {
-    "model": "home_energy.question",
-    "pk": 4,
-    "fields": {
-      "text": "What year was your home built?",
-      "field_type": "numeric",
       "created_at": "2023-01-01T00:00:00Z",
       "updated_at": "2023-01-01T00:00:00Z"
     }
@@ -84,7 +14,7 @@
     "pk": 1,
     "fields": {
       "step": 1,
-      "question": [1, 2],
+      "question": [1],
       "created_at": "2023-01-01T00:00:00Z",
       "updated_at": "2023-01-01T00:00:00Z"
     }
@@ -93,10 +23,232 @@
     "model": "home_energy.QuestionGroup",
     "pk": 2,
     "fields": {
-      "step": 2,
-      "question": [3, 4],
+      "step": 1,
+      "question": [2],
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.QuestionGroup",
+    "pk": 3,
+    "fields": {
+      "step": 1,
+      "question": [3],
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.QuestionGroup",
+    "pk": 4,
+    "fields": {
+      "step": 1,
+      "question": [4],
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.QuestionGroup",
+    "pk": 5,
+    "fields": {
+      "step": 1,
+      "question": [5],
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.QuestionGroup",
+    "pk": 6,
+    "fields": {
+      "step": 1,
+      "question": [6],
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.question",
+    "pk": 1,
+    "fields": {
+      "text": "Measure the perimeter of the house in linear feet.",
+      "field_type": "text",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.question",
+    "pk": 2,
+    "fields": {
+      "text": "Identify basic exterior moisture control strategies/components.",
+      "field_type": "dropdown",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.question",
+    "pk": 3,
+    "fields": {
+      "text": "Identify exterior wall construction",
+      "field_type": "dropdown",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.question",
+    "pk": 4,
+    "fields": {
+      "text": "Note any deficiencies or concerns with exterior evalution.",
+      "field_type": "text",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.question",
+    "pk": 5,
+    "fields": {
+      "text": "Check unit for leaks or spills either with visual inspection or with combustible gas leak detector",
+      "field_type": "dropdown",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.question",
+    "pk": 6,
+    "fields": {
+      "text": "Determine gas leak with gas leak detection solution and mark and notify customer of leak",
+      "field_type": "dropdown",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 1,
+    "fields": {
+      "question": 2,
+      "text": "Gutter",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 2,
+    "fields": {
+      "question": 2,
+      "text": "Downspouts",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 3,
+    "fields": {
+      "question": 2,
+      "text": "Chimney flashing",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 4,
+    "fields": {
+      "question": 2,
+      "text": "landscape slope and grading",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 5,
+    "fields": {
+      "question": 3,
+      "text": "Vinyl",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 6,
+    "fields": {
+      "question": 3,
+      "text": "Brick",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 7,
+    "fields": {
+      "question": 3,
+      "text": "Stucco",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 8,
+    "fields": {
+      "question": 3,
+      "text": "Wood",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 9,
+    "fields": {
+      "question": 5,
+      "text": "Gas",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 10,
+    "fields": {
+      "question": 5,
+      "text": "Gas",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 11,
+    "fields": {
+      "question": 5,
+      "text": "Heating Oil",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "home_energy.option",
+    "pk": 12,
+    "fields": {
+      "question": 5,
+      "text": "Multiple System",
       "created_at": "2023-01-01T00:00:00Z",
       "updated_at": "2023-01-01T00:00:00Z"
     }
   }
+
+  
 ]
