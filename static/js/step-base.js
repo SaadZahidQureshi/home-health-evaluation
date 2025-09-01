@@ -50,14 +50,10 @@ function render_principle_data(data) {
         return;
     }
     
-    data.groups.forEach(group => {
-        const accordionBox = document.createElement('div');
+    data.groups.forEach((group, index) => {
+        const accordionBox = document.createElement('form');
         accordionBox.className = 'accordian_box';
-        
-        // const titleDiv = document.createElement('div');
-        // titleDiv.className = 'accordian_title';
-        // titleDiv.innerHTML = `<h4>Group ${group.id}</h4>`;
-        
+        accordionBox.setAttribute("data-group", group.id);
 
         if (isLastStep()) {
             let finalDiv = document.createElement('form');
@@ -71,14 +67,15 @@ function render_principle_data(data) {
         }
 
         if (group.questions && group.questions.length > 0) {
-            
-            
-            // const innerDiv = document.createElement('div');
-            // innerDiv.className = 'accordian_inner';
-            
             group.questions.forEach(question => {
                 let questionDiv = document.createElement("div");
                 questionDiv.className = 'col-md-12';
+
+                let titleDiv = document.createElement("div");
+                titleDiv.className = 'accordian_title';
+                titleDiv.innerHTML = `<h4>${question.text}</h4>`
+
+                questionDiv.appendChild(titleDiv);
                 
                 if (question.field_type === 'dropdown' && question.options && question.options.length > 0) {
                     const contentDiv = document.createElement('div');
@@ -97,9 +94,9 @@ function render_principle_data(data) {
                         const li = document.createElement('li');
                         li.innerHTML = `
                             <label class="question-checkbox-label">
-                                <input type="checkbox" class="question-checkbox"
-                                    data-question-id="${option.id}" 
-                                    data-category-id="${group.id}"
+                                <input type="checkbox" class="question-checkbox" 
+                                    value="${option.id}" name="dropdown_question_${question.id}"
+                                    data-question-id="${option.id}" data-category-id="${group.id}"
                                     ${option.is_selected ? 'checked' : ''}>
                                 <span class="question-text">${option.text}</span>
                             </label>
@@ -113,8 +110,7 @@ function render_principle_data(data) {
                     let innerContentDiv = document.createElement("div");
                     innerContentDiv.className = 'inform_item';
                     innerContentDiv.innerHTML = `
-                        <label>${question.text}</label>
-                        <input type="${question.field_type}" data-question-id="${question.id}" data-category-id="${group.id}" value=""${question.answer || ''}" placeholder="10" />
+                        <input type="${question.field_type}" name="text" data-question-id="${question.id}" data-category-id="${group.id}" value=""${question.answer || ''}" placeholder="10" />
                     `;
                     questionDiv.appendChild(innerContentDiv);
                 }
@@ -124,9 +120,6 @@ function render_principle_data(data) {
             const formContainer = document.createElement('div');
             formContainer.className = 'form-container';
             formContainer.style.display = 'block';
-            
-            // accordionBox.appendChild(contentDiv);
-            // accordionBox.appendChild(innerDiv);
             accordionBox.appendChild(formContainer);
             container.appendChild(accordionBox);
             
@@ -562,7 +555,7 @@ async function handleGlobalSubmit(event) {
     try {
         if (window.feedbacksToDelete && window.feedbacksToDelete.size > 0) {
             for (const categoryId of window.feedbacksToDelete) {
-                const category = principle_data.categories.find(cat => cat.id === categoryId);
+                const category = principle_data.groups.find(cat => cat.id === categoryId);
                 if (category && category.feedback && category.feedback.id) {
                     await deleteFeedback(category.feedback.id);
                 }
@@ -570,7 +563,7 @@ async function handleGlobalSubmit(event) {
             window.feedbacksToDelete.clear();
         }
 
-        for (const category of principle_data.categories) {
+        for (const category of principle_data.groups) {
             const categoryId = category.id;
             const accordionBox = [...document.querySelectorAll('.accordian_box')]
                 .find(box => box.querySelector('.accordian_title h4').textContent === category.name);
@@ -734,4 +727,31 @@ async function showCustomerUpdateModal() {
         imgElement.src = '';
     });
     modal.show();
+}
+
+
+async function deleteFeedback(feedbackId) {
+    try {
+        const headers = {
+            'X-CSRFToken': getCookie('csrftoken'),
+            'Content-Type': 'application/json'
+        };
+
+        const response = await requestAPI(
+            `${API_BASE_URL}feedbacks/${feedbackId}`,
+            null,
+            headers,
+            'DELETE'
+        );
+
+        if (!response.ok) {
+            console.error(`Failed to delete feedback ${feedbackId}`);
+            return false;
+        }
+
+        return true;
+    } catch (err) {
+        console.error(`Error deleting feedback ${feedbackId}:`, err);
+        return false;
+    }
 }
