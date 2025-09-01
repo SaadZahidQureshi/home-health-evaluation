@@ -37,15 +37,11 @@ class StepViewSet(DotsModelViewSet):
             )
         else:
             options_qs = options_qs.annotate(is_selected=Value(False, output_field=BooleanField()))
-
         question_prefetches = [Prefetch("options", queryset=options_qs)]
-
         if customer:
             question_prefetches.append(Prefetch("question_answers", queryset=Answer.objects.filter(customer=customer), to_attr="customer_answers"))
-
         questions_qs = Question.objects.all().order_by("id").prefetch_related(*question_prefetches)
         groups_qs = (QuestionGroup.objects.filter(step=step).prefetch_related(Prefetch("question", queryset=questions_qs, to_attr="prefetched_questions")))
-
         if customer:
             groups_qs = groups_qs.prefetch_related(Prefetch("responses", queryset=Feedback.objects.filter(customer=customer).prefetch_related("images"), to_attr="customer_feedback"))
 
@@ -63,7 +59,7 @@ class StepViewSet(DotsModelViewSet):
 
                 is_answered = False
                 if answer_obj:
-                    is_answered = bool(answer_obj.text or answer_obj.numeric_answer or answer_obj.images.exists())
+                    is_answered = bool(answer_obj.text)
                 any_selected = any(getattr(opt, "is_selected", False) for opt in q.options.all())
                 is_answered = is_answered or any_selected
 
@@ -164,7 +160,7 @@ class QuestionsViewSet(DotsModelViewSet):
     
     @action(detail=True, methods=['POST'], url_path='answer')
     def answer(self, request, *args, **kwargs):
-        selection_serializer = AnswerSerializer(data=request.data)
+        selection_serializer = QuestionAnswerSerializer(data=request.data)
         selection_serializer.is_valid(raise_exception=True)
         question = self.get_object()
         validated_data = selection_serializer.validated_data
