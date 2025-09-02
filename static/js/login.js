@@ -29,13 +29,13 @@ async function loginForm(event) {
         };
         button.disabled = true;
         beforeLoad(button);
-        const response = await requestAPI(`${API_BASE_URL}login`, JSON.stringify(data), headers, 'POST');
+        const response = await requestAPI(`${API_BASE_URL}user/login`, JSON.stringify(data), headers, 'POST');
         
         if (response.status == 200) {
             showToast("Success", "Logged in successfully!", "success-toast");
             setTimeout(() => {
                 afterLoad(button, "Signed in");
-                location.href = `/keep-it-clean/`;
+                location.href = `/side-selection/`;
             }, 1000);
         } else {
             const result = await response.json();

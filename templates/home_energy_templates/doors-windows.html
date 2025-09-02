@@ -1,0 +1,12 @@
+{% extends "home-energy-base.html" %}
+{% load static %}
+{% block title %}Doors & Windows{% endblock title %}
+
+{% block content %}
+<div class="right-mainpart">
+</div>
+{{principleId|json_script:"principleId"}}
+{% endblock content %}
+{% block js %}
+<script src="{% static 'js/home_energy/step-base.js' %}"></script>
+{% endblock js %}

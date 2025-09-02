@@ -1096,7 +1096,7 @@ async function handleGlobalSubmit(event) {
         } else {
             setTimeout(() => {
                 afterLoad(button, "Saved!");
-                // navigateToStep('next');
+                navigateToStep('next');
             }, 800);
         }
     } catch (error) {
@@ -1277,7 +1277,7 @@ async function getCustomerDetails(customerId) {
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
         };
-        let response = await requestAPI(`${API_BASE_URL}customers/${customerId}`, null, headers, 'GET');
+        let response = await requestAPI(`${API_BASE_URL}customers/healthy-home/${customerId}`, null, headers, 'GET');
         if (response.status == 200) {
             const customerData = await response.json();
             return customerData.data;
@@ -1363,7 +1363,7 @@ async function updateCustomerInfo(event) {
     beforeLoad(updateButton)
     try {
         let headers = {'X-CSRFToken': getCookie('csrftoken')};
-        let response = await requestAPI(`${API_BASE_URL}customers/${customer_id}`, formData, headers, 'PATCH');
+        let response = await requestAPI(`${API_BASE_URL}customers/healthy-home/${customer_id}`, formData, headers, 'PATCH');
         if (response.status == 200) {
             afterLoad(updateButton, "Saved");
             const modal = bootstrap.Modal.getInstance(document.getElementById('addUserModal'));
@@ -1415,7 +1415,7 @@ async function createCustomer() {
             'Content-Type': 'application/json'
         };
         
-        const userResponse = await requestAPI(`${API_BASE_URL}me`, null, headers, 'GET');
+        const userResponse = await requestAPI(`${API_BASE_URL}user/me`, null, headers, 'GET');
         if (!userResponse.ok) {
             throw new Error("Failed to get current user info");
         }
@@ -1424,7 +1424,7 @@ async function createCustomer() {
         const createdById = userData.id;
 
         const response = await requestAPI(
-            `${API_BASE_URL}customers`,
+            `${API_BASE_URL}customers/healthy-home`,
             JSON.stringify({}),
             headers,
             'POST'

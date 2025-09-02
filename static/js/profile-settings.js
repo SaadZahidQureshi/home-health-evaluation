@@ -5,7 +5,7 @@ async function get_me_data(){
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
         };
-        let response = await requestAPI(`${API_BASE_URL}me`, null, headers, 'GET');
+        let response = await requestAPI(`${API_BASE_URL}user/me`, null, headers, 'GET');
         response.json().then(function(res) {
             if (response.status == 200) {
                 render_me_data(res);

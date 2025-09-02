@@ -1,0 +1,15 @@
+{% extends "home-energy-base.html" %}
+{% load static %}
+{% block title %}{{title}}{% endblock title %}
+{% block css %}
+<link rel="stylesheet" href="{% static "css\principle-details.css" %}">
+{% endblock css %}
+
+{% block content %}
+<div class="right-mainpart">   
+</div>      
+{{principleId|json_script:"principleId"}}
+{% endblock content %}
+{% block js %}
+<script src="{% static "js/home_energy/principle-details.js" %}"></script>
+{% endblock js %}

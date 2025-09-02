@@ -2,7 +2,7 @@ from conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from api.core.abstract import BaseModel
-from api.core.choices import CharFieldSizes, Roles
+from api.core.choices import CharFieldSizes, CustomerTypes, Roles
 from api.core.validators import phone_regex
 
 
@@ -43,3 +43,35 @@ class User(AbstractUser, BaseModel):
 
     def __str__(self):
         return self.email if self.email else self.role
+    
+
+class Customer(BaseModel):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="customer_user")
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="customer_created_by")
+    house_image = models.ImageField(upload_to="house_images/", null=True, blank=True)
+    address = models.CharField(max_length=CharFieldSizes.LARGE, null=True)
+    city = models.CharField(max_length=CharFieldSizes.SMALL, null=True)
+    state = models.CharField(max_length=CharFieldSizes.SMALL, null=True)
+    zip = models.CharField(max_length=CharFieldSizes.SMALL, null=True)
+    audit_completed = models.BooleanField(default=False)
+    type = models.CharField(choices=CustomerTypes.choices, max_length=CharFieldSizes.SMALL, default=CustomerTypes.HEALTHY_HOME)
+
+    @classmethod
+    def create_default_customer(self, obj):
+        from .serializers import ShortUserSerializer
+        user_data = {
+            "name": None,
+            "email": None,
+            "role": Roles.CUSTOMER
+        }
+        user_serializer = ShortUserSerializer(data=user_data)
+        user_serializer.is_valid(raise_exception=True)
+        user = user_serializer.save()
+        return self.objects.create(user=user,address=None,city=None,state=None,zip=None, created_by=obj)
+    
+
+class Photo(BaseModel):
+    image = models.ImageField(upload_to='answer_photos/')
+
+    def __str__(self):
+        return f"Photo {self.id}"

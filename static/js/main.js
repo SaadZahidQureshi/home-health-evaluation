@@ -146,7 +146,7 @@ async function _get_me_data(){
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
         };
-        let response = await requestAPI(`${API_BASE_URL}me`, null, headers, 'GET');
+        let response = await requestAPI(`${API_BASE_URL}user/me`, null, headers, 'GET');
         response.json().then(function(res) {
             if (response.status == 200) {
                 _render_me_data(res);
@@ -201,7 +201,7 @@ async function logoutForm(event) {
         };
         button.disabled = true;
         beforeLoad(button);
-        const response = await requestAPI(`${API_BASE_URL}logout`, null, headers, 'POST');
+        const response = await requestAPI(`${API_BASE_URL}user/logout`, null, headers, 'POST');
         
         if (response.status == 200) {
             showToast("Success", "Logged out successfully!", "success-toast");
@@ -301,7 +301,7 @@ async function successModal(){
     modal._element.addEventListener('hidden.bs.modal', function() {
         form.reset();
         sessionStorage.removeItem("customer_id");
-        location.href = "/keep-it-clean/";
+        location.href = location.pathname.includes("/home-energy/final-remarks/") ? "/exterior-evaluation/" : "/keep-it-clean/";
     });
     modal.show();
 }
@@ -320,10 +320,10 @@ function uploadIdImage(event) {
     }
 }
 
-function addNewCustomerRecord(event){
+function addNewCustomerRecord(event, type=null) {
     event.preventDefault();
     sessionStorage.removeItem("customer_id");
-    location.href = "/keep-it-clean/";
+    location.href = type == "home_energy" ? "/exterior-evaluation/" : "/keep-it-clean/";
 }
 
 function formatDate(inputDate) {

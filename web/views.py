@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView
 from api.core.mixin import LoginRequiredMixin
 from api.home.models import *
+from api.home_energy.models import Step
 
 # Create your views here.
 class LandingPageTemplateView(TemplateView):
@@ -11,6 +12,9 @@ class LoginPageTemplateView(TemplateView):
 
 class RegisterPageTemplateView(TemplateView):
     template_name = "sign-up.html"
+
+class SideSelectionPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "side-selection.html"
 
 class KeepItCleanPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "keep-it-clean.html"
@@ -205,7 +209,6 @@ class PrincipleDetailsPageTemplateView(LoginRequiredMixin, TemplateView):
         context["title"] = principle.name
         context["principleId"] = principle.id
         return context
-    
 
 class FinalRecommendationPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "final-remarks.html"
@@ -216,4 +219,152 @@ class FinalRecommendationPageTemplateView(LoginRequiredMixin, TemplateView):
         context["title"] = "Final Recommendations"
         context["active_page"] = "final_remarks"
         return context
+
+
+# Home Energy Side templates
+
+
+class ExteriorEvaluationFuelLeakTestingPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/exterior-evaluation.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["principleId"] = Step.objects.get(order=1).id
+        context["title"] = "Exterior Evaluation & Fuel Leak Testing"
+        context["active_page"] = "exterior_evaluation"
+        return context
+
+
+class InteriorSafetyEvaluationPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/interior-safety-evaluation.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Interior Safety Evaluation"
+        context["principleId"] = Step.objects.get(order=2).id
+        context["active_page"] = "interior_safety_evaluation"
+        return context
+
+
+class DoorsWindowsPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/doors-windows.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Doors & Windows"
+        context["principleId"] = Step.objects.get(order=3).id
+        context["active_page"] = "doors_windows"
+        return context
+
+
+class BuildingComponentsConstructionPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/building-components-construction.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Building Components & Construction"
+        context["principleId"] = Step.objects.get(order=4).id
+        context["active_page"] = "building_components_construction"
+        return context
+
+
+class AirflowVentilationPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/airflow-ventilation.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Airflow & Ventilation"
+        context["principleId"] = Step.objects.get(order=5).id
+        context["active_page"] = "airflow_ventilation"
+        return context
+
+
+class HVACCombustionSafetyTestingPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/hvac-combustion-safety-testing.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "HVAC & Combustion Safety Testing"
+        context["principleId"] = Step.objects.get(order=6).id
+        context["active_page"] = "hvac_combustion_safety"
+        return context
+
+
+class BlowerDoorTestingPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/blower-door-testing.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Blower Door Testing"
+        context["principleId"] = Step.objects.get(order=7).id
+        context["active_page"] = "blower_door_testing"
+        return context
+
+
+class AppliancesLightingPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/appliances-lighting.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Appliances and Lighting"
+        context["principleId"] = Step.objects.get(order=8).id
+        context["active_page"] = "appliances_lighting"
+        return context
+
+
+class BaseloadEnergyConsumptionPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/baseload-energy-consumption.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Baseload Energy Consumption"
+        context["principleId"] = Step.objects.get(order=9).id
+        context["active_page"] = "baseload_enery_consumption"
+        return context
+
+
+class FinalRemarksPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/final-remarks.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Final Recommendations"
+        context["principleId"] = Step.objects.get(order=10).id
+        context["active_page"] = "final_remarks"
+        return context
     
+class HomeEnergyHistoryPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/history.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "History"
+        return context
+
+class HomeEnergySavedPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/saved.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Saved"
+        context["customerId"] = self.kwargs['pk']
+        return context
+
+class StepDetailsPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/principle-details.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        principle = Step.objects.get(id=self.kwargs['pk'])
+        context["title"] = principle.title
+        context["principleId"] = principle.id
+        return context
+
+
+class HomeEnergyProfileSettingPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home_energy_templates/profile-settings.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Profile Settings"
+        return context
