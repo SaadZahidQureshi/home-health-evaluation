@@ -226,41 +226,6 @@ async function logoutForm(event) {
     }
 }
 
-async function get_principle_status_data() {
-    let customer_id = sessionStorage.getItem("customer_id") || null;
-    try {
-        let headers = {
-            "Content-Type": "application/json",
-            "X-CSRFToken": getCookie("csrftoken")
-        };
-
-        let endpoint = `${API_BASE_URL}principles/status`;
-        if (customer_id) {endpoint += `?customer_id=${customer_id}`;}
-        let response = await requestAPI(endpoint, null, headers, "GET");
-        let res = await response.json();
-
-        if (response.status === 200) {
-            principle_status_data = res;
-            render_principle_status_data(principle_status_data);
-        } else {
-            console.log(res);
-            return false;
-        }
-    } catch (err) {
-        console.error(err);
-    }
-}
-
-function render_principle_status_data(data) {
-    let container = document.querySelector(".side_menu > ul");
-    data.forEach(item => {
-        let el = container.querySelector(`#principle-${item.id}`);
-        if (el) {
-            el.classList.add(item?.status || "");
-        }
-    });
-}
-
 async function _get_principle_data() {
     try {
         let headers = {

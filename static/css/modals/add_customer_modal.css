@@ -99,11 +99,16 @@
     border-radius: 0 0 10px 10px !important;
 }
 
+#addUserModal .modal-footer {
+    padding-inline-start: 50px;
+    padding-inline-end: 60px;
+}
+
 #addUserModal .modal-footer button {
-    width: 295px;
+    width: 100%;
     height: 50px;
     opacity: 1;
-    border-radius: 80px;
+    border-radius: 10px;
     background: #71BF1E;
     color: #FFFFFF;
     border: none;
@@ -116,7 +121,7 @@
 
 #addUserModal .upload-box {
     width: 100%;
-    border: 2px dashed #00274D;
+    border: 1px solid #E7E7E7;
     border-radius: 8px;
     /* padding: 15px; */
     text-align: center;

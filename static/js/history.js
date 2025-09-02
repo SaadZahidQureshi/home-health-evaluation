@@ -89,7 +89,7 @@ async function deleteCustomer(id){
 
 function editCustomer(id){
     sessionStorage.setItem("customer_id", id);
-    location.href = "//exterior-evaluation/";
+    location.href = "/keep-it-clean/";
 }
 
 function viewCustomer(id){

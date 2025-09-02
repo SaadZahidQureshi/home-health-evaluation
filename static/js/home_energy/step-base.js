@@ -3,8 +3,50 @@ let principle_data = null;
 let selectedQuestionsByGroup = new Map();
 let questionsWithInitialAnswers = new Set();
 let customer_id = sessionStorage.getItem("customer_id") || null;
-window.addEventListener('load', get_principle_data);
+window.addEventListener('load', () =>{
+    get_principle_data(),
+    get_principle_status_data()
+});
 
+async function get_principle_status_data() {
+    let customer_id = sessionStorage.getItem("customer_id") || null;
+    try {
+        let headers = {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCookie("csrftoken")
+        };
+
+        let endpoint = `${API_BASE_URL}steps/status`;
+        if (customer_id) {endpoint += `?customer_id=${customer_id}`;}
+        let response = await requestAPI(endpoint, null, headers, "GET");
+        let res = await response.json();
+
+        if (response.status === 200) {
+            principle_status_data = res;
+            render_principle_status_data(principle_status_data);
+        } else {
+            console.log(res);
+            return false;
+        }
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+function render_principle_status_data(data) {
+    let container = document.querySelector(".side_menu > ul");
+    if (!container) return;
+
+    data.forEach(item => {
+        let el = container.querySelector(`li[data-order="${item.order}"]`);
+        if (el) {
+            el.classList.remove("completed", "pending");
+            if (item.status) {
+                el.classList.add(item.status);
+            }
+        }
+    });
+}
 
 async function get_principle_data() {
     try {
@@ -74,6 +116,7 @@ function render_principle_data(data) {
             group.questions.forEach(question => {
                 let questionDiv = document.createElement("div");
                 questionDiv.className = 'col-md-12';
+                questionDiv.style.marginBottom = "1.5rem";
 
                 let titleDiv = document.createElement("div");
                 titleDiv.className = 'accordian_title';
@@ -114,7 +157,7 @@ function render_principle_data(data) {
                     let innerContentDiv = document.createElement("div");
                     innerContentDiv.className = 'inform_item';
                     innerContentDiv.innerHTML = `
-                        <input type="${question.field_type}" name="text" data-question-id="${question.id}" value="${question?.answer?.text || ''}" placeholder="10" />
+                        <input type="${question.field_type}" name="text" data-question-id="${question.id}" value="${question?.answer?.text || ''}" placeholder="Write..." />
                     `;
                     questionDiv.appendChild(innerContentDiv);
                 }
@@ -366,7 +409,7 @@ function renderQuestionForm(container, group, data, preservedDetails = '', prese
     let formHTML = `
         <div class="accordion_selected">
             <div class="template_title">
-                <h4>Provide feedback for this group</h4>
+                <h4>Fill your feedback below</h4>
             </div>
             <form class="details-form" data-group-id="${group.id}">
                 <div class="row">

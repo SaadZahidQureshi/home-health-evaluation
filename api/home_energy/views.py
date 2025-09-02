@@ -80,40 +80,40 @@ class StepViewSet(DotsModelViewSet):
         response_data = {"step": StepSerializer(step).data, "groups": data_groups}
         return Response(response_data, status=status.HTTP_200_OK)
     
-    @action(detail=True, methods=["GET"], url_path="status")
-    def step_status(self, request, *args, **kwargs):
-        step = self.get_object()
-        customer_id = self.request.GET.get("customer_id")
+    @action(detail=False, methods=["GET"], url_path="status")
+    def steps_status(self, request, *args, **kwargs):
+        customer_id = request.GET.get("customer_id")
         customer = self._get_customer(customer_id) if customer_id else None
-        groups_qs = QuestionGroup.objects.filter(step=step)
-        total_groups = groups_qs.count()
-        completed_groups = 0
+        steps = self.get_queryset()
+        all_status = []
 
-        if customer:
-            for grp in groups_qs:
-                is_completed = False
-                has_answer = Answer.objects.filter(customer=customer, question__in=grp.question.all(), text__isnull=False).exists()
-                has_selected_option = SelectedOptions.objects.filter(customer=customer, question__in=grp.question.all()).exists()
-                has_feedback = Feedback.objects.filter(customer=customer, question_group=grp).exists()
+        for step in steps:
+            groups_qs = QuestionGroup.objects.filter(step=step)
+            total_groups = groups_qs.count()
+            completed_groups = 0
 
-                if has_answer or has_selected_option or has_feedback:
-                    is_completed = True
+            if customer:
+                for grp in groups_qs:
+                    has_answer = Answer.objects.filter(customer=customer, question__in=grp.question.all(), text__isnull=False).exists()
+                    has_selected_option = SelectedOptions.objects.filter(customer=customer, question__in=grp.question.all()).exists()
+                    has_feedback = Feedback.objects.filter(customer=customer, question_group=grp).exists()
 
-                if is_completed:
-                    completed_groups += 1
+                    if has_answer or has_selected_option or has_feedback:
+                        completed_groups += 1
 
-        is_step_completed = total_groups > 0 and completed_groups == total_groups
+            is_step_completed = total_groups > 0 and completed_groups == total_groups
 
-        status_data = {
-            "id": step.id,
-            "title": step.title,
-            "status": "completed" if is_step_completed else "pending",
-            "completed_groups": completed_groups,
-            "total_groups": total_groups,
-            "progress": f"{completed_groups}/{total_groups}" if total_groups else "0/0",
-        }
+            all_status.append({
+                "id": step.id,
+                "order": step.order,
+                "title": step.title,
+                "status": "completed" if is_step_completed else "pending",
+                "completed_groups": completed_groups,
+                "total_groups": total_groups,
+                "progress": f"{completed_groups}/{total_groups}" if total_groups else "0/0",
+            })
 
-        return Response(status_data, status=status.HTTP_200_OK)
+        return Response(all_status, status=status.HTTP_200_OK)
     
 
 class QuestionGroupViewSet(DotsModelViewSet):
