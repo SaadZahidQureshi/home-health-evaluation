@@ -94,6 +94,7 @@ class StepViewSet(DotsModelViewSet):
 
             if customer:
                 for grp in groups_qs:
+                    # A group is completed if user has answered at least one question
                     has_answer = Answer.objects.filter(customer=customer, question__in=grp.question.all(), text__isnull=False).exists()
                     has_selected_option = SelectedOptions.objects.filter(customer=customer, question__in=grp.question.all()).exists()
                     has_feedback = Feedback.objects.filter(customer=customer, question_group=grp).exists()
@@ -101,6 +102,7 @@ class StepViewSet(DotsModelViewSet):
                     if has_answer or has_selected_option or has_feedback:
                         completed_groups += 1
 
+            # A step is completed if all groups are completed (user answered at least one question per group)
             is_step_completed = total_groups > 0 and completed_groups == total_groups
 
             all_status.append({
@@ -114,6 +116,7 @@ class StepViewSet(DotsModelViewSet):
             })
 
         return Response(all_status, status=status.HTTP_200_OK)
+
     
 
 class QuestionGroupViewSet(DotsModelViewSet):
