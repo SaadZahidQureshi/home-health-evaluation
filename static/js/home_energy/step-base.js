@@ -157,7 +157,7 @@ function render_principle_data(data) {
                     let innerContentDiv = document.createElement("div");
                     innerContentDiv.className = 'inform_item';
                     innerContentDiv.innerHTML = `
-                        <input type="${question.field_type}" name="text" data-question-id="${question.id}" value="${question?.answer?.text || ''}" placeholder="Write..." />
+                        <input type="${question.field_type}" name="text" data-question-id="${question.id}" value="${question?.answer?.text || ''}" placeholder="${question?.field_type == "text"? "Write..." : "10" || "Write..."}" />
                     `;
                     questionDiv.appendChild(innerContentDiv);
                 }
