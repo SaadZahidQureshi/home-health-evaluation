@@ -36,13 +36,19 @@ async function get_principle_status_data() {
 
 function render_principle_status_data(data) {
     let container = document.querySelector(".side_menu > ul");
+    if (!container) return;
+
     data.forEach(item => {
-        let el = container.querySelector(`#principle-${item.id}`);
+        let el = container.querySelector(`li[data-order="${item.order}"]`);
         if (el) {
-            el.classList.add(item?.status || "");
+            el.classList.remove("completed", "pending");
+            if (item.status) {
+                el.classList.add(item.status);
+            }
         }
     });
 }
+
 
 async function get_principle_data(){
     try {

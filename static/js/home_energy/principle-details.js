@@ -34,8 +34,6 @@ async function get_principle_data(){
 function render_principle_data(data) {
     let container = document.querySelector(".right-mainpart");
     container.innerHTML = '';
-
-    console.log(data)
     
     // Check if step has any groups
     if (!data.groups || data.groups.length === 0) {
@@ -61,7 +59,7 @@ function render_principle_data(data) {
         const groupTitle = document.createElement('h3');
         groupTitle.className = 'category-title';
         groupTitle.textContent = `Group #${group.id}`;
-        groupCard.appendChild(groupTitle);
+        // groupCard.appendChild(groupTitle);
         
         // Render questions for this group
         if (group.questions && group.questions.length > 0) {
@@ -110,7 +108,7 @@ function renderQuestion(question) {
     if (question.answer && question.answer.text) {
         const answerContent = document.createElement('div');
         answerContent.className = 'feedback-note';
-        answerContent.innerHTML = `Answer: ${question.answer.text}`;
+        answerContent.innerHTML = question.answer.text;
         questionContainer.appendChild(answerContent);
     }
     
@@ -138,7 +136,7 @@ function renderOptionsSection(options, headerText = 'Selected Options') {
     const optionsHeader = document.createElement('div');
     optionsHeader.className = 'section-header';
     optionsHeader.innerHTML = `<strong>${headerText}</strong>`;
-    optionsContainer.appendChild(optionsHeader);
+    // optionsContainer.appendChild(optionsHeader);
     
     const optionsList = document.createElement('div');
     optionsList.className = 'options-list';
@@ -166,7 +164,7 @@ function renderFeedbackSection(feedback) {
     if (feedback.text) {
         const noteHeader = document.createElement('div');
         noteHeader.className = 'section-header';
-        noteHeader.innerHTML = '<strong>Feedback</strong>';
+        noteHeader.innerHTML = '<strong>Comments</strong>';
         feedbackContainer.appendChild(noteHeader);
         
         const noteContent = document.createElement('div');
@@ -177,9 +175,15 @@ function renderFeedbackSection(feedback) {
     
     // Feedback images
     if (feedback.images && feedback.images.length > 0) {
+
+        const noteHeader = document.createElement('div');
+        noteHeader.className = 'section-header';
+        noteHeader.innerHTML = '<strong>Images</strong>';
+        feedbackContainer.append(noteHeader);
+        
         const imagesContainer = document.createElement('div');
         imagesContainer.className = 'images-container';
-        
+
         feedback.images.forEach(imageData => {
             const imageWrapper = document.createElement('div');
             imageWrapper.className = 'image-wrapper';

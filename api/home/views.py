@@ -116,6 +116,7 @@ class PrincipleViewSet(DotsModelViewSet):
             is_completed = answered_count == total_main_categories and total_main_categories > 0
             status_data.append({
                 'id': principle.id,
+                "order": principle.order,
                 'name': principle.name,
                 'status': 'completed' if is_completed else 'pending',
                 'completed_categories': answered_count,

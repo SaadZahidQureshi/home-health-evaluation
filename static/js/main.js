@@ -3,8 +3,7 @@ const emailRegex = /^[a-z0-9](?:[a-z0-9._%+-]*[a-z0-9])?@[a-z0-9.-]+\.[a-z]{2,}$
 let logout_form = document.querySelector("#logoutForm");
 logout_form?.addEventListener("submit", logoutForm)
 let principle_status_data = null;
-window.addEventListener('load', () =>{_get_me_data(); _get_principle_data()});
-
+window.addEventListener('load', () =>{_get_me_data();});
 (function ($) {
 
     $(document).ready(function () {
@@ -224,38 +223,6 @@ async function logoutForm(event) {
         button.disabled = false;
         afterLoad(button, originalButtonText);
     }
-}
-
-async function _get_principle_data() {
-    try {
-        let headers = {
-            "Content-Type": "application/json",
-            "X-CSRFToken": getCookie("csrftoken")
-        };
-        let endpoint = `${API_BASE_URL}principles`;
-        let response = await requestAPI(endpoint, null, headers, "GET");
-        let res = await response.json();
-        if (response.status === 200) {
-            _attachItemListeners(res.data);
-        } else {
-            console.log(res);
-            return false;
-        }
-    } catch (err) {
-        console.error(err);
-    }
-}
-
-function _attachItemListeners(data) {
-    let items = document.querySelectorAll(".side_menu > ul > li");
-
-    items.forEach((item, index) => {
-        if (data[index]) {
-            item.id = `principle-${data[index].id}`;
-        }
-    });
-
-    get_principle_status_data();
 }
 
 async function successModal(){
