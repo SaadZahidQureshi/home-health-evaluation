@@ -1,7 +1,9 @@
 from .serializers import *
 from . models import *
+from . evaluation_report import get_customer_report_data
 from api.user.models import Customer
 from api.core.mixin import DotsModelViewSet
+from api.core.helpers import send_home_evaluation_report_email
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -127,6 +129,13 @@ class PrincipleViewSet(DotsModelViewSet):
         serializer = PrincipleStatusSerializer(status_data, many=True)        
         return Response(serializer.data, status=status.HTTP_200_OK)
     
+    @action(detail=False, methods=["POST"], url_path="report")
+    def report(self, request, *args, **kwargs):
+        customer_id = request.GET.get("customer_id")
+        customer = self._get_customer(customer_id) if customer_id else None
+        report_data = get_customer_report_data(customer)
+        send_home_evaluation_report_email(customer, report_data)
+        return Response({"data": report_data}, status=status.HTTP_200_OK)
 
 class CategoryViewSet(DotsModelViewSet):
     queryset = Category.objects.all()
