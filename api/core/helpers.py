@@ -155,3 +155,33 @@ def send_home_evaluation_report_email(customer, data=None):
 
         msg.attach("Healthy_Home_Report.pdf", pdf, "application/pdf")
         msg.send()
+
+
+
+def send_home_energy_report_email(customer, data=None):
+    """
+    Send Home Energy Report to customer via email with attached PDF.
+    """
+    subject = "Your Home Energy Report!"
+    from_email = settings.DEFAULT_FROM_EMAIL
+    to_email = [customer.user.email]
+
+    text_content = f"Hi {customer.user.name}, please find your Home Energy Report attached."
+    html_content = f"<p>Hi {customer.user.name},</p><p>Your Home Energy Report is attached.</p>"
+
+    msg = EmailMultiAlternatives(subject, text_content, from_email, to_email)
+    msg.attach_alternative(html_content, "text/html")
+
+    # context pass to PDF template
+    context = {"customer": customer, "data": data}
+
+    # render PDF from template (create new template for this report)
+    pdf = render_to_pdf("email/residential-home-report.html", context)
+    if pdf:
+        # save locally in BASE_DIR (optional)
+        file_path = os.path.join(settings.BASE_DIR, "Residential_Home_Report.pdf")
+        with open(file_path, "wb") as f:
+            f.write(pdf)
+
+        msg.attach("Residential_Home_Report.pdf", pdf, "application/pdf")
+        msg.send()

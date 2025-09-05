@@ -1,3 +1,5 @@
+from api.core.helpers import send_home_energy_report_email
+from api.home_energy.evaluation_report import get_customer_home_energy_report
 from .models import *
 from .serializers import *
 from django.db.models import Exists, OuterRef, Value, Case, When, BooleanField, Subquery, Prefetch
@@ -7,6 +9,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import action
 from rest_framework import status
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
 class StepViewSet(DotsModelViewSet):
@@ -116,6 +119,25 @@ class StepViewSet(DotsModelViewSet):
             })
 
         return Response(all_status, status=status.HTTP_200_OK)
+    
+    @action(detail=False, methods=["POST"], url_path="report")
+    def report(self, request, *args, **kwargs):
+        """
+        Generate a home energy report for a given customer.
+        """
+        customer_id = request.GET.get("customer_id") or request.data.get("customer_id")
+        customer = self._get_customer(customer_id) if customer_id else None
+
+        if not customer:
+            return Response({"detail": "Customer not found."}, status=status.HTTP_404_NOT_FOUND)
+
+        report_data = get_customer_home_energy_report(customer)
+        send_home_energy_report_email(customer, report_data)
+
+        # Optional: send email (just like old flow)
+        # send_home_energy_report_email(customer, report_data)
+
+        return Response({"data": report_data}, status=status.HTTP_200_OK)
 
     
 
@@ -222,3 +244,21 @@ class AnswerViewSet(DotsModelViewSet):
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
     permission_classes = [AllowAny]
+
+
+class CustomerHomeEnergyReportView(APIView):
+    """
+    Endpoint to get Home Energy report for a specific customer.
+    """
+
+    def get(self, request, customer_id):
+        try:
+            customer = Customer.objects.get(id=customer_id)
+        except Customer.DoesNotExist:
+            return Response(
+                {"detail": "Customer not found."},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        report_data = get_customer_home_energy_report(customer)
+        return Response(report_data, status=status.HTTP_200_OK)
