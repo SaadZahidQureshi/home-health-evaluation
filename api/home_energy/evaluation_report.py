@@ -82,11 +82,10 @@ def get_customer_home_energy_report(customer):
                 # Get options for this question
                 options_data = []
                 options = Option.objects.filter(question=question)
+                has_option_selected = SelectedOptions.objects.filter(customer=customer, option__in=options).exists()
+
                 for option in options:
-                    is_selected = SelectedOptions.objects.filter(
-                        customer=customer,
-                        option=option
-                    ).exists()
+                    is_selected = SelectedOptions.objects.filter(customer=customer, option=option).exists()
 
                     options_data.append({
                         'id': option.id,
@@ -99,7 +98,8 @@ def get_customer_home_energy_report(customer):
                     'text': question.text,
                     'field_type': question.field_type,
                     'answer': answer_text,
-                    'options': options_data
+                    'options': options_data,
+                    'has_option_selected': has_option_selected
                 }
 
                 qg_data['questions'].append(question_data)

@@ -122,9 +122,6 @@ class StepViewSet(DotsModelViewSet):
     
     @action(detail=False, methods=["POST"], url_path="report")
     def report(self, request, *args, **kwargs):
-        """
-        Generate a home energy report for a given customer.
-        """
         customer_id = request.GET.get("customer_id") or request.data.get("customer_id")
         customer = self._get_customer(customer_id) if customer_id else None
 
@@ -133,10 +130,6 @@ class StepViewSet(DotsModelViewSet):
 
         report_data = get_customer_home_energy_report(customer)
         send_home_energy_report_email(customer, report_data)
-
-        # Optional: send email (just like old flow)
-        # send_home_energy_report_email(customer, report_data)
-
         return Response({"data": report_data}, status=status.HTTP_200_OK)
 
     

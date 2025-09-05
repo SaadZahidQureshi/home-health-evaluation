@@ -1,11 +1,11 @@
+import os
+import base64
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.contrib.staticfiles import finders
 from django.template.loader import get_template
 from weasyprint import HTML, CSS
-import os
-import base64
 
 
 
@@ -155,14 +155,13 @@ def render_to_pdf(template_src, context_dict={}):
 
 
 def send_home_evaluation_report_email(customer, data=None):
-    subject = "Healthy Home Evaluation Report!"
+    subject = "Your Healthy Home Evaluation Report"
     from_email = settings.DEFAULT_FROM_EMAIL
     to_email = [customer.user.email]
 
     text_content = subject
-
-    text_template = get_template("email/healthy-home-email-template.html")
-    context_obj = {"customer": customer}
+    text_template = get_template("email/report-email-template.html")
+    context_obj = {"customer": customer, "type": "healthy"}
     template_content = text_template.render(context_obj)
 
     msg = EmailMultiAlternatives(subject, text_content, from_email, to_email)
@@ -179,20 +178,20 @@ def send_home_evaluation_report_email(customer, data=None):
         msg.send()
 
 
-
 def send_home_energy_report_email(customer, data=None):
-    subject = "Your Home Energy Report!"
+    subject = "Your Residencial Home Evaluation Report"
     from_email = settings.DEFAULT_FROM_EMAIL
     to_email = [customer.user.email]
 
-    text_content = f"Hi {customer.user.name}, please find your Home Energy Report attached."
-    html_content = f"<p>Hi {customer.user.name},</p><p>Your Home Energy Report is attached.</p>"
+    text_content = subject
+    text_template = get_template("email/report-email-template.html")
+    context_obj = {"customer": customer, "type": "residential"}
+    template_content = text_template.render(context_obj)
 
     msg = EmailMultiAlternatives(subject, text_content, from_email, to_email)
-    msg.attach_alternative(html_content, "text/html")
+    msg.attach_alternative(template_content, "text/html")
 
     context = {"customer": customer, "data": data}
-
     pdf = render_to_pdf("email/residential-home-report.html", context)
     if pdf:
         # file_path = os.path.join(settings.BASE_DIR, "Residential_Home_Report.pdf")

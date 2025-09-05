@@ -213,6 +213,7 @@
                         {% if question.options %}
                         <div class="selected-options">
                             <strong>Selected Options:</strong>
+                            {% if question.has_option_selected %}
                             <ul>
                                 {% for option in question.options %}
                                 {% if option.is_selected %}
@@ -220,6 +221,9 @@
                                 {% endif %}
                                 {% endfor %}
                             </ul>
+                            {% else %}
+                            Nill
+                            {% endif %}
                         </div>
                         {% endif %}
                     </div>
@@ -233,7 +237,7 @@
                         
                         <!-- Display Feedback Images -->
                         {% if question_group.feedback.images %}
-                        <br><br>
+                        <br>
                         <strong>Images</strong>
                         <div class="task-grid">
                             {% for image in question_group.feedback.images %}
