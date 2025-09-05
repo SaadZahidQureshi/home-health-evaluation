@@ -22,5 +22,3 @@ router.register(r"answer", AnswerViewSet, basename="answer")
 urlpatterns = [
     path("customers/<int:customer_id>/home-energy-report/", CustomerHomeEnergyReportView.as_view(), name="customer-home-energy-report"),
 ] + router.urls
-
-

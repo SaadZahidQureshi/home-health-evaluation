@@ -50,7 +50,7 @@ def replace_images_with_base64(data):
 
 def render_to_pdf(template_src, context_dict={}):
     context_dict = replace_images_with_base64(context_dict)
-    house_image = context_dict["data"]["customer"]["house_image"] or '/media/default-home-image.jpg'
+    house_image = context_dict["data"]["customer"]["house_image"] or '/media/default-home-image.png'
     context_dict["data"]["customer"]["house_image"] = encode_image_to_base64(house_image)
     html_string = render_to_string(template_src, context_dict)
 
