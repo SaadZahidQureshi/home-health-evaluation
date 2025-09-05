@@ -273,31 +273,3 @@ function closeCurrentModal() {
         bootstrapModal.hide();
     }
 }
-
-
-
-// Example: fetch customer home energy report
-const customerId = 1; // replace with actual customer ID
-
-fetch(`http://localhost:8000/api/customers/${customerId}/home-energy-report/`, {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-    "Authorization": "Bearer YOUR_AUTH_TOKEN", // if you’re using JWT/Token auth
-  },
-})
-  .then(response => response.json())
-  .then(data => {
-    console.log("Customer Report:", data);
-
-    // Example: accessing first step and its first question
-    if (data.steps.length > 0) {
-      console.log("Step Title:", data.steps[0].step.title);
-      if (data.steps[0].question_groups.length > 0) {
-        console.log("First Question:", data.steps[0].question_groups[0].questions[0].text);
-      }
-    }
-  })
-  .catch(error => {
-    console.error("Error fetching report:", error);
-  });

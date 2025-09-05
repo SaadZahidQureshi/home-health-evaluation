@@ -870,8 +870,9 @@ body {
 	gap: 1rem;
 }
 
-.action_button img {
+.action_button img, .action_button svg {
 	width: 3.2rem;
+	height: 100%;
 }
 
 /*==================== saved page start =====================*/

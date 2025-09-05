@@ -83,6 +83,11 @@
             height: 100%;
             border-radius: 10px;
         }
+
+        img {
+            object-fit: cover;
+            object-position: center;
+        }
         
         .section {
             margin: 0;
@@ -208,6 +213,7 @@
                 
                 {% if category.options %}
                 <p><strong>Selected Options</strong></p>
+                {% if category.is_answered %}
                 <ul>
                     {% for option in category.options %}
                     {% if option.is_selected %}
@@ -215,6 +221,9 @@
                     {% endif %}
                     {% endfor %}
                 </ul>
+                {% else %}
+                Nill
+                {% endif %}
                 <br>
                 {% endif %}
                 
@@ -229,6 +238,7 @@
                     
                     {% if subcategory.options %}
                     <p><strong>Selected Options</strong></p>
+                    {% if subcategory.is_answered %}
                     <ul>
                         {% for option in subcategory.options %}
                         {% if option.is_selected %}
@@ -236,6 +246,9 @@
                         {% endif %}
                         {% endfor %}
                     </ul>
+                    {% else %}
+                    Nill
+                    {% endif %}
                     <br>
                     {% endif %}
                     {% endfor %}
