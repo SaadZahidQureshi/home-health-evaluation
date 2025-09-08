@@ -85,7 +85,7 @@
                                 <span class="line-bottom"></span>
                             </div>
                             <div class="back_btn">
-                                <a href="javascript:void(0)" onclick="history.back()"><img src="{% static "img\left-arrow.svg" %}" alt=""></a>
+                                <a href="javascript:void(0)" onclick="document.referrer ? location.replace(document.referrer) : history.back()"><img src="{% static "img\left-arrow.svg" %}" alt=""></a>
                             </div>
                             <h2>{{title}}</h2>
                         </div>

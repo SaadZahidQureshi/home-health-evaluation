@@ -976,10 +976,12 @@ function handleImageUpload(event, container) {
                 selectedFiles[selectedFiles.categoryId] = [];
             }
             selectedFiles[selectedFiles.categoryId].push(file);
+            const fileIndex = selectedFiles[selectedFiles.categoryId].length - 1;
             
             previewItem.querySelector('.delete_icon a').addEventListener('click', function(e) {
                 e.preventDefault();
                 previewItem.remove();
+                selectedFiles[selectedFiles.categoryId].splice(fileIndex, 1);
             });
         };
         
