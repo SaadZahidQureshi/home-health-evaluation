@@ -45,12 +45,15 @@ function render_customers_data(data) {
                     <td>${formatDate(customer?.created_at )|| "--"}</td>
                     <td>
                         <div class="action_button">
-                              <a href="javascript:void(0)" onclick="sendReport(${customer?.id})">
+                            <a href="javascript:void(0)" id="customer-row-report-btn-${customer.id}" onclick="sendReport(${customer?.id})">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" viewBox="0 0 24 24" fill="none">
                                     <path d="M4 9.00005L10.2 13.65C11.2667 14.45 12.7333 14.45 13.8 13.65L20 9" stroke="#71BF1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M3 9.17681C3 8.45047 3.39378 7.78123 4.02871 7.42849L11.0287 3.5396C11.6328 3.20402 12.3672 3.20402 12.9713 3.5396L19.9713 7.42849C20.6062 7.78123 21 8.45047 21 9.17681V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17V9.17681Z" stroke="#71BF1E" stroke-width="2" stroke-linecap="round"/>
                                 </svg>
                             </a>
+                            <div class="spinner-border hide" id="customer-row-spinner-${customer.id}" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
                             <a href="javascript:void(0)" onclick="deleteCustomer(${customer?.id})">
                                 <img src="/static/img/delete-rounded.svg" alt="">
                             </a>
@@ -105,6 +108,7 @@ function viewCustomer(id){
 
 async function sendReport(id){
     try {
+        toggleRowReportSpinner(id);
         let headers = {
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
@@ -112,13 +116,25 @@ async function sendReport(id){
         let response = await requestAPI(`${API_BASE_URL}steps/report?customer_id=${id}`, null, headers, 'POST');
         if (response.status == 200) {
             showToast("Success", `Report sent successfully!`, "success-toast");
+            toggleRowReportSpinner(id);
         }
         else {
-            console.log(res)
+            console.log(res);
+            toggleRowReportSpinner(id);
             return false;
         }
     }
     catch (err) {
         console.log(err);
+        toggleRowReportSpinner(id);
     }
+}
+
+
+function toggleRowReportSpinner(id) {
+    let reportBtn = document.getElementById(`customer-row-report-btn-${id}`);
+    let spinner = document.getElementById(`customer-row-spinner-${id}`);
+
+    reportBtn.classList.toggle("hide");
+    spinner.classList.toggle("hide");
 }

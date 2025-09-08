@@ -209,4 +209,5 @@ __marimo__/
 # ignore media files
 media/*
 !media/default-profile.png
+!media/default-home-image.png
 staticfiles/*

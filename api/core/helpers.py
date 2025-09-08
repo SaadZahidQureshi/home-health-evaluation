@@ -1,36 +1,57 @@
+import os
+import base64
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.contrib.staticfiles import finders
+from django.template.loader import get_template
 from weasyprint import HTML, CSS
-import os
-import base64
 
 
-def get_image_as_base64(image_path):
-    """Convert image to base64 for embedding in PDF"""
-    try:
-        # Try to find the static file
-        found_path = finders.find(image_path)
-        if found_path:
-            with open(found_path, "rb") as img_file:
-                img_data = base64.b64encode(img_file.read()).decode('utf-8')
-                # Detect image type
-                if image_path.lower().endswith('.png'):
-                    return f"data:image/png;base64,{img_data}"
-                elif image_path.lower().endswith(('.jpg', '.jpeg')):
-                    return f"data:image/jpeg;base64,{img_data}"
-                else:
-                    return f"data:image/png;base64,{img_data}"  # default to png
-    except Exception as e:
-        print(f"Error loading image {image_path}: {e}")
-    return None
+
+def encode_image_to_base64(path):
+    if path.startswith("/media/"):
+        path = os.path.join(settings.MEDIA_ROOT, path.replace("/media/", ""))
+    
+    if not os.path.exists(path):
+        return None
+    
+    with open(path, "rb") as img_file:
+        img_data = base64.b64encode(img_file.read()).decode("utf-8")
+
+        ext = os.path.splitext(path)[1].lower()
+        if ext in [".jpg", ".jpeg"]:
+            mime = "image/jpeg"
+        elif ext == ".png":
+            mime = "image/png"
+        elif ext == ".gif":
+            mime = "image/gif"
+        else:
+            mime = "image/png"
+
+        return f"data:{mime};base64,{img_data}"
+
+
+def replace_images_with_base64(data):
+    if isinstance(data, dict):
+        new_data = {}
+        for key, value in data.items():
+            if key == "image" and isinstance(value, str):
+                new_data[key] = encode_image_to_base64(value)
+            else:
+                new_data[key] = replace_images_with_base64(value)
+        return new_data
+
+    elif isinstance(data, list):
+        return [replace_images_with_base64(item) for item in data]
+
+    return data
 
 
 def render_to_pdf(template_src, context_dict={}):
-    # Add base64 images to context
-    context_dict['get_image_base64'] = get_image_as_base64("file:///C:/Users/DELL/Documents/Myprojects/Healthy%20Home%20Evaluation/static/img/audit.png")
-    
+    context_dict = replace_images_with_base64(context_dict)
+    house_image = context_dict["data"]["customer"]["house_image"] or '/media/default-home-image.png'
+    context_dict["data"]["customer"]["house_image"] = encode_image_to_base64(house_image)
     html_string = render_to_string(template_src, context_dict)
 
     # Multiple approaches for base_url
@@ -134,54 +155,48 @@ def render_to_pdf(template_src, context_dict={}):
 
 
 def send_home_evaluation_report_email(customer, data=None):
-    subject = "Healthy Home Evaluation Report!"
+    subject = "Your Healthy Home Evaluation Report"
     from_email = settings.DEFAULT_FROM_EMAIL
     to_email = [customer.user.email]
 
-    text_content = f"Hi {customer.user.name}, please find your PDF attached."
-    html_content = f"<p>Hi {customer.user.name},</p><p>Your PDF is attached.</p>"
+    text_content = subject
+    text_template = get_template("email/report-email-template.html")
+    context_obj = {"customer": customer, "type": "healthy"}
+    template_content = text_template.render(context_obj)
 
     msg = EmailMultiAlternatives(subject, text_content, from_email, to_email)
-    msg.attach_alternative(html_content, "text/html")
+    msg.attach_alternative(template_content, "text/html")
 
     context = {"customer": customer, "data": data}    
     pdf = render_to_pdf("email/healthy_home_report.html", context)
     if pdf:
-
-        # Save locally in BASE_DIR
-        file_path = os.path.join(settings.BASE_DIR, "Healthy_Home_Report.pdf")
-        with open(file_path, "wb") as f:
-            f.write(pdf)
+        # file_path = os.path.join(settings.BASE_DIR, "Healthy_Home_Report.pdf")
+        # with open(file_path, "wb") as f:
+        #     f.write(pdf)
 
         msg.attach("Healthy_Home_Report.pdf", pdf, "application/pdf")
         msg.send()
 
 
-
 def send_home_energy_report_email(customer, data=None):
-    """
-    Send Home Energy Report to customer via email with attached PDF.
-    """
-    subject = "Your Home Energy Report!"
+    subject = "Your Residencial Home Evaluation Report"
     from_email = settings.DEFAULT_FROM_EMAIL
     to_email = [customer.user.email]
 
-    text_content = f"Hi {customer.user.name}, please find your Home Energy Report attached."
-    html_content = f"<p>Hi {customer.user.name},</p><p>Your Home Energy Report is attached.</p>"
+    text_content = subject
+    text_template = get_template("email/report-email-template.html")
+    context_obj = {"customer": customer, "type": "residential"}
+    template_content = text_template.render(context_obj)
 
     msg = EmailMultiAlternatives(subject, text_content, from_email, to_email)
-    msg.attach_alternative(html_content, "text/html")
+    msg.attach_alternative(template_content, "text/html")
 
-    # context pass to PDF template
     context = {"customer": customer, "data": data}
-
-    # render PDF from template (create new template for this report)
     pdf = render_to_pdf("email/residential-home-report.html", context)
     if pdf:
-        # save locally in BASE_DIR (optional)
-        file_path = os.path.join(settings.BASE_DIR, "Residential_Home_Report.pdf")
-        with open(file_path, "wb") as f:
-            f.write(pdf)
+        # file_path = os.path.join(settings.BASE_DIR, "Residential_Home_Report.pdf")
+        # with open(file_path, "wb") as f:
+        #     f.write(pdf)
 
         msg.attach("Residential_Home_Report.pdf", pdf, "application/pdf")
         msg.send()
