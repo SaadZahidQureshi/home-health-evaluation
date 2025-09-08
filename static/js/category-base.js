@@ -1103,7 +1103,7 @@ async function handleGlobalSubmit(event) {
                     hasAnySelections = categorySelections.size > 0;
                     shouldSaveFeedback = hasAnySelections;
                 }
-                if (!isLastStep && (shouldSaveFeedback && form)) {
+                if (!isLastStep() && (shouldSaveFeedback && form)) {
                     const formData = new FormData(form);
                     const details = formData.get('details');
                     // const imageFiles = formData.getAll('images').filter(file => file.size > 0);
@@ -1210,7 +1210,7 @@ async function saveMainCategoryFeedback(categoryId, details, imageFiles, existin
                 console.error(`Failed to upload images for category ${categoryId}`);
                 return false;
             }
-            selectedFiles = [];
+            selectedFiles[categoryId] = [];
         }
 
         return true;
