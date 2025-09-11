@@ -1,0 +1,81 @@
+/*====================== Google fonts ========================*/
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+html {
+    font-size: 100%;
+}
+:root {
+	scroll-behavior: unset;
+}
+html,
+body,
+header,
+footer,
+main,
+nav,
+section,
+div,
+menu,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+strong,
+i,
+ol,
+ul,
+li,
+form,
+label,
+button {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: "Nunito Sans", sans-serif !important;
+	background: #F5F6F8;
+	color: #000000;
+}
+
+
+/* main responsive stylings for all screenssss */
+
+
+
+@media (min-width: 1440px) and (max-width: 1920px) {
+    html {
+        font-size: 75%;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1440px) {
+    html {
+        font-size: 75%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    html {
+        font-size: 55%;
+    }
+}
+
+
+@media (min-width: 400px) and (max-width: 767px) {
+    html {
+        font-size: 75%;
+    }
+}
+
+
+@media (max-width: 399px) {
+    html {
+        font-size: 70%;
+    }
+}

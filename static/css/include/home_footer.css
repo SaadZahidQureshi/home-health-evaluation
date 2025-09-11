@@ -1,0 +1,137 @@
+/* foooterrrrrrrrr */
+
+ .footer-bg {
+    background-color: #1B2F46;
+    color: white;
+    padding: 3.75rem 0;
+}
+
+.footer-container {
+    padding: 0px 13.938rem;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 13px;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.first-footer-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(45deg, #27ae60, #2ecc71);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.logo-subtitle {
+    font-size: 12px;
+    color: #bdc3c7;
+    letter-spacing: 2px;
+    margin-top: -5px;
+}
+
+.footer-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+    color: white;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 1.25rem;
+}
+
+.footer-links a {
+    color: #DAD8D8;
+    text-decoration: none;
+    font-size: 1.25rem;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #27ae60;
+}
+
+footer .contact-item {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 15px;
+    color: #bdc3c7;
+    font-size: 14px;
+}
+
+.footer-contact-info {
+    margin-bottom: 1.25rem !important;
+}
+
+.contact-icon {
+    width: 1.875rem;
+    height: 1.875rem;
+}
+.contact-icon svg {
+    width: 100%;
+}
+
+.contact-text {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+
+    .navbar-nav .nav-link.active {
+        color: #71BF1E !important;
+    }
+
+    .navbar-nav .nav-link.active::after {
+        content: none;
+    }
+
+    .footer-bg {
+        padding: 30px 0 15px 0;
+    }
+    
+    .footer-title {
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+    
+    .footer-logo {
+        margin-bottom: 20px;
+    }
+    .footer-container {
+        padding: 0px 1.938rem;
+    }
+    .footer-col {
+        align-items: unset !important;
+    }
+
+}
+
