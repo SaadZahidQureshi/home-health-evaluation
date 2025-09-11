@@ -1341,6 +1341,13 @@ footer .contact-item {
     .footer-logo {
         margin-bottom: 20px;
     }
+    .footer-container {
+        padding: 0px 1.938rem;
+    }
+    .footer-col {
+        align-items: unset !important;
+    }
+
 }
 
 
