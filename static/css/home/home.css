@@ -295,7 +295,6 @@ body {
 	inset: 0;
 	border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    border-bottom-left-radius: 15px;
 	padding-top: 2px; /* border thickness */
 	background: linear-gradient(270deg, #71BF1E 0%, #02A0E9 100%);
 	-webkit-mask: 
