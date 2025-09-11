@@ -29,7 +29,6 @@ urlpatterns = [
     path("keep-it-clean-contaminent-free-item-selected/", KeepItCleanContaminentFreeItemSelectedPageTemplateView.as_view(), name="keep_it_clean_contaminent_free_item_selected_page"),
     path("principle/details/<int:pk>", PrincipleDetailsPageTemplateView.as_view(), name="principle_detail_page"),
     path("final-recommendations/", FinalRecommendationPageTemplateView.as_view(), name="final_recommendations_page"),
-    path("pdf-report/", PDFTemplatePageTemplateView.as_view(), name="pdf_report"),
 
 
     # Home Energy Side URLs
@@ -48,4 +47,8 @@ urlpatterns = [
     path("home-energy/saved/<int:pk>", HomeEnergySavedPageTemplateView.as_view(), name="home_energy_saved"),
     path("step/details/<int:pk>", StepDetailsPageTemplateView.as_view(), name="step_detail_page"),
     path("home-energy/profile-settings/", HomeEnergyProfileSettingPageTemplateView.as_view(), name="home_energy_profile_settings_page"),
+
+    # home page urls
+
+    path("home-page/", HomePageTemplateView.as_view(), name="home_page"),
 ]
