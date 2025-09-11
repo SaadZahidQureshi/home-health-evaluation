@@ -58,6 +58,9 @@ body {
     padding: 0.938rem 0 !important;
     border-bottom-left-radius: 0.938rem;
     border-bottom-right-radius: 0.938rem;
+    position: fixed !important;
+    z-index: 100;
+    width: 100%;
 }
 
 .navbar-brand {
@@ -162,6 +165,7 @@ body {
 .hero-container {
     padding: 3.75rem 5rem;
     background-color: #F5F6F8;
+    padding-top: 10rem;
 }
 
 .hero-section {
@@ -292,7 +296,7 @@ body {
 	border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-left-radius: 15px;
-	padding-top: 1px; /* border thickness */
+	padding-top: 2px; /* border thickness */
 	background: linear-gradient(270deg, #71BF1E 0%, #02A0E9 100%);
 	-webkit-mask: 
 		linear-gradient(#fff 0 0) content-box, 
@@ -686,9 +690,9 @@ body {
 }
 
 .pricing-title {
-    font-size: 36px;
-    font-weight: 600;
-    color: #2d3748;
+    font-size: 2.125rem;
+    font-weight: 700;
+    color: #2B2B2B;
 }
 
 .pricing-cards {
