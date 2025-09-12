@@ -52,4 +52,6 @@ urlpatterns = [
 
     path("home-page/", HomePageTemplateView.as_view(), name="home_page"),
     path("about-us/", AboutUsPageTemplateView.as_view(), name="about_us_page"),
+    path("book-appointments/", BookAppointmentPageTemplateView.as_view(), name="book_appointments_page"),
+    path("appointment-details/", AppointmentDetailsPageTemplateView.as_view(), name="appointment_details_page"),
 ]

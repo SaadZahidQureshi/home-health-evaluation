@@ -384,3 +384,19 @@ class AboutUsPageTemplateView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         context["active_nav"] = "about_us"
         return context
+    
+class BookAppointmentPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home/book-appointments.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["active_nav"] = "book_appointments"
+        return context
+    
+class AppointmentDetailsPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home/appointment-details.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["active_nav"] = "book_appointments"
+        return context
