@@ -369,7 +369,7 @@ class HomeEnergyProfileSettingPageTemplateView(LoginRequiredMixin, TemplateView)
         return context
     
 
-class HomePageTemplateView(LoginRequiredMixin, TemplateView):
+class HomePageTemplateView(TemplateView):
     template_name = "home/home.html"
 
     def get_context_data(self, **kwargs):
@@ -377,15 +377,23 @@ class HomePageTemplateView(LoginRequiredMixin, TemplateView):
         context["active_nav"] = "home"
         return context
     
-class AboutUsPageTemplateView(LoginRequiredMixin, TemplateView):
+class AboutUsPageTemplateView(TemplateView):
     template_name = "home/about-us.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["active_nav"] = "about_us"
         return context
+
+class ServicesEvaluationPageTemplateView(TemplateView):
+    template_name = "home/services-evaluations.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["active_nav"] = "services_evaluation"
+        return context
     
-class BookAppointmentPageTemplateView(LoginRequiredMixin, TemplateView):
+class BookAppointmentPageTemplateView(TemplateView):
     template_name = "home/book-appointments.html"
 
     def get_context_data(self, **kwargs):
@@ -393,7 +401,7 @@ class BookAppointmentPageTemplateView(LoginRequiredMixin, TemplateView):
         context["active_nav"] = "book_appointments"
         return context
     
-class AppointmentDetailsPageTemplateView(LoginRequiredMixin, TemplateView):
+class AppointmentDetailsPageTemplateView(TemplateView):
     template_name = "home/appointment-details.html"
 
     def get_context_data(self, **kwargs):

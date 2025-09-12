@@ -1,0 +1,749 @@
+{% extends 'home/home_base.html' %}
+
+  {% block css %}
+    <link rel="stylesheet" href="/static/css/home/services-evaluations.css">
+  {% endblock css %}
+   {% block title %} Home {% endblock title %}
+    
+{% block content %}
+        
+        
+    <div class="hero-container">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Healthy Home Evaluation</h1>
+                <p class="hero-subtitle">Assessing What Matters—Air, Energy, and Everyday Comfort</p>
+                <!-- <button class="btn-hero">Get Started</button> -->
+            </div>
+        </section>
+    </div>
+    <!-- Our video Section -->
+    <section class="video-section">
+        <div class="video-container">
+            <!-- Left Content -->
+            <!-- <div class="video-content">
+                <div class="mission-badge">Our Mission</div>
+                <h2 class="mission-title">Our Mission</h2>
+                <p class="mission-text">
+                    At PG Home Dynamics, our mission is to help homeowners transform their living spaces into energy-efficient and healthier environments. We are dedicated to creating solutions that balance comfort, safety, and sustainability, ensuring every family can enjoy a home that supports their well-being.
+                </p>
+                <p class="mission-text">
+                    We envision a future where every home is designed to be both sustainable and healthy, without compromising comfort. By offering Home Energy Audits and Healthy Home Evaluations, we strive to lead the way toward smarter, safer, and healthier living—one home at a time.
+                </p>
+            </div> -->
+            
+            <!-- Right Image -->
+            <div class="video-image">
+                <img src="/static/img/services_evaluation_video_image.png" alt="video player" />
+            </div>
+        </div>
+    </section>
+    <div class="services-container">
+        <!-- Services Header -->
+        <div class="services-header">
+            <div class="mission-badge">What we offer</div>
+            <h2 class="services-title">A BPI (Building Performance Institute) Healthy Home Evaluation involves a comprehensive assessment</h2>
+        </div>
+
+        <!-- Visual Inspection Section -->
+        <div class="inspection-section">
+            <div class="section-image">
+                <img src="/static/img/visual_inspection.png" alt="visual inspection image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Visual Inspection</h3>
+                <div class="section-description">
+                    <ul>
+                        <li>
+                            <span class="list-label">Structural Integrity:</span> Inspecting walls, ceilings, and foundation for any damage that could lead to air or moisture infiltration.
+                        </li>
+                        <li>
+                           <span class="list-label">Signs of Mold, Mildew, and Water Damage:</span> Identifying areas with potential health risks, such as mold growth or damp conditions.
+                        </li>
+                        <li>
+                           <span class="list-label">Ventilation Systems:</span> Assessing the home’s ventilation systems, including exhaust fans, HVAC systems, and passive ventilation sources, for adequate airflow and functioning.
+                        </li>
+                        <li>
+                            <span class="list-label">Indoor Air Quality:</span> Checking for any visible hazards that could affect air quality (e.g., dust, soot, debris).
+                        </li>
+                    </ul>
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Visual Inspection Section -->
+
+        <!-- Moisture and Humidity Testing Section -->
+        <div class="inspection-section flex-column flex-md-row-reverse">
+            <div class="section-image">
+                <img src="/static/img/moisture-humidity-testing.png" alt="Moisture and humidity testing image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Moisture and Humidity Testing</h3>
+                <div class="section-description">
+                    <ul>
+                        <li>
+                            <span class="list-label">Moisture Levels:</span> Measuring moisture content in walls, floors, and ceilings to identify hidden water damage or potential mold growth.
+                        </li>
+                        <li>
+                           <span class="list-label">Humidity Levels:</span>  Ensuring humidity levels in the home are within a healthy range (ideally 30-50%) to prevent mold growth and maintain comfort.
+                        </li>
+                    </ul>
+                    
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Moisture and Humidity Testing Section-->
+
+        <!-- Air Quality Testing Section -->
+        <div class="inspection-section">
+            <div class="section-image">
+                <img src="/static/img/air_quality_testing.png" alt="Air quality testing image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Air Quality Testing</h3>
+                <div class="section-description">
+                    <ul>
+                        <li>
+                            <span class="list-label">Carbon Monoxide (CO) Testing:</span> Checking for any sources of CO, especially near combustion appliances like furnaces, water heaters, or stoves.
+                        </li>
+                        <li>
+                           <span class="list-label">Radon Testing:</span> Measuring radon levels in the home, as radon is a leading cause of lung cancer.
+                        </li>
+                        <li>
+                           <span class="list-label">Particulate Matter Testing:</span>Using devices to measure airborne particulate matter that can contribute to respiratory problems.
+                        </li>
+                    </ul>
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Air Quality Testing Section -->
+
+        <!-- Ventilation Evaluation Section -->
+        <div class="inspection-section flex-column flex-md-row-reverse">
+            <div class="section-image">
+                <img src="/static/img/ventilation_evaluation.png" alt="Ventilation Evaluation image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Ventilation Evaluation</h3>
+                <div class="section-description">
+                    <ul>
+                        <li>
+                            <span class="list-label">Airflow Assessment:</span> Evaluating if the home has adequate ventilation to remove indoor pollutants, moisture, and stale air.
+                        </li>
+                        <li>
+                           <span class="list-label">Balancing Fresh Air and Exhaust:</span>  Ensuring that fresh air is being introduced into the home while stale air is being effectively exhausted without creating imbalances or drafts.
+                        </li>
+                    </ul>
+                    
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Ventilation Evaluation Section-->
+
+        <!-- Energy Efficiency Assessment Section -->
+        <div class="inspection-section">
+            <div class="section-image">
+                <img src="/static/img/energy_efficiency_assessment.png" alt="energy efficiency assessment image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Energy Efficiency Assessment</h3>
+                <div class="section-description">
+                    <ul>
+                        <li>
+                            <span class="list-label">Insulation and Air Sealing:</span> Evaluating areas for air leaks (around windows, doors, and ductwork) and checking insulation effectiveness.
+                        </li>
+                        <li>
+                           <span class="list-label">Thermal Imaging:</span> Using infrared cameras to identify heat loss or cold spots in the home that could lead to energy inefficiency.
+                        </li>
+                        <li>
+                           <span class="list-label">Appliance Efficiency:</span> Assessing the performance of heating, cooling, and other appliances for energy efficiency and ensuring that they don’t release harmful pollutants.
+                        </li>
+        
+                    </ul>
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Energy Efficiency Assessment Section -->
+
+        <!-- Water Safety and Quality Evaluation Section -->
+        <div class="inspection-section flex-column flex-md-row-reverse">
+            <div class="section-image">
+                <img src="/static/img/water_safety_quality_evaluation.png" alt="water safety and quality evaluation image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Water Safety and Quality Evaluation</h3>
+                <div class="section-description">
+                    <ul>
+                        <li>
+                            <span class="list-label">Water Quality:</span> Testing for contaminants in the drinking water (e.g., lead, bacteria). 
+                        </li>
+                        <li>
+                           <span class="list-label">Plumbing System Inspection:</span> Identifying leaks or water pressure issues that could lead to mold or structural damage.
+                        </li>
+                    </ul>
+                    
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Water Safety and Quality Evaluation Section-->
+
+        <!-- Hazardous Material Identification Section -->
+        <div class="inspection-section">
+            <div class="section-image">
+                <img src="/static/img/hazardous_material_identification.png" alt="hazardous material identification image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Hazardous Material Identification</h3>
+                <div class="section-description">
+                    <ul>
+                        <li>
+                            <span class="list-label">Lead Paint and Asbestos:</span> Conducting tests to detect lead-based paints or asbestos, which can pose serious health risks, especially to young children.
+                        </li>
+                        <li>
+                           <span class="list-label">Pest Infestation:</span> Checking for signs of pest infestations (e.g., rodents, insects) that could contribute to poor air quality or health hazards
+                        </li>
+                    </ul>
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Hazardous Material Identification Section -->
+
+        <!-- Health and Safety Concerns Section -->
+        <div class="inspection-section flex-column flex-md-row-reverse">
+            <div class="section-image">
+                <img src="/static/img/health_safety_concerns.png" alt="Health and safety concerns image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Health and Safety Concerns</h3>
+                <div class="section-description">
+                    <ul>
+                        <li>
+                            <span class="list-label">Fire Safety:</span> Ensuring that smoke detectors and fire extinguishers are present and working.
+                        </li>
+                        <li>
+                           <span class="list-label">Radon Testing:</span> Measuring radon levels in the home, as radon is a leading cause of lung cancer.
+                        </li>
+                        <li>
+                           <span class="list-label">Electrical Safety:</span>  Inspecting the electrical system for potential hazards that could lead to fires or electrocution.
+                        </li>
+                    </ul>
+                    
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Health and Safety Concerns Section-->
+
+        <!--Review of Occupant Behavior Section -->
+        <div class="inspection-section">
+            <div class="section-image">
+                <img src="/static/img/review_occupant_behavior.png" alt="review of occupant behavior image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Review of Occupant Behavior</h3>
+                <div class="section-description">
+                    <ul>
+                        <li>
+                            Assessing how occupants interact with the home’s systems, such as opening windows for ventilation, use of space heaters, or their habits regarding air filters and maintenance.
+                        </li>
+                    </ul>
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Review of Occupant Behavior Section -->
+
+
+        <!-- Recommendations Section -->
+        <div class="inspection-section flex-column flex-md-row-reverse">
+            <div class="section-image">
+                <img src="/static/img/recommendations.png" alt="Recommendations image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Recommendations</h3>
+                <div class="section-description">
+                    <ul>
+                        <li>
+                            After gathering data, providing a detailed report with suggestions on improving indoor air quality, reducing moisture levels, improving ventilation, and making the home safer and healthier overall.
+                        </li>
+                    </ul>
+                    
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Recommendations Section-->
+
+
+
+    </div>
+    <section class="health-cards-section">
+        <div class="health-card">
+            <div>
+                <svg class="health-card-image" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="64" height="64" rx="32" fill="url(#paint0_linear_1080_3804)"/>
+                    <path d="M41.4951 23.9199L42.9051 22.5049" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M23.1199 43.7102C22.5512 44.2401 21.799 44.5286 21.0218 44.5149C20.2446 44.5012 19.503 44.1864 18.9534 43.6367C18.4037 43.0871 18.0889 42.3455 18.0752 41.5683C18.0615 40.7911 18.35 40.0389 18.8799 39.4702L20.2899 40.8802C20.197 40.9731 20.1233 41.0834 20.073 41.2048C20.0227 41.3262 19.9968 41.4563 19.9968 41.5877C19.9968 41.7191 20.0227 41.8492 20.073 41.9706C20.1233 42.092 20.197 42.2023 20.2899 42.2952C20.4775 42.4829 20.732 42.5883 20.9974 42.5883C21.1288 42.5883 21.2589 42.5624 21.3803 42.5121C21.5017 42.4618 21.612 42.3881 21.7049 42.2952L23.8249 40.1752L25.2399 41.5902L23.1199 43.7102Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M24.5298 40.8799L33.0148 32.3999" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22.4102 41.5898L23.8252 42.9998" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M45.0252 41.5902C46.0838 38.6323 46.2806 35.4347 45.5926 32.3694C44.9045 29.3041 43.3601 26.4972 41.1389 24.2755C38.9178 22.0538 36.1113 20.5087 33.0461 19.82C29.981 19.1312 26.7833 19.3272 23.8252 20.3852L28.7752 28.1602L37.2752 36.6602L45.0252 41.5902Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M28.9502 28.0002C33.3402 23.6102 38.8002 21.9452 41.1402 24.2902C43.4802 26.6352 41.8202 32.0902 37.4302 36.4802" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M33.0011 37.2474L31.7495 38.499L33.0011 39.7506L34.2527 38.499L33.0011 37.2474Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 34.5C22.5523 34.5 23 34.0523 23 33.5C23 32.9477 22.5523 32.5 22 32.5C21.4477 32.5 21 32.9477 21 33.5C21 34.0523 21.4477 34.5 22 34.5Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10"/>
+                    <path d="M24.75 28.5C24.75 28.6381 24.6381 28.75 24.5 28.75C24.3619 28.75 24.25 28.6381 24.25 28.5C24.25 28.3619 24.3619 28.25 24.5 28.25C24.6381 28.25 24.75 28.3619 24.75 28.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M27.25 33.5C27.25 33.6381 27.1381 33.75 27 33.75C26.8619 33.75 26.75 33.6381 26.75 33.5C26.75 33.3619 26.8619 33.25 27 33.25C27.1381 33.25 27.25 33.3619 27.25 33.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M35.75 42.5C35.75 42.6381 35.6381 42.75 35.5 42.75C35.3619 42.75 35.25 42.6381 35.25 42.5C35.25 42.3619 35.3619 42.25 35.5 42.25C35.6381 42.25 35.75 42.3619 35.75 42.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M28.75 44.5C28.75 44.6381 28.6381 44.75 28.5 44.75C28.3619 44.75 28.25 44.6381 28.25 44.5C28.25 44.3619 28.3619 44.25 28.5 44.25C28.6381 44.25 28.75 44.3619 28.75 44.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M19.75 27.5C19.75 27.6381 19.6381 27.75 19.5 27.75C19.3619 27.75 19.25 27.6381 19.25 27.5C19.25 27.3619 19.3619 27.25 19.5 27.25C19.6381 27.25 19.75 27.3619 19.75 27.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M37.75 18C37.75 18.1381 37.6381 18.25 37.5 18.25C37.3619 18.25 37.25 18.1381 37.25 18C37.25 17.8619 37.3619 17.75 37.5 17.75C37.6381 17.75 37.75 17.8619 37.75 18Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M46.75 25.5C46.75 25.6381 46.6381 25.75 46.5 25.75C46.3619 25.75 46.25 25.6381 46.25 25.5C46.25 25.3619 46.3619 25.25 46.5 25.25C46.6381 25.25 46.75 25.3619 46.75 25.5Z" stroke="white" stroke-width="1.5"/>
+                    <defs>
+                    <linearGradient id="paint0_linear_1080_3804" x1="32" y1="0" x2="32" y2="64" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#71BF1E"/>
+                    <stop offset="1" stop-color="#02A0E9"/>
+                    </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="health-card-description">
+                <div>
+                    <span class="health-card-title">Keep It Dry</span>
+                </div>
+                <div>
+                    <span class="health-card-body">Keep it dry—because moisture invites mold, discomfort, and costly damage.  
+                        A dry home is a healthy home.
+                    </span>
+                </div>
+
+            </div>
+            
+        </div>
+        <div class="health-card">
+            <div>
+                <svg class="health-card-image" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="64" height="64" rx="32" fill="url(#paint0_linear_1080_3804)"/>
+                    <path d="M41.4951 23.9199L42.9051 22.5049" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M23.1199 43.7102C22.5512 44.2401 21.799 44.5286 21.0218 44.5149C20.2446 44.5012 19.503 44.1864 18.9534 43.6367C18.4037 43.0871 18.0889 42.3455 18.0752 41.5683C18.0615 40.7911 18.35 40.0389 18.8799 39.4702L20.2899 40.8802C20.197 40.9731 20.1233 41.0834 20.073 41.2048C20.0227 41.3262 19.9968 41.4563 19.9968 41.5877C19.9968 41.7191 20.0227 41.8492 20.073 41.9706C20.1233 42.092 20.197 42.2023 20.2899 42.2952C20.4775 42.4829 20.732 42.5883 20.9974 42.5883C21.1288 42.5883 21.2589 42.5624 21.3803 42.5121C21.5017 42.4618 21.612 42.3881 21.7049 42.2952L23.8249 40.1752L25.2399 41.5902L23.1199 43.7102Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M24.5298 40.8799L33.0148 32.3999" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22.4102 41.5898L23.8252 42.9998" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M45.0252 41.5902C46.0838 38.6323 46.2806 35.4347 45.5926 32.3694C44.9045 29.3041 43.3601 26.4972 41.1389 24.2755C38.9178 22.0538 36.1113 20.5087 33.0461 19.82C29.981 19.1312 26.7833 19.3272 23.8252 20.3852L28.7752 28.1602L37.2752 36.6602L45.0252 41.5902Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M28.9502 28.0002C33.3402 23.6102 38.8002 21.9452 41.1402 24.2902C43.4802 26.6352 41.8202 32.0902 37.4302 36.4802" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M33.0011 37.2474L31.7495 38.499L33.0011 39.7506L34.2527 38.499L33.0011 37.2474Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 34.5C22.5523 34.5 23 34.0523 23 33.5C23 32.9477 22.5523 32.5 22 32.5C21.4477 32.5 21 32.9477 21 33.5C21 34.0523 21.4477 34.5 22 34.5Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10"/>
+                    <path d="M24.75 28.5C24.75 28.6381 24.6381 28.75 24.5 28.75C24.3619 28.75 24.25 28.6381 24.25 28.5C24.25 28.3619 24.3619 28.25 24.5 28.25C24.6381 28.25 24.75 28.3619 24.75 28.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M27.25 33.5C27.25 33.6381 27.1381 33.75 27 33.75C26.8619 33.75 26.75 33.6381 26.75 33.5C26.75 33.3619 26.8619 33.25 27 33.25C27.1381 33.25 27.25 33.3619 27.25 33.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M35.75 42.5C35.75 42.6381 35.6381 42.75 35.5 42.75C35.3619 42.75 35.25 42.6381 35.25 42.5C35.25 42.3619 35.3619 42.25 35.5 42.25C35.6381 42.25 35.75 42.3619 35.75 42.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M28.75 44.5C28.75 44.6381 28.6381 44.75 28.5 44.75C28.3619 44.75 28.25 44.6381 28.25 44.5C28.25 44.3619 28.3619 44.25 28.5 44.25C28.6381 44.25 28.75 44.3619 28.75 44.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M19.75 27.5C19.75 27.6381 19.6381 27.75 19.5 27.75C19.3619 27.75 19.25 27.6381 19.25 27.5C19.25 27.3619 19.3619 27.25 19.5 27.25C19.6381 27.25 19.75 27.3619 19.75 27.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M37.75 18C37.75 18.1381 37.6381 18.25 37.5 18.25C37.3619 18.25 37.25 18.1381 37.25 18C37.25 17.8619 37.3619 17.75 37.5 17.75C37.6381 17.75 37.75 17.8619 37.75 18Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M46.75 25.5C46.75 25.6381 46.6381 25.75 46.5 25.75C46.3619 25.75 46.25 25.6381 46.25 25.5C46.25 25.3619 46.3619 25.25 46.5 25.25C46.6381 25.25 46.75 25.3619 46.75 25.5Z" stroke="white" stroke-width="1.5"/>
+                    <defs>
+                    <linearGradient id="paint0_linear_1080_3804" x1="32" y1="0" x2="32" y2="64" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#71BF1E"/>
+                    <stop offset="1" stop-color="#02A0E9"/>
+                    </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="health-card-description">
+                <div>
+                    <span class="health-card-title">Keep It Dry</span>
+                </div>
+                <div>
+                    <span class="health-card-body">Keep it dry—because moisture invites mold, discomfort, and costly damage.  
+                        A dry home is a healthy home.
+                    </span>
+                </div>
+
+            </div>
+            
+        </div>
+        <div class="health-card">
+            <div>
+                <svg class="health-card-image" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="64" height="64" rx="32" fill="url(#paint0_linear_1080_3804)"/>
+                    <path d="M41.4951 23.9199L42.9051 22.5049" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M23.1199 43.7102C22.5512 44.2401 21.799 44.5286 21.0218 44.5149C20.2446 44.5012 19.503 44.1864 18.9534 43.6367C18.4037 43.0871 18.0889 42.3455 18.0752 41.5683C18.0615 40.7911 18.35 40.0389 18.8799 39.4702L20.2899 40.8802C20.197 40.9731 20.1233 41.0834 20.073 41.2048C20.0227 41.3262 19.9968 41.4563 19.9968 41.5877C19.9968 41.7191 20.0227 41.8492 20.073 41.9706C20.1233 42.092 20.197 42.2023 20.2899 42.2952C20.4775 42.4829 20.732 42.5883 20.9974 42.5883C21.1288 42.5883 21.2589 42.5624 21.3803 42.5121C21.5017 42.4618 21.612 42.3881 21.7049 42.2952L23.8249 40.1752L25.2399 41.5902L23.1199 43.7102Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M24.5298 40.8799L33.0148 32.3999" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22.4102 41.5898L23.8252 42.9998" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M45.0252 41.5902C46.0838 38.6323 46.2806 35.4347 45.5926 32.3694C44.9045 29.3041 43.3601 26.4972 41.1389 24.2755C38.9178 22.0538 36.1113 20.5087 33.0461 19.82C29.981 19.1312 26.7833 19.3272 23.8252 20.3852L28.7752 28.1602L37.2752 36.6602L45.0252 41.5902Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M28.9502 28.0002C33.3402 23.6102 38.8002 21.9452 41.1402 24.2902C43.4802 26.6352 41.8202 32.0902 37.4302 36.4802" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M33.0011 37.2474L31.7495 38.499L33.0011 39.7506L34.2527 38.499L33.0011 37.2474Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 34.5C22.5523 34.5 23 34.0523 23 33.5C23 32.9477 22.5523 32.5 22 32.5C21.4477 32.5 21 32.9477 21 33.5C21 34.0523 21.4477 34.5 22 34.5Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10"/>
+                    <path d="M24.75 28.5C24.75 28.6381 24.6381 28.75 24.5 28.75C24.3619 28.75 24.25 28.6381 24.25 28.5C24.25 28.3619 24.3619 28.25 24.5 28.25C24.6381 28.25 24.75 28.3619 24.75 28.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M27.25 33.5C27.25 33.6381 27.1381 33.75 27 33.75C26.8619 33.75 26.75 33.6381 26.75 33.5C26.75 33.3619 26.8619 33.25 27 33.25C27.1381 33.25 27.25 33.3619 27.25 33.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M35.75 42.5C35.75 42.6381 35.6381 42.75 35.5 42.75C35.3619 42.75 35.25 42.6381 35.25 42.5C35.25 42.3619 35.3619 42.25 35.5 42.25C35.6381 42.25 35.75 42.3619 35.75 42.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M28.75 44.5C28.75 44.6381 28.6381 44.75 28.5 44.75C28.3619 44.75 28.25 44.6381 28.25 44.5C28.25 44.3619 28.3619 44.25 28.5 44.25C28.6381 44.25 28.75 44.3619 28.75 44.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M19.75 27.5C19.75 27.6381 19.6381 27.75 19.5 27.75C19.3619 27.75 19.25 27.6381 19.25 27.5C19.25 27.3619 19.3619 27.25 19.5 27.25C19.6381 27.25 19.75 27.3619 19.75 27.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M37.75 18C37.75 18.1381 37.6381 18.25 37.5 18.25C37.3619 18.25 37.25 18.1381 37.25 18C37.25 17.8619 37.3619 17.75 37.5 17.75C37.6381 17.75 37.75 17.8619 37.75 18Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M46.75 25.5C46.75 25.6381 46.6381 25.75 46.5 25.75C46.3619 25.75 46.25 25.6381 46.25 25.5C46.25 25.3619 46.3619 25.25 46.5 25.25C46.6381 25.25 46.75 25.3619 46.75 25.5Z" stroke="white" stroke-width="1.5"/>
+                    <defs>
+                    <linearGradient id="paint0_linear_1080_3804" x1="32" y1="0" x2="32" y2="64" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#71BF1E"/>
+                    <stop offset="1" stop-color="#02A0E9"/>
+                    </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="health-card-description">
+                <div>
+                    <span class="health-card-title">Keep It Dry</span>
+                </div>
+                <div>
+                    <span class="health-card-body">Keep it dry—because moisture invites mold, discomfort, and costly damage.  
+                        A dry home is a healthy home.
+                    </span>
+                </div>
+
+            </div>
+            
+        </div>
+        <div class="health-card">
+            <div>
+                <svg class="health-card-image" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="64" height="64" rx="32" fill="url(#paint0_linear_1080_3804)"/>
+                    <path d="M41.4951 23.9199L42.9051 22.5049" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M23.1199 43.7102C22.5512 44.2401 21.799 44.5286 21.0218 44.5149C20.2446 44.5012 19.503 44.1864 18.9534 43.6367C18.4037 43.0871 18.0889 42.3455 18.0752 41.5683C18.0615 40.7911 18.35 40.0389 18.8799 39.4702L20.2899 40.8802C20.197 40.9731 20.1233 41.0834 20.073 41.2048C20.0227 41.3262 19.9968 41.4563 19.9968 41.5877C19.9968 41.7191 20.0227 41.8492 20.073 41.9706C20.1233 42.092 20.197 42.2023 20.2899 42.2952C20.4775 42.4829 20.732 42.5883 20.9974 42.5883C21.1288 42.5883 21.2589 42.5624 21.3803 42.5121C21.5017 42.4618 21.612 42.3881 21.7049 42.2952L23.8249 40.1752L25.2399 41.5902L23.1199 43.7102Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M24.5298 40.8799L33.0148 32.3999" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22.4102 41.5898L23.8252 42.9998" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M45.0252 41.5902C46.0838 38.6323 46.2806 35.4347 45.5926 32.3694C44.9045 29.3041 43.3601 26.4972 41.1389 24.2755C38.9178 22.0538 36.1113 20.5087 33.0461 19.82C29.981 19.1312 26.7833 19.3272 23.8252 20.3852L28.7752 28.1602L37.2752 36.6602L45.0252 41.5902Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M28.9502 28.0002C33.3402 23.6102 38.8002 21.9452 41.1402 24.2902C43.4802 26.6352 41.8202 32.0902 37.4302 36.4802" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M33.0011 37.2474L31.7495 38.499L33.0011 39.7506L34.2527 38.499L33.0011 37.2474Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 34.5C22.5523 34.5 23 34.0523 23 33.5C23 32.9477 22.5523 32.5 22 32.5C21.4477 32.5 21 32.9477 21 33.5C21 34.0523 21.4477 34.5 22 34.5Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10"/>
+                    <path d="M24.75 28.5C24.75 28.6381 24.6381 28.75 24.5 28.75C24.3619 28.75 24.25 28.6381 24.25 28.5C24.25 28.3619 24.3619 28.25 24.5 28.25C24.6381 28.25 24.75 28.3619 24.75 28.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M27.25 33.5C27.25 33.6381 27.1381 33.75 27 33.75C26.8619 33.75 26.75 33.6381 26.75 33.5C26.75 33.3619 26.8619 33.25 27 33.25C27.1381 33.25 27.25 33.3619 27.25 33.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M35.75 42.5C35.75 42.6381 35.6381 42.75 35.5 42.75C35.3619 42.75 35.25 42.6381 35.25 42.5C35.25 42.3619 35.3619 42.25 35.5 42.25C35.6381 42.25 35.75 42.3619 35.75 42.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M28.75 44.5C28.75 44.6381 28.6381 44.75 28.5 44.75C28.3619 44.75 28.25 44.6381 28.25 44.5C28.25 44.3619 28.3619 44.25 28.5 44.25C28.6381 44.25 28.75 44.3619 28.75 44.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M19.75 27.5C19.75 27.6381 19.6381 27.75 19.5 27.75C19.3619 27.75 19.25 27.6381 19.25 27.5C19.25 27.3619 19.3619 27.25 19.5 27.25C19.6381 27.25 19.75 27.3619 19.75 27.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M37.75 18C37.75 18.1381 37.6381 18.25 37.5 18.25C37.3619 18.25 37.25 18.1381 37.25 18C37.25 17.8619 37.3619 17.75 37.5 17.75C37.6381 17.75 37.75 17.8619 37.75 18Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M46.75 25.5C46.75 25.6381 46.6381 25.75 46.5 25.75C46.3619 25.75 46.25 25.6381 46.25 25.5C46.25 25.3619 46.3619 25.25 46.5 25.25C46.6381 25.25 46.75 25.3619 46.75 25.5Z" stroke="white" stroke-width="1.5"/>
+                    <defs>
+                    <linearGradient id="paint0_linear_1080_3804" x1="32" y1="0" x2="32" y2="64" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#71BF1E"/>
+                    <stop offset="1" stop-color="#02A0E9"/>
+                    </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="health-card-description">
+                <div>
+                    <span class="health-card-title">Keep It Dry</span>
+                </div>
+                <div>
+                    <span class="health-card-body">Keep it dry—because moisture invites mold, discomfort, and costly damage.  
+                        A dry home is a healthy home.
+                    </span>
+                </div>
+
+            </div>
+            
+        </div>
+        <div class="health-card">
+            <div>
+                <svg class="health-card-image" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="64" height="64" rx="32" fill="url(#paint0_linear_1080_3804)"/>
+                    <path d="M41.4951 23.9199L42.9051 22.5049" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M23.1199 43.7102C22.5512 44.2401 21.799 44.5286 21.0218 44.5149C20.2446 44.5012 19.503 44.1864 18.9534 43.6367C18.4037 43.0871 18.0889 42.3455 18.0752 41.5683C18.0615 40.7911 18.35 40.0389 18.8799 39.4702L20.2899 40.8802C20.197 40.9731 20.1233 41.0834 20.073 41.2048C20.0227 41.3262 19.9968 41.4563 19.9968 41.5877C19.9968 41.7191 20.0227 41.8492 20.073 41.9706C20.1233 42.092 20.197 42.2023 20.2899 42.2952C20.4775 42.4829 20.732 42.5883 20.9974 42.5883C21.1288 42.5883 21.2589 42.5624 21.3803 42.5121C21.5017 42.4618 21.612 42.3881 21.7049 42.2952L23.8249 40.1752L25.2399 41.5902L23.1199 43.7102Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M24.5298 40.8799L33.0148 32.3999" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22.4102 41.5898L23.8252 42.9998" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M45.0252 41.5902C46.0838 38.6323 46.2806 35.4347 45.5926 32.3694C44.9045 29.3041 43.3601 26.4972 41.1389 24.2755C38.9178 22.0538 36.1113 20.5087 33.0461 19.82C29.981 19.1312 26.7833 19.3272 23.8252 20.3852L28.7752 28.1602L37.2752 36.6602L45.0252 41.5902Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M28.9502 28.0002C33.3402 23.6102 38.8002 21.9452 41.1402 24.2902C43.4802 26.6352 41.8202 32.0902 37.4302 36.4802" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M33.0011 37.2474L31.7495 38.499L33.0011 39.7506L34.2527 38.499L33.0011 37.2474Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 34.5C22.5523 34.5 23 34.0523 23 33.5C23 32.9477 22.5523 32.5 22 32.5C21.4477 32.5 21 32.9477 21 33.5C21 34.0523 21.4477 34.5 22 34.5Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10"/>
+                    <path d="M24.75 28.5C24.75 28.6381 24.6381 28.75 24.5 28.75C24.3619 28.75 24.25 28.6381 24.25 28.5C24.25 28.3619 24.3619 28.25 24.5 28.25C24.6381 28.25 24.75 28.3619 24.75 28.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M27.25 33.5C27.25 33.6381 27.1381 33.75 27 33.75C26.8619 33.75 26.75 33.6381 26.75 33.5C26.75 33.3619 26.8619 33.25 27 33.25C27.1381 33.25 27.25 33.3619 27.25 33.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M35.75 42.5C35.75 42.6381 35.6381 42.75 35.5 42.75C35.3619 42.75 35.25 42.6381 35.25 42.5C35.25 42.3619 35.3619 42.25 35.5 42.25C35.6381 42.25 35.75 42.3619 35.75 42.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M28.75 44.5C28.75 44.6381 28.6381 44.75 28.5 44.75C28.3619 44.75 28.25 44.6381 28.25 44.5C28.25 44.3619 28.3619 44.25 28.5 44.25C28.6381 44.25 28.75 44.3619 28.75 44.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M19.75 27.5C19.75 27.6381 19.6381 27.75 19.5 27.75C19.3619 27.75 19.25 27.6381 19.25 27.5C19.25 27.3619 19.3619 27.25 19.5 27.25C19.6381 27.25 19.75 27.3619 19.75 27.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M37.75 18C37.75 18.1381 37.6381 18.25 37.5 18.25C37.3619 18.25 37.25 18.1381 37.25 18C37.25 17.8619 37.3619 17.75 37.5 17.75C37.6381 17.75 37.75 17.8619 37.75 18Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M46.75 25.5C46.75 25.6381 46.6381 25.75 46.5 25.75C46.3619 25.75 46.25 25.6381 46.25 25.5C46.25 25.3619 46.3619 25.25 46.5 25.25C46.6381 25.25 46.75 25.3619 46.75 25.5Z" stroke="white" stroke-width="1.5"/>
+                    <defs>
+                    <linearGradient id="paint0_linear_1080_3804" x1="32" y1="0" x2="32" y2="64" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#71BF1E"/>
+                    <stop offset="1" stop-color="#02A0E9"/>
+                    </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="health-card-description">
+                <div>
+                    <span class="health-card-title">Keep It Dry</span>
+                </div>
+                <div>
+                    <span class="health-card-body">Keep it dry—because moisture invites mold, discomfort, and costly damage.  
+                        A dry home is a healthy home.
+                    </span>
+                </div>
+
+            </div>
+            
+        </div>
+        <div class="health-card">
+            <div>
+                <svg class="health-card-image" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="64" height="64" rx="32" fill="url(#paint0_linear_1080_3804)"/>
+                    <path d="M41.4951 23.9199L42.9051 22.5049" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M23.1199 43.7102C22.5512 44.2401 21.799 44.5286 21.0218 44.5149C20.2446 44.5012 19.503 44.1864 18.9534 43.6367C18.4037 43.0871 18.0889 42.3455 18.0752 41.5683C18.0615 40.7911 18.35 40.0389 18.8799 39.4702L20.2899 40.8802C20.197 40.9731 20.1233 41.0834 20.073 41.2048C20.0227 41.3262 19.9968 41.4563 19.9968 41.5877C19.9968 41.7191 20.0227 41.8492 20.073 41.9706C20.1233 42.092 20.197 42.2023 20.2899 42.2952C20.4775 42.4829 20.732 42.5883 20.9974 42.5883C21.1288 42.5883 21.2589 42.5624 21.3803 42.5121C21.5017 42.4618 21.612 42.3881 21.7049 42.2952L23.8249 40.1752L25.2399 41.5902L23.1199 43.7102Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M24.5298 40.8799L33.0148 32.3999" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22.4102 41.5898L23.8252 42.9998" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M45.0252 41.5902C46.0838 38.6323 46.2806 35.4347 45.5926 32.3694C44.9045 29.3041 43.3601 26.4972 41.1389 24.2755C38.9178 22.0538 36.1113 20.5087 33.0461 19.82C29.981 19.1312 26.7833 19.3272 23.8252 20.3852L28.7752 28.1602L37.2752 36.6602L45.0252 41.5902Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M28.9502 28.0002C33.3402 23.6102 38.8002 21.9452 41.1402 24.2902C43.4802 26.6352 41.8202 32.0902 37.4302 36.4802" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M33.0011 37.2474L31.7495 38.499L33.0011 39.7506L34.2527 38.499L33.0011 37.2474Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 34.5C22.5523 34.5 23 34.0523 23 33.5C23 32.9477 22.5523 32.5 22 32.5C21.4477 32.5 21 32.9477 21 33.5C21 34.0523 21.4477 34.5 22 34.5Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10"/>
+                    <path d="M24.75 28.5C24.75 28.6381 24.6381 28.75 24.5 28.75C24.3619 28.75 24.25 28.6381 24.25 28.5C24.25 28.3619 24.3619 28.25 24.5 28.25C24.6381 28.25 24.75 28.3619 24.75 28.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M27.25 33.5C27.25 33.6381 27.1381 33.75 27 33.75C26.8619 33.75 26.75 33.6381 26.75 33.5C26.75 33.3619 26.8619 33.25 27 33.25C27.1381 33.25 27.25 33.3619 27.25 33.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M35.75 42.5C35.75 42.6381 35.6381 42.75 35.5 42.75C35.3619 42.75 35.25 42.6381 35.25 42.5C35.25 42.3619 35.3619 42.25 35.5 42.25C35.6381 42.25 35.75 42.3619 35.75 42.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M28.75 44.5C28.75 44.6381 28.6381 44.75 28.5 44.75C28.3619 44.75 28.25 44.6381 28.25 44.5C28.25 44.3619 28.3619 44.25 28.5 44.25C28.6381 44.25 28.75 44.3619 28.75 44.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M19.75 27.5C19.75 27.6381 19.6381 27.75 19.5 27.75C19.3619 27.75 19.25 27.6381 19.25 27.5C19.25 27.3619 19.3619 27.25 19.5 27.25C19.6381 27.25 19.75 27.3619 19.75 27.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M37.75 18C37.75 18.1381 37.6381 18.25 37.5 18.25C37.3619 18.25 37.25 18.1381 37.25 18C37.25 17.8619 37.3619 17.75 37.5 17.75C37.6381 17.75 37.75 17.8619 37.75 18Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M46.75 25.5C46.75 25.6381 46.6381 25.75 46.5 25.75C46.3619 25.75 46.25 25.6381 46.25 25.5C46.25 25.3619 46.3619 25.25 46.5 25.25C46.6381 25.25 46.75 25.3619 46.75 25.5Z" stroke="white" stroke-width="1.5"/>
+                    <defs>
+                    <linearGradient id="paint0_linear_1080_3804" x1="32" y1="0" x2="32" y2="64" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#71BF1E"/>
+                    <stop offset="1" stop-color="#02A0E9"/>
+                    </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="health-card-description">
+                <div>
+                    <span class="health-card-title">Keep It Dry</span>
+                </div>
+                <div>
+                    <span class="health-card-body">Keep it dry—because moisture invites mold, discomfort, and costly damage.  
+                        A dry home is a healthy home.
+                    </span>
+                </div>
+
+            </div>
+            
+        </div>
+        <div class="health-card">
+            <div>
+                <svg class="health-card-image" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="64" height="64" rx="32" fill="url(#paint0_linear_1080_3804)"/>
+                    <path d="M41.4951 23.9199L42.9051 22.5049" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M23.1199 43.7102C22.5512 44.2401 21.799 44.5286 21.0218 44.5149C20.2446 44.5012 19.503 44.1864 18.9534 43.6367C18.4037 43.0871 18.0889 42.3455 18.0752 41.5683C18.0615 40.7911 18.35 40.0389 18.8799 39.4702L20.2899 40.8802C20.197 40.9731 20.1233 41.0834 20.073 41.2048C20.0227 41.3262 19.9968 41.4563 19.9968 41.5877C19.9968 41.7191 20.0227 41.8492 20.073 41.9706C20.1233 42.092 20.197 42.2023 20.2899 42.2952C20.4775 42.4829 20.732 42.5883 20.9974 42.5883C21.1288 42.5883 21.2589 42.5624 21.3803 42.5121C21.5017 42.4618 21.612 42.3881 21.7049 42.2952L23.8249 40.1752L25.2399 41.5902L23.1199 43.7102Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M24.5298 40.8799L33.0148 32.3999" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22.4102 41.5898L23.8252 42.9998" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M45.0252 41.5902C46.0838 38.6323 46.2806 35.4347 45.5926 32.3694C44.9045 29.3041 43.3601 26.4972 41.1389 24.2755C38.9178 22.0538 36.1113 20.5087 33.0461 19.82C29.981 19.1312 26.7833 19.3272 23.8252 20.3852L28.7752 28.1602L37.2752 36.6602L45.0252 41.5902Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M28.9502 28.0002C33.3402 23.6102 38.8002 21.9452 41.1402 24.2902C43.4802 26.6352 41.8202 32.0902 37.4302 36.4802" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M33.0011 37.2474L31.7495 38.499L33.0011 39.7506L34.2527 38.499L33.0011 37.2474Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 34.5C22.5523 34.5 23 34.0523 23 33.5C23 32.9477 22.5523 32.5 22 32.5C21.4477 32.5 21 32.9477 21 33.5C21 34.0523 21.4477 34.5 22 34.5Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10"/>
+                    <path d="M24.75 28.5C24.75 28.6381 24.6381 28.75 24.5 28.75C24.3619 28.75 24.25 28.6381 24.25 28.5C24.25 28.3619 24.3619 28.25 24.5 28.25C24.6381 28.25 24.75 28.3619 24.75 28.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M27.25 33.5C27.25 33.6381 27.1381 33.75 27 33.75C26.8619 33.75 26.75 33.6381 26.75 33.5C26.75 33.3619 26.8619 33.25 27 33.25C27.1381 33.25 27.25 33.3619 27.25 33.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M35.75 42.5C35.75 42.6381 35.6381 42.75 35.5 42.75C35.3619 42.75 35.25 42.6381 35.25 42.5C35.25 42.3619 35.3619 42.25 35.5 42.25C35.6381 42.25 35.75 42.3619 35.75 42.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M28.75 44.5C28.75 44.6381 28.6381 44.75 28.5 44.75C28.3619 44.75 28.25 44.6381 28.25 44.5C28.25 44.3619 28.3619 44.25 28.5 44.25C28.6381 44.25 28.75 44.3619 28.75 44.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M19.75 27.5C19.75 27.6381 19.6381 27.75 19.5 27.75C19.3619 27.75 19.25 27.6381 19.25 27.5C19.25 27.3619 19.3619 27.25 19.5 27.25C19.6381 27.25 19.75 27.3619 19.75 27.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M37.75 18C37.75 18.1381 37.6381 18.25 37.5 18.25C37.3619 18.25 37.25 18.1381 37.25 18C37.25 17.8619 37.3619 17.75 37.5 17.75C37.6381 17.75 37.75 17.8619 37.75 18Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M46.75 25.5C46.75 25.6381 46.6381 25.75 46.5 25.75C46.3619 25.75 46.25 25.6381 46.25 25.5C46.25 25.3619 46.3619 25.25 46.5 25.25C46.6381 25.25 46.75 25.3619 46.75 25.5Z" stroke="white" stroke-width="1.5"/>
+                    <defs>
+                    <linearGradient id="paint0_linear_1080_3804" x1="32" y1="0" x2="32" y2="64" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#71BF1E"/>
+                    <stop offset="1" stop-color="#02A0E9"/>
+                    </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="health-card-description">
+                <div>
+                    <span class="health-card-title">Keep It Dry</span>
+                </div>
+                <div>
+                    <span class="health-card-body">Keep it dry—because moisture invites mold, discomfort, and costly damage.  
+                        A dry home is a healthy home.
+                    </span>
+                </div>
+
+            </div>
+            
+        </div>
+        <div class="health-card">
+            <div>
+                <svg class="health-card-image" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="64" height="64" rx="32" fill="url(#paint0_linear_1080_3804)"/>
+                    <path d="M41.4951 23.9199L42.9051 22.5049" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M23.1199 43.7102C22.5512 44.2401 21.799 44.5286 21.0218 44.5149C20.2446 44.5012 19.503 44.1864 18.9534 43.6367C18.4037 43.0871 18.0889 42.3455 18.0752 41.5683C18.0615 40.7911 18.35 40.0389 18.8799 39.4702L20.2899 40.8802C20.197 40.9731 20.1233 41.0834 20.073 41.2048C20.0227 41.3262 19.9968 41.4563 19.9968 41.5877C19.9968 41.7191 20.0227 41.8492 20.073 41.9706C20.1233 42.092 20.197 42.2023 20.2899 42.2952C20.4775 42.4829 20.732 42.5883 20.9974 42.5883C21.1288 42.5883 21.2589 42.5624 21.3803 42.5121C21.5017 42.4618 21.612 42.3881 21.7049 42.2952L23.8249 40.1752L25.2399 41.5902L23.1199 43.7102Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M24.5298 40.8799L33.0148 32.3999" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22.4102 41.5898L23.8252 42.9998" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M45.0252 41.5902C46.0838 38.6323 46.2806 35.4347 45.5926 32.3694C44.9045 29.3041 43.3601 26.4972 41.1389 24.2755C38.9178 22.0538 36.1113 20.5087 33.0461 19.82C29.981 19.1312 26.7833 19.3272 23.8252 20.3852L28.7752 28.1602L37.2752 36.6602L45.0252 41.5902Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M28.9502 28.0002C33.3402 23.6102 38.8002 21.9452 41.1402 24.2902C43.4802 26.6352 41.8202 32.0902 37.4302 36.4802" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M33.0011 37.2474L31.7495 38.499L33.0011 39.7506L34.2527 38.499L33.0011 37.2474Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 34.5C22.5523 34.5 23 34.0523 23 33.5C23 32.9477 22.5523 32.5 22 32.5C21.4477 32.5 21 32.9477 21 33.5C21 34.0523 21.4477 34.5 22 34.5Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10"/>
+                    <path d="M24.75 28.5C24.75 28.6381 24.6381 28.75 24.5 28.75C24.3619 28.75 24.25 28.6381 24.25 28.5C24.25 28.3619 24.3619 28.25 24.5 28.25C24.6381 28.25 24.75 28.3619 24.75 28.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M27.25 33.5C27.25 33.6381 27.1381 33.75 27 33.75C26.8619 33.75 26.75 33.6381 26.75 33.5C26.75 33.3619 26.8619 33.25 27 33.25C27.1381 33.25 27.25 33.3619 27.25 33.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M35.75 42.5C35.75 42.6381 35.6381 42.75 35.5 42.75C35.3619 42.75 35.25 42.6381 35.25 42.5C35.25 42.3619 35.3619 42.25 35.5 42.25C35.6381 42.25 35.75 42.3619 35.75 42.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M28.75 44.5C28.75 44.6381 28.6381 44.75 28.5 44.75C28.3619 44.75 28.25 44.6381 28.25 44.5C28.25 44.3619 28.3619 44.25 28.5 44.25C28.6381 44.25 28.75 44.3619 28.75 44.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M19.75 27.5C19.75 27.6381 19.6381 27.75 19.5 27.75C19.3619 27.75 19.25 27.6381 19.25 27.5C19.25 27.3619 19.3619 27.25 19.5 27.25C19.6381 27.25 19.75 27.3619 19.75 27.5Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M37.75 18C37.75 18.1381 37.6381 18.25 37.5 18.25C37.3619 18.25 37.25 18.1381 37.25 18C37.25 17.8619 37.3619 17.75 37.5 17.75C37.6381 17.75 37.75 17.8619 37.75 18Z" stroke="white" stroke-width="1.5"/>
+                    <path d="M46.75 25.5C46.75 25.6381 46.6381 25.75 46.5 25.75C46.3619 25.75 46.25 25.6381 46.25 25.5C46.25 25.3619 46.3619 25.25 46.5 25.25C46.6381 25.25 46.75 25.3619 46.75 25.5Z" stroke="white" stroke-width="1.5"/>
+                    <defs>
+                    <linearGradient id="paint0_linear_1080_3804" x1="32" y1="0" x2="32" y2="64" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#71BF1E"/>
+                    <stop offset="1" stop-color="#02A0E9"/>
+                    </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="health-card-description">
+                <div>
+                    <span class="health-card-title">Keep It Dry</span>
+                </div>
+                <div>
+                    <span class="health-card-body">Keep it dry—because moisture invites mold, discomfort, and costly damage.  
+                        A dry home is a healthy home.
+                    </span>
+                </div>
+
+            </div>
+            
+        </div>
+        
+    </section>
+
+    <!-- Contact Us Section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <!-- Left Side - Contact Form -->
+            <div class="contact-form-side">
+                <div class="contact-header">
+                    <div class="mission-badge">Contact Us</div>
+                    <h2 class="contact-title">Let's Get in Touch</h2>
+                </div>
+                
+                <form class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">Your name</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="Alex" />
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last name</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="John" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" id="email" name="email" placeholder="alexjohn@gmail.com" />
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+92 3455555 677" />
+                        </div>
+                    </div>
+                    
+                    <div class="service-options">
+                        <label class="service-question">What type of service are you interested in?</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="homeAudit" name="service" value="home-audit" checked />
+                                <label for="homeAudit">Home Energy Audit</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="healthyHome" name="service" value="healthy-home" />
+                                <label for="healthyHome">Healthy Home Evaluation</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="generalQuestion" name="service" value="general" />
+                                <label for="generalQuestion">General knowledge question</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Write down"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-send">Send Message</button>
+                </form>
+            </div>
+            
+            <!-- Right Side - Map and Info -->
+            <div class="contact-info-side">
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <svg class="zoom-in" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="0.5" y="0.5" width="59" height="59" rx="9.5" fill="white"/>
+                            <rect x="0.5" y="0.5" width="59" height="59" rx="9.5" stroke="#E7E7E7"/>
+                            <path d="M28 22.2002C28.2924 22.2002 28.5781 22.3306 28.793 22.5723C29.0085 22.8147 29.1338 23.1481 29.1338 23.5V25.2002H30.667C30.9593 25.2003 31.2452 25.3306 31.46 25.5723C31.6755 25.8147 31.7998 26.1481 31.7998 26.5C31.7998 26.8519 31.6755 27.1853 31.46 27.4277C31.2452 27.6694 30.9593 27.7997 30.667 27.7998H29.1338V29.5C29.1338 29.8519 29.0085 30.1853 28.793 30.4277C28.5781 30.6694 28.2924 30.7998 28 30.7998C27.7076 30.7998 27.4219 30.6694 27.207 30.4277C26.9915 30.1853 26.8662 29.8519 26.8662 29.5V27.7998H25.333C25.0407 27.7997 24.7548 27.6694 24.54 27.4277C24.3245 27.1853 24.2002 26.8519 24.2002 26.5C24.2002 26.1481 24.3245 25.8147 24.54 25.5723C24.7548 25.3306 25.0407 25.2003 25.333 25.2002H26.8662V23.5C26.8662 23.1481 26.9915 22.8147 27.207 22.5723C27.4219 22.3306 27.7076 22.2002 28 22.2002Z" fill="url(#paint0_linear_1055_3068)" stroke="white" stroke-width="0.4"/>
+                            <path d="M42.3851 38.447L35.9018 31.9622C37.1939 29.9438 37.6951 27.5191 37.3089 25.1537C36.9227 22.7884 35.6765 20.6491 33.8095 19.1467C31.9426 17.6444 29.5865 16.8849 27.1938 17.0142C24.8011 17.1434 22.5406 18.1523 20.8462 19.847C19.1519 21.5417 18.1433 23.8028 18.014 26.1961C17.8848 28.5893 18.6441 30.9459 20.1461 32.8133C21.6481 34.6807 23.7869 35.9272 26.1517 36.3135C28.5166 36.6998 30.9407 36.1985 32.9586 34.906L39.4419 41.3908C39.8323 41.7809 40.3616 42 40.9135 42C41.4653 42 41.9946 41.7809 42.3851 41.3908C42.5798 41.1984 42.7345 40.9692 42.84 40.7165C42.9455 40.4639 42.9999 40.1928 42.9999 39.9189C42.9999 39.6451 42.9455 39.374 42.84 39.1213C42.7345 38.8686 42.5798 38.6394 42.3851 38.447ZM20.7833 26.7271C20.7833 25.3539 21.1904 24.0115 21.9531 22.8698C22.7159 21.728 23.8 20.8381 25.0684 20.3126C26.3367 19.7871 27.7324 19.6496 29.0789 19.9175C30.4254 20.1854 31.6623 20.8466 32.6331 21.8176C33.6039 22.7886 34.265 24.0258 34.5328 25.3726C34.8006 26.7194 34.6632 28.1154 34.1378 29.3841C33.6124 30.6528 32.7227 31.7371 31.5812 32.5001C30.4397 33.263 29.0976 33.6702 27.7247 33.6702C25.8837 33.6702 24.1182 32.9387 22.8164 31.6366C21.5146 30.3345 20.7833 28.5685 20.7833 26.7271Z" fill="url(#paint1_linear_1055_3068)"/>
+                            <defs>
+                            <linearGradient id="paint0_linear_1055_3068" x1="28" y1="22" x2="28" y2="31" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#71BF1E"/>
+                            <stop offset="1" stop-color="#71BF1E"/>
+                            </linearGradient>
+                            <linearGradient id="paint1_linear_1055_3068" x1="30.4999" y1="17" x2="30.4999" y2="42" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#71BF1E"/>
+                            <stop offset="1" stop-color="#71BF1E"/>
+                            </linearGradient>
+                            </defs>
+                        </svg>
+                        <svg class="zoom-out" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="0.5" y="0.5" width="59" height="59" rx="9.5" fill="white"/>
+                            <rect x="0.5" y="0.5" width="59" height="59" rx="9.5" stroke="#E7E7E7"/>
+                            <path d="M26 36.5C20.762 36.5 16.5 32.238 16.5 27C16.5 21.762 20.762 17.5 26 17.5C31.238 17.5 35.5 21.762 35.5 27C35.5 32.238 31.238 36.5 26 36.5ZM26 19.5C21.864 19.5 18.5 22.864 18.5 27C18.5 31.136 21.864 34.5 26 34.5C30.136 34.5 33.5 31.136 33.5 27C33.5 22.864 30.136 19.5 26 19.5Z" fill="black"/>
+                            <path d="M40.914 39.086L33.594 31.766C33.4801 31.655 33.3536 31.5576 33.217 31.476C32.5257 32.5878 31.5878 33.5257 30.476 34.217C30.557 34.351 30.65 34.479 30.766 34.594L38.086 41.914C38.477 42.305 38.988 42.5 39.5 42.5C40.012 42.5 40.523 42.305 40.914 41.914C41.2889 41.5389 41.4996 41.0303 41.4996 40.5C41.4996 39.9697 41.2889 39.4611 40.914 39.086ZM30.5 28H21.5C21.2348 28 20.9804 27.8946 20.7929 27.7071C20.6054 27.5196 20.5 27.2652 20.5 27C20.5 26.7348 20.6054 26.4804 20.7929 26.2929C20.9804 26.1054 21.2348 26 21.5 26H30.5C30.7652 26 31.0196 26.1054 31.2071 26.2929C31.3946 26.4804 31.5 26.7348 31.5 27C31.5 27.2652 31.3946 27.5196 31.2071 27.7071C31.0196 27.8946 30.7652 28 30.5 28Z" fill="black"/>
+                        </svg>
+                        <img src="/static/img/contact-map.png" alt="">
+                    </div>
+                </div>
+                
+                <div class="contact-info">
+                    <p class="work-radius">
+                        PG Home Dynamics work radius extends up to 100 miles from my primary address location. This means I am available to provide services within a 100-mile radius of this location. Addresses outside the work radius may be negotiable, additional costs apply.
+                    </p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon location-icon">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="30" height="30" rx="15" fill="#EBF7F5"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.17932 13.7934C9.19013 10.613 11.7771 8.04346 14.9576 8.05423C18.138 8.06507 20.7075 10.6521 20.6967 13.8325V13.8977C20.6576 15.9651 19.5032 17.876 18.088 19.3695C17.2787 20.21 16.3748 20.954 15.3945 21.5869C15.1324 21.8136 14.7436 21.8136 14.4815 21.5869C13.0201 20.6357 11.7375 19.4348 10.6924 18.039C9.76083 16.822 9.23195 15.3447 9.17932 13.813V13.7934Z" stroke="#1B2F46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M14.9377 15.7501C15.957 15.7501 16.7834 14.9237 16.7834 13.9043C16.7834 12.885 15.957 12.0586 14.9377 12.0586C13.9183 12.0586 13.0919 12.885 13.0919 13.9043C13.0919 14.9237 13.9183 15.7501 14.9377 15.7501Z" stroke="#1B2F46" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <span>17 Princess Road, London.</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon email-icon">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="30" height="30" rx="15" fill="#EBF7F5"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M22.5 11.25C22.5 10.653 22.263 10.0807 21.8408 9.65925C21.4193 9.237 20.847 9 20.25 9C17.6528 9 12.3472 9 9.75 9C9.153 9 8.58075 9.237 8.15925 9.65925C7.737 10.0807 7.5 10.653 7.5 11.25C7.5 13.083 7.5 16.167 7.5 18C7.5 18.597 7.737 19.1693 8.15925 19.5908C8.58075 20.013 9.153 20.25 9.75 20.25C12.3472 20.25 17.6528 20.25 20.25 20.25C20.847 20.25 21.4193 20.013 21.8408 19.5908C22.263 19.1693 22.5 18.597 22.5 18C22.5 16.167 22.5 13.083 22.5 11.25ZM20.8995 10.875C20.8672 10.9305 20.8275 10.983 20.7803 11.0303L17.9355 13.875L19.2803 15.2197C19.5728 15.5122 19.5728 15.9878 19.2803 16.2803C18.9878 16.5728 18.5122 16.5728 18.2197 16.2803L16.875 14.9355L15.5303 16.2803C15.2378 16.5735 14.7622 16.5735 14.4697 16.2803L13.125 14.9355L11.7803 16.2803C11.4878 16.5728 11.0122 16.5728 10.7197 16.2803C10.4272 15.9878 10.4272 15.5122 10.7197 15.2197L12.0645 13.875L9.21975 11.0303C9.1755 10.9853 9.13651 10.9358 9.10426 10.881L9.1005 10.875C9.03525 10.9883 9 11.1172 9 11.25C9 13.083 9 16.167 9 18C9 18.1987 9.07875 18.39 9.21975 18.5303C9.36 18.6713 9.55125 18.75 9.75 18.75H20.25C20.4487 18.75 20.64 18.6713 20.7803 18.5303C20.9213 18.39 21 18.1987 21 18C21 16.167 21 13.083 21 11.25C21 11.1172 20.9647 10.9883 20.8995 10.875ZM15 14.6895L19.1895 10.5H10.8105L15 14.6895Z" fill="#1B2F46"/>
+                                </svg>
+                            </div>
+                            <span>phoutsxayamath@pghomedynamics.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon phone-icon">
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="30" height="30" rx="15" fill="#EBF7F5"/>
+                                    <g clip-path="url(#clip0_1055_3044)">
+                                    <path d="M15.2518 9.57422C14.2222 9.57433 13.212 9.85443 12.3293 10.3845C11.4466 10.9147 10.7247 11.6748 10.2409 12.5837C9.75705 13.4925 9.52947 14.5159 9.58251 15.5441C9.63287 16.5203 9.93435 17.466 10.4566 18.2903C10.509 18.373 10.521 18.4755 10.4858 18.5669L9.81012 20.3181C9.71771 20.5576 9.94927 20.795 10.191 20.7086L12.0161 20.056C12.1045 20.0244 12.2023 20.0364 12.2822 20.0856C12.9918 20.5227 13.7894 20.7985 14.6187 20.8927C15.4973 20.9926 16.3871 20.8858 17.2172 20.5809C18.0473 20.276 18.7946 19.7814 19.3997 19.1366C20.0049 18.4917 20.451 17.7145 20.7025 16.8667C20.9541 16.019 21.0041 15.1242 20.8487 14.2536C20.6932 13.3831 20.3366 12.5609 19.8072 11.8526C19.2778 11.1443 18.5902 10.5695 17.7993 10.1739C17.0085 9.77835 16.1361 9.573 15.2518 9.57422Z" stroke="#1B2F46" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5864 12.169C13.9594 12.0985 14.2039 12.5192 14.39 12.8094C14.5711 13.0913 14.794 13.422 14.704 13.7889C14.654 13.9948 14.4679 14.107 14.3272 14.2284C14.1885 14.3484 13.977 14.4584 13.9257 14.6426C13.842 14.9415 14.0253 15.2552 14.1387 15.4339C14.3965 15.8376 14.708 16.2014 15.1058 16.5262C15.2984 16.6839 15.5658 16.8944 15.8338 16.8403C16.234 16.7593 16.3397 16.2657 16.7756 16.1998C17.1904 16.1371 17.471 16.4378 17.7053 16.6394C17.9309 16.8344 18.2951 17.0841 18.2703 17.4183C18.2558 17.6102 18.1019 17.7292 17.9683 17.8451C17.8327 17.9635 17.7137 18.0964 17.5795 18.1839C17.2547 18.3959 16.8562 18.4998 16.3988 18.4856C15.9503 18.4717 15.593 18.3193 15.2687 18.1465C14.6348 17.8083 14.1338 17.3326 13.6618 16.8026C13.1975 16.2814 12.7688 15.6645 12.5317 14.9823C12.2359 14.1305 12.3923 13.2554 12.8711 12.7096C12.9521 12.6168 13.0801 12.5201 13.1972 12.4206C13.314 12.3207 13.4222 12.1999 13.5864 12.169Z" fill="#1B2F46"/>
+                                    </g>
+                                    <defs>
+                                    <clipPath id="clip0_1055_3044">
+                                    <rect width="12.5037" height="12.5037" fill="white" transform="translate(9 9)"/>
+                                    </clipPath>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <span>317 796-2729</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}
