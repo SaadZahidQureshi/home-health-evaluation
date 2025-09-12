@@ -374,5 +374,13 @@ class HomePageTemplateView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Home"
+        context["active_nav"] = "home"
+        return context
+    
+class AboutUsPageTemplateView(LoginRequiredMixin, TemplateView):
+    template_name = "home/about-us.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["active_nav"] = "about_us"
         return context

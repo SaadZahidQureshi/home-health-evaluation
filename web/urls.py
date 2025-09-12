@@ -51,4 +51,5 @@ urlpatterns = [
     # home page urls
 
     path("home-page/", HomePageTemplateView.as_view(), name="home_page"),
+    path("about-us/", AboutUsPageTemplateView.as_view(), name="about_us_page"),
 ]
