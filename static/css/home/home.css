@@ -121,40 +121,6 @@
     gap: 20px;
 }
 
-.mission-badge {
-    color: #4C4C4C;
-    background: linear-gradient(180deg, rgba(113, 191, 30, 0.1) 0%, rgba(2, 160, 233, 0.1) 100%);
-    font-size: 1.25rem;
-    font-weight: 600;
-    padding: 8px 16px;
-    display: inline-flex;
-    align-self: flex-start;
-    letter-spacing: 0.5px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-    position: relative;
-    border: none;
-    top: -1;
-}
-
-.mission-badge::before {
-	content: "";
-	position: absolute;
-	inset: 0;
-	border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-	padding-top: 1px; /* border thickness */
-	background: linear-gradient(270deg, #71BF1E 0%, #02A0E9 100%);
-	-webkit-mask: 
-		linear-gradient(#fff 0 0) content-box, 
-		linear-gradient(#fff 0 0);
-	-webkit-mask-composite: destination-out;
-	mask-composite: exclude;
-	pointer-events: none;
-	z-index: 0;
-}
-
 
 .mission-title {
     font-size: 2.125rem;
