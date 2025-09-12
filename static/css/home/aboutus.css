@@ -74,18 +74,23 @@
 @media (max-width: 768px) {
     .hero-container {
         padding: 1rem;
+        padding-top: 7rem !important;
     }
     
     .hero-section {
-        height: 400px;
+        height: 300px;
     }
     
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     
     .hero-subtitle {
-        font-size: 1.1rem;
+        font-size: 1rem;
+    }
+    .mission-text {
+        font-size: 1rem !important;
+        line-height: 1.5rem !important;
     }
 }
 
@@ -222,18 +227,17 @@
     
     .values-card {
         background: #FFFFFF;
-        border-radius: 16px;
-        padding: 40px 30px;
+        border-radius: 0.938rem;
+        padding: 0.938rem;
         box-shadow: 0px 0px 20px 0px #D0D1D780;
         flex: 1;
-        max-width: 500px;
     }
     
     .about-card-header {
         display: flex;
         align-items: center;
         gap: 12px;
-        margin-bottom: 24px;
+        margin-bottom: 0.938rem;
     }
     
     .icon {
@@ -261,7 +265,7 @@
     @media (max-width: 768px) {
         .cards-container {
             flex-direction: column;
-            gap: 30px;
+            gap: 15px;
         }
         
         .title {
@@ -271,5 +275,12 @@
         
         .card {
             padding: 30px 25px;
+        }
+        .mission-section {
+            padding: 1.75rem 1.375rem;
+        }
+        .exist-container {
+            background-color: #F5F6F8;
+            padding: 2rem 1rem;
         }
     }

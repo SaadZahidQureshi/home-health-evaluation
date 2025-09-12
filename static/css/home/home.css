@@ -74,18 +74,26 @@
 @media (max-width: 768px) {
     .hero-container {
         padding: 1rem;
+        padding-top: 7rem !important;
     }
     
     .hero-section {
-        height: 400px;
+        height: 300px;
     }
     
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     
     .hero-subtitle {
-        font-size: 1.1rem;
+        font-size: 1rem;
+    }
+    .mission-text {
+        font-size: 1rem !important;
+        line-height: 1.5rem !important;
+    }
+    .mission-section {
+        padding: 2.75rem 1.375rem !important;
     }
 }
 
@@ -327,7 +335,8 @@
     }
 
     .services-title {
-        font-size: 28px;
+        font-size: 1.75rem;
+        text-align: center;
     }
 
     .healthy-home-section,
@@ -733,9 +742,6 @@
     }
     .mission-section {
         padding: 3.75rem 1.375rem;
-    }
-    .navbar .container {
-        padding: 0rem 1rem !important;
     }
 }
 
