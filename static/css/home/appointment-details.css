@@ -8,6 +8,15 @@
     justify-content: center;
     gap: 3.188rem;
     background-color: #F5F6F8;
+    position: relative;
+}
+
+.main-container .back-arrow {
+    position: absolute;
+    top: 8.25rem;
+    left: 5rem;
+    width: 4rem;
+    height: 4rem;
 }
 
 .booking-container {
@@ -82,5 +91,8 @@
     }
     .booking-container {
         gap: unset !important;
+    }
+    .main-container .back-arrow {
+        display: none !important;
     }
 }

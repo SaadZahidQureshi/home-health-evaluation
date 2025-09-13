@@ -509,7 +509,7 @@
     </section>
 
     <!-- Contact Us Section -->
-    <section class="contact-section">
+    <section class="contact-section" id="contact">
         <div class="contact-container">
             <!-- Left Side - Contact Form -->
             <div class="contact-form-side">
@@ -647,3 +647,21 @@
     </section>
 
 {% endblock content %}
+
+
+{% block js %}
+    
+    <script>
+       document.addEventListener("DOMContentLoaded", function () {
+    if (window.location.hash === "#contact") {
+        document.querySelectorAll(".nav-link").forEach(el => el.classList.remove("active"));
+        let contactLink = document.querySelector('.nav-link[href*="#contact"]');
+        if (contactLink) {
+            contactLink.classList.add("active");
+        }
+    }
+});
+    </script>
+
+{% endblock js %}
+    
