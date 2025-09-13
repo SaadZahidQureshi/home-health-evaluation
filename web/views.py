@@ -390,7 +390,15 @@ class ServicesEvaluationPageTemplateView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["active_nav"] = "services_evaluation"
+        context["active_nav"] = "services"
+        return context
+
+class ServicesEnergyAuditPageTemplateView(TemplateView):
+    template_name = "home/services-energy-audit.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["active_nav"] = "services"
         return context
     
 class BookAppointmentPageTemplateView(TemplateView):
