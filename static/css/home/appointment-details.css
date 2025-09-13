@@ -1,0 +1,80 @@
+.main-container {            
+    padding: 3.75rem 5rem;
+    padding-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 3.188rem;
+    background-color: #F5F6F8;
+}
+
+.booking-container {
+    width: 100%;
+    max-width: 73.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.875rem;
+}
+
+.booking-header {
+    display: flex;
+    align-items: center;
+}
+.booking-title {
+    font-size: 2.125rem;
+    color: #2B2B2B;
+    font-weight: 700;
+}
+
+.booking-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.938rem;    
+}
+
+.form-row {
+    display: flex;
+    gap: 1.125rem;
+}
+
+.book-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 3.75rem;
+}
+
+.book-button {
+    background-color: #71BF1E;
+    color: white;
+    border: none;
+    border-radius: 0.625rem;
+    font-size: 1.375rem;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    height: 3.375rem;
+    max-width: 26.125rem;
+}
+
+.book-button:hover {
+    background-color: #7cb342;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 25px;
+    }
+    
+    .booking-container {
+        margin: 10px;
+    }
+    
+    .booking-form {
+        padding: 20px;
+    }
+}
