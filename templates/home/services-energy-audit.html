@@ -1,0 +1,311 @@
+{% extends 'home/home_base.html' %}
+
+  {% block css %}
+    <link rel="stylesheet" href="/static/css/home/services-energy-audit.css">
+  {% endblock css %}
+   {% block title %} Home {% endblock title %}
+    
+{% block content %}
+        
+        
+    <div class="hero-container">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Home Energy Audit</h1>
+                <p class="hero-subtitle">Assessing What Matters—Air, Energy, and Everyday Comfort</p>
+                <!-- <button class="btn-hero">Get Started</button> -->
+            </div>
+        </section>
+    </div>
+    <!-- Our video Section -->
+    <section class="video-section">
+        <div class="video-container">
+            <!-- Left Content -->
+            <!-- <div class="video-content">
+                <div class="mission-badge">Our Mission</div>
+                <h2 class="mission-title">Our Mission</h2>
+                <p class="mission-text">
+                    At PG Home Dynamics, our mission is to help homeowners transform their living spaces into energy-efficient and healthier environments. We are dedicated to creating solutions that balance comfort, safety, and sustainability, ensuring every family can enjoy a home that supports their well-being.
+                </p>
+                <p class="mission-text">
+                    We envision a future where every home is designed to be both sustainable and healthy, without compromising comfort. By offering Home Energy Audits and Healthy Home Evaluations, we strive to lead the way toward smarter, safer, and healthier living—one home at a time.
+                </p>
+            </div> -->
+            
+            <!-- Right Image -->
+            <div class="video-image">
+                <img src="/static/img/energy_audit_video_img.png" alt="video player" />
+            </div>
+        </div>
+    </section>
+    <div class="services-container">
+        <!-- Services Header -->
+        <div class="services-header">
+            <div class="mission-badge">What we offer</div>
+            <h2 class="services-title">A home energy audit is a comprehensive evaluation of a home’s energy</h2>
+        </div>
+
+        <!-- Interview and walkthrough Section -->
+        <div class="inspection-section">
+            <div class="section-image">
+                <img src="/static/img/interview_walkthrough.png" alt="interview walkthrough image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Initial Interview and Walkthrough</h3>
+                <div class="section-description">
+                    <ul>
+                        <li>
+                            <span class="list-label">Homeowner Interview:</span> The auditor asks questions about the home’s energy usage, comfort levels, and any concerns related to heating, cooling, or electricity consumption.
+                        </li>
+                        <li>
+                           <span class="list-label">Walkthrough of the Home:</span> The auditor inspects all major areas of the home, including rooms, basement, attic, and exterior, to assess energy efficiency.
+                        </li>
+                    </ul>
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Interview and walkthrough Section -->
+
+        <!-- Exterior and Structural Section -->
+        <div class="inspection-section flex-column flex-md-row-reverse">
+            <div class="section-image">
+                <img src="/static/img/exterior_structural.png" alt="Exterior and structura image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Exterior and Structura</h3>
+                <div class="section-description">
+                    <ul>
+                        <li>
+                            <span class="list-label">Roof and Walls:</span> The auditor checks for signs of air leaks, insulation, and weatherproofing.
+                        </li>
+                        <li>
+                           <span class="list-label">Windows and Doors:</span> They examine the seals and overall condition to ensure they are not contributing to heat loss or gain.
+                        </li>
+                        <li>
+                           <span class="list-label">Foundation:</span> Any gaps or cracks in the foundation are checked for potential air leaks.
+                        </li>
+                    </ul>
+                    
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Exterior and Structural Section-->
+
+        <!-- Inspection of Heating, Ventilation, and Air Conditioning (HVAC) Systems Section -->
+        <div class="inspection-section">
+            <div class="section-image">
+                <img src="/static/img/heating_ventilation_air_conditioning.png" alt="Heating Ventilation and Air Conditioning image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Inspection of Heating, Ventilation, and Air Conditioning (HVAC) Systems</h3>
+                <div class="section-description">
+                    <ul>
+                        <li>
+                            <span class="list-label">Furnace/Boiler and Ductwork:</span> The auditor examines the age, condition, and efficiency of the furnace or boiler. Ductwork is inspected for leaks, damage, and insulation.
+                        </li>
+                        <li>
+                           <span class="list-label">Air Conditioners and Heat Pumps:</span> Efficiency, age, and condition are checked.
+                        </li>
+                        <li>
+                           <span class="list-label">Ventilation:</span>The auditor checks for proper ventilation, especially in areas like bathrooms, kitchens, and attics.
+                        </li>
+                    </ul>
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Inspection of Heating, Ventilation, and Air Conditioning (HVAC) Systems Section -->
+
+        <!-- Blower Door Test Section -->
+        <div class="inspection-section flex-column flex-md-row-reverse">
+            <div class="section-image">
+                <img src="/static/img/blower-door-test.png" alt="Blower door test image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Blower Door Test</h3>
+                <div class="section-description">
+                    <ul>
+                        <li>
+                             A blower door test is performed to measure the air tightness of the home. A powerful fan is used to depressurize the house, which helps identify leaks and areas where insulation might be missing or inadequate.
+                        </li>
+                    </ul>
+                    
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Blower Door Test Section-->
+
+        <!-- Infrared Thermography Section -->
+        <div class="inspection-section">
+            <div class="section-image">
+                <img src="/static/img/infrared_thermography.png" alt="Infrared thermography image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Infrared Thermography</h3>
+                <div class="section-description">
+                    <ul>
+                        <li>
+                            Infrared Camera Inspection: This tool is used to detect heat loss and moisture problems in walls, ceilings, and floors by visualizing temperature differences. It helps identify areas where insulation is insufficient or where air is leaking.
+                        </li>
+        
+                    </ul>
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Infrared Thermography Section -->
+
+        <!-- Inspection of Insulation Section -->
+        <div class="inspection-section flex-column flex-md-row-reverse">
+            <div class="section-image">
+                <img src="/static/img/Insulation.png" alt="Inspection of insulation image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Inspection of Insulation</h3>
+                <div class="section-description">
+                    <ul>
+                        <li>
+                            <span class="list-label">Attic and Wall Insulation:</span> The auditor checks the type, thickness, and condition of insulation, particularly in the attic and walls. Poor insulation is a major source of energy inefficiency.
+                        </li>
+                        <li>
+                           <span class="list-label">Basement and Crawl Space Insulation:</span> The auditor may also inspect insulation in these areas to prevent energy loss.
+                        </li>
+                    </ul>
+                    
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Inspection of Insulation Section-->
+
+        <!-- Lighting and Appliances Review Section -->
+        <div class="inspection-section">
+            <div class="section-image">
+                <img src="/static/img/lighting_and_appliances.png" alt="lighting appliances review image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Lighting and Appliances Review</h3>
+                <div class="section-description">
+                    <ul>
+                        <li>
+                            <span class="list-label">Lighting:</span> The auditor assesses the efficiency of the lighting system (e.g., incandescent vs. LED bulbs) and suggests energy-saving alternatives
+                        </li>
+                        <li>
+                           <span class="list-label">Major Appliances:</span> The energy usage of large appliances like refrigerators, water heaters, washing machines, and dryers is evaluated. The auditor may suggest upgrading to more energy-efficient models.
+                        </li>
+                    </ul>
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Lighting and Appliances Review Section -->
+
+        <!-- Electrical System Inspection Section -->
+        <div class="inspection-section flex-column flex-md-row-reverse">
+            <div class="section-image">
+                <img src="/static/img/electrical_system.png" alt="electrical system inspection image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Electrical System Inspection</h3>
+                <div class="section-description">
+                    <ul>
+                        <li>
+                            he auditor inspects the home’s electrical system to ensure that it is functioning properly and not wasting energy. This includes checking for faulty wiring, outdated systems, or improperly functioning appliances
+                        </li>
+                        
+                    </ul>
+                    
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Electrical System Inspection Section-->
+
+        <!--Water Usage Assessment Section -->
+        <div class="inspection-section">
+            <div class="section-image">
+                <img src="/static/img/water_usage.png" alt="Water usage assessment image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Water Usage Assessment</h3>
+                <div class="section-description">
+                    <ul>
+                       <li>
+                           <span class="list-label">Water Heating: </span> The efficiency of the water heater is assessed, including the insulation around the tank and pipes.
+                        </li>
+                        <li>
+                           <span class="list-label">Water Efficiency Devices: </span> The auditor may check for low-flow showerheads, faucets, and toilets that can help reduce water consumption.
+                        </li>
+                    </ul>
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Water Usage Assessment Section -->
+
+
+        <!-- Recommendations for Energy Improvements Section -->
+        <div class="inspection-section flex-column flex-md-row-reverse">
+            <div class="section-image">
+                <img src="/static/img/recomendations_energy_improvments.png" alt="Recommendations energy improvements image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Recommendations for Energy Improvements</h3>
+                <div class="section-description">
+                    <ul>
+                        <li>
+                           After the assessment, the auditor provides a detailed report outlining findings and offering specific recommendations. These may include:
+                        </li>
+                        <li>
+                           Sealing air leaks
+                        </li>
+                        <li>
+                           Adding or upgrading insulation
+                        </li>
+                        <li>
+                           Replacing old HVAC systems with more energy-efficient models
+                        </li>
+                        <li>
+                           Installing energy-efficient lighting and appliances
+                        </li>
+                        <li>
+                           Upgrading windows and doors
+                        </li>
+                        <li>
+                           Implementing water-saving strategies
+                        </li>
+                    </ul>
+                    
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Recommendations for Energy Improvements Section-->
+
+        <!-- Energy Efficiency Rating and Estimates Section -->
+        <div class="inspection-section">
+            <div class="section-image">
+                <img src="/static/img/energy_efficiency_rating_estimates.png" alt="energy efficiency rating estimates image">
+            </div>
+            <div class="section-content">
+                <h3 class="section-title">Energy Efficiency Rating and Estimates</h3>
+                <div class="section-description">
+                    <ul>
+                       <li>
+                           Some audits provide an Energy Star rating or Home Energy Score that gives a numerical value to the home’s energy efficiency, along with cost estimates for recommended improvements and potential energy savings
+                        </li>
+                    </ul>
+                </div>
+                <!-- <button class="see-details-btn">See Details</button> -->
+            </div>
+        </div>
+        <!-- End of Energy Efficiency Rating and Estimates Section -->
+
+
+
+    </div>
+
+{% endblock content %}

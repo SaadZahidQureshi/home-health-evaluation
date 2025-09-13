@@ -11,7 +11,7 @@
 .hero-section {
     height: 44.75rem;
     background: linear-gradient(180deg, rgba(3, 20, 39, 0.4) 0%, rgba(3, 20, 39, 0.6) 50%, rgba(3, 20, 39, 0.4) 100%), 
-                url(/static/img/services_evaluation.png);
+                url(/static/img/services_energy_audit.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
