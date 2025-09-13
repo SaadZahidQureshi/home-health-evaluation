@@ -1,7 +1,8 @@
 {% extends 'home/home_base.html' %}
-
+{% load static %}
   {% block css %}
     <link rel="stylesheet" href="/static/css/home/appointment-details.css">
+    <link rel="stylesheet" href="{% static 'css/modals/appointment-booked-modal.css' %}">
   {% endblock css %}
    {% block title %} About Us {% endblock title %}
     
@@ -62,13 +63,16 @@
             </div>
             
             <div class="book-button-container">
-                <button type="submit" class="book-button">Book Now</button>
+                <button type="submit" class="book-button" onclick="openSuccessModal()">Book Now</button>
             </div>
         </form>
     </div>
     </div>
 
+
+{% include "modals/appointment-booked-modals.html" %}      
+
 {% endblock content %}
 {% block js %}
-        
+    <script src="{% static 'js/home/appointment-details.js' %}"></script>
 {% endblock js %}
