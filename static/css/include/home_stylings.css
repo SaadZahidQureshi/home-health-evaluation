@@ -3,6 +3,7 @@
 
 html {
     font-size: 100%;
+     scroll-padding-top: 40px; 
 }
 :root {
 	scroll-behavior: smooth;
