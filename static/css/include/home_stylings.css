@@ -59,7 +59,7 @@ body {
     border-bottom-left-radius: 15px;
     position: relative;
     border: none;
-    top: -1;
+    top: -1px;
 }
 
 .mission-badge::before {
@@ -77,6 +77,7 @@ body {
 	mask-composite: exclude;
 	pointer-events: none;
 	z-index: 0;
+    height: calc(100% - 1px);
 }
 
 /* input and label stylings */
@@ -129,19 +130,19 @@ body {
 
 
 
-@media (min-width: 1440px) and (max-width: 1920px) {
+@media (min-width: 1440px) and (max-width: 1919px) {
     html {
         font-size: 75%;
     }
 }
 
-@media (min-width: 992px) and (max-width: 1440px) {
+@media (min-width: 992px) and (max-width: 1439px) {
     html {
         font-size: 75%;
     }
 }
 
-@media (min-width: 768px) and (max-width: 992px) {
+@media (min-width: 768px) and (max-width: 991px) {
     html {
         font-size: 55%;
     }
