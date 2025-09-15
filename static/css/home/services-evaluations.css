@@ -176,6 +176,7 @@
     width: 100%;
     height: 44.75rem;
     border-radius: 15px;
+    object-fit: cover;
 }
 
 @media (max-width: 992px) {
@@ -1090,6 +1091,12 @@
 .play-icon {
     position: absolute;
 }
+
+.container-for-services-btn-and-description {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+} 
 
 
 @media (max-width: 1199px) {
