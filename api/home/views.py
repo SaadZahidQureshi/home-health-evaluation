@@ -3,7 +3,7 @@ from . models import *
 from . evaluation_report import get_customer_report_data
 from api.user.models import Customer
 from api.core.mixin import DotsModelViewSet
-from api.core.helpers import send_home_evaluation_report_email
+from api.core.helpers import send_contact_us_email, send_home_evaluation_report_email
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -11,6 +11,8 @@ from rest_framework import status
 from django.db import transaction
 from django.db.models import OuterRef, Exists, Case, When, Value, BooleanField, Subquery, Prefetch
 from django.db.models.functions import Coalesce
+from rest_framework.views import APIView
+from rest_framework.permissions import AllowAny
 
 class PrincipleViewSet(DotsModelViewSet):
     queryset = Principle.objects.all().order_by("order")
@@ -246,3 +248,28 @@ class FeedbackViewSet(DotsModelViewSet):
     serializer_class = FeedbackSerializer
     permission_classes = [IsAuthenticated]
 
+
+
+class ContactUsView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        serializer = ContactUsSerializer(data=request.data)
+        if serializer.is_valid():
+            data = serializer.validated_data
+
+            # Send email
+            send_contact_us_email(
+                first_name=data["first_name"],
+                last_name=data["last_name"],
+                email=data["email"],
+                phone_number=data["phone_number"],
+                service_type=data["service_type"],
+                message=data.get("message", "")
+            )
+
+            return Response(
+                {"message": "Your query has been submitted successfully."},
+                status=status.HTTP_200_OK,
+            )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

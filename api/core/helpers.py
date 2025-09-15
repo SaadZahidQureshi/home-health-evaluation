@@ -200,3 +200,29 @@ def send_home_energy_report_email(customer, data=None):
 
         msg.attach("Residential_Home_Report.pdf", pdf, "application/pdf")
         msg.send()
+
+def format_service_type(service_type):
+    return service_type.replace("_", " ").title()
+
+
+def send_contact_us_email(first_name, last_name, email, phone_number, service_type, message):
+    subject = "New Contact Us Submission"
+    text_content = subject
+    template = get_template("email/contact_us_email.html")
+    context = {
+        "first_name": first_name,
+        "last_name": last_name,
+        "email": email,
+        "phone_number": phone_number,
+        "service_type": format_service_type(service_type),
+        "message": message,
+    }
+    html_content = template.render(context)
+    msg = EmailMultiAlternatives(
+        subject,
+        text_content,
+        settings.EMAIL_HOST_USER,
+        [settings.CONTACT_EMAIL],  # jahan email bhejna hai
+    )
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
