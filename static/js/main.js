@@ -1,4 +1,4 @@
-const API_BASE_URL = JSON.parse(document.getElementById("API_BASE_URL").textContent);
+const API_BASE_URL = document.getElementById("API_BASE_URL")?.textContent.trim();
 const emailRegex = /^[a-z0-9](?:[a-z0-9._%+-]*[a-z0-9])?@[a-z0-9.-]+\.[a-z]{2,}$/i;
 let logout_form = document.querySelector("#logoutForm");
 logout_form?.addEventListener("submit", logoutForm)
