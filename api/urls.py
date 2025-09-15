@@ -18,7 +18,9 @@ router.register(r"question", QuestionsViewSet, basename="questions")
 router.register(r"question-group", QuestionGroupViewSet, basename="questioin-group")
 router.register(r"question-group-feedback", QuestionGroupFeedbackViewSet, basename="question-group-feedback")
 router.register(r"answer", AnswerViewSet, basename="answer")
+# router.register(r"contact-us", ContactUsView, basename="contact-us")
 
 urlpatterns = [
     path("customers/<int:customer_id>/home-energy-report/", CustomerHomeEnergyReportView.as_view(), name="customer-home-energy-report"),
+    path("contact-us/", ContactUsView.as_view(), name="contact-us"),
 ] + router.urls

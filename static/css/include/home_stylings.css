@@ -124,7 +124,13 @@ body {
     color: #999;
 }
 
+.hide {
+    display: none !important;
+}
 
+:disabled {
+    opacity: .6;
+}
 
 
 /* main responsive stylings for all screenssss */

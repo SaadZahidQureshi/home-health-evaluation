@@ -110,3 +110,18 @@ class UploadImagesResponseSerializer(serializers.Serializer):
     images = PhotoSerializer(many=True)
     feedback = serializers.JSONField()
 
+
+
+class ContactUsSerializer(serializers.Serializer):
+    first_name = serializers.CharField(max_length=50)
+    last_name = serializers.CharField(max_length=50)
+    email = serializers.EmailField()
+    phone_number = serializers.CharField(max_length=20)
+    service_type = serializers.ChoiceField(
+        choices=[
+            ("home_energy_audit", "Home Energy Audit"),
+            ("healthy_home_evaluation", "Healthy Home Evaluation"),
+            ("general_question", "General knowledge question"),
+        ]
+    )
+    message = serializers.CharField(allow_blank=True, required=False)
