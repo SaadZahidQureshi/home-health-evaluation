@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import environ
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,6 +25,7 @@ env = environ.Env(DEBUG=(bool, False))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str("SECRET_KEY")
+GOOGLE_MAP_API = env.str("GOOGLE_MAP_API")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 

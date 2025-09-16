@@ -2,6 +2,7 @@ from django.views.generic import TemplateView
 from api.core.mixin import LoginRequiredMixin
 from api.home.models import *
 from api.home_energy.models import Step
+from django.conf import settings
 
 # Create your views here.
 class LandingPageTemplateView(TemplateView):
@@ -375,6 +376,7 @@ class HomePageTemplateView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["active_nav"] = "home"
+        context["google_map_api"] = settings.GOOGLE_MAP_API
         return context
     
 class AboutUsPageTemplateView(TemplateView):

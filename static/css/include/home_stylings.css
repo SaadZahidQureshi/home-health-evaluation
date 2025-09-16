@@ -124,6 +124,14 @@ body {
     color: #999;
 }
 
+.contact-item {
+    text-decoration: none;
+}
+
+.contact-item {
+    text-decoration: none;
+}
+
 .hide {
     display: none !important;
 }

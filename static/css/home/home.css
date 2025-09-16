@@ -866,7 +866,37 @@
     border: 3px solid #34495e;
 }
 
-.map-placeholder .zoom-in {
+/* Map area (fills the placeholder) */
+.map-placeholder #map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* keep your zoom positions, but ensure svg sits above map */
+.map-placeholder .zoom-in,
+.map-placeholder .zoom-out {
+  position: absolute;
+  width: 3.75rem;
+  height: 3.75rem;
+  cursor: pointer;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border-radius: 6px;
+}
+
+/* you already had these positions — keep them or adjust */
+.map-placeholder .zoom-in { bottom: 1.25rem; right: 1.25rem; }
+.map-placeholder .zoom-out { bottom: 6.25rem; right: 1.25rem; }
+
+
+/* .map-placeholder .zoom-in {
     position: absolute;
     bottom: 1.25rem;
     right: 1.25rem;
@@ -880,7 +910,7 @@
     right: 1.25rem;
     width: 3.75rem;
     height: 3.75rem;
-}
+} */
 
 .map-placeholder img {
     width: 100%;
@@ -912,6 +942,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    text-decoration: none;
 }
 
 .contact-icon {
@@ -981,6 +1012,88 @@
         text-align: center;
     }
 }
+
+/* Hide keyboard shortcuts button */
+.gm-bundled-control .gm-bundled-control-on-bottom {
+    display: none !important;
+}
+
+/* Alternative selector for keyboard shortcuts */
+[data-value="Keyboard shortcuts"] {
+    display: none !important;
+}
+
+/* Hide the entire bottom-right control container (includes keyboard shortcuts) */
+.gmnoprint .gm-bundled-control {
+    display: none !important;
+}
+
+/* Hide terms and conditions link */
+.gm-style .gm-style-cc {
+    display: none !important;
+}
+
+/* Hide "Report a map error" and similar links */
+.gm-style-cc + div {
+    display: none !important;
+}
+
+/* More specific selectors for terms/privacy links */
+.gm-style div[style*="color: rgb(0, 0, 0)"] a {
+    display: none !important;
+}
+
+/* Hide the entire footer area with terms/reports */
+.gm-style > div:last-child {
+    display: none !important;
+}
+
+/* If you want to be more specific, target the exact container */
+.gm-style > div[style*="position: absolute"][style*="bottom: 0px"][style*="right: 0px"] {
+    display: none !important;
+}
+
+
+/* Hide keyboard shortcuts button */
+.gm-bundled-control .gm-bundled-control-on-bottom {
+    display: none !important;
+}
+
+/* Alternative selector for keyboard shortcuts */
+[data-value="Keyboard shortcuts"] {
+    display: none !important;
+}
+
+/* Hide the entire bottom-right control container (includes keyboard shortcuts) */
+.gmnoprint .gm-bundled-control {
+    display: none !important;
+}
+
+/* Hide terms and conditions link */
+.gm-style .gm-style-cc {
+    display: none !important;
+}
+
+/* Hide "Report a map error" and similar links */
+.gm-style-cc + div {
+    display: none !important;
+}
+
+/* More specific selectors for terms/privacy links */
+.gm-style div[style*="color: rgb(0, 0, 0)"] a {
+    display: none !important;
+}
+
+/* Hide the entire footer area with terms/reports */
+.gm-style > div:last-child {
+    display: none !important;
+}
+
+/* If you want to be more specific, target the exact container */
+.gm-style > div[style*="position: absolute"][style*="bottom: 0px"][style*="right: 0px"] {
+    display: none !important;
+}
+
 
 
 

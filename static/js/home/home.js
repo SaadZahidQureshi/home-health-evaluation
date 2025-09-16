@@ -138,3 +138,5 @@ function handlePhoneKeyPress(e) {
 
 phoneNumberInput.addEventListener('input', handlePhoneInput);
 phoneNumberInput.addEventListener('keypress', handlePhoneKeyPress);
+
+

@@ -578,7 +578,7 @@
             <div class="contact-info-side">
                 <div class="map-container">
                     <div class="map-placeholder">
-                        <svg class="zoom-in" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg id="zoom-in-btn" class="zoom-in" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="0.5" y="0.5" width="59" height="59" rx="9.5" fill="white"/>
                             <rect x="0.5" y="0.5" width="59" height="59" rx="9.5" stroke="#E7E7E7"/>
                             <path d="M28 22.2002C28.2924 22.2002 28.5781 22.3306 28.793 22.5723C29.0085 22.8147 29.1338 23.1481 29.1338 23.5V25.2002H30.667C30.9593 25.2003 31.2452 25.3306 31.46 25.5723C31.6755 25.8147 31.7998 26.1481 31.7998 26.5C31.7998 26.8519 31.6755 27.1853 31.46 27.4277C31.2452 27.6694 30.9593 27.7997 30.667 27.7998H29.1338V29.5C29.1338 29.8519 29.0085 30.1853 28.793 30.4277C28.5781 30.6694 28.2924 30.7998 28 30.7998C27.7076 30.7998 27.4219 30.6694 27.207 30.4277C26.9915 30.1853 26.8662 29.8519 26.8662 29.5V27.7998H25.333C25.0407 27.7997 24.7548 27.6694 24.54 27.4277C24.3245 27.1853 24.2002 26.8519 24.2002 26.5C24.2002 26.1481 24.3245 25.8147 24.54 25.5723C24.7548 25.3306 25.0407 25.2003 25.333 25.2002H26.8662V23.5C26.8662 23.1481 26.9915 22.8147 27.207 22.5723C27.4219 22.3306 27.7076 22.2002 28 22.2002Z" fill="url(#paint0_linear_1055_3068)" stroke="white" stroke-width="0.4"/>
@@ -594,13 +594,14 @@
                             </linearGradient>
                             </defs>
                         </svg>
-                        <svg class="zoom-out" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg id="zoom-out-btn" class="zoom-out" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect x="0.5" y="0.5" width="59" height="59" rx="9.5" fill="white"/>
                             <rect x="0.5" y="0.5" width="59" height="59" rx="9.5" stroke="#E7E7E7"/>
                             <path d="M26 36.5C20.762 36.5 16.5 32.238 16.5 27C16.5 21.762 20.762 17.5 26 17.5C31.238 17.5 35.5 21.762 35.5 27C35.5 32.238 31.238 36.5 26 36.5ZM26 19.5C21.864 19.5 18.5 22.864 18.5 27C18.5 31.136 21.864 34.5 26 34.5C30.136 34.5 33.5 31.136 33.5 27C33.5 22.864 30.136 19.5 26 19.5Z" fill="black"/>
                             <path d="M40.914 39.086L33.594 31.766C33.4801 31.655 33.3536 31.5576 33.217 31.476C32.5257 32.5878 31.5878 33.5257 30.476 34.217C30.557 34.351 30.65 34.479 30.766 34.594L38.086 41.914C38.477 42.305 38.988 42.5 39.5 42.5C40.012 42.5 40.523 42.305 40.914 41.914C41.2889 41.5389 41.4996 41.0303 41.4996 40.5C41.4996 39.9697 41.2889 39.4611 40.914 39.086ZM30.5 28H21.5C21.2348 28 20.9804 27.8946 20.7929 27.7071C20.6054 27.5196 20.5 27.2652 20.5 27C20.5 26.7348 20.6054 26.4804 20.7929 26.2929C20.9804 26.1054 21.2348 26 21.5 26H30.5C30.7652 26 31.0196 26.1054 31.2071 26.2929C31.3946 26.4804 31.5 26.7348 31.5 27C31.5 27.2652 31.3946 27.5196 31.2071 27.7071C31.0196 27.8946 30.7652 28 30.5 28Z" fill="black"/>
                         </svg>
-                        <img src="/static/img/contact-map.png" alt="">
+                        <div id="map"></div>
+                        <!-- <img src="/static/img/contact-map.png" alt=""> -->
                     </div>
                 </div>
                 
@@ -610,7 +611,7 @@
                     </p>
                     
                     <div class="contact-details">
-                        <div class="contact-item">
+                       <a href="https://www.google.com/maps/search/?api=1&query=51.5403797,-0.151357" target="_blank" class="contact-item"> 
                             <div class="contact-icon location-icon">
                                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="30" height="30" rx="15" fill="#EBF7F5"/>
@@ -619,8 +620,8 @@
                                 </svg>
                             </div>
                             <span>17 Princess Road, London.</span>
-                        </div>
-                        <div class="contact-item">
+                        </a>
+                        <a href="mailto:phoutsxayamath@pghomedynamics.com" class="contact-item">
                             <div class="contact-icon email-icon">
                                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="30" height="30" rx="15" fill="#EBF7F5"/>
@@ -628,8 +629,8 @@
                                 </svg>
                             </div>
                             <span>phoutsxayamath@pghomedynamics.com</span>
-                        </div>
-                        <div class="contact-item">
+                        </a>
+                        <a href="tel:3177962729" class="contact-item">
                             <div class="contact-icon phone-icon">
                                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="30" height="30" rx="15" fill="#EBF7F5"/>
@@ -645,7 +646,7 @@
                                 </svg>
                             </div>
                             <span>317 796-2729</span>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -658,6 +659,51 @@
 
 
 {% block js %}
+
+<script>
+    // global var so buttons and other code can access map
+    let map;
+    // This function is called by Google Maps JS (callback=initMap)
+  function initMap() {
+    const coords = { lat: 51.538925, lng: -0.152387 };
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: coords,
+      zoom: 14,
+      mapTypeId: 'roadmap',
+      zoomControl: false,      // we use our custom controls
+      streetViewControl: false,
+      fullscreenControl: false
+    });
+
+    // marker at the coords
+    new google.maps.Marker({
+      position: coords,
+      map: map,
+      title: 'Location: 51.538925, -0.152387'
+    });
+
+    // hide fallback image (if present)
+    const fb = document.getElementById('map-fallback');
+    if (fb) fb.style.display = 'none';
+  }
+
+  // attach listeners to zoom buttons after DOM loads
+  document.addEventListener('DOMContentLoaded', () => {
+    const zi = document.getElementById('zoom-in-btn');
+    const zo = document.getElementById('zoom-out-btn');
+
+    zi && zi.addEventListener('click', () => {
+      if (map) map.setZoom(map.getZoom() + 1);
+    });
+
+    zo && zo.addEventListener('click', () => {
+      if (map) map.setZoom(map.getZoom() - 1);
+    });
+  });
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ google_map_api }}&callback=initMap"></script>
 <script src="{% static 'js/home/home.js' %}"></script> 
 
 {% endblock js %}
