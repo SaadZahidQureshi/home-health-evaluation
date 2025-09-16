@@ -1053,3 +1053,89 @@
     display: none !important;
 }
 
+
+/* Hide keyboard shortcuts button */
+.gm-bundled-control .gm-bundled-control-on-bottom {
+    display: none !important;
+}
+
+/* Alternative selector for keyboard shortcuts */
+[data-value="Keyboard shortcuts"] {
+    display: none !important;
+}
+
+/* Hide the entire bottom-right control container (includes keyboard shortcuts) */
+.gmnoprint .gm-bundled-control {
+    display: none !important;
+}
+
+/* Hide terms and conditions link */
+.gm-style .gm-style-cc {
+    display: none !important;
+}
+
+/* Hide "Report a map error" and similar links */
+.gm-style-cc + div {
+    display: none !important;
+}
+
+/* More specific selectors for terms/privacy links */
+.gm-style div[style*="color: rgb(0, 0, 0)"] a {
+    display: none !important;
+}
+
+/* Hide the entire footer area with terms/reports */
+.gm-style > div:last-child {
+    display: none !important;
+}
+
+/* If you want to be more specific, target the exact container */
+.gm-style > div[style*="position: absolute"][style*="bottom: 0px"][style*="right: 0px"] {
+    display: none !important;
+}
+
+
+
+
+#successModal .modal-dialog {
+    transform: none;
+    width: 100%;
+    max-width: 400px;
+}
+
+#successModal .modal-title {
+    font-weight: 700;
+    font-size: 20px;
+    color: #000000;
+}
+
+#successModal .modal-content {
+    border-radius: 20px;
+    padding: 14px;
+}
+
+#successModal .main-content-delete span{
+    font-weight: 500;
+    font-size: 20px;
+    color: #333333;
+    max-width: 231px;
+    text-align: center;
+}
+
+#successModal .btn-success {
+    width: 75%;
+    height: 50px;
+    opacity: 1;
+    border-radius: 10px;
+    color: #000000;
+    border: none;
+
+    font-weight: 600;
+    text-align: center;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+#successModal .btn-success{
+    background-color: #71BF1E;
+}

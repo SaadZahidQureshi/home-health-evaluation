@@ -1,7 +1,9 @@
 {% extends 'home/home_base.html' %}
+{% load static %}
 
   {% block css %}
     <link rel="stylesheet" href="/static/css/home/home.css">
+    <script src="https://cdn.jsdelivr.net/npm/libphonenumber-js@1.12.15/bundle/libphonenumber-js.min.js" integrity="sha256-Qbh8HFiAjVUg7X3yE0XZ49cfhcWzL+HJlbWednAiLjw=" crossorigin="anonymous"></script>
   {% endblock css %}
    {% block title %} Home {% endblock title %}
     
@@ -518,15 +520,16 @@
                     <h2 class="contact-title">Let's Get in Touch</h2>
                 </div>
                 
-                <form class="contact-form">
+                <form class="contact-form" id="contact_form">
+                    {% csrf_token %}
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="firstName">Your name</label>
-                            <input type="text" id="firstName" name="firstName" placeholder="Alex" />
+                            <label for="firstName">First name</label>
+                            <input type="text" id="firstName"  name="first_name" placeholder="Alex" />
                         </div>
                         <div class="form-group">
                             <label for="lastName">Last name</label>
-                            <input type="text" id="lastName" name="lastName" placeholder="John" />
+                            <input type="text" id="lastName" name="last_name" placeholder="John" />
                         </div>
                     </div>
                     
@@ -537,7 +540,7 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" placeholder="+92 3455555 677" />
+                            <input type="tel" id="phone" name="phone_number" placeholder="+92 3455555 677" />
                         </div>
                     </div>
                     
@@ -545,15 +548,15 @@
                         <label class="service-question">What type of service are you interested in?</label>
                         <div class="radio-group">
                             <div class="radio-option">
-                                <input type="radio" id="homeAudit" name="service" value="home-audit" checked />
+                                <input type="radio" id="homeAudit" name="service_type" value="home_energy_audit" checked />
                                 <label for="homeAudit">Home Energy Audit</label>
                             </div>
                             <div class="radio-option">
-                                <input type="radio" id="healthyHome" name="service" value="healthy-home" />
+                                <input type="radio" id="healthyHome" name="service_type" value="healthy_home_evaluation" />
                                 <label for="healthyHome">Healthy Home Evaluation</label>
                             </div>
                             <div class="radio-option">
-                                <input type="radio" id="generalQuestion" name="service" value="general" />
+                                <input type="radio" id="generalQuestion" name="service_type" value="general_question" />
                                 <label for="generalQuestion">General knowledge question</label>
                             </div>
                         </div>
@@ -563,8 +566,11 @@
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="5" placeholder="Write down"></textarea>
                     </div>
-                    
-                    <button type="submit" class="btn-send">Send Message</button>
+                    <small class="input-error-msg"></small>
+                    <button type="submit" class="btn-send" id="contact_button">
+                        <span class="spinner-border spinner-border-md hide" role="status" aria-hidden="true"></span>
+                        <span class="btn-text" data-i18n="form-send-button">Send</span>
+                    </button>
                 </form>
             </div>
             
@@ -647,6 +653,8 @@
         </div>
     </section>
 
+{% include 'modals/contact-success.html' %}
+
 {% endblock content %}
 
 
@@ -696,18 +704,7 @@
 </script>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ google_map_api }}&callback=initMap"></script>
-    
-    <!-- <script>
-       document.addEventListener("DOMContentLoaded", function () {
-    if (window.location.hash === "#contact") {
-        document.querySelectorAll(".nav-link").forEach(el => el.classList.remove("active"));
-        let contactLink = document.querySelector('.nav-link[href*="#contact"]');
-        if (contactLink) {
-            contactLink.classList.add("active");
-        }
-    }
-});
-    </script> -->
+<script src="{% static 'js/home/home.js' %}"></script> 
 
 {% endblock js %}
     

@@ -161,8 +161,10 @@ async function _get_me_data(){
     }
 }
 
-function _render_me_data(me_data){
-    document.querySelector("#image").src = me_data?.image || '/static/images/admin_profile_image.svg';
+function _render_me_data(me_data) {
+    let navImageElement = document.querySelector("#image");
+    if (navImageElement)
+        navImageElement.src = me_data?.image || '/static/images/admin_profile_image.svg';
 }
 
 function UploadImage(event){
