@@ -656,18 +656,7 @@
 
 
 {% block js %}
-    
-<!-- <script>
-       document.addEventListener("DOMContentLoaded", function () {
-    if (window.location.hash === "#contact") {
-        document.querySelectorAll(".nav-link").forEach(el => el.classList.remove("active"));
-        let contactLink = document.querySelector('.nav-link[href*="#contact"]');
-        if (contactLink) {
-            contactLink.classList.add("active");
-        }
-    }
-});
-    </script> -->
+<script src="{% static 'js/home/home.js' %}"></script> 
 
 {% endblock js %}
     
