@@ -981,3 +981,48 @@
         text-align: center;
     }
 }
+
+
+
+#successModal .modal-dialog {
+    transform: none;
+    width: 100%;
+    max-width: 400px;
+}
+
+#successModal .modal-title {
+    font-weight: 700;
+    font-size: 20px;
+    color: #000000;
+}
+
+#successModal .modal-content {
+    border-radius: 20px;
+    padding: 14px;
+}
+
+#successModal .main-content-delete span{
+    font-weight: 500;
+    font-size: 20px;
+    color: #333333;
+    max-width: 231px;
+    text-align: center;
+}
+
+#successModal .btn-success {
+    width: 75%;
+    height: 50px;
+    opacity: 1;
+    border-radius: 10px;
+    color: #000000;
+    border: none;
+
+    font-weight: 600;
+    text-align: center;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+#successModal .btn-success{
+    background-color: #71BF1E;
+}

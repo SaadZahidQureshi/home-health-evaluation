@@ -34,6 +34,10 @@ async function contactFormSubmit(event) {
         showToast("Error!", "Please select a service type.", "danger-toast");
         return false;
     }
+    if (!data.message || data.message.trim() === '') {
+        showToast("Error!", "Message is required.", "danger-toast");
+        return false;
+    }
 
     // 📌 Payload
     let payload = {
@@ -62,6 +66,8 @@ async function contactFormSubmit(event) {
                 form.reset();
                 button.disabled = true;
                 afterLoad(button, 'Sent');
+                let successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
                 setTimeout(() => {
                     afterLoad(button, buttonText);
                     button.disabled = false;
