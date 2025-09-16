@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     "web",
     "api.user",
     "api.home",
-    "api.home_energy"
+    "api.home_energy",
+    "api.appointments",
 ]
 
 MIDDLEWARE = [
@@ -150,4 +151,4 @@ EMAIL_USE_SSL = env.bool("EMAIL_USE_SSL", default=False)
 EMAIL_HOST_USER = env.str("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD")
 
-CONTACT_EMAIL = env.str("CONTACT_EMAIL")
+CONTACT_EMAIL = env.list("CONTACT_EMAIL", default=[])

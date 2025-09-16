@@ -222,7 +222,7 @@ def send_contact_us_email(first_name, last_name, email, phone_number, service_ty
         subject,
         text_content,
         settings.EMAIL_HOST_USER,
-        [settings.CONTACT_EMAIL],  # jahan email bhejna hai
+        settings.CONTACT_EMAIL,
     )
     msg.attach_alternative(html_content, "text/html")
     msg.send()
