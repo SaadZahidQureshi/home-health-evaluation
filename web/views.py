@@ -378,6 +378,30 @@ class HomePageTemplateView(TemplateView):
         context["active_nav"] = "home"
         context["google_map_api"] = settings.GOOGLE_MAP_API
         return context
+
+class PricingPageTemplateView(TemplateView):
+    template_name = "home/pricing.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["active_nav"] = "pricing"
+        return context
+
+class TermOfServicesTemplateView(TemplateView):
+    template_name = "home/term-of-services.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["active_nav"] = "home"
+        return context
+
+class PrivacyPolicyTemplateView(TemplateView):
+    template_name = "home/privacy-policy.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["active_nav"] = "home"
+        return context
     
 class AboutUsPageTemplateView(TemplateView):
     template_name = "home/about-us.html"

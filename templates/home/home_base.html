@@ -75,7 +75,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link {% if active_nav == 'home' %} active {% endif %}" href="/home-page/">Home</a>
+                        <a class="nav-link {% if active_nav == 'home' %} active {% endif %}" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if active_nav == 'about_us' %} active {% endif %}" href="/about-us/">About Us</a>
@@ -99,7 +99,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/home-page/#pricing">Pricing</a>
+                        <a class="nav-link {% if active_nav == 'pricing' %} active {% endif %}" href="/pricing/">Pricing</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if active_nav == 'book_appointments' %} active {% endif %}" href="/book-appointments/">Appointments</a>
@@ -225,10 +225,10 @@
                     <div>
                         <h5 class="footer-title">Quick Links</h5>
                         <ul class="footer-links">
-                            <li><a href="/home-page/">Home</a></li>
+                            <li><a href="/">Home</a></li>
                             <li><a href="/about-us/">About</a></li>
                             <li><a href="/services-evaluation/">Services</a></li>
-                            <li><a href="/home-page/#pricing">Pricing</a></li>
+                            <li><a href="/pricing/">Pricing</a></li>
                         </ul>
                     </div>
                 </div>
@@ -238,9 +238,9 @@
                     <div>
                         <h5 class="footer-title">More Info</h5>
                         <ul class="footer-links">
-                            <li><a href="#">Appointment</a></li>
+                            <li><a href="/book-appointments/">Appointment</a></li>
                             <li><a href="/book-appointments/">Booking</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
+                            <!-- <li><a href="#">Privacy Policy</a></li> -->
                             <li><a href="#">Customer Policy</a></li>
                         </ul>
                     </div>
@@ -252,8 +252,8 @@
                         <h5 class="footer-title">Terms & Policies</h5>
                         <ul class="footer-links">
                             <li><a href="#">Term of Use</a></li>
-                            <li><a href="#" style="text-decoration: underline;">Terms of services</a></li>
-                            <li><a href="#" style="text-decoration: underline;">Privacy Policy</a></li>
+                            <li><a href="/term-of-services/" style="text-decoration: underline;">Terms of services</a></li>
+                            <li><a href="/privacy-policy/" style="text-decoration: underline;">Privacy Policy</a></li>
                         </ul>
                     </div>
                 </div>

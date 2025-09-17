@@ -5,7 +5,7 @@ from .views import *
 
 urlpatterns = [
     path("home/", LandingPageTemplateView.as_view(), name="landing_page"),
-    path("", LoginPageTemplateView.as_view(), name="login_page"),
+    path("login-page/", LoginPageTemplateView.as_view(), name="login_page"),
     path("register/", RegisterPageTemplateView.as_view(), name="register_page"),
     path("side-selection/", SideSelectionPageTemplateView.as_view(), name="side_selection"),
     path("settings/", SettingPageTemplateView.as_view(), name="settings_page"),
@@ -50,10 +50,13 @@ urlpatterns = [
 
     # home page urls
 
-    path("home-page/", HomePageTemplateView.as_view(), name="home_page"),
+    path("", HomePageTemplateView.as_view(), name="home_page"),
     path("about-us/", AboutUsPageTemplateView.as_view(), name="about_us_page"),
     path("services-evaluation/", ServicesEvaluationPageTemplateView.as_view(), name="services_evaluation_page"),
     path("services-energy-audit/", ServicesEnergyAuditPageTemplateView.as_view(), name="services_energy_audit_page"),
     path("book-appointments/", BookAppointmentPageTemplateView.as_view(), name="book_appointments_page"),
     path("appointment-details/", AppointmentDetailsPageTemplateView.as_view(), name="appointment_details_page"),
+    path("pricing/", PricingPageTemplateView.as_view(), name="pricing_page"),
+    path("term-of-services/", TermOfServicesTemplateView.as_view(), name="term_of_services_page"),
+    path("privacy-policy/", PrivacyPolicyTemplateView.as_view(), name="privacy_policy_page"),
 ]
