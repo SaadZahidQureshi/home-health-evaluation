@@ -165,16 +165,8 @@
 }
 
 .action-item:hover {
-    background-color: #e8e8e8;
-}
-
-.action-item.primary {
     background-color: var(--primary-green);
     color: white;
-}
-
-.action-item.primary:hover {
-    background-color: #5ea035;
 }
 
 /* Button to trigger modal (for demo) */

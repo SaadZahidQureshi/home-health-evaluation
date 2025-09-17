@@ -36,56 +36,60 @@
         </div>
         
         <form class="booking-form">
+            {% csrf_token %}
             <div class="form-row">
                 <div class="form-group">
                     <label for="firstName">First Name</label>
-                    <input type="text" id="firstName" placeholder="Alex">
+                    <input type="text" id="firstName" name="first_name" placeholder="Alex">
                 </div>
                 <div class="form-group">
                     <label for="lastName">Last Name</label>
-                    <input type="text" id="lastName" placeholder="John">
+                    <input type="text" id="lastName" name="last_name" placeholder="John">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Alex.john@gmail.com">
+                    <input type="email" id="email" name="email" placeholder="Alex.john@gmail.com">
                 </div>
             </div>
             
             <div class="form-row">
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" placeholder="+92 3455555 677">
+                    <input type="tel" id="phone" name="phone_number" placeholder="+92 3455555 677">
                 </div>
                 <div class="form-group">
                     <label for="address">Address</label>
-                    <input type="text" id="address" placeholder="115, New York, USA">
+                    <input type="text" id="address" name="address" placeholder="115, New York, USA">
                 </div>
                 <div class="form-group">
                     <label for="zipCode">Zip Code</label>
-                    <input type="text" id="zipCode" placeholder="Texas">
+                    <input type="text" id="zipCode" name="zip_code" placeholder="Texas">
                 </div>
             </div>
             
             <div class="form-row">
                 <div class="form-group">
                     <label for="city">City</label>
-                    <input type="text" id="city" placeholder="New York">
+                    <input type="text" id="city" name="city" placeholder="New York">
                 </div>
                 <div class="form-group">
                     <label for="state">State</label>
-                    <input type="text" id="state" placeholder="Texas">
+                    <input type="text" id="state" name="state" placeholder="Texas">
                 </div>
             </div>
             
             <div class="form-row">
                 <div class="form-group notes">
                     <label for="notes">Notes</label>
-                    <textarea id="notes" placeholder="Write down"></textarea>
+                    <textarea id="notes" name="notes" placeholder="Write down"></textarea>
                 </div>
             </div>
             
             <div class="book-button-container">
-                <button type="button" class="book-button" onclick="openSuccessModal()">Book Now</button>
+                <button type="submit" class="btn-send book-button" id="contact_button">
+                    <span class="spinner-border spinner-border-md hide" role="status" aria-hidden="true"></span>
+                    <span class="btn-text">Book Now</span>
+                </button>
             </div>
         </form>
     </div>

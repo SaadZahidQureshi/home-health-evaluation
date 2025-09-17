@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     "api.user",
     "api.home",
     "api.home_energy",
-    # "api.appointments",
+    "api.appointments",
 ]
 
 MIDDLEWARE = [
