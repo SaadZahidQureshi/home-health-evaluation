@@ -30,9 +30,7 @@ GOOGLE_MAP_API = env.str("GOOGLE_MAP_API")
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = [
-    "https://maximum-vertically-barnacle.ngrok-free.app",
-]
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
 CORS_ALLOW_ALL_ORIGINS = True
 
 
