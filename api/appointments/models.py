@@ -3,7 +3,7 @@ from django.core.validators import EmailValidator
 from api.core.abstract import BaseModel
 
 class Availability(BaseModel):     
-    SLOT_CHOICES = [         
+    SLOT_CHOICES = [
         ('08_00_to_12_00', '08:00 AM to 12:00 PM'),
         ('01_00_to_05_00', '01:00 PM to 05:00 PM'),
         ('05_00_to_09_00', '05:00 PM to 09:00 PM'),
