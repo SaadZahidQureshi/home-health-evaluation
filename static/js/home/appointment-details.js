@@ -1,6 +1,7 @@
 var successModal;
 let nextActionsModal;
 let appointmentData = {};
+let isEditMode = false;
 
 // Initialize modals when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
@@ -35,26 +36,6 @@ function goBack() {
     }, 300);
 }
 
-// Action handlers for second modal
-function editInformation() {
-    console.log('Edit Information clicked');
-    nextActionsModal.hide();
-    // Add your custom logic here
-}
-
-function reschedule() {
-    console.log('Reschedule clicked');
-    nextActionsModal.hide();
-    location.pathname = '/book-appointments/';
-    // Add your custom logic here
-}
-
-function cancelAppointment() {
-    console.log('Cancel Appointment clicked');
-    nextActionsModal.hide();
-    // Add your custom logic here
-}
-
 function scheduleNew() {
     console.log('Schedule New Appointment clicked');
     nextActionsModal.hide();
@@ -69,19 +50,21 @@ async function appointmentFormSubmit(event) {
 
     let form = event.target;
     let button = form.querySelector(".book-button");
-    let buttonText = button.textContent;
+    let buttonText = button.querySelector('.btn-text').innerText;
 
     let formData = new FormData(form);
     let data = Object.fromEntries(formData.entries());
 
-    // 📌 SessionStorage se date & slot fetch
+    // 📌 SessionStorage data
     let selectedDate = sessionStorage.getItem("selected_date");
     let selectedSlot = sessionStorage.getItem("selected_slot");
 
     // -------- Validations --------
-    if (!selectedDate || !selectedSlot) {
-        showToast("Error!", "Please select a date and slot before booking.", "danger-toast");
-        return false;
+    if (!isEditMode) { 
+        if (!selectedDate || !selectedSlot) {
+            showToast("Error!", "Please select a date and slot before booking.", "danger-toast");
+            return false;
+        }
     }
     if (!data.first_name || data.first_name.trim() === "") {
         showToast("Error!", "First name is required.", "danger-toast");
@@ -118,8 +101,6 @@ async function appointmentFormSubmit(event) {
 
     // -------- Payload --------
     let payload = {
-        date: selectedDate,
-        slot_type: selectedSlot,
         first_name: data.first_name.trim(),
         last_name: data.last_name.trim(),
         email: data.email.trim(),
@@ -131,6 +112,11 @@ async function appointmentFormSubmit(event) {
         notes: data.notes?.trim() || ""
     };
 
+    if (!isEditMode) {
+        payload.date = selectedDate;
+        payload.slot_type = selectedSlot;
+    }
+
     let headers = {
         "Content-Type": "application/json",
         "X-CSRFToken": data.csrfmiddlewaretoken
@@ -139,24 +125,44 @@ async function appointmentFormSubmit(event) {
     try {
         beforeLoad(button);
 
-        let response = await fetch(`${API_BASE_URL}appointments`, {
-            method: "POST",
-            headers: headers,
-            body: JSON.stringify(payload)
-        });
+        let response, res;
 
-        let res = await response.json();
+        if (isEditMode) {
+            // 📌 Update booking person
+            let bookingPersonId = appointmentData.booking_person?.id;
+            response = await fetch(`${API_BASE_URL}booking-person/${bookingPersonId}`, {
+                method: "PUT",
+                headers: headers,
+                body: JSON.stringify(payload)
+            });
+            res = await response.json();
+        } else {
+            // 📌 Create new appointment
+            response = await fetch(`${API_BASE_URL}appointments`, {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(payload)
+            });
+            res = await response.json();
+        }
 
         if (response.ok) {
-            appointmentData = res;
-            showToast("Success!", "Your appointment has been booked successfully.", "success-toast");
-            form.reset();
-            sessionStorage.removeItem("selected_date");
-            sessionStorage.removeItem("selected_slot");
+            if (isEditMode) {
+                appointmentData.booking_person = res;
+                showToast("Success!", "Your appointment details have been updated.", "success-toast");
+                isEditMode = false;
+            } else {
+                appointmentData = res;
+                sessionStorage.setItem("appointment_id", res.id);
+                sessionStorage.removeItem("selected_date");
+                sessionStorage.removeItem("selected_slot");
+                showToast("Success!", "Your appointment has been booked successfully.", "success-toast");
+            }
 
             renderAppointmentDataInModal();
             openSuccessModal();
-            afterLoad(button, "Booked");
+
+            afterLoad(button, isEditMode ? "Updated" : "Booked");
             button.disabled = true;
 
             setTimeout(() => {
@@ -238,4 +244,43 @@ function renderAppointmentDataInModal() {
                             <div class="info-text">${appointmentData.booking_person.notes}</div>
                         </div> `;
     
+}
+
+async function cancelAppointment(showMessage=true) {
+    let appointmentId = sessionStorage.getItem("appointment_id");
+
+    if (!appointmentId) {
+        showToast("Error!", "No appointment found to cancel.", "danger-toast");
+        return;
+    }
+
+    try {
+        let headers = {"X-CSRFToken": getCookie("csrftoken")};
+        let response = await fetch(`${API_BASE_URL}appointments/${appointmentId}`, {
+            headers: headers,
+            method: "DELETE"
+        });
+
+        if (response.ok) {
+            if (showMessage) showToast("Success!", "Your appointment has been cancelled.", "success-toast");
+            sessionStorage.removeItem("appointment_id");
+            setTimeout(() => {
+                window.location.href = "/book-appointments/"; 
+            }, 1500);
+
+        } else {
+            showToast("Error!", "Failed to cancel appointment.", "danger-toast");
+        }
+    } catch (err) {
+        console.error("Cancel Error:", err);
+        showToast("Error!", "Something went wrong. Please try again.", "danger-toast");
+    }
+}
+
+
+
+// Action handlers for second modal
+function editInformation() {
+    nextActionsModal.hide();
+    isEditMode = true;
 }

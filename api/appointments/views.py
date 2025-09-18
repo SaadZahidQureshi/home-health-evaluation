@@ -1,8 +1,8 @@
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from .models import Availability, Appointment
-from .serializers import (AvailabilitySerializer, AppointmentCreateSerializer, AppointmentSerializer)
+from .models import Availability, Appointment, BookingPerson
+from .serializers import (AvailabilitySerializer, AppointmentCreateSerializer, AppointmentSerializer, BookingPersonSerializer)
 from datetime import datetime
 
 class AvailabilityViewSet(viewsets.ReadOnlyModelViewSet):
@@ -90,4 +90,15 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         response_serializer = AppointmentSerializer(appointment)
         return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
+    def destroy(self, request, *args, **kwargs):
+        appointment = self.get_object()
+        availability = appointment.availability
+        availability.is_booked = False
+        availability.save()
+        appointment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
 
+class BookingPersonViewSet(viewsets.ModelViewSet):
+    queryset = BookingPerson.objects.all()
+    serializer_class = BookingPersonSerializer
