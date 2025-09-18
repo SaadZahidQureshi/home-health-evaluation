@@ -252,7 +252,7 @@ def send_appointment_email(data):
         subject,
         text_content,
         settings.EMAIL_HOST_USER,
-        [data.booking_person.email],
+        settings.CONTACT_EMAIL,
     )
     msg.attach_alternative(html_content, "text/html")
     msg.send()
