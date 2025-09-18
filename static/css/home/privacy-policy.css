@@ -57,6 +57,13 @@
     margin-bottom: 0px;
 }
 
+.sub-heading {
+	font-size: 1.75rem;
+	font-weight: 600;
+	color: #2B2B2B;
+    margin-bottom: 0px;
+}
+
 .month-title {
 	text-align: center;
 	margin: 0;
