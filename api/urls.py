@@ -1,5 +1,6 @@
 from django.urls import path
 from rest_framework import routers
+from api.appointments.views import *
 from api.user.views import *
 from api.home.views import *
 from api.home_energy.views import *
@@ -18,7 +19,8 @@ router.register(r"question", QuestionsViewSet, basename="questions")
 router.register(r"question-group", QuestionGroupViewSet, basename="questioin-group")
 router.register(r"question-group-feedback", QuestionGroupFeedbackViewSet, basename="question-group-feedback")
 router.register(r"answer", AnswerViewSet, basename="answer")
-# router.register(r"contact-us", ContactUsView, basename="contact-us")
+router.register(r'availability', AvailabilityViewSet)
+router.register(r'appointments', AppointmentViewSet)
 
 urlpatterns = [
     path("customers/<int:customer_id>/home-energy-report/", CustomerHomeEnergyReportView.as_view(), name="customer-home-energy-report"),
