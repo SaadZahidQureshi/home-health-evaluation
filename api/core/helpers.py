@@ -226,3 +226,33 @@ def send_contact_us_email(first_name, last_name, email, phone_number, service_ty
     )
     msg.attach_alternative(html_content, "text/html")
     msg.send()
+
+
+def send_appointment_email(data):
+    subject = "New Appointment Scheduled – PG Home Dynamics"
+    text_content = subject
+    template = get_template("email/appointment_email.html")
+    context = {"data": data}
+    # context = {
+    #     "appointment_date": appointment_date,
+    #     "appointment_time": appointment_time,
+    #     "first_name": first_name,
+    #     "last_name": last_name,
+    #     "email": email,
+    #     "phone_number": phone_number,
+    #     "address": address,
+    #     "zip_code": zip_code,
+    #     "city": city,
+    #     "state": state,
+    #     "notes": notes,
+    #     "message": message,
+    # }
+    html_content = template.render(context)
+    msg = EmailMultiAlternatives(
+        subject,
+        text_content,
+        settings.EMAIL_HOST_USER,
+        [data.booking_person.email],
+    )
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
