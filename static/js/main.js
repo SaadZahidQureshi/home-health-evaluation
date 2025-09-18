@@ -209,7 +209,7 @@ async function logoutForm(event) {
             setTimeout(() => {
                 afterLoad(button, "Signed in");
                 sessionStorage.removeItem("customer_id")
-                location.href = `/`;
+                location.href = `/login-page/`;
             }, 1000);
         } else {
             const result = await response.json();

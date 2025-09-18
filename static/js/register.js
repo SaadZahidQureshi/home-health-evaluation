@@ -72,7 +72,7 @@ async function registerForm(event) {
             showToast("Success", "User has been created successfully. Please log in to proceed.", "success-toast");
             setTimeout(() => {
                 afterLoad(button, "Signed in");
-                location.href = `/`;
+                location.href = `/login-page/`;
             }, 1000);
         } else {
             const result = await response.json();
