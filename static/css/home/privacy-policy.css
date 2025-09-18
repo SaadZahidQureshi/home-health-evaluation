@@ -1,20 +1,20 @@
 .main-container {
 	padding: 3.75rem 5rem;
 	padding-top: 10rem;
-	display: flex;
-	flex-direction: column;
+	/* display: flex;
+	flex-direction: column; */
 	width: 100%;
-	align-items: center;
+	/* align-items: center;
 	justify-content: center;
-	gap: 3.188rem;
+	gap: 3.188rem; */
 	background-color: #F5F6F8;
 }
 
 .heading-container {
-	display: flex;
+	/* display: flex;
 	flex-direction: column;
 	gap: 0.65rem;
-	align-items: center;
+	align-items: center; */
 }
 
 .heading-container .mission-badge {
@@ -27,7 +27,19 @@
 	color: #2B2B2B;
 }
 
+.description {
+    font-size: 1.5rem;
+    line-height: 2.125rem;
+    color: #525252;
+    margin: 0;
+    letter-spacing: 0%;
+}
 
+.section-description {
+    font-size: 1.5rem;
+    color: #525252;
+    line-height: 2.125rem;
+}
 
 .calendar-container {
 	background: white;
@@ -36,6 +48,13 @@
 	border: 1px solid #E7E7E7;
 	padding: 15px;
 	box-sizing: border-box;
+}
+
+.title {
+	font-size: 2.125rem;
+	font-weight: 700;
+	color: #2B2B2B;
+    margin-bottom: 0px;
 }
 
 .month-title {
