@@ -2,7 +2,7 @@
 let customer_id = JSON.parse(document.getElementById("customerId").textContent) || null;
 let customers_data = null
 let principle_data = null;
-let customer_enndpoint = `${API_BASE_URL}customers/${customer_id}`;
+let customer_enndpoint = `${API_BASE_URL}customers/healthy-home/${customer_id}`;
 window.addEventListener('load', get_customers_data(), get_principle_data());
 
 async function get_customers_data(){
