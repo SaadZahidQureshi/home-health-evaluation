@@ -1,5 +1,8 @@
 {% extends "home-energy-base.html" %}
 {% load static %}
+
+<link rel="stylesheet" href="{% static '/modals/delete-history.css' %}">
+
 {% block title %}History{% endblock title %}
 
 {% block content %}
@@ -25,6 +28,8 @@
         </div>
     </div>                                             
 </div> 
+
+{% include "modals/delete-history.html" %}
 
 {% endblock content %}
 

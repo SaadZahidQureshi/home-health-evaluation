@@ -284,3 +284,37 @@ function editInformation() {
     nextActionsModal.hide();
     isEditMode = true;
 }
+
+
+function saveToUserCalendar() {
+  const appointmentData = {
+    title: "Appointment Booking",
+    description: "Your appointment with us.",
+    location: "Lahore, Pakistan",
+    start: "20250918T100000Z", // UTC format
+    end: "20250918T110000Z"
+  };
+
+  const icsContent = `
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+DTSTAMP:${appointmentData.start}
+DTSTART:${appointmentData.start}
+DTEND:${appointmentData.end}
+SUMMARY:${appointmentData.title}
+DESCRIPTION:${appointmentData.description}
+LOCATION:${appointmentData.location}
+END:VEVENT
+END:VCALENDAR
+`;
+
+  const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'appointment.ics';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}

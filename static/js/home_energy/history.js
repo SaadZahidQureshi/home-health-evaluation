@@ -54,7 +54,7 @@ function render_customers_data(data) {
                             <div class="spinner-border hide" id="customer-row-spinner-${customer.id}" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
-                            <a href="javascript:void(0)" onclick="deleteCustomer(${customer?.id})">
+                            <a href="javascript:void(0)" onclick="openDeleteModal(${customer?.id})">
                                 <img src="/static/img/delete-rounded.svg" alt="">
                             </a>
                             <a href="javascript:void(0)" onclick="editCustomer(${customer?.id})">
@@ -95,6 +95,22 @@ async function deleteCustomer(id){
         console.log(err);
     }
 }
+
+let deleteId = null;
+
+function openDeleteModal(id) {
+    deleteId = id;
+    let deleteModal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
+    deleteModal.show();
+}
+
+document.getElementById('confirmDeleteBtn').addEventListener('click', async function () {
+    if (deleteId) {
+        await deleteCustomer(deleteId); // call your existing delete function
+        deleteId = null;
+        bootstrap.Modal.getInstance(document.getElementById('deleteConfirmModal')).hide();
+    }
+});
 
 function editCustomer(id){
     sessionStorage.setItem("customer_id", id);
