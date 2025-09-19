@@ -156,7 +156,7 @@ def render_to_pdf(template_src, context_dict={}):
 
 def send_home_evaluation_report_email(customer, data=None):
     subject = "Your Healthy Home Evaluation Report"
-    from_email = settings.DEFAULT_FROM_EMAIL
+    from_email = settings.EMAIL_HOST_USER
     to_email = [customer.user.email]
 
     text_content = subject
@@ -180,7 +180,7 @@ def send_home_evaluation_report_email(customer, data=None):
 
 def send_home_energy_report_email(customer, data=None):
     subject = "Your Residencial Home Evaluation Report"
-    from_email = settings.DEFAULT_FROM_EMAIL
+    from_email = settings.EMAIL_HOST_USER
     to_email = [customer.user.email]
 
     text_content = subject
