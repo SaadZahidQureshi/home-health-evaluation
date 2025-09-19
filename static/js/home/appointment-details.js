@@ -4,7 +4,7 @@ let appointmentData = {};
 let isEditMode = false;
 
 // Initialize modals when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     successModal = new bootstrap.Modal(document.getElementById('successModal'));
     nextActionsModal = new bootstrap.Modal(document.getElementById('nextActionsModal'));
 });
@@ -60,7 +60,7 @@ async function appointmentFormSubmit(event) {
     let selectedSlot = sessionStorage.getItem("selected_slot");
 
     // -------- Validations --------
-    if (!isEditMode) { 
+    if (!isEditMode) {
         if (!selectedDate || !selectedSlot) {
             showToast("Error!", "Please select a date and slot before booking.", "danger-toast");
             return false;
@@ -243,10 +243,10 @@ function renderAppointmentDataInModal() {
                             </div>
                             <div class="info-text">${appointmentData.booking_person.notes}</div>
                         </div> `;
-    
+
 }
 
-async function cancelAppointment(showMessage=true) {
+async function cancelAppointment(showMessage = true) {
     let appointmentId = sessionStorage.getItem("appointment_id");
 
     if (!appointmentId) {
@@ -255,7 +255,7 @@ async function cancelAppointment(showMessage=true) {
     }
 
     try {
-        let headers = {"X-CSRFToken": getCookie("csrftoken")};
+        let headers = { "X-CSRFToken": getCookie("csrftoken") };
         let response = await fetch(`${API_BASE_URL}appointments/${appointmentId}`, {
             headers: headers,
             method: "DELETE"
@@ -265,7 +265,7 @@ async function cancelAppointment(showMessage=true) {
             if (showMessage) showToast("Success!", "Your appointment has been cancelled.", "success-toast");
             sessionStorage.removeItem("appointment_id");
             setTimeout(() => {
-                window.location.href = "/book-appointments/"; 
+                window.location.href = "/book-appointments/";
             }, 1500);
 
         } else {
@@ -278,43 +278,90 @@ async function cancelAppointment(showMessage=true) {
 }
 
 
-
-// Action handlers for second modal
-function editInformation() {
-    nextActionsModal.hide();
-    isEditMode = true;
-}
-
-
 function saveToUserCalendar() {
-  const appointmentData = {
-    title: "Appointment Booking",
-    description: "Your appointment with us.",
-    location: "Lahore, Pakistan",
-    start: "20250918T100000Z", // UTC format
-    end: "20250918T110000Z"
-  };
+    if (!appointmentData || !appointmentData.id) {
+        showToast("Error!", "No appointment data available to save.", "danger-toast");
+        return;
+    }
 
-  const icsContent = `
-BEGIN:VCALENDAR
-VERSION:2.0
-CALSCALE:GREGORIAN
-BEGIN:VEVENT
-DTSTAMP:${appointmentData.start}
-DTSTART:${appointmentData.start}
-DTEND:${appointmentData.end}
-SUMMARY:${appointmentData.title}
-DESCRIPTION:${appointmentData.description}
-LOCATION:${appointmentData.location}
-END:VEVENT
-END:VCALENDAR
-`;
+    // Convert created_at to ICS format (YYYYMMDDTHHmmssZ)
+    function formatDateTime(dateString) {
+        const d = new Date(dateString);
+        return d.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+    }
 
-  const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = 'appointment.ics';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+    // Slot mapping based on SLOT_CHOICES
+    const slotMapping = {
+        "08_00_to_12_00": { start: "08:00", end: "12:00" },
+        "01_00_to_05_00": { start: "13:00", end: "17:00" },
+        "05_00_to_09_00": { start: "17:00", end: "21:00" },
+        "10_00_to_02_00": { start: "22:00", end: "02:00", overnight: true },
+        "02_00_to_06_00": { start: "02:00", end: "06:00" },
+        "07_00_to_11_00": { start: "07:00", end: "11:00" },
+        "11_00_to_03_00": { start: "11:00", end: "15:00" },
+        "04_00_to_08_00": { start: "16:00", end: "20:00" }
+    };
+
+    // Convert slot_type to actual ICS start/end
+    function getSlotTimes(slotType, date) {
+        const slot = slotMapping[slotType];
+        if (!slot) return null;
+
+        const startDate = new Date(`${date}T${slot.start}:00Z`);
+        let endDate;
+
+        // Handle overnight slots (end on next day)
+        if (slot.overnight) {
+            endDate = new Date(`${date}T${slot.end}:00Z`);
+            endDate.setDate(endDate.getDate() + 1);
+        } else {
+            endDate = new Date(`${date}T${slot.end}:00Z`);
+        }
+
+        return {
+            start: startDate.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z",
+            end: endDate.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z"
+        };
+    }
+
+    const slotTimes = getSlotTimes(
+        appointmentData.availability.slot_type,
+        appointmentData.availability.date
+    );
+
+    // ICS content
+    const icsContent = `
+        BEGIN:VCALENDAR
+        VERSION:2.0
+        CALSCALE:GREGORIAN
+        METHOD:PUBLISH
+        BEGIN:VEVENT
+        UID:${appointmentData.id}
+        DTSTAMP:${formatDateTime(appointmentData.created_at)}
+        DTSTART:${slotTimes.start}
+        DTEND:${slotTimes.end}
+        SUMMARY:Appointment Booking
+        DESCRIPTION:${appointmentData.booking_person.notes}.
+        LOCATION:${appointmentData.booking_person.address}
+        END:VEVENT
+        END:VCALENDAR
+  `;
+
+    // Download ICS file
+    const blob = new Blob([icsContent.trim()], { type: 'text/calendar;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'appointment.ics';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // Hide success modal if open
+    if (typeof successModal !== "undefined") {
+        successModal.hide();
+    }
+
+    // Open "Add to Calendar" modal
+    var myModal = new bootstrap.Modal(document.getElementById('calendarPopup'));
+    myModal.show();
 }

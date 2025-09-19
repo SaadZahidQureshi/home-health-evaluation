@@ -1406,6 +1406,9 @@ async function updateCustomerInfo(event) {
         return;
     }
 
+    if (!house_image || house_image.size === 0)
+        formData.delete('house_image');
+
     beforeLoad(updateButton)
     try {
         let headers = {'X-CSRFToken': getCookie('csrftoken')};
