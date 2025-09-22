@@ -39,7 +39,7 @@ function render_principle_status_data(data) {
     if (!container) return;
 
     data.forEach(item => {
-        let el = container.querySelector(`li[data-order="${item.order}"]`);
+        let el = container.querySelector(`li[data-order="${item.id}"]`);
         if (el) {
             el.classList.remove("completed", "pending");
             if (item.status) {
