@@ -6,12 +6,12 @@ class Availability(BaseModel):
     SLOT_CHOICES = [
         ('08_00_to_12_00', '08:00 AM to 12:00 PM'),
         ('01_00_to_05_00', '01:00 PM to 05:00 PM'),
-        ('05_00_to_09_00', '05:00 PM to 09:00 PM'),
-        ('10_00_to_02_00', '10:00 PM to 02:00 AM'),
-        ('02_00_to_06_00', '02:00 AM to 06:00 AM'),
-        ('07_00_to_11_00', '07:00 AM to 11:00 AM'),
-        ('11_00_to_03_00', '11:00 AM to 03:00 PM'),
-        ('04_00_to_08_00', '04:00 PM to 08:00 PM'),
+        # ('05_00_to_09_00', '05:00 PM to 09:00 PM'),
+        # ('10_00_to_02_00', '10:00 PM to 02:00 AM'),
+        # ('02_00_to_06_00', '02:00 AM to 06:00 AM'),
+        # ('07_00_to_11_00', '07:00 AM to 11:00 AM'),
+        # ('11_00_to_03_00', '11:00 AM to 03:00 PM'),
+        # ('04_00_to_08_00', '04:00 PM to 08:00 PM'),
     ]          
     slot_type = models.CharField(max_length=20, choices=SLOT_CHOICES)     
     date = models.DateField()     

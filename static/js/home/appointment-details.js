@@ -278,6 +278,12 @@ async function cancelAppointment(showMessage = true) {
 }
 
 
+// Action handlers for second modal
+function editInformation() {
+    nextActionsModal.hide();
+    isEditMode = true;
+}
+
 function saveToUserCalendar() {
     if (!appointmentData || !appointmentData.id) {
         showToast("Error!", "No appointment data available to save.", "danger-toast");

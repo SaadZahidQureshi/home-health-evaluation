@@ -114,21 +114,22 @@ class ResponsiveCalendar {
 
     renderSlots(slots) {
         this.slotsContainer.innerHTML = ""; // clear old slots
+        console.log("Fetched slots:", slots);
 
-        slots.forEach(slot => {
+        slots.forEach((slot, index) => {
             // create input + label
             const input = document.createElement("input");
             input.type = "radio";
             input.value = slot.slot_type;
             input.name = "available_slot";
             input.className = "slot-input";
-            input.id = `slot_${slot.id}`;
+            input.id = `slot_${index}`;
             input.disabled = slot.is_booked; // disable if booked
 
             const label = document.createElement("label");
             label.className = "slot";
             label.htmlFor = input.id;
-            label.dataset.slotId = slot.id;
+            // label.dataset.slotId = slot.id;
             label.textContent = slot.slot_display;
 
             if (slot.is_booked) {

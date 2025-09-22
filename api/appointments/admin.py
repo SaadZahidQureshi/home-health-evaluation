@@ -6,3 +6,4 @@ from .models import Availability, BookingPerson, Appointment
 
 admin.site.register(BookingPerson)
 admin.site.register(Appointment)
+admin.site.register(Availability)
