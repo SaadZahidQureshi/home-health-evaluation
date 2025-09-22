@@ -66,6 +66,10 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         validated_data.pop('password', None)
         validated_data.pop('confirm_password', None)
         image = validated_data.pop('image', None)
+        phone = validated_data.get('phone', None)
+        if phone:
+            if User.objects.exclude(id=instance.id).filter(phone=phone).exists():
+                raise serializers.ValidationError({"phone": "This phone number is already in use."})
         if image is not None:
             instance.image = image
         return super().update(instance, validated_data)
