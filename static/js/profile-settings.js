@@ -45,6 +45,9 @@ async function profileUpdateForm(event) {
     
     if (!validateProfileForm(formData)) return;
     formData.delete("image")
+
+    if (!formData.get('phone'))
+        formData.delete('phone');
     
     try {
         button.disabled = true;

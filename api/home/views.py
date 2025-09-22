@@ -108,12 +108,12 @@ class PrincipleViewSet(DotsModelViewSet):
                     
                     if has_subcategories:
                         subcategory_answered = SelectedOption.objects.filter(customer=customer, category__parent=main_category, selected=True).exists()
-                        subcategory_applicable = CategoryApplicability.objects.filter(customer=customer, category__parent=main_category, applicable=False).exists()
+                        subcategory_applicable = CategoryApplicability.objects.filter(customer=customer, category__parent=main_category, applicable=True).exists()
                         if subcategory_applicable or subcategory_answered:
                             answered_count += 1
                     else:
                         category_answered = SelectedOption.objects.filter(customer=customer, category=main_category, selected=True).exists()
-                        category_applicable = CategoryApplicability.objects.filter(customer=customer, category=main_category, applicable=False).exists()
+                        category_applicable = CategoryApplicability.objects.filter(customer=customer, category=main_category, applicable=True).exists()
                         if category_answered or category_applicable:
                             answered_count += 1                    
             
