@@ -2,7 +2,7 @@
 let customer_id = JSON.parse(document.getElementById("customerId").textContent) || null;
 let customers_data = null
 let principle_data = null;
-let customer_enndpoint = `${API_BASE_URL}customers/residential-home/${customer_id}`;
+let customer_enndpoint = `/api/customers/residential-home/${customer_id}`;
 window.addEventListener('load', get_customers_data(), get_principle_data());
 
 async function get_customers_data(){
@@ -53,7 +53,7 @@ async function get_principle_data(){
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
         };
-        let enndpoint = `${API_BASE_URL}steps`
+        let enndpoint = `/api/steps`
         let response = await requestAPI(enndpoint, null, headers, 'GET');
         response.json().then(function(res) {
             if (response.status == 200) {

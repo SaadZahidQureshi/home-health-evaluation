@@ -11,8 +11,8 @@ async function get_principle_data(){
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
         };
-        let enndpoint = `${API_BASE_URL}steps/${principleId}/questions`
-        if (customer_id) enndpoint = `${API_BASE_URL}steps/${principleId}/questions?customer_id=${customer_id}`
+        let enndpoint = `/api/steps/${principleId}/questions`
+        if (customer_id) enndpoint = `/api/steps/${principleId}/questions?customer_id=${customer_id}`
         let response = await requestAPI(enndpoint, null, headers, 'GET');
         response.json().then(function(res) {
             if (response.status == 200) {

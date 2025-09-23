@@ -66,7 +66,7 @@ async function registerForm(event) {
         };
         button.disabled = true;
         beforeLoad(button);
-        const response = await requestAPI(`${API_BASE_URL}user`, JSON.stringify(data), headers, 'POST');
+        const response = await requestAPI(`/api/user`, JSON.stringify(data), headers, 'POST');
         
         if (response.status == 201) {
             showToast("Success", "User has been created successfully. Please log in to proceed.", "success-toast");

@@ -145,7 +145,7 @@ async function _get_me_data(){
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
         };
-        let response = await requestAPI(`${API_BASE_URL}user/me`, null, headers, 'GET');
+        let response = await requestAPI(`/api/user/me`, null, headers, 'GET');
         response.json().then(function(res) {
             if (response.status == 200) {
                 _render_me_data(res);
@@ -202,7 +202,7 @@ async function logoutForm(event) {
         };
         button.disabled = true;
         beforeLoad(button);
-        const response = await requestAPI(`${API_BASE_URL}user/logout`, null, headers, 'POST');
+        const response = await requestAPI(`/api/user/logout`, null, headers, 'POST');
         
         if (response.status == 200) {
             showToast("Success", "Logged out successfully!", "success-toast");

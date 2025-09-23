@@ -16,7 +16,7 @@ async function get_principle_status_data() {
             "X-CSRFToken": getCookie("csrftoken")
         };
 
-        let endpoint = `${API_BASE_URL}steps/status`;
+        let endpoint = `/api/steps/status`;
         if (customer_id) {endpoint += `?customer_id=${customer_id}`;}
         let response = await requestAPI(endpoint, null, headers, "GET");
         let res = await response.json();
@@ -54,8 +54,8 @@ async function get_principle_data() {
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
         };
-        let enndpoint = `${API_BASE_URL}steps/${principleId}/questions`
-        if (customer_id) enndpoint = `${API_BASE_URL}steps/${principleId}/questions?customer_id=${customer_id}`
+        let enndpoint = `/api/steps/${principleId}/questions`
+        if (customer_id) enndpoint = `/api/steps/${principleId}/questions?customer_id=${customer_id}`
         let response = await requestAPI(enndpoint, null, headers, 'GET');
         response.json().then(function(res) {
             if (response.status == 200) {
@@ -541,7 +541,7 @@ async function delete_answer_image(imageId){
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
         };
-        let response = await requestAPI(`${API_BASE_URL}photos/${imageId}`, null, headers, 'DELETE');
+        let response = await requestAPI(`/api/photos/${imageId}`, null, headers, 'DELETE');
         if (response.status == 204) {
             showToast("Success", `Image deleted successfully!`, "success-toast");
             get_principle_data()
@@ -635,7 +635,7 @@ async function handleGlobalSubmit(event) {
                             const selectedOptions = Array.from(checkboxes).map(cb => parseInt(cb.value));
                             
                             if (selectedOptions.length > 0) {
-                                const response = await requestAPI(`${API_BASE_URL}question/${question.id}/selection`, JSON.stringify({customer_id: customer_id, selected_options: selectedOptions}), headers, 'POST');
+                                const response = await requestAPI(`/api/question/${question.id}/selection`, JSON.stringify({customer_id: customer_id, selected_options: selectedOptions}), headers, 'POST');
                                 if (response.status !== 200 && response.status !== 201) {
                                     throw new Error(`Failed to save selection for question ${question.id}`);
                                 }
@@ -644,7 +644,7 @@ async function handleGlobalSubmit(event) {
                             // Handle text inputs
                             const input = document.querySelector(`input[data-question-id="${question.id}"]`);
                             if (input && input.value.trim()) {
-                                const response = await requestAPI(`${API_BASE_URL}question/${question.id}/answer`, JSON.stringify({text: input.value.trim(), customer_id: customer_id }), headers, 'POST');
+                                const response = await requestAPI(`/api/question/${question.id}/answer`, JSON.stringify({text: input.value.trim(), customer_id: customer_id }), headers, 'POST');
                                 if (response.status !== 200 && response.status !== 201) {
                                     throw new Error(`Failed to save answer for question ${question.id}`);
                                 }
@@ -663,7 +663,7 @@ async function handleGlobalSubmit(event) {
 
                     // Save feedback text
                     if (textarea && textarea.value.trim()) {
-                        const response = await requestAPI(`${API_BASE_URL}question-group/${group.id}/feedback?customer_id=${customer_id}`, JSON.stringify({customer_id: customer_id, text: textarea.value.trim() }), headers, 'POST');
+                        const response = await requestAPI(`/api/question-group/${group.id}/feedback?customer_id=${customer_id}`, JSON.stringify({customer_id: customer_id, text: textarea.value.trim() }), headers, 'POST');
                         if (response.status !== 200 && response.status !== 201) {
                             throw new Error(`Failed to save feedback for group ${group.id}`);
                         }
@@ -679,7 +679,7 @@ async function handleGlobalSubmit(event) {
                         
                         const imageHeaders = { 'X-CSRFToken': getCookie('csrftoken') };
                         
-                        const response = await requestAPI(`${API_BASE_URL}question-group/${group.id}/upload-images`, formData, imageHeaders, 'POST');
+                        const response = await requestAPI(`/api/question-group/${group.id}/upload-images`, formData, imageHeaders, 'POST');
                         if (response.status !== 200 && response.status !== 201) {
                             throw new Error(`Failed to upload images for group ${group.id}`);
                         }
@@ -787,7 +787,7 @@ async function updateCustomerInfo(event) {
     beforeLoad(updateButton)
     try {
         let headers = {'X-CSRFToken': getCookie('csrftoken')};
-        let response = await requestAPI(`${API_BASE_URL}customers/residential-home/${customer_id}`, formData, headers, 'PATCH');
+        let response = await requestAPI(`/api/customers/residential-home/${customer_id}`, formData, headers, 'PATCH');
         if (response.status == 200) {
             afterLoad(updateButton, "Saved");
             const modal = bootstrap.Modal.getInstance(document.getElementById('addUserModal'));
@@ -818,7 +818,7 @@ async function getCustomerDetails(customerId) {
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
         };
-        let response = await requestAPI(`${API_BASE_URL}customers/residential-home/${customerId}`, null, headers, 'GET');
+        let response = await requestAPI(`/api/customers/residential-home/${customerId}`, null, headers, 'GET');
         if (response.status == 200) {
             const customerData = await response.json();
             return customerData.data;
@@ -850,7 +850,7 @@ async function saveQuestionGroupFeedback(categoryId, details, imageFiles, existi
         }
 
         const feedbackResponse = await requestAPI(
-            `${API_BASE_URL}question-group/${categoryId}/feedback`,
+            `/api/question-group/${categoryId}/feedback`,
             JSON.stringify({
                 customer_id: customer_id,
                 text: details
@@ -870,7 +870,7 @@ async function saveQuestionGroupFeedback(categoryId, details, imageFiles, existi
             imageFormData.append('customer_id', customer_id);
 
             const imageHeaders = { 'X-CSRFToken': getCookie('csrftoken') };
-            const imageResponse = await requestAPI(`${API_BASE_URL}question-group/${categoryId}/upload-images`, imageFormData, imageHeaders, 'POST');
+            const imageResponse = await requestAPI(`/api/question-group/${categoryId}/upload-images`, imageFormData, imageHeaders, 'POST');
             if (!imageResponse.ok) {
                 console.error(`Failed to upload images for category ${categoryId}`);
                 return false;
@@ -894,7 +894,7 @@ async function deleteFeedback(feedbackId) {
         };
 
         const response = await requestAPI(
-            `${API_BASE_URL}feedbacks/${feedbackId}`,
+            `/api/feedbacks/${feedbackId}`,
             null,
             headers,
             'DELETE'
@@ -920,7 +920,7 @@ async function createCustomer() {
             'Content-Type': 'application/json'
         };
         
-        const userResponse = await requestAPI(`${API_BASE_URL}user/me`, null, headers, 'GET');
+        const userResponse = await requestAPI(`/api/user/me`, null, headers, 'GET');
         if (!userResponse.ok) {
             throw new Error("Failed to get current user info");
         }
@@ -928,7 +928,7 @@ async function createCustomer() {
         const userData = await userResponse.json();
         const createdById = userData.id;
 
-        const response = await requestAPI(`${API_BASE_URL}customers/residential-home`, JSON.stringify({}), headers, 'POST');
+        const response = await requestAPI(`/api/customers/residential-home`, JSON.stringify({}), headers, 'POST');
 
         if (response.ok) {
             const customerData = await response.json();

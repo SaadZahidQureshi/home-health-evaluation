@@ -17,7 +17,7 @@ async function get_principle_status_data() {
             "X-CSRFToken": getCookie("csrftoken")
         };
 
-        let endpoint = `${API_BASE_URL}principles/status`;
+        let endpoint = `/api/principles/status`;
         if (customer_id) {endpoint += `?customer_id=${customer_id}`;}
         let response = await requestAPI(endpoint, null, headers, "GET");
         let res = await response.json();
@@ -56,8 +56,8 @@ async function get_principle_data(){
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
         };
-        let enndpoint = `${API_BASE_URL}principles/${principleId}/categories`
-        if (customer_id) enndpoint = `${API_BASE_URL}principles/${principleId}/categories?customer_id=${customer_id}`
+        let enndpoint = `/api/principles/${principleId}/categories`
+        if (customer_id) enndpoint = `/api/principles/${principleId}/categories?customer_id=${customer_id}`
         let response = await requestAPI(enndpoint, null, headers, 'GET');
         response.json().then(function(res) {
             if (response.status == 200) {
@@ -995,7 +995,7 @@ async function delete_answer_image(imageId){
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
         };
-        let response = await requestAPI(`${API_BASE_URL}photos/${imageId}`, null, headers, 'DELETE');
+        let response = await requestAPI(`/api/photos/${imageId}`, null, headers, 'DELETE');
         if (response.status == 204) {
             showToast("Success", `Image deleted successfully!`, "success-toast");
             get_principle_data()
@@ -1179,7 +1179,7 @@ async function saveMainCategoryFeedback(categoryId, details, imageFiles, existin
         }
 
         const feedbackResponse = await requestAPI(
-            `${API_BASE_URL}categories/${categoryId}/feedback`,
+            `/api/categories/${categoryId}/feedback`,
             JSON.stringify({
                 customer_id: customer_id,
                 note: details
@@ -1200,7 +1200,7 @@ async function saveMainCategoryFeedback(categoryId, details, imageFiles, existin
 
             const imageHeaders = { 'X-CSRFToken': getCookie('csrftoken') };
             const imageResponse = await requestAPI(
-                `${API_BASE_URL}categories/${categoryId}/upload-images`,
+                `/api/categories/${categoryId}/upload-images`,
                 imageFormData,
                 imageHeaders,
                 'POST'
@@ -1243,7 +1243,7 @@ async function saveCategorySelections(categoryId, selectedOptionIds) {
             customer_id: customer_id,
             selected_options: selectedOptionIds
         }
-        const selectionResponse = await requestAPI(`${API_BASE_URL}categories/${categoryId}/selection`, JSON.stringify(data), headers, 'POST');
+        const selectionResponse = await requestAPI(`/api/categories/${categoryId}/selection`, JSON.stringify(data), headers, 'POST');
         if (selectionResponse.status !== 200) {
             console.error(`Failed to save selections for category ${categoryId}`);
             return false;
@@ -1262,7 +1262,7 @@ async function setNotApplicable(categoryId) {
             'Content-Type': 'application/json'
         };
         let data = {customer_id: customer_id}
-        const selectionResponse = await requestAPI(`${API_BASE_URL}categories/${categoryId}/applicable`, JSON.stringify(data), headers, 'POST');
+        const selectionResponse = await requestAPI(`/api/categories/${categoryId}/applicable`, JSON.stringify(data), headers, 'POST');
         if (selectionResponse.status !== 200) {
             console.error(`Failed to update the category ${categoryId}`);
             return false;
@@ -1282,7 +1282,7 @@ async function deleteFeedback(feedbackId) {
         };
 
         const response = await requestAPI(
-            `${API_BASE_URL}feedbacks/${feedbackId}`,
+            `/api/feedbacks/${feedbackId}`,
             null,
             headers,
             'DELETE'
@@ -1323,7 +1323,7 @@ async function getCustomerDetails(customerId) {
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
         };
-        let response = await requestAPI(`${API_BASE_URL}customers/healthy-home/${customerId}`, null, headers, 'GET');
+        let response = await requestAPI(`/api/customers/healthy-home/${customerId}`, null, headers, 'GET');
         if (response.status == 200) {
             const customerData = await response.json();
             return customerData.data;
@@ -1412,7 +1412,7 @@ async function updateCustomerInfo(event) {
     beforeLoad(updateButton)
     try {
         let headers = {'X-CSRFToken': getCookie('csrftoken')};
-        let response = await requestAPI(`${API_BASE_URL}customers/healthy-home/${customer_id}`, formData, headers, 'PATCH');
+        let response = await requestAPI(`/api/customers/healthy-home/${customer_id}`, formData, headers, 'PATCH');
         if (response.status == 200) {
             afterLoad(updateButton, "Saved");
             const modal = bootstrap.Modal.getInstance(document.getElementById('addUserModal'));
@@ -1464,7 +1464,7 @@ async function createCustomer() {
             'Content-Type': 'application/json'
         };
         
-        const userResponse = await requestAPI(`${API_BASE_URL}user/me`, null, headers, 'GET');
+        const userResponse = await requestAPI(`/api/user/me`, null, headers, 'GET');
         if (!userResponse.ok) {
             throw new Error("Failed to get current user info");
         }
@@ -1473,7 +1473,7 @@ async function createCustomer() {
         const createdById = userData.id;
 
         const response = await requestAPI(
-            `${API_BASE_URL}customers/healthy-home`,
+            `/api/customers/healthy-home`,
             JSON.stringify({}),
             headers,
             'POST'

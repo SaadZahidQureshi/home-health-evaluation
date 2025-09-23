@@ -1,4 +1,4 @@
-let customer_enndpoint = `${API_BASE_URL}customers/residential-home`;
+let customer_enndpoint = `/api/customers/residential-home`;
 let customers_data = []
 window.addEventListener('load', get_customers_data());
 
@@ -79,7 +79,7 @@ async function deleteCustomer(id){
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
         };
-        let response = await requestAPI( `${API_BASE_URL}customers/residential-home/${id}`, null, headers, 'DELETE');
+        let response = await requestAPI( `/api/customers/residential-home/${id}`, null, headers, 'DELETE');
         if (response.status == 204) {
             let stored_id = sessionStorage.getItem("customer_id");
             if (stored_id == id) localStorage.removeItem("customer_id");
@@ -129,7 +129,7 @@ async function sendReport(id){
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
         };
-        let response = await requestAPI(`${API_BASE_URL}steps/report?customer_id=${id}`, null, headers, 'POST');
+        let response = await requestAPI(`/api/steps/report?customer_id=${id}`, null, headers, 'POST');
         if (response.status == 200) {
             showToast("Success", `Report sent successfully!`, "success-toast");
             toggleRowReportSpinner(id);

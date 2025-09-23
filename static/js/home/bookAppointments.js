@@ -101,7 +101,7 @@ class ResponsiveCalendar {
 
     async fetchSlots(date) {
         const formattedDate = date.toISOString().split('T')[0];
-        const url = `${API_BASE_URL}availability/check-date?date=${formattedDate}`;
+        const url = `/api/availability/check-date?date=${formattedDate}`;
 
         try {
             const response = await fetch(url);

@@ -5,7 +5,7 @@ async function get_me_data(){
             "Content-Type": "application/json",
             'X-CSRFToken': getCookie('csrftoken')
         };
-        let response = await requestAPI(`${API_BASE_URL}user/me`, null, headers, 'GET');
+        let response = await requestAPI(`/api/user/me`, null, headers, 'GET');
         response.json().then(function(res) {
             if (response.status == 200) {
                 render_me_data(res);
@@ -105,7 +105,7 @@ async function updateProfileData(formData) {
         'X-CSRFToken': getCookie('csrftoken')
     };
     
-    return await requestAPI(`${API_BASE_URL}user/${userId}`, payload, headers, 'PATCH');
+    return await requestAPI(`/api/user/${userId}`, payload, headers, 'PATCH');
 }
 
 async function updateProfileImage(imageFile) {
@@ -114,7 +114,7 @@ async function updateProfileImage(imageFile) {
     const imageHeaders = {
         "X-CSRFToken": getCookie('csrftoken')
     };
-    return await requestAPI(`${API_BASE_URL}user/${userId}`, imageFormData, imageHeaders, 'PATCH');
+    return await requestAPI(`/api/user/${userId}`, imageFormData, imageHeaders, 'PATCH');
 }
 
 function handleProfileUpdateError(errorResponse) {

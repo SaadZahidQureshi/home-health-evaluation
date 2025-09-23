@@ -130,7 +130,7 @@ async function appointmentFormSubmit(event) {
         if (isEditMode) {
             // 📌 Update booking person
             let bookingPersonId = appointmentData.booking_person?.id;
-            response = await fetch(`${API_BASE_URL}booking-person/${bookingPersonId}`, {
+            response = await fetch(`/api/booking-person/${bookingPersonId}`, {
                 method: "PUT",
                 headers: headers,
                 body: JSON.stringify(payload)
@@ -138,7 +138,7 @@ async function appointmentFormSubmit(event) {
             res = await response.json();
         } else {
             // 📌 Create new appointment
-            response = await fetch(`${API_BASE_URL}appointments`, {
+            response = await fetch(`/api/appointments`, {
                 method: "POST",
                 headers: headers,
                 body: JSON.stringify(payload)
@@ -256,7 +256,7 @@ async function cancelAppointment(showMessage = true) {
 
     try {
         let headers = { "X-CSRFToken": getCookie("csrftoken") };
-        let response = await fetch(`${API_BASE_URL}appointments/${appointmentId}`, {
+        let response = await fetch(`/api/appointments/${appointmentId}`, {
             headers: headers,
             method: "DELETE"
         });
