@@ -81,7 +81,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'conf.context_processors.api_base_url'
+                'conf.context_processors.api_base_url',
+                'conf.context_processors.admin_base_url'
             ],
         },
     },
@@ -159,3 +160,5 @@ EMAIL_HOST_USER = env.str("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD")
 
 CONTACT_EMAIL = env.list("CONTACT_EMAIL", default=[])
+
+ADMIN_BASE_URL = env.str("ADMIN_BASE_URL", "")
