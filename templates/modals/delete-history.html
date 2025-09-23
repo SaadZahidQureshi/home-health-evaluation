@@ -1,5 +1,5 @@
 <!-- Bootstrap Delete Confirmation Modal -->
-<div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content rounded-3 shadow">
       <div class="modal-header border-0">
@@ -19,4 +19,43 @@
       </div>
     </div>
   </div>
+</div> -->
+
+
+
+<div class="modal fade" id="deleteConfirmModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteConfirmLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+        <div class="modal-header border-0">
+            <h1 class="modal-title m-auto" id="logoutModalLabel">Confirm Deletion</h1>
+            <svg class="position-absolute" style="right:1rem" data-bs-dismiss="modal" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.8076 5.08008C18.1147 4.77312 18.6129 4.77303 18.9199 5.08008C19.227 5.38713 19.2269 5.88528 18.9199 6.19238L13.1123 12L18.9199 17.8076C19.1928 18.0806 19.2228 18.5041 19.0107 18.8105L19.0029 18.8223L19.002 18.8213L18.9287 18.9102L18.9199 18.9199C18.6468 19.193 18.2226 19.2231 17.916 19.0107L17.9053 19.0029L18.002 18.8877L17.9053 19.002L17.8174 18.9287L17.8076 18.9199L12 13.1123L6.19238 18.9199C5.88528 19.2269 5.38713 19.227 5.08008 18.9199C4.77303 18.6129 4.77312 18.1147 5.08008 17.8076L10.8877 12L5.08008 6.19238C4.80721 5.91939 4.77717 5.49593 4.98926 5.18945L4.99707 5.17773H4.99902L5.07129 5.08984L5.08008 5.08008L5.18945 4.98926C5.41935 4.83008 5.71518 4.80711 5.96387 4.9209L6.08398 4.98926L6.09473 4.99707L5.99805 5.1123L6.09473 4.99805L6.18262 5.07129L6.19238 5.08008L12 10.8877L17.8076 5.08008Z" fill="#FF0000" stroke="#FF0000" stroke-width="0.3"/>
+            </svg>
+        </div>
+        <form class="modal-body">
+
+            <div class="main-content-delete">
+                <svg width="113" height="113" viewBox="0 0 113 113" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0.645039" y="31.4002" width="86.5999" height="86.5999" rx="7.5" transform="rotate(-20.8022 0.645039 31.4002)" fill="#DB2B2B"/>
+                    <rect x="0.645039" y="31.4002" width="86.5999" height="86.5999" rx="7.5" transform="rotate(-20.8022 0.645039 31.4002)" stroke="white"/>
+                    <rect x="7.21655" y="20.1555" width="86.5999" height="86.5999" rx="7.5" transform="rotate(-8.59244 7.21655 20.1555)" fill="white"/>
+                    <rect x="7.21655" y="20.1555" width="86.5999" height="86.5999" rx="7.5" transform="rotate(-8.59244 7.21655 20.1555)" stroke="#DB2B2B"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M60.7472 49.6557L60.7472 48.1764C60.7472 44.9497 58.131 42.3335 54.9043 42.3335L47.1746 42.3335C43.9495 42.3335 41.3333 44.9497 41.3333 48.1764L41.3333 65.8239C41.3333 69.0506 43.9495 71.6668 47.1746 71.6668L54.9202 71.6668C58.1374 71.6668 60.7472 69.0585 60.7472 65.8414L60.7472 64.3462" fill="#FF0101"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M68.8333 57L52.3333 57L68.8333 57Z" fill="#FF0101"/>
+                    <path d="M68.8333 57L52.3333 57" stroke="#FF0101" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M66.8757 52.3779L71.5183 56.9999L66.8757 61.6235" fill="#FF0101"/>
+                </svg>
+                <span>Are you sure you want to delete this record?</span>
+            </div>
+
+        </form>
+        <div class="modal-footer border-0 ">
+            <button type="button" data-bs-dismiss="modal" aria-label="Close" class="btn btn-primary">Cancel</button>
+            <button type="button" id="confirmDeleteBtn" class="btn btn-primary">
+                <span class="spinner-border spinner-border-md hide" role="status" aria-hidden="true"></span>
+                <span class="btn-text">Delete</span>
+            </button>
+        </div>
+        </div>
+    </div>
 </div>
