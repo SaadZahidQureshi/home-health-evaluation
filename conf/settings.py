@@ -67,9 +67,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'conf.urls'
-
 ROOT_HOSTCONF = "conf.hosts"
 DEFAULT_HOST = "public"
+ADMIN_SUBDOMAIN = env.str("ADMIN_SUBDOMAIN", "")
 
 TEMPLATES = [
     {
