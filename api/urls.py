@@ -25,7 +25,7 @@ router.register(r'availability', AvailabilityViewSet)
 router.register(r'appointments', AppointmentViewSet)
 router.register(r'booking-person', BookingPersonViewSet)
 
-router.register(r'admin', AdminViewSet, basename="admin")
+# router.register(r'admin', AdminViewSet, basename="admin")
 
 urlpatterns = [
     path("customers/<int:customer_id>/home-energy-report/", CustomerHomeEnergyReportView.as_view(), name="customer-home-energy-report"),
