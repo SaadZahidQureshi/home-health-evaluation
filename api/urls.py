@@ -1,6 +1,6 @@
 from django.urls import path
 from rest_framework import routers
-from api.administration.views import AdminViewSet
+# from api.administration.views import AdminViewSet
 from api.appointments.views import *
 from api.user.views import *
 from api.home.views import *
