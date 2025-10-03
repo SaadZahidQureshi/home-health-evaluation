@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from .models import Availability, Appointment, BookingPerson
 from .serializers import (AvailabilitySerializer, AppointmentCreateSerializer, AppointmentSerializer, BookingPersonSerializer)
 from datetime import datetime
-from api.core.helpers import send_appointment_email
+from api.core.helpers import send_appointment_email, send_appointment_confirmation_email
 
 class AvailabilityViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Availability.objects.all()
@@ -56,6 +56,7 @@ class AppointmentViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         appointment = serializer.save()
         send_appointment_email(appointment)
+        send_appointment_confirmation_email(appointment)
         response_serializer = AppointmentSerializer(appointment)
         return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
