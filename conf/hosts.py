@@ -1,6 +1,8 @@
 from django_hosts import patterns, host
+from django.conf import settings
+
 
 host_patterns = patterns('',
-    host(r'abc', 'web.urls_public', name='public'),
-    host(r'admin', 'web.urls_admin', name='admin'),
+    host(r'', 'web.urls_public', name='public'),
+    host(rf'{settings.ADMIN_SUBDOMAIN}', 'web.urls_admin', name='admin'),
 )
