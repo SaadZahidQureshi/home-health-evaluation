@@ -48,7 +48,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
                 required=False,
                 allow_null=True,
             )
-        if self.context['request'].action == "create":
+        if self.context['request'].method == "POST":
             fields['token'].required = True
         return fields
     
@@ -58,7 +58,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
             confirm_password = attrs.pop("confirm_password")
             if not compare_digest(password, confirm_password):
                 raise serializers.ValidationError({"password": "Passwords do not match"})
-        if self.context['request'].action == "create":
+        if self.context['request'].method == "POST":
             token = attrs.get("token")
             if not TokenManagement.objects.filter(email=attrs.get("email"), token=token, is_used=False).exists():
                 raise serializers.ValidationError({"token": "Invalid or already used token"})
