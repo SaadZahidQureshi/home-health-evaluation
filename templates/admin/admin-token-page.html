@@ -4,6 +4,7 @@
 
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/admin/admin-token-page.css' %}">
+    <link href="{% static "css\modals\generate-token-modal.css" %}" rel="stylesheet" type="text/css" />
 {% endblock css %}
 
 {% block admin-page-title %}
@@ -13,7 +14,7 @@
 {% endblock admin-page-title %}
 
 {% block create-btn %}
-    <div class="create-token-btn">
+    <div class="create-token-btn" onclick="openGenerateTokenModal()">
         Create
     </div>
 
@@ -108,8 +109,10 @@
     </div>                                             
 {% include 'admin/pagination.html' %}
 </div>
-{{principleId|json_script:"principleId"}}
+
+{% include "modals/success.html" %} 
+
 {% endblock content %}
 {% block js %}
-<script src="{% static 'js/admin-token-page.js' %}"></script>
+<script src="{% static 'js/admin/admin-token-page.js' %}"></script>
 {% endblock js %}

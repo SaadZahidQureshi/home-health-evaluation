@@ -253,12 +253,7 @@
                                                                     <p><strong style="font-weight: 600;">Zip Code: </strong>{{ data.booking_person.zip_code }}</p>
                                                                     <p><strong style="font-weight: 600;">City: </strong>{{ data.booking_person.city }}</p>
                                                                     <p><strong style="font-weight: 600;">State: </strong>{{ data.booking_person.state }}</p>
-                                                                    <p><strong style="font-weight: 600;">Notes: </strong></p>
-
-                                                                    <p
-                                                                        style="font-size: 14px; line-height: 27px; word-wrap: break-word;">
-                                                                        {{ data.booking_person.notes|linebreaks }}
-                                                                    </p>
+                                                                    <p><strong style="font-weight: 600;">Type: </strong>{{ data.booking_person.get_type_display }}</p>
                                                                 </div>
                                                             </div>
                                                         </td>
