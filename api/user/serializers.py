@@ -1,6 +1,8 @@
+from dataclasses import fields
 from hmac import compare_digest
 from rest_framework import serializers
 from django.contrib.auth import get_user_model, authenticate, login
+from api.administration.models import TokenManagement
 from api.core.choices import Roles
 from api.core.validators import PasswordValidator, DotsValidationError, phone_regex
 from .models import Photo, Customer
@@ -26,9 +28,11 @@ class RegisterUserSerializer(serializers.ModelSerializer):
             PasswordValidator.length,
         ],
     )
+    token = serializers.CharField(write_only=True, required=False)
+
     class Meta:
         model = User
-        fields = ["name", "email", "password", "confirm_password"]
+        fields = ["name", "email", "password", "confirm_password", "token"]
 
     def get_fields(self):
         fields = super().get_fields()
@@ -44,6 +48,8 @@ class RegisterUserSerializer(serializers.ModelSerializer):
                 required=False,
                 allow_null=True,
             )
+        if self.context['request'].action == "create":
+            fields['token'].required = True
         return fields
     
     def validate(self, attrs):
@@ -52,14 +58,20 @@ class RegisterUserSerializer(serializers.ModelSerializer):
             confirm_password = attrs.pop("confirm_password")
             if not compare_digest(password, confirm_password):
                 raise serializers.ValidationError({"password": "Passwords do not match"})
+        if self.context['request'].action == "create":
+            token = attrs.get("token")
+            if not TokenManagement.objects.filter(email=attrs.get("email"), token=token, is_used=False).exists():
+                raise serializers.ValidationError({"token": "Invalid or already used token"})
         return attrs
     
     def create(self, validated_data):
+        token = validated_data.pop("token")
         validated_data.pop('confirm_password', None)
         password = validated_data.pop('password')
         user = User.objects.create(**validated_data)
         user.set_password(password)
         user.save()
+        TokenManagement.objects.filter(email=validated_data.get("email"), token=token, is_used=False).update(is_used=True)
         return user
     
     def update(self, instance, validated_data):

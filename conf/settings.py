@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "api.home",
     "api.home_energy",
     "api.appointments",
+    "api.administration",
 ]
 
 MIDDLEWARE = [
