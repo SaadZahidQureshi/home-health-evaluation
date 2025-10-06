@@ -1,4 +1,6 @@
-console.log("here");
+const pagesContainer = document.getElementById('pages-container');
+const getPreviousPageBtn = document.getElementById('pagination-previous-btn');
+const getNextPageBtn = document.getElementById('pagination-next-btn');
 
 const users = []
 let selectedUserId = null;
@@ -15,14 +17,13 @@ const paginationBackBtn = document.getElementById("pagination-back-btn");
 
 async function fetchUsers(page = 1, searchQuery = "") {
     try {
-        let url = `${API_BASE_URL}admin/user-management?page=${page}&perPage=${perPage}`;
+        let url = `/api/admin/user-management?page=${page}&perPage=${perPage}`;
         if(searchQuery){
             url += `&search=${encodeURIComponent(searchQuery)}`; // add search query
         }
         let response = await requestAPI(url, null, headers, "GET");        
         let res = await response.json()
         if (response.status == 200 && res.data) {
-            console.log(res.data)
             const fetchedUsers = res.data.map(user => ({
                 id: user.id ,
                 name:user.name || "Not Provided",
@@ -33,7 +34,7 @@ async function fetchUsers(page = 1, searchQuery = "") {
 
             currentPage = page; 
             populateTable(fetchedUsers);
-            generatePages(res.pagination.currentPage, res.pagination.total, res.pagination.links.previous, res.pagination.links.next);
+            generatePagination(res.pagination.currentPage, res.pagination.total, res.pagination.links.previous, res.pagination.links.next);
         } else {
             console.error("Invalid API response:", response);
         }
@@ -60,17 +61,7 @@ function formatDate(isoString) {
 
 
 
-function generatePages(currentPage, totalPages, previousLink, nextLink) {
-    const paginationContainer = document.querySelector(".pagination-container")
-    const pagesContainer = document.getElementById('pages-container');
-    
-    // Hide pagination if only one page
-    if (totalPages <= 1) {
-      paginationContainer.style.display = 'none';
-      return;
-    } else {
-      paginationContainer.style.display = 'flex'; // or 'block' based on your layout
-    }
+function generatePagination(currentPage, totalPages, previousLink, nextLink) {
     pagesContainer.innerHTML = '';
 
     let startPage = Math.max(1, currentPage - 1);
@@ -81,9 +72,9 @@ function generatePages(currentPage, totalPages, previousLink, nextLink) {
     }
 
     if (startPage > 1) {
-        pagesContainer.innerHTML += '<span class="cursor-pointer">1</span>';
+        pagesContainer.innerHTML += `<span class="cursor-pointer">1</span>`;
         if (startPage > 2) {
-            pagesContainer.innerHTML += '<span class="ellipsis-container">...</span>';
+            pagesContainer.innerHTML += `<span class="ellipsis-container">...</span>`;
         }
     }
 
@@ -93,37 +84,36 @@ function generatePages(currentPage, totalPages, previousLink, nextLink) {
 
     if (endPage < totalPages) {
         if (endPage < totalPages - 1) {
-            pagesContainer.innerHTML += '<span class="ellipsis-container">...</span>';
+            pagesContainer.innerHTML += `<span class="ellipsis-container">...</span>`;
         }
         pagesContainer.innerHTML += `<span class="cursor-pointer">${totalPages}</span>`;
     }
+
     pagesContainer.querySelectorAll('span').forEach((span) => {
-        if ((!span.classList.contains('active'))  && (!span.classList.contains('ellipsis-container'))) {
+        if ((!span.classList.contains('active')) && (!span.classList.contains('ellipsis-container'))) {
             let page = span.innerText;
             span.addEventListener("click", () => fetchUsers(page));
         }
-    })
-
-    if (nextLink) {
-        paginationNextBtn.setAttribute("onclick", `fetchUsers(${currentPage + 1})`);
-        paginationNextBtn.classList.remove("disabled");
-        paginationNextBtn.classList.add("enabled");
-    }
-    else {
-        paginationNextBtn.removeAttribute("onclick");
-        paginationNextBtn.classList.add("disabled");
-        paginationNextBtn.classList.remove("enabled");
-    }
+    });
 
     if (previousLink) {
-        paginationBackBtn.setAttribute("onclick", `fetchUsers(${currentPage - 1})`);
-        paginationBackBtn.classList.remove("disabled");
-        paginationBackBtn.classList.add("enabled");
+        getPreviousPageBtn.setAttribute("onclick", `fetchUsers(${currentPage - 1})`);
+        getPreviousPageBtn.classList.remove('opacity-point-3-5');
+        getPreviousPageBtn.classList.add('cursor-pointer', 'active');
+    } else {
+        getPreviousPageBtn.removeAttribute("onclick");
+        getPreviousPageBtn.classList.add('opacity-point-3-5');
+        getPreviousPageBtn.classList.remove('cursor-pointer', 'active');
     }
-    else {
-        paginationBackBtn.removeAttribute("onclick");
-        paginationBackBtn.classList.add("disabled");
-        paginationBackBtn.classList.remove("enabled");
+
+    if (nextLink) {
+        getNextPageBtn.setAttribute("onclick", `fetchUsers(${currentPage + 1})`);
+        getNextPageBtn.classList.remove('opacity-point-3-5');
+        getNextPageBtn.classList.add('cursor-pointer', 'active');
+    } else {
+        getNextPageBtn.removeAttribute("onclick");
+        getNextPageBtn.classList.add('opacity-point-3-5');
+        getNextPageBtn.classList.remove('cursor-pointer', 'active');
     }
 }
 
@@ -144,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
             count: 100
         }
     };
-    generatePages(res.pagination.currentPage, res.pagination.total, res.pagination.links.previous, res.pagination.links.next);
+    generatePagination(res.pagination.currentPage, res.pagination.total, res.pagination.links.previous, res.pagination.links.next);
     
     
 });

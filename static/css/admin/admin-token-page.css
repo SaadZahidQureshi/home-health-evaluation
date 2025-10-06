@@ -1,6 +1,9 @@
+.history_box {
+    height: calc(100vh - 129px);
+}
 
 .table-container {
-    border-radius: 10px;
+    /* border-radius: 10px; */
     overflow-y: auto;
     height: calc(100vh - 248px);
     /* font-weight: 500; */
@@ -67,7 +70,7 @@ td {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
+    font-size: 12px;
     font-weight: 500;
 }
 
@@ -80,7 +83,7 @@ td {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
+    font-size: 12px;
     font-weight: 500;
 }
 

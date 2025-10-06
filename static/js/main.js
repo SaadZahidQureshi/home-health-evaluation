@@ -275,3 +275,21 @@ function closeCurrentModal() {
         bootstrapModal.hide();
     }
 }
+
+
+function setParams(params, key, value) {
+    let paramsList = params.split('&');
+    // Create an object to store the parameters and their values
+    let paramsObject = {};
+    paramsList.forEach(param => {    
+        let [key, value] = param.split('=');
+        paramsObject[key] = value;
+    });
+
+    // Update the value for the key parameter
+    paramsObject[key] = value;
+
+    // Reconstruct the updated query string
+    let updatedParams = Object.entries(paramsObject).map(([key, value]) => `${key}=${value}`).join('&');
+    return updatedParams;
+}

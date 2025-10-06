@@ -41,7 +41,7 @@ button {
 }
 
 .hide {
-	display: none;
+	display: none !important;
 }
 
 ol,
@@ -1580,109 +1580,67 @@ input, textarea {
 /* The following is the style for pagination */
 
 .parent-container-for-pagination {
-	margin-top: 10px;
-	margin-bottom: 10px;
-    
+    margin: 10px 0px;
+	margin-left: auto;
     display: flex;
     justify-content: end;
+	align-items: center;
+	gap: 10px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 20px 0px #D0D1D780;
+	width: fit-content;
+	background-color: #FFFFFF;
+	padding: 6px 8px;
 }
 
-.pagination-container {
-    width: 294px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: end;
-
+.parent-container-for-pagination .prev-btn,
+.parent-container-for-pagination .next-btn {
+	width: 22px;
+	height: 22px;
+	background-color: #FFFFFF;
+	box-shadow: 0px 0px 20px 0px #D0D1D780;
+	border-radius: 4px;
+	opacity: .5;
 }
 
-.pagination-content-container {
-    padding: 10px 15px;
-    border-radius: 10px;
-    gap: 10px;
-    display: flex;
-	background-color: rgba(255, 255, 255, 1);
+.parent-container-for-pagination .prev-btn.active,
+.parent-container-for-pagination .next-btn.active {
+	opacity: 1;
 }
 
-.cursor-pointer {
-    cursor: pointer;
+.parent-container-for-pagination .prev-btn > svg,
+.parent-container-for-pagination .next-btn > svg {
+	width: 100%;
+	height: 100%;
 }
 
-.disabled-state {
-    pointer-events: none !important;
-    /* cursor: not-allowed !important; */
-    opacity: .3 !important;
+.parent-container-for-pagination .pages {
+	display: flex;
+	align-items: center;
+	gap: 3px;
 }
 
-.counting-number-container {
-    gap: 5px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
+.parent-container-for-pagination .pages > span {
+	width: 30px;
+	height: 30px;
+	border-radius: 5px;
+	box-shadow: 0px 0px 20px 0px #D0D1D780;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-.counting-number-container span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 3px;
-    /* background-color: #FFFFFF; */
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    border-radius: 8px;
-}
-.counting-number-container span.active {
-    background-color: rgba(255, 255, 255, 1); 
-    color: rgba(113, 191, 30, 1);
 	font-weight: 700;
 	font-size: 14px;
-	line-height: 20;
-	box-shadow: 0 0 20px 0 rgba(218, 221, 243, 0.5);
-
+	line-height: 16px;
+	text-align: center;
+	color: #71BF1E;
+	opacity: .5;
 }
 
-/* Applied directly to the button container (div) */
-#pagination-back-btn.disabled,
-#pagination-next-btn.disabled  {
-    /* color: rgba(255, 255, 255, 0.35) !important; */
-    pointer-events: none;
-    color: #CCCCCC;
+.parent-container-for-pagination .pages > span.active {
+	opacity: 1;
 }
 
-#pagination-back-btn.enabled,
-#pagination-next-btn.enabled {
-    color: #2F4D01 !important;
-    pointer-events: auto;
-	background-color: rgba(255, 255, 255, 1);
-	box-shadow: 0 0 20px 0 rgba(218, 221, 243, 0.5);
-
-} 
-
-#pagination-back-btn {
-    color:#CCCCCC;
-}
-
-.pagination-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 35px;
-    height: 32px;
-    font-size: 13px;
-    /* background-color: #FFFFFF; */
-    cursor: pointer;
-    border-radius: 8px;
-    font-weight: 600;
-    padding: 10px 4px;
-    /* box-shadow: 0 0 20px 0 rgba(218, 221, 243, 0.5); */
-    
-}
-
-.counting-number-container span {
-    /* box-shadow: 0 0 20px 0 rgba(218, 221, 243, 0.5); */
-	color: rgba(113, 191, 30, 1);
-}
 /* end of style for pagination */
 
 .admin-page-title {
