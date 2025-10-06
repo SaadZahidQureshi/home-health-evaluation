@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="app, landing, corporate, Creative, Html Template, Template">
+    <meta name="author" content="web-themes">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <!-- title -->
+    <title>{% block title %}{% endblock title %}</title>
+
+    <!-- favicon -->
+    <link href="{% static "img\favicon.png" %}" type="image/png" rel="icon">
+
+    <!-- all css here -->
+    <link href="{% static "css\bootstrap.min.css" %}" rel="stylesheet" type="text/css" />
+    <link href="{% static "css\style.css" %}" rel="stylesheet" type="text/css" />
+    <!-- <link href="{% static "css\modals\logout.css" %}" rel="stylesheet" type="text/css" />
+    <link href="{% static "css\modals\success.css" %}" rel="stylesheet" type="text/css" />
+    <link href="{% static "css\modals\add_customer_modal.css" %}" rel="stylesheet" type="text/css" /> -->
+    <link href="{% static "css\responsive.css" %}" rel="stylesheet" type="text/css" />
+    {% block css %}
+
+    {% endblock css %}
+</head>
+<body>
+
+    <!--========== main-wrapper start ===========-->
+    <main class="main-wrapper">
+        <div class="row g-0">
+            <div class="col-lg-3 main-left-col">
+                <div class="main-left">
+                    <div class="logo_wraper">
+                        <a href="#">
+                            <img src="{% static "img\logo.svg" %}" alt="">
+                        </a>
+                        <div class="hamburger-menu d-lg-none">
+                            <span class="line-top"></span>
+                            <span class="line-center"></span>
+                            <span class="line-bottom"></span>
+                        </div>
+                    </div>
+                    <div class="side_menu home-energy-side-menu">
+                        <ul>
+                            <li class="{% if active_sidebar == 'dashboard' %}active{% endif %}">
+                        <a href="">
+                           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M35.1118 8.33594C36.0983 9.93269 36.6673 11.8127 36.6673 13.825C36.6673 19.6179 31.952 24.3141 26.1352 24.3141C25.0738 24.3141 22.6572 24.0701 21.4815 23.0944L20.0118 24.5581C18.7873 25.7776 19.767 25.7776 20.2568 26.7534C20.2568 26.7534 21.4815 28.4609 20.2568 30.1684C19.522 31.1441 17.4645 32.5101 15.1132 30.1684L14.6234 30.6563C14.6234 30.6563 16.093 32.3638 14.8683 34.0713C14.1335 35.0471 12.174 36.0228 10.4595 34.3153C10.3779 34.3966 9.92065 34.8519 8.74499 36.0228C7.5693 37.1936 6.1324 36.5106 5.56092 36.0228L4.09133 34.5591C2.7197 33.1931 3.51982 31.7133 4.09133 31.1441L16.8278 18.4598C16.8278 18.4598 15.6032 16.5082 15.6032 13.825C15.6032 8.03205 20.3185 3.33594 26.1352 3.33594C27.4998 3.33594 28.804 3.59442 30.0007 4.0649" stroke="#71BF1E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M29.8089 13.823C29.8089 15.8438 28.1641 17.482 26.1349 17.482C24.1059 17.482 22.4609 15.8438 22.4609 13.823C22.4609 11.8022 24.1059 10.1641 26.1349 10.1641C28.1641 10.1641 29.8089 11.8022 29.8089 13.823Z" stroke="#71BF1E" stroke-width="4"/>
+                            </svg>
+
+                            <p>Token Management</p>
+                        </a>
+                    </li>
+                    <li class="competition_management {% if active_sidebar == 'competition_management' %}active{% endif %}">
+                        <a href="">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_9537_6303)">
+                                <path d="M26.6673 11.6667C26.6673 15.3486 23.6825 18.3333 20.0007 18.3333C16.3188 18.3333 13.334 15.3486 13.334 11.6667C13.334 7.98477 16.3188 5 20.0007 5C23.6825 5 26.6673 7.98477 26.6673 11.6667Z" stroke="#71BF1E" stroke-width="5.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M20.0007 23.3359C13.5573 23.3359 8.33398 28.5593 8.33398 35.0026H31.6673C31.6673 28.5593 26.444 23.3359 20.0007 23.3359Z" stroke="#71BF1E" stroke-width="5.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0_9537_6303">
+                                <rect width="40" height="40" fill="white"/>
+                                </clipPath>
+                                </defs>
+                            </svg>
+
+                            <p>User Management</p>
+                        </a>
+                    </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 main-right-col">
+                <div class="main-right">
+                    <div class="header_area">
+                        <div class="header_title header_title2">
+                            <div class="hamburger-menu d-lg-none">
+                                <span class="line-top"></span>
+                                <span class="line-center"></span>
+                                <span class="line-bottom"></span>
+                            </div>
+                            <div>
+                                Tokens
+                            </div>
+                            
+                        </div>
+                        <div class="parent-container-for-search-input-and-btn">
+                                <div class="parent-container-for-input-and-search-img">
+                                    <input type="search" id="search-input" class="search-input-container" placeholder="Search">
+                                    <svg class="search-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M11 4C14.866 4 18 7.13401 18 11C18 14.866 14.866 18 11 18C7.13401 18 4 14.866 4 11C4 7.13401 7.13401 4 11 4ZM11 6C10.3435 6 9.69349 6.12964 9.08691 6.38086C8.48029 6.63213 7.92914 7.00055 7.46484 7.46484C7.00055 7.92914 6.63213 8.48029 6.38086 9.08691C6.12964 9.69349 6 10.3435 6 11C6 11.5523 6.44772 12 7 12C7.55228 12 8 11.5523 8 11C8 10.606 8.07775 10.2155 8.22852 9.85156C8.37928 9.48774 8.60043 9.15738 8.87891 8.87891C9.15738 8.60043 9.48774 8.37928 9.85156 8.22852C10.2155 8.07775 10.606 8 11 8C11.5523 8 12 7.55228 12 7C12 6.44772 11.5523 6 11 6Z" fill="#949494"/>
+                                        <path d="M20 20L18 18" stroke="#949494" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+
+                                </div>
+                                <button id="search-btn" type="button" class="search-btn">
+                                    Search
+                                </button>
+                        </div>
+                        <div class="parent-container-for-profile">
+                            <div class="create-token-btn">
+                                Create
+                            </div>
+                            <div class="header_right">
+                                <ul>
+                                    <li>
+                                        <div class="dropdown">
+                                            <a class="profile_btn" href="#" role="button" id="profile_dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <img id="image" src="{% static "img\profile.png" %}" alt="">
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="profile_dropdown">
+                                                <li><a class="dropdown-item" href="/home-energy/profile-settings/">Profile Settings</a></li>
+                                                <li class="hide"><a class="dropdown-item" href="/settings/">Settings</a></li>
+                                                <li><a class="dropdown-item" onclick="handleLogout()" href="javascript:void(0)">Logout</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    {% block content %}{% endblock content %}
+                </div>
+            </div>
+        </div>
+    </main>
+    {{API_BASE_URL|json_script:"API_BASE_URL"}}
+    <!--========== main-wrapper end ===========-->
+
+    <!-- all js here -->
+    <script src="{% static "js\jquery-3.4.1.min.js" %}"></script>
+    <script src="{% static "js\bootstrap.bundle.min.js" %}"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="{% static "js\main.js" %}"></script>
+    {% block js %}{% endblock js %}
+</body>
+</html>

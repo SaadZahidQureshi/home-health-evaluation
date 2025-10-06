@@ -14,6 +14,12 @@ class LoginPageTemplateView(TemplateView):
 class RegisterPageTemplateView(TemplateView):
     template_name = "sign-up.html"
 
+class adminSigninPageTemplateView(TemplateView):
+    template_name = "admin/admin-sign-in.html"
+
+class adminTokenPageTemplateView(TemplateView):
+    template_name = "admin/admin-token-page.html"
+
 class SideSelectionPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "side-selection.html"
 
@@ -224,7 +230,7 @@ class FinalRecommendationPageTemplateView(LoginRequiredMixin, TemplateView):
 
 # Home Energy Side templates
 
-class ExteriorEvaluationFuelLeakTestingPageTemplateView(LoginRequiredMixin, TemplateView):
+class ExteriorEvaluationFuelLeakTestingPageTemplateView(TemplateView):
     template_name = "home_energy_templates/exterior-evaluation.html"
 
     def get_context_data(self, **kwargs):

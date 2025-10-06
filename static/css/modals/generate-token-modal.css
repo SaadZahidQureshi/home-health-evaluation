@@ -1,0 +1,88 @@
+#generateTokenModal .modal-title {
+    font-weight: 700;
+    font-size: 20px;
+    color: #000000;
+}
+
+#generateTokenModal .modal-content {
+    border-radius: 20px;
+    padding: 14px;
+}
+
+#generateTokenModal .modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding-inline: 50px;
+}
+
+#generateTokenModal .main-content-delete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+    gap: 34px;
+}
+
+#generateTokenModal .main-content-delete span{
+    font-weight: 500;
+    font-size: 20px;
+    color: #333333;
+    max-width: 231px;
+    text-align: center;
+}
+
+#generateTokenModal .modal-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#generateTokenModal .modal-footer button {
+    width: 75%;
+    height: 50px;
+    opacity: 1;
+    border-radius: 10px;
+    color: #000000;
+    border: none;
+
+    font-weight: 600;
+    text-align: center;
+    font-size: 16px;
+    color: #ffffff;
+}
+#generateTokenModal .modal-footer button:first-child {
+    background: #1B2F46;
+}
+
+#generateTokenModal .modal-footer button:last-child{
+    background-color: #71BF1E;
+}
+
+#generateTokenModal .modal-footer button:first-child:hover {
+    background: #1B2F46;
+    color: #000000;
+}
+
+#generateTokenModal .modal-footer button:last-child:hover {
+    background: #71BF1E;
+}
+
+#generateTokenModal .token-label {
+    font-size: 1.8rem;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 133.333%;
+	color: #000;
+	display: block;
+	margin-bottom: 0.5rem;
+}
+
+#generateTokenModal .token-description {
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: #4C4C4C;
+  text-align: center;
+}

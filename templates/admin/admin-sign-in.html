@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="app, landing, corporate, Creative, Html Template, Template">
+    <meta name="author" content="web-themes">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <!-- title -->
+    <title>Admin Sign In</title>
+
+    <!-- favicon -->
+    <link href="{% static "img\favicon.png" %}" type="image/png" rel="icon">
+
+    <!-- all css here -->
+    <!-- <link href="{% static "css\bootstrap.min.css" %}" rel="stylesheet" type="text/css" /> -->
+    <link href="{% static "css\style.css" %}" rel="stylesheet" type="text/css" />
+    <link href="{% static "css\responsive.css" %}" rel="stylesheet" type="text/css" />
+    <link href="{% static "css\modals\generate-token-modal.css" %}" rel="stylesheet" type="text/css" />
+    <!-- <style>
+        #generateTokenModal .modal-title {
+    font-weight: 700;
+    font-size: 20px;
+    color: #000000;
+}
+
+#generateTokenModal .modal-content {
+    border-radius: 20px;
+    padding: 14px;
+}
+
+#generateTokenModal .modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding-inline: 50px;
+}
+
+#generateTokenModal .main-content-delete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+    gap: 34px;
+}
+
+#generateTokenModal .main-content-delete span{
+    font-weight: 500;
+    font-size: 20px;
+    color: #333333;
+    max-width: 231px;
+    text-align: center;
+}
+
+#generateTokenModal .modal-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#generateTokenModal .modal-footer button {
+    width: 75%;
+    height: 50px;
+    opacity: 1;
+    border-radius: 10px;
+    color: #000000;
+    border: none;
+
+    font-weight: 600;
+    text-align: center;
+    font-size: 16px;
+    color: #ffffff;
+}
+#generateTokenModal .modal-footer button:first-child {
+    background: #1B2F46;
+}
+
+#generateTokenModal .modal-footer button:last-child{
+    background-color: #71BF1E;
+}
+
+#generateTokenModal .modal-footer button:first-child:hover {
+    background: #1B2F46;
+    color: #000000;
+}
+
+#generateTokenModal .modal-footer button:last-child:hover {
+    background: #71BF1E;
+}
+
+#generateTokenModal .token-label {
+    font-size: 1.8rem;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 133.333%;
+	color: #000;
+	display: block;
+	margin-bottom: 0.5rem;
+}
+
+#generateTokenModal .token-description {
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: #4C4C4C;
+  text-align: center;
+}
+    </style> -->
+
+    <!-- <style>
+        #regenerateTokenModal .modal-title {
+    font-weight: 700;
+    font-size: 20px;
+    color: #000000;
+}
+
+#regenerateTokenModal .modal-content {
+    border-radius: 20px;
+    padding: 14px;
+}
+
+#regenerateTokenModal .modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding-inline: 50px;
+}
+
+#regenerateTokenModal .main-content-delete {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+    gap: 34px;
+}
+
+#regenerateTokenModal .main-content-delete span{
+    font-weight: 500;
+    font-size: 20px;
+    color: #333333;
+    max-width: 231px;
+    text-align: center;
+}
+
+#regenerateTokenModal .modal-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#regenerateTokenModal .modal-footer button {
+    width: 75%;
+    height: 50px;
+    opacity: 1;
+    border-radius: 10px;
+    color: #000000;
+    border: none;
+
+    font-weight: 600;
+    text-align: center;
+    font-size: 16px;
+    color: #ffffff;
+}
+#regenerateTokenModal .modal-footer button:first-child {
+    background: #1B2F46;
+}
+
+#regenerateTokenModal .modal-footer button:last-child{
+    background-color: #71BF1E;
+}
+
+#regenerateTokenModal .modal-footer button:first-child:hover {
+    background: #1B2F46;
+    color: #000000;
+}
+
+#regenerateTokenModal .modal-footer button:last-child:hover {
+    background: #71BF1E;
+}
+
+#regenerateTokenModal .token-label {
+    font-size: 1.8rem;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 133.333%;
+	color: #000;
+	display: block;
+	margin-bottom: 0.5rem;
+}
+
+#regenerateTokenModal .token-description {
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: #4C4C4C;
+  text-align: center;
+}
+    </style> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+    <!-- <button data-bs-toggle="modal" data-bs-target="#generateTokenModal" onclick="openModal()">click</button>
+    <script>
+        function openModal() {
+            let abc = bootstrap.Modal.getOrCreateInstance(document.getElementById("generateTokenModal"))
+            abc.show()
+        }
+    </script>
+    <button data-bs-toggle="modal" data-bs-target="#regenerateTokenModal" onclick="openRegenerateModal()">regenerate</button>
+    <script>
+        function openRegenerateModal(){
+            let xyz = bootstrap.Modal.getOrCreateInstance(document.getElementById("regenerateTokenModal"))
+            xyz.show()
+        }
+    </script> -->
+<!-- <div class="modal fade" id="generateTokenModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="generateTokenModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+        <div class="modal-header border-0">
+            <h1 class="modal-title m-auto" id="successmodalLabel">Generate Auth Token</h1>
+            <svg class="position-absolute" style="right:1rem" data-bs-dismiss="modal" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.8076 5.08008C18.1147 4.77312 18.6129 4.77303 18.9199 5.08008C19.227 5.38713 19.2269 5.88528 18.9199 6.19238L13.1123 12L18.9199 17.8076C19.1928 18.0806 19.2228 18.5041 19.0107 18.8105L19.0029 18.8223L19.002 18.8213L18.9287 18.9102L18.9199 18.9199C18.6468 19.193 18.2226 19.2231 17.916 19.0107L17.9053 19.0029L18.002 18.8877L17.9053 19.002L17.8174 18.9287L17.8076 18.9199L12 13.1123L6.19238 18.9199C5.88528 19.2269 5.38713 19.227 5.08008 18.9199C4.77303 18.6129 4.77312 18.1147 5.08008 17.8076L10.8877 12L5.08008 6.19238C4.80721 5.91939 4.77717 5.49593 4.98926 5.18945L4.99707 5.17773H4.99902L5.07129 5.08984L5.08008 5.08008L5.18945 4.98926C5.41935 4.83008 5.71518 4.80711 5.96387 4.9209L6.08398 4.98926L6.09473 4.99707L5.99805 5.1123L6.09473 4.99805L6.18262 5.07129L6.19238 5.08008L12 10.8877L17.8076 5.08008Z" fill="#FF0000" stroke="#FF0000" stroke-width="0.3"/>
+            </svg>
+        </div>
+        <form class="modal-body" id="successForm">
+            {% csrf_token %}
+
+            <div class="sign_item w-100">
+                <label>Email address</label>
+                <input type="email" name="email-address" placeholder="jorden@gmail.com" required>
+            </div>
+            <div class="w-100">
+                <p class="token-label">Auth Token:</p>
+                <p class="token-description">Generated token should be display here.</p>
+                
+            </div>
+
+        </form>
+        <div class="modal-footer border-0 ">
+            <button type="button" data-bs-dismiss="modal" form="successForm" class="btn btn-primary">
+                <span class="spinner-border spinner-border-sm hide" role="status" aria-hidden="true"></span>
+                <span class="btn-text">Continue</span>
+            </button>
+        </div>
+        </div>
+    </div>
+</div> -->
+<!-- <div class="modal fade " id="regenerateTokenModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="successmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+        <div class="modal-header border-0">
+            <h1 class="modal-title m-auto" id="successmodalLabel">Token Regenerated Successfully</h1>
+            <svg class="position-absolute" style="right:1rem" data-bs-dismiss="modal" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.8076 5.08008C18.1147 4.77312 18.6129 4.77303 18.9199 5.08008C19.227 5.38713 19.2269 5.88528 18.9199 6.19238L13.1123 12L18.9199 17.8076C19.1928 18.0806 19.2228 18.5041 19.0107 18.8105L19.0029 18.8223L19.002 18.8213L18.9287 18.9102L18.9199 18.9199C18.6468 19.193 18.2226 19.2231 17.916 19.0107L17.9053 19.0029L18.002 18.8877L17.9053 19.002L17.8174 18.9287L17.8076 18.9199L12 13.1123L6.19238 18.9199C5.88528 19.2269 5.38713 19.227 5.08008 18.9199C4.77303 18.6129 4.77312 18.1147 5.08008 17.8076L10.8877 12L5.08008 6.19238C4.80721 5.91939 4.77717 5.49593 4.98926 5.18945L4.99707 5.17773H4.99902L5.07129 5.08984L5.08008 5.08008L5.18945 4.98926C5.41935 4.83008 5.71518 4.80711 5.96387 4.9209L6.08398 4.98926L6.09473 4.99707L5.99805 5.1123L6.09473 4.99805L6.18262 5.07129L6.19238 5.08008L12 10.8877L17.8076 5.08008Z" fill="#FF0000" stroke="#FF0000" stroke-width="0.3"/>
+            </svg>
+        </div>
+        <form class="modal-body" id="successForm">
+            {% csrf_token %}
+
+            <div class="main-content-delete">
+                <svg width="75" height="75" viewBox="0 0 75 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M53.239 0H21.7984C8.14156 0 0 8.1375 0 21.7875V53.175C0 66.8625 8.14156 75 21.7984 75H53.2015C66.8583 75 74.9999 66.8625 74.9999 53.2125V21.7875C75.0374 8.1375 66.8958 0 53.239 0ZM55.4526 28.875L34.1795 50.1375C33.6543 50.6625 32.9414 50.9625 32.191 50.9625C31.4407 50.9625 30.7278 50.6625 30.2025 50.1375L19.5848 39.525C18.4967 38.4375 18.4967 36.6375 19.5848 35.55C20.6728 34.4625 22.4737 34.4625 23.5617 35.55L32.191 44.175L51.4757 24.9C52.5637 23.8125 54.3646 23.8125 55.4526 24.9C56.5407 25.9875 56.5407 27.75 55.4526 28.875Z" fill="#17C726"/>
+                </svg>
+            </div>
+            <div class="w-100">
+                <p class="token-description">A new token has been regenerated successfully against the email. Kindly share this token with the user so they can use it to complete the signup process: 47BZ91</p>
+                
+            </div>
+
+        </form>
+        <div class="modal-footer border-0 ">
+            <button type="button" data-bs-dismiss="modal" form="successForm" class="btn btn-primary">
+                <span class="spinner-border spinner-border-sm hide" role="status" aria-hidden="true"></span>
+                <span class="btn-text">Continue</span>
+            </button>
+        </div>
+        </div>
+    </div>
+</div> -->
+
+    <!--Admin signin_wrapper start -->
+    <main class="signin_wrapper">
+        <div class="signin_main">
+            <div class="signin_circle">
+                <img src="{% static 'img/circle.svg' %}" alt="">
+            </div>
+            <div class="signin_box">
+                <div class="signin_logo">
+                    <a href="#">
+                        <img src="{% static 'img/logo-2.svg' %}" alt="">
+                    </a>
+                </div>
+                <div class="line_border">
+                    <img src="{% static 'img/line-2.svg' %}" alt="">
+                </div>
+                <div class="sign_title text-center">
+                    <h3>Sign In</h3>
+                    <p>Please enter your details below</p>
+                </div>
+                <form action="#" id="loginForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.GET.next }}">
+                    <div class="sign_details">
+                        <div class="sign_item">
+                            <label>Email</label>
+                            <input type="email" name="email" placeholder="jorden@gmail.com" required>
+                        </div>
+                        <div class="sign_item">
+                            <label>Password</label>
+                            <div class="password-container position-relative">
+                                <input type="password" name="password" id="password" placeholder="*****" required>
+                                <button style="top: 30%;" type="button" class="password-toggle" onclick="togglePassword('password')">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="3.3" stroke="#98FB98" stroke-width="1.4"></circle>
+                                        <path d="M20.188 10.9343C20.5762 11.4056 20.7703 11.6412 20.7703 12C20.7703 12.3588 20.5762 12.5944 20.188 13.0657C18.7679 14.7899 15.6357 18 12 18C8.36427 18 5.23206 14.7899 3.81197 13.0657C3.42381 12.5944 3.22973 12.3588 3.22973 12C3.22973 11.6412 3.42381 11.4056 3.81197 10.9343C5.23206 9.21014 8.36427 6 12 6C15.6357 6 18.7679 9.21014 20.188 10.9343Z" stroke="#98FB98" stroke-width="1.7"></path>
+                                        <path d="M20 5L5 20" stroke="#98FB98" stroke-width="1.5" stroke-linecap="round"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="sign_bottom">
+                            <div class="sign_btn">
+                                <button type="submit">
+                                    <span class="spinner-border hide" role="status" aria-hidden="true"></span>
+                                    <span class="btn-text">Sign In</span>
+                                </button>
+                            </div>
+                            <!-- <p>Don’t have an account? <a href="/register/">Sign Up</a></p> -->
+                        </div>
+                    </div>
+                </form>                
+            </div>
+        </div>
+        <div class="modal fade show " id="generateTokenModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="successmodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+        <div class="modal-header border-0">
+            <h1 class="modal-title m-auto" id="successmodalLabel">Form Submitted Successfully</h1>
+            <svg class="position-absolute" style="right:1rem" data-bs-dismiss="modal" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.8076 5.08008C18.1147 4.77312 18.6129 4.77303 18.9199 5.08008C19.227 5.38713 19.2269 5.88528 18.9199 6.19238L13.1123 12L18.9199 17.8076C19.1928 18.0806 19.2228 18.5041 19.0107 18.8105L19.0029 18.8223L19.002 18.8213L18.9287 18.9102L18.9199 18.9199C18.6468 19.193 18.2226 19.2231 17.916 19.0107L17.9053 19.0029L18.002 18.8877L17.9053 19.002L17.8174 18.9287L17.8076 18.9199L12 13.1123L6.19238 18.9199C5.88528 19.2269 5.38713 19.227 5.08008 18.9199C4.77303 18.6129 4.77312 18.1147 5.08008 17.8076L10.8877 12L5.08008 6.19238C4.80721 5.91939 4.77717 5.49593 4.98926 5.18945L4.99707 5.17773H4.99902L5.07129 5.08984L5.08008 5.08008L5.18945 4.98926C5.41935 4.83008 5.71518 4.80711 5.96387 4.9209L6.08398 4.98926L6.09473 4.99707L5.99805 5.1123L6.09473 4.99805L6.18262 5.07129L6.19238 5.08008L12 10.8877L17.8076 5.08008Z" fill="#FF0000" stroke="#FF0000" stroke-width="0.3"/>
+            </svg>
+        </div>
+        <form class="modal-body" id="successForm">
+            {% csrf_token %}
+
+            <div class="main-content-delete">
+                <svg width="107" height="107" viewBox="0 0 107 107" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0.644978" y="29.7478" width="81.9486" height="81.9486" rx="7.5" transform="rotate(-20.8022 0.644978 29.7478)" fill="#D6FED1"/>
+                    <rect x="0.644978" y="29.7478" width="81.9486" height="81.9486" rx="7.5" transform="rotate(-20.8022 0.644978 29.7478)" stroke="url(#paint0_linear_377_621)"/>
+                    <foreignObject x="4.74681" y="9.86326" width="96.6502" height="91.5313"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(6.15px);clip-path:url(#bgblur_0_377_621_clip_path);height:100%;width:100%"></div></foreignObject><path data-figma-bg-blur-radius="12.3076" d="M19.9668 31.2686C40.4806 19.5466 65.664 19.5464 86.1777 31.2686C87.8236 32.2091 88.8477 33.9776 88.7803 35.8623C88.0816 55.3724 81.1248 67.9772 73.54 75.9854C65.9501 83.9989 57.7154 87.4257 54.4463 88.5488C53.5477 88.8575 52.5968 88.8575 51.6982 88.5488C48.4295 87.4259 40.1939 83.9993 32.6035 75.9854C25.0188 67.9772 18.0619 55.3724 17.3633 35.8623C17.2959 33.9776 18.3208 32.2091 19.9668 31.2686Z" fill="#00AE00" stroke="url(#paint1_linear_377_621)" stroke-width="0.611895"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M67.1084 41.463C68.4048 42.7875 68.4048 44.9348 67.1084 46.2592L51.6168 62.0858C50.9942 62.7219 50.1498 63.0792 49.2694 63.0792C48.389 63.0792 47.5446 62.7219 46.9221 62.0858L38.0697 53.0421C36.7733 51.7176 36.7733 49.5703 38.0697 48.2459C39.3661 46.9214 41.468 46.9215 42.7644 48.2459L49.2694 54.8916L62.4137 41.463C63.7101 40.1386 65.812 40.1386 67.1084 41.463Z" fill="white"/>
+                    <defs>
+                    <clipPath id="bgblur_0_377_621_clip_path" transform="translate(-4.74681 -9.86326)"><path d="M19.9668 31.2686C40.4806 19.5466 65.664 19.5464 86.1777 31.2686C87.8236 32.2091 88.8477 33.9776 88.7803 35.8623C88.0816 55.3724 81.1248 67.9772 73.54 75.9854C65.9501 83.9989 57.7154 87.4257 54.4463 88.5488C53.5477 88.8575 52.5968 88.8575 51.6982 88.5488C48.4295 87.4259 40.1939 83.9993 32.6035 75.9854C25.0188 67.9772 18.0619 55.3724 17.3633 35.8623C17.2959 33.9776 18.3208 32.2091 19.9668 31.2686Z"/>
+                    </clipPath><linearGradient id="paint0_linear_377_621" x1="44.9305" y1="17.0158" x2="43.2041" y2="95.7788" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="white"/>
+                    <stop offset="0.996024" stop-color="white" stop-opacity="0"/>
+                    </linearGradient>
+                    <linearGradient id="paint1_linear_377_621" x1="18.3912" y1="28.3956" x2="107.829" y2="94.3507" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="white"/>
+                    <stop offset="0.734375" stop-color="white" stop-opacity="0"/>
+                    </linearGradient>
+                    </defs>
+                </svg>
+                <span>Your Form has been submitted successfully.</span>
+            </div>
+
+        </form>
+        <div class="modal-footer border-0 ">
+            <button type="button" data-bs-dismiss="modal" form="successForm" class="btn btn-primary">
+                <span class="spinner-border spinner-border-sm hide" role="status" aria-hidden="true"></span>
+                <span class="btn-text">Continue</span>
+            </button>
+        </div>
+        </div>
+    </div>
+</div>
+        
+    </main>
+    
+    <!--Admin signin_wrapper end -->
+    {{API_BASE_URL|json_script:"API_BASE_URL"}}
+    <!-- all js here -->
+    <script src="{% static "js\jquery-3.4.1.min.js" %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <!-- <script src="{% static "js\bootstrap.bundle.min.js" %}"></script> -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="{% static "js\main.js" %}"></script>
+    <script src="{% static "js\admin-sign-in.js" %}"></script>
+</body>
+</html>
