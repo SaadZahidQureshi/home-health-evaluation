@@ -78,10 +78,13 @@
     height: 1rem !important;
     padding: 8px !important;
     margin-top: unset;
+    position: relative;
+    top: -2px !important;
 }
 .form-check {
     display: flex;
     align-items: center;
+    margin-bottom: 0 !important;
     gap: 5px;
 }
 
