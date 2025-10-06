@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import EmailValidator
 from api.core.abstract import BaseModel
+from api.core.choices import CharFieldSizes, CustomerTypes
 
 class Availability(BaseModel):     
     SLOT_CHOICES = [
@@ -32,7 +33,7 @@ class BookingPerson(BaseModel):
     zip_code = models.CharField(max_length=10)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
-    notes = models.TextField(blank=True, null=True)
+    type = models.CharField(choices=CustomerTypes.choices, max_length=CharFieldSizes.SMALL, default=CustomerTypes.HEALTHY_HOME)
     
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

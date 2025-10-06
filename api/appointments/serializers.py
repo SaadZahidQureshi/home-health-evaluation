@@ -1,3 +1,4 @@
+from api.core.choices import CustomerTypes
 from rest_framework import serializers
 from .models import Availability, BookingPerson, Appointment
 from datetime import datetime
@@ -13,7 +14,7 @@ class BookingPersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = BookingPerson
         fields = ['id', 'first_name', 'last_name', 'email', 'phone_number', 
-                 'address', 'zip_code', 'city', 'state', 'notes']
+                 'address', 'zip_code', 'city', 'state', 'type']
 
 class AppointmentCreateSerializer(serializers.Serializer):
     date = serializers.DateField()
@@ -26,7 +27,7 @@ class AppointmentCreateSerializer(serializers.Serializer):
     zip_code = serializers.CharField(max_length=10)
     city = serializers.CharField(max_length=100)
     state = serializers.CharField(max_length=100)
-    notes = serializers.CharField(required=False, allow_blank=True)
+    type = serializers.ChoiceField(choices=CustomerTypes.choices)
     
     def validate(self, data):
         # Check if slot is already booked
@@ -51,7 +52,7 @@ class AppointmentCreateSerializer(serializers.Serializer):
             'zip_code': validated_data['zip_code'],
             'city': validated_data['city'],
             'state': validated_data['state'],
-            'notes': validated_data.get('notes', ''),
+            'type': validated_data.get('type', ''),
         }
         
         # Create booking person

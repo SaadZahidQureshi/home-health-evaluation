@@ -73,6 +73,23 @@
     background-color: #7cb342;
 }
 
+.form-check .form-check-input {
+    width: 1rem !important;
+    height: 1rem !important;
+    padding: 8px !important;
+    margin-top: unset;
+}
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.form-check-input:checked {
+    background-color: #7cb342;
+    border-color: #7cb342;
+}
+
 @media (max-width: 768px) {
     .form-row {
         flex-direction: column;

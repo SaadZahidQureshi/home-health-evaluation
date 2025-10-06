@@ -44,7 +44,6 @@ function scheduleNew() {
 }
 
 
-
 async function appointmentFormSubmit(event) {
     event.preventDefault();
 
@@ -58,6 +57,11 @@ async function appointmentFormSubmit(event) {
     // 📌 SessionStorage data
     let selectedDate = sessionStorage.getItem("selected_date");
     let selectedSlot = sessionStorage.getItem("selected_slot");
+
+    let type = [];
+    form.querySelectorAll('.form-check-input:checked').forEach((checkbox) => {
+        type.push(checkbox.value);
+    });
 
     // -------- Validations --------
     if (!isEditMode) {
@@ -98,6 +102,10 @@ async function appointmentFormSubmit(event) {
         showToast("Error!", "State is required.", "danger-toast");
         return false;
     }
+    if (type.length === 0) {
+        showToast("Error!", "Please select at least one choice.", "danger-toast");
+        return false;
+    }
 
     // -------- Payload --------
     let payload = {
@@ -109,7 +117,7 @@ async function appointmentFormSubmit(event) {
         zip_code: data.zip_code.trim(),
         city: data.city.trim(),
         state: data.state.trim(),
-        notes: data.notes?.trim() || ""
+        type: type.join(", ") || ""
     };
 
     if (!isEditMode) {
