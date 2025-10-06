@@ -33,6 +33,10 @@ async function registerForm(event) {
         showToast("Warning!", "Please enter a valid email address", "danger-toast");
         return;
     }
+    if (!data.token) {
+        showToast("Warning!", "Token is required", "danger-toast");
+        return;
+    }
 
     if (data.password.length < 8) {
         showToast("Warning!", "Password must be at least 8 characters long", "danger-toast");
