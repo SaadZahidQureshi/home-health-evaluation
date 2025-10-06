@@ -3,8 +3,21 @@
 {% block title %}Admin Token Page{% endblock title %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/modals/admin-token-page.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin/admin-token-page.css' %}">
 {% endblock css %}
+
+{% block admin-page-title %}
+    <div class="admin-page-title">
+        Tokens
+    </div>
+{% endblock admin-page-title %}
+
+{% block create-btn %}
+    <div class="create-token-btn">
+        Create
+    </div>
+
+{% endblock create-btn %}
 
 {% block content %}
 <div class="right-mainpart">

@@ -1,0 +1,58 @@
+{% extends "admin/admin-base.html" %}
+{% load static %}
+{% block title %}Admin Users Page{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/admin/admin-user-page.css' %}">
+{% endblock css %}
+
+{% block admin-page-title %}
+    <div class="admin-page-title">
+        Users
+    </div>
+{% endblock admin-page-title %}
+
+{% block create-btn %}
+
+{% endblock create-btn %}
+
+{% block content %}
+<div class="right-mainpart">
+    <div class="history_box">
+        <div class="history_table table-container" id="admin-user-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th data-col="id"><span>ID</span></th>
+                        <th data-col="name"><span>Name</span></th>
+                        <th data-col="email"><span>Email</span></th>
+                        <th data-col="date"><span>Date</span></th>
+                        
+                    </tr>
+                </thead>
+                <tbody id="admin-user-table-body">
+                    <!-- <tr>
+                        <td><span>02345678</span></td>
+                        <td><span>Afd2ja</span></td>
+                        <td><span>joarden01@gmail.com</span></td>
+                        <td><span>02 Feb 2025</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>02345678</span></td>
+                        <td><span>Afd2ja</span></td>
+                        <td><span>joarden01@gmail.com</span></td>
+                        <td><span>02 Feb 2025</span></td>
+                    </tr> -->
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>                                             
+{% include 'admin/pagination.html' %}
+</div>
+{{principleId|json_script:"principleId"}}
+{% endblock content %}
+{% block js %}
+<script src="{% static 'js/admin/admin-common.js' %}"></script>
+<script src="{% static 'js/admin/admin-user-page.js' %}"></script>
+{% endblock js %}

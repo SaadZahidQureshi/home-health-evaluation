@@ -1,0 +1,109 @@
+
+.table-container {
+    border-radius: 10px;
+    overflow-y: auto;
+    height: calc(100vh - 248px);
+    /* font-weight: 500; */
+    /* font-size: 18px;
+    line-height: 24px;
+    margin-top: 20px;
+    margin-left: 40px;
+    margin-right: 40px; */
+ 
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    /* box-shadow: 0 0 0 3px #DADDF380; */
+
+}
+
+#admin-token-table th[data-col="id"] {
+  width: 16.66%;
+}
+
+#admin-token-table th[data-col="email"] {
+   width: 16.66%;
+}
+
+#admin-token-table th[data-col="token"] {
+   width: 16.66%;
+}
+
+#admin-token-table th[data-col="date"] {
+   width: 16.66%;
+}
+
+#admin-token-table th[data-col="status"] {
+   width: 16.66%;
+}
+
+#admin-token-table th[data-col="actions"] {
+   width: 16.66%;
+}
+
+td span {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+}
+
+td {
+    text-align: center;
+    
+}
+
+.unused-status {
+    width: 104px;
+    height: 30px;
+    border-radius: 50px;
+    background-color: rgba(101, 248, 78, 0.05);
+    color: rgba(41, 223, 0, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.used-status {
+     width: 104px;
+    height: 30px;
+    border-radius: 50px;
+    background-color: rgba(248, 78, 78, 0.05);
+    color: rgba(223, 0, 4, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.parent-container-for-status {
+    display: flex;
+    justify-content: center;
+}
+
+.side_menu ul li::after {
+  content: none !important; /* removes the pseudo-element completely */
+}
+
+.side_menu ul li {
+    padding-bottom: 0px !important;
+}
+
+.no-user-msg {
+    color: red !important;
+}
+
+/* .side_menu ul li {
+   padding-bottom: 20px !important;
+} */
+
+
+

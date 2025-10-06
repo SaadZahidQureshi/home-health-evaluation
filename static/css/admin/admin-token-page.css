@@ -94,8 +94,12 @@ td {
 }
 
 .side_menu ul li {
-   padding-bottom: 20px !important;
+    padding-bottom: 0px !important;
 }
+
+/* .side_menu ul li {
+   padding-bottom: 20px !important;
+} */
 
 
 

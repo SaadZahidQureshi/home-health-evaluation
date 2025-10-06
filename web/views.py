@@ -19,6 +19,17 @@ class adminSigninPageTemplateView(TemplateView):
 
 class adminTokenPageTemplateView(TemplateView):
     template_name = "admin/admin-token-page.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["active_admin_sidebar"] = "token"
+        return context
+
+class adminUsersPageTemplateView(TemplateView):
+    template_name = "admin/admin-user-page.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["active_admin_sidebar"] = "users"
+        return context
 
 class SideSelectionPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "side-selection.html"
