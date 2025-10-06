@@ -192,4 +192,10 @@
     .modal-content {
         max-width: unset !important;
     }
+    .btn-outline-green {
+        font-size: 1rem !important;
+    }
+    .btn-green {
+        font-size: 1rem !important;
+    }
 }

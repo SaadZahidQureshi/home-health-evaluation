@@ -3,7 +3,7 @@ from .models import *
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ["id", "name", "email", "phone", "is_active"]
+    list_display = ["id", "name", "email", "phone", "is_active", "role"]
     search_fields = ["email", "phone", "role", "name"]
     list_filter = ["is_active"]
 
