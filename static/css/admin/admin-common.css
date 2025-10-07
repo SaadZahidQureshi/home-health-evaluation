@@ -1,3 +1,17 @@
 .side_menu ul li {
     padding: 10px ;
 }
+
+.side_menu ul li a:hover {
+	color:#ffffff;
+}
+
+.header_area {
+    position: relative;
+    min-height: 74px;
+}
+
+.parent-container-for-search-input-and-btn {
+    position: absolute;
+    transform: translate(50%);
+}

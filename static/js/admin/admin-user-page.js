@@ -11,16 +11,13 @@ let headers = {
     "Content-Type": 'application/json'
 };
 
+let userManagementEndpoint = `/api/admin/user-management?perPage=${perPage}&page=1&search=`;
 
 const paginationNextBtn = document.getElementById("pagination-next-btn");
 const paginationBackBtn = document.getElementById("pagination-back-btn");
 
-async function fetchUsers(page = 1, searchQuery = "") {
+async function fetchUsers(url) {
     try {
-        let url = `/api/admin/user-management?page=${page}&perPage=${perPage}`;
-        if(searchQuery){
-            url += `&search=${encodeURIComponent(searchQuery)}`; // add search query
-        }
         let response = await requestAPI(url, null, headers, "GET");        
         let res = await response.json()
         if (response.status == 200 && res.data) {
@@ -32,7 +29,6 @@ async function fetchUsers(page = 1, searchQuery = "") {
                 
             }));
 
-            currentPage = page; 
             populateTable(fetchedUsers);
             generatePagination(res.pagination.currentPage, res.pagination.total, res.pagination.links.previous, res.pagination.links.next);
         } else {
@@ -46,10 +42,14 @@ async function fetchUsers(page = 1, searchQuery = "") {
 
 const searchInput = document.getElementById("search-input");
 const searchBtn = document.getElementById("search-btn");
-searchBtn.addEventListener("click",function(){
+
+function searchForm(event) {
+    event.preventDefault();
     const query = searchInput.value;
-    fetchUsers(page = 1,query)
-})
+    userManagementEndpoint = setParams(userManagementEndpoint, 'search', query);
+    userManagementEndpoint = setParams(userManagementEndpoint, 'page', 1);
+    fetchUsers(userManagementEndpoint);
+}
 
 function formatDate(isoString) {
     const date = new Date(isoString);
@@ -92,12 +92,14 @@ function generatePagination(currentPage, totalPages, previousLink, nextLink) {
     pagesContainer.querySelectorAll('span').forEach((span) => {
         if ((!span.classList.contains('active')) && (!span.classList.contains('ellipsis-container'))) {
             let page = span.innerText;
-            span.addEventListener("click", () => fetchUsers(page));
+            let pageURL = setParams(userManagementEndpoint, 'page', page);
+            span.addEventListener("click", () => fetchUsers(pageURL));
         }
     });
 
     if (previousLink) {
-        getPreviousPageBtn.setAttribute("onclick", `fetchUsers(${currentPage - 1})`);
+        let pageURL = setParams(userManagementEndpoint, 'page', currentPage - 1);
+        getPreviousPageBtn.setAttribute("onclick", `fetchUsers('${pageURL}')`);
         getPreviousPageBtn.classList.remove('opacity-point-3-5');
         getPreviousPageBtn.classList.add('cursor-pointer', 'active');
     } else {
@@ -107,7 +109,8 @@ function generatePagination(currentPage, totalPages, previousLink, nextLink) {
     }
 
     if (nextLink) {
-        getNextPageBtn.setAttribute("onclick", `fetchUsers(${currentPage + 1})`);
+        let pageURL = setParams(userManagementEndpoint, 'page', currentPage + 1);
+        getNextPageBtn.setAttribute("onclick", `fetchUsers('${pageURL}')`);
         getNextPageBtn.classList.remove('opacity-point-3-5');
         getNextPageBtn.classList.add('cursor-pointer', 'active');
     } else {
@@ -139,39 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
 });
 
-const filterOptions = document.querySelectorAll("#filterOptionList .dropdown-item");
-    filterOptions.forEach(option => {
-        option.addEventListener("click",function(e){
-        e.preventDefault();
-        const filterParam = e.target.getAttribute("data-filter");
-        console.log(`${filterParam} is being selected`);
-        applyFilter(filterParam);
-    })
-})
-
-
-
-// function applyFilter(filterParam) {
-//     activeFilter = filterParam;
-//     fetchUsers(1);
-// }
-
-// function goBack() {
-//     if (res.pagination.currentPage > 1) {
-//         res.pagination.currentPage--;
-//         generatePages(res.pagination.currentPage, res.pagination.total, null, null);
-//     }
-// }
-
-// function goNext() {
-//     if (res.pagination.currentPage < res.pagination.total) {
-//         res.pagination.currentPage++;
-//         generatePages(res.pagination.currentPage, res.pagination.total, null, null);
-//     }
-// }
-
-
-fetchUsers();
+window.addEventListener("load", fetchUsers(userManagementEndpoint));
 
 
 const adminUserTableBody = document.getElementById("admin-user-table-body");

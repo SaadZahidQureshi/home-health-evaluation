@@ -64,7 +64,7 @@ function renderTokens(data) {
                     <td>
                         <div class="action_button">
                             <div>
-                                <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="cursor-pointer" onclick="openRegenerateTokenModal(${item?.id})" width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_9538_6684)">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4297 6.5V8.72222C20.7175 8.72222 24.2075 12.2111 24.2075 16.5C24.2075 20.7889 20.7175 24.2778 16.4297 24.2778C12.1419 24.2778 8.65191 20.7889 8.65191 16.5C8.65191 14.4478 9.46857 12.5156 10.8741 11.0756V13.7222H13.0964V7.61111H6.98524V9.83333H8.97524C7.35302 11.6467 6.42969 14.01 6.42969 16.5C6.42969 22.0133 10.9152 26.5 16.4297 26.5C21.9441 26.5 26.4297 22.0133 26.4297 16.5C26.4297 10.9867 21.9441 6.5 16.4297 6.5Z" fill="#71BF1E"/>
                                     </g>
@@ -163,6 +163,12 @@ function openDeleteModal(id) {
     deleteId = id;
     let deleteModal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
     deleteModal.show();
+}
+
+function openRegenerateTokenModal(id) {
+    regenerateTokenId = id;
+    let regenerateTokenModal = new bootstrap.Modal(document.getElementById('regenerateTokenModal'));
+    regenerateTokenModal.show();
 }
 
 document.getElementById('confirmDeleteBtn').addEventListener('click', async function () {

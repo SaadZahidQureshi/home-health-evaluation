@@ -5,6 +5,7 @@
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/admin/admin-token-page.css' %}">
     <link rel="stylesheet" href="{% static 'css/modals/delete-history.css' %}">
+    <link rel="stylesheet" href="{% static 'css/modals/regenerate_token.css' %}">
     <link href="{% static "css\modals\generate-token-modal.css" %}" rel="stylesheet" type="text/css" />
 {% endblock css %}
 
@@ -48,6 +49,8 @@
 {% include "modals/success.html" %} 
 
 {% include "modals/delete-history.html" %}
+
+{% include "modals/regenerate_token.html" %}
 
 {% endblock content %}
 
