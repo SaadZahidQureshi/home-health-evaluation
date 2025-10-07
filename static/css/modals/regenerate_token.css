@@ -63,7 +63,7 @@
 
 #regenerateTokenModal .modal-footer button:first-child:hover {
     background: #1B2F46;
-    color: #000000;
+    /* color: #000000; */
 }
 
 #regenerateTokenModal .modal-footer button:last-child:hover {
