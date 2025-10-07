@@ -230,7 +230,6 @@ modalElement.addEventListener('hidden.bs.modal', function () {
     emailInput.value = '';
 });
 
-// Generate token on button click
 generateTokenBtn.addEventListener('click', async function (e) {
     e.preventDefault();
     const email = emailInput.value.trim();
@@ -261,30 +260,40 @@ generateTokenBtn.addEventListener('click', async function (e) {
         if (response.ok && data.data && data.data.token) {
             const token = data.data.token;
 
-            // wait 0.5s for smoother UI transition
+            // smooth delay for UI transition
             await new Promise(resolve => setTimeout(resolve, 500));
 
             tokenLabel.style.display = 'none';
             tokenDescription.textContent =
-                `The token has been generated successfully against the provided email. Kindly share this token with the user so they can use it to complete the signup process: ${token}`;
+                `✅ The token has been generated successfully against the provided email. Kindly share this token with the user so they can use it to complete the signup process: ${token}`;
             tokenDescription.classList.add('text-success');
-            closeCurrentModal();
+
+            // disable button and reduce opacity
+            generateTokenBtn.disabled = true;
+            generateTokenBtn.style.opacity = '0.5';
+            generateTokenBtn.style.cursor = 'not-allowed';
             getTokens(tokensEndpoint);
         } else {
             tokenDescription.textContent = data.message || 'Failed to generate token.';
             tokenDescription.classList.remove('text-success');
+
+            // re-enable button if failed
+            generateTokenBtn.disabled = false;
+            generateTokenBtn.style.opacity = '1';
+            generateTokenBtn.style.cursor = 'pointer';
         }
     } catch (err) {
         tokenDescription.textContent = 'An error occurred. Please try again.';
         tokenDescription.classList.remove('text-success');
         console.error(err);
+
+        // re-enable button in case of error
+        generateTokenBtn.disabled = false;
+        generateTokenBtn.style.opacity = '1';
+        generateTokenBtn.style.cursor = 'pointer';
     } finally {
-        // hide spinner but keep button disabled for smoother feel
         spinner.classList.add('hide');
         btnText.textContent = 'Continue';
-
-        // optional small delay before keeping it disabled
-        await new Promise(resolve => setTimeout(resolve, 500));
     }
 });
 
