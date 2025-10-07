@@ -40,8 +40,8 @@ function renderTokens(data) {
 
     if (data.length == 0) {
         tableBody.innerHTML += `
-                <tr >
-                    <td colspan="6">No data available.</td>
+                <tr>
+                    <td class="no-token-msg" colspan="6">No data available.</td>
                 </tr>`
     } else {
         data.forEach(item => {

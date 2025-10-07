@@ -108,3 +108,7 @@ td {
     cursor: pointer;
 }
 
+.no-token-msg {
+    color: red !important;
+}
+
