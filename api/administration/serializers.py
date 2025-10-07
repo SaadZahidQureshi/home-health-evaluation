@@ -1,10 +1,13 @@
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, get_user_model
 
 from rest_framework import serializers
 
 from api.core.choices import Roles
 from api.core.validators import DotsValidationError
 from .models import TokenManagement
+
+
+User = get_user_model()
 
 
 class LoginAdminSerializer(serializers.Serializer):
@@ -31,9 +34,11 @@ class TokenSerializer(serializers.ModelSerializer):
         read_only_fields = ["token", "is_used", "created_at", "updated_at"]
 
     def create(self, validated_data):
-        email = validated_data["email"]
+        email = validated_data["email"].lower()
 
-        # check if unused token already exists
+        if User.objects.filter(email=email).exists():
+            raise serializers.ValidationError({"error": "User already registered with this email."})
+        
         existing = TokenManagement.objects.filter(email=email, is_used=False).first()
         if existing:
             raise serializers.ValidationError(

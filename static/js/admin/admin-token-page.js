@@ -64,7 +64,7 @@ function renderTokens(data) {
                     <td>
                         <div class="action_button">
                             <div>
-                                <svg class="cursor-pointer" onclick="openRegenerateTokenModal(${item?.id})" width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="cursor-pointer" onclick="openRegenerateTokenModal('${item?.email}')" width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_9538_6684)">
                                         <path fill-rule="evenodd" clip-rule="evenodd" d="M16.4297 6.5V8.72222C20.7175 8.72222 24.2075 12.2111 24.2075 16.5C24.2075 20.7889 20.7175 24.2778 16.4297 24.2778C12.1419 24.2778 8.65191 20.7889 8.65191 16.5C8.65191 14.4478 9.46857 12.5156 10.8741 11.0756V13.7222H13.0964V7.61111H6.98524V9.83333H8.97524C7.35302 11.6467 6.42969 14.01 6.42969 16.5C6.42969 22.0133 10.9152 26.5 16.4297 26.5C21.9441 26.5 26.4297 22.0133 26.4297 16.5C26.4297 10.9867 21.9441 6.5 16.4297 6.5Z" fill="#71BF1E"/>
                                     </g>
@@ -165,10 +165,75 @@ function openDeleteModal(id) {
     deleteModal.show();
 }
 
-function openRegenerateTokenModal(id) {
-    regenerateTokenId = id;
+let regenerateEmail = null;
+
+function openRegenerateTokenModal(email) {
+    regenerateEmail = email;  // ✅ store email globally
     let regenerateTokenModal = new bootstrap.Modal(document.getElementById('regenerateTokenModal'));
     regenerateTokenModal.show();
+}
+
+// 🟢 Handle regeneration API call
+async function regenerateToken() {
+    const regenerateBtn = document.getElementById("regenerateBtn");
+    const spinner = regenerateBtn.querySelector(".spinner-border");
+    const btnText = regenerateBtn.querySelector(".btn-text");
+
+    // Show loading state
+    spinner.classList.remove("hide");
+    btnText.textContent = "Regenerating...";
+    regenerateBtn.disabled = true;
+
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    try {
+        let headers = {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCookie("csrftoken")
+        };
+
+        // ✅ We’ll use email instead of id now
+        const url = `/api/admin/tokens/regenerate`;
+        const payload = { email: regenerateEmail }; // global variable set before modal opens
+
+        let response = await requestAPI(url, JSON.stringify(payload), headers, "POST");
+        let res = await response.json();
+
+        if (response.status === 201 || response.status === 200) {
+            // ✅ Close current modal
+            const confirmModalEl = document.getElementById("regenerateTokenModal");
+            const confirmModal = bootstrap.Modal.getInstance(confirmModalEl);
+            confirmModal.hide();
+
+            // ✅ Show regenerated token
+            document.querySelector(".regenerated-token").textContent = res.token;
+
+            // ✅ Open success modal
+            let successModal = new bootstrap.Modal(document.getElementById("regenerateSuccessModal"));
+            successModal.show();
+
+            // Optionally refresh tokens list
+            getTokens(tokensEndpoint);
+        } else {
+            alert(res.message || "Failed to regenerate token");
+        }
+
+    } catch (err) {
+        console.error("Error regenerating token:", err);
+        alert("Something went wrong while regenerating token.");
+    } finally {
+        // Reset button
+        spinner.classList.add("hide");
+        btnText.textContent = "Regenerate";
+        regenerateBtn.disabled = false;
+    }
+}
+
+
+
+function openRegenerateSuccessModal() {
+    let regenerateSuccessModal = new bootstrap.Modal(document.getElementById('regenerateSuccessModal'));
+    regenerateSuccessModal.show();
 }
 
 document.getElementById('confirmDeleteBtn').addEventListener('click', async function () {
@@ -274,7 +339,7 @@ generateTokenBtn.addEventListener('click', async function (e) {
             generateTokenBtn.style.cursor = 'not-allowed';
             getTokens(tokensEndpoint);
         } else {
-            tokenDescription.textContent = data.message || 'Failed to generate token.';
+            tokenDescription.textContent = data?.error || 'Failed to generate token.';
             tokenDescription.classList.remove('text-success');
 
             // re-enable button if failed

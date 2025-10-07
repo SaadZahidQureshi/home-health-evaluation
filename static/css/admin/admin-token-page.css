@@ -1,11 +1,11 @@
 .history_box {
-    height: calc(100vh - 129px);
+    height: calc(100vh - 248px);
 }
 
 .table-container {
     /* border-radius: 10px; */
     overflow-y: auto;
-    height: calc(100vh - 248px);
+    height: calc(100vh - 280px);
     /* font-weight: 500; */
     /* font-size: 18px;
     line-height: 24px;

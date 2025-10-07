@@ -5,7 +5,7 @@ const getNextPageBtn = document.getElementById('pagination-next-btn');
 const users = []
 let selectedUserId = null;
 let currentPage = 1;
-const perPage = 2;
+const perPage = 10;
 let headers = {
     'X-CSRFToken': getCookie('csrftoken'),
     "Content-Type": 'application/json'
