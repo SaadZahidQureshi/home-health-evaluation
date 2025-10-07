@@ -17,7 +17,7 @@ from api.core.mixin import DotsModelViewSet, GenericDotsViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from .models import TokenManagement
-from .serializers import TokenSerializer, TokenRegenerateSerializer
+from .serializers import TokenSerializer, TokenRegenerateSerializer, AdminUpdateSerializer
 
 User = get_user_model()
 
@@ -25,6 +25,7 @@ User = get_user_model()
 class AdminViewSet(DotsModelViewSet):
     queryset = User.objects.filter(role=Roles.ADMIN)
     serializer_class = UserSerializer
+    serializer_create_class = AdminUpdateSerializer
     permission_classes = [AllowAny]
     pagination_class = Pagination
     

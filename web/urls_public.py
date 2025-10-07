@@ -20,6 +20,7 @@ urlpatterns = [
     path("admin-sign-in-page/", adminSigninPageTemplateView.as_view(), name="admin_sign_in_page"),
     path("admin-token-page/", adminTokenPageTemplateView.as_view(), name="admin_token_page"),
     path("admin-users-page/", adminUsersPageTemplateView.as_view(), name="admin_users_page"),
+    path("admin-profile-settings-page/", adminProfileSettingsPageTemplateView.as_view(), name="admin_profile_settings_page"),
 
     path("", include("conf.urls")),
 ]

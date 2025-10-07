@@ -66,3 +66,17 @@ class TokenRegenerateSerializer(serializers.ModelSerializer):
         # generate new token
         validated_data["token"] = TokenManagement.generate_token()
         return TokenManagement.objects.create(**validated_data)
+
+
+class AdminUpdateSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = User
+        fields = ["name", "image"]
+    
+
+    def update(self, instance, validated_data):
+        image = validated_data.pop('image', None)
+        if image:
+            instance.image = image
+        return super().update(instance, validated_data)

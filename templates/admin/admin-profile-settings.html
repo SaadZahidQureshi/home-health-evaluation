@@ -1,0 +1,63 @@
+{% extends "admin/admin-base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin/admin-profile-settings.css' %}">
+{% endblock css %}
+{% block title %}Profile Setting{% endblock title %}
+
+{% block admin-page-title %}
+    <div class="admin-page-title">
+        Profile Settings
+    </div>
+{% endblock admin-page-title %}
+
+{% block content %}
+<div class="right-mainpart">
+    <div class="settings_box">
+        <form action="#" id="profileUpdateForm">
+            <div class="settings_wrapper">
+                <div class="profile_wrap text-center">
+                    <div class="settings_profile">
+                        <div class="profile_photo">
+                            <label for="profile-image">
+                                <img class="avatar-icon" id="profile-img-element" src="{% static 'img/profile-photo.png' %}" alt="Profile Photo">
+                                <input type="file" class="hide" name="image" id="profile-image" onchange="UploadImage(event)" accept="image/png">
+                            </label>
+                        </div>
+                        <div class="edit_btn">
+                            <a href="javascript:void(0)" onclick="document.getElementById('profile-image').click()">
+                                <img src="{% static 'img/edit.svg' %}" alt="Edit">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="profile_text">
+                        <p>Profile Photo</p>
+                    </div>
+                </div>
+                <div class="settings_details">
+                    <div class="settings_item">
+                        <label>Name</label>
+                        <input type="text" name="name" placeholder="Jorden">
+                    </div>
+                    <div class="settings_item">
+                        <label>Email Address</label>
+                        <input type="email" name="email" placeholder="alexjohn@gmail.com" readonly>
+                    </div>
+                    
+                    
+                </div>
+                <div class="save_btn">
+                    <button type="submit">
+                        <span class="spinner-border hide" role="status" aria-hidden="true"></span>
+                        <span class="btn-text">Save</span>
+                    </button>
+                </div>                           
+            </div>
+        </form>
+    </div>                                               
+</div>  
+
+{% endblock content %}
+{% block js %}
+<script src="{% static 'js/admin/admin-profile-settings.js' %}"></script>
+{% endblock js %}

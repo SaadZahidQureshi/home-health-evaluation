@@ -30,6 +30,10 @@ class adminUsersPageTemplateView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["active_admin_sidebar"] = "users"
         return context
+    
+class adminProfileSettingsPageTemplateView(TemplateView):
+    template_name = "admin/admin-profile-settings.html"
+    
 
 class SideSelectionPageTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "side-selection.html"
