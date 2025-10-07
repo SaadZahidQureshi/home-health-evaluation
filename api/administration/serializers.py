@@ -61,7 +61,7 @@ class TokenRegenerateSerializer(serializers.ModelSerializer):
         email = validated_data["email"]
 
         # delete existing unused token
-        TokenManagement.objects.filter(email=email, is_used=False).delete()
+        TokenManagement.objects.filter(email=email).delete()
 
         # generate new token
         validated_data["token"] = TokenManagement.generate_token()
