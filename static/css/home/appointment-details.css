@@ -79,7 +79,7 @@
     padding: 8px !important;
     margin-top: unset;
     position: relative;
-    top: -2px !important;
+    top: -1px !important;
 }
 .form-check {
     display: flex;

@@ -199,6 +199,14 @@ async function appointmentFormSubmit(event) {
 // 📌 Attach listener
 document.querySelector(".booking-form").addEventListener("submit", appointmentFormSubmit);
 
+function formatType(type) {
+  return type
+    .split('_')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
+
 
 function renderAppointmentDataInModal() {
     let container = document.getElementById("AppointmentData");
@@ -249,7 +257,7 @@ function renderAppointmentDataInModal() {
                                     </defs>
                                 </svg>
                             </div>
-                            <div class="info-text">${appointmentData.booking_person.notes}</div>
+                            <div class="info-text">${formatType(appointmentData.booking_person.type)}</div>
                         </div> `;
 
 }
