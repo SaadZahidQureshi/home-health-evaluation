@@ -1,3 +1,4 @@
+from django.views.generic import RedirectView
 from django.urls import path, include
 from .views import *
 
@@ -5,6 +6,7 @@ from .views import *
 urlpatterns = [
 
     #admin page
+    path("", RedirectView.as_view(url="login-page/")),
     path("login-page/", AdminSigninPageTemplateView.as_view(), name="admin_sign_in_page"),
     path("token/", AdminTokenPageTemplateView.as_view(), name="admin_token_page"),
     path("users/", AdminUsersPageTemplateView.as_view(), name="admin_users_page"),
