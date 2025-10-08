@@ -65,12 +65,15 @@ async function profileUpdateForm(event) {
                     let adminImageRes = await adminImageResponse.json();
                     document.getElementById("image").src = adminImageRes.data.image;
                 }
+                else if (adminImageResponse.status == 413) {
+                    showToast("Error!", "Failed to update profile picture. Ensure that the image is not larger than 3 MB", "danger-toast");
+                    return false;
+                }
             }
             showToast("Success", "Profile updated successfully!", "success-toast");
             setTimeout(() => {
                 afterLoad(button, "Updated");
                 buttonTextEl.textContent = originalButtonText;
-                _get_me_data();
                 get_me_data();
             }, 1000);
         } else {
