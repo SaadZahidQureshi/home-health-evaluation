@@ -35,7 +35,7 @@ async function loginForm(event) {
             showToast("Success", "Logged in successfully!", "success-toast");
             setTimeout(() => {
                 afterLoad(button, "Signed in");
-                location.href = `/admin-token-page/`;
+                location.href = `/token/`;
             }, 1000);
         } else {
             const result = await response.json();

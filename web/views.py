@@ -14,24 +14,24 @@ class LoginPageTemplateView(TemplateView):
 class RegisterPageTemplateView(TemplateView):
     template_name = "sign-up.html"
 
-class adminSigninPageTemplateView(TemplateView):
+class AdminSigninPageTemplateView(TemplateView):
     template_name = "admin/admin-sign-in.html"
 
-class adminTokenPageTemplateView(TemplateView):
+class AdminTokenPageTemplateView(TemplateView):
     template_name = "admin/admin-token-page.html"
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["active_admin_sidebar"] = "token"
         return context
 
-class adminUsersPageTemplateView(TemplateView):
+class AdminUsersPageTemplateView(TemplateView):
     template_name = "admin/admin-user-page.html"
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["active_admin_sidebar"] = "users"
         return context
     
-class adminProfileSettingsPageTemplateView(TemplateView):
+class AdminProfileSettingsPageTemplateView(TemplateView):
     template_name = "admin/admin-profile-settings.html"
     
 
