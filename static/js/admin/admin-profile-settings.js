@@ -66,7 +66,7 @@ async function profileUpdateForm(event) {
                     document.getElementById("image").src = adminImageRes.data.image;
                 }
                 else if (adminImageResponse.status == 413) {
-                    showToast("Error!", "Failed to update profile picture. Ensure that the image is not larger than 3 MB", "danger-toast");
+                    showToast("Error!", "Failed to update profile picture", "danger-toast");
                     return false;
                 }
             }
