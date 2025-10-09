@@ -2,6 +2,7 @@
 from django.urls import path, include
 from django.views.generic.base import RedirectView
 from .views import *
+from django.shortcuts import redirect
 
 
 urlpatterns = [
@@ -49,6 +50,10 @@ urlpatterns = [
     path("home-energy/saved/<int:pk>", HomeEnergySavedPageTemplateView.as_view(), name="home_energy_saved"),
     path("step/details/<int:pk>", StepDetailsPageTemplateView.as_view(), name="step_detail_page"),
     path("home-energy/profile-settings/", HomeEnergyProfileSettingPageTemplateView.as_view(), name="home_energy_profile_settings_page"),
+    # path("page-not-found/", pageNotFoundPageTemplateView.as_view(), name="page_not_found"),
 
     path("", include("conf.urls")),
 ]
+
+handler404 = "conf.error_handlers.custom_404_view"
+handler500 = "conf.error_handlers.custom_500_view"

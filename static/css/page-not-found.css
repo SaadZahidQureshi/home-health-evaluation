@@ -1,0 +1,45 @@
+body {
+    background:#F5F6F8;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+.main {
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.heading {
+    font-size: 30px;
+    font-weight: 800;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.home-button{
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: rgba(113, 191, 30, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000000;
+    margin-top: 30px;
+}
+
+.page-not-found-img-container {
+    width: 200px;
+    height: 100px;
+}
+
+.page-not-found-img-container img {
+    width: 100%;
+    height: 100%;
+}

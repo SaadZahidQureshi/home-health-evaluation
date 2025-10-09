@@ -1,6 +1,7 @@
 
 from django.urls import path, include
 from .views import *
+from django.shortcuts import redirect
 
 
 urlpatterns = [
@@ -15,6 +16,10 @@ urlpatterns = [
     path("pricing/", PricingPageTemplateView.as_view(), name="pricing_page"),
     path("term-of-services/", TermOfServicesTemplateView.as_view(), name="term_of_services_page"),
     path("privacy-policy/", PrivacyPolicyTemplateView.as_view(), name="privacy_policy_page"),
+    # path("page-not-found/", pageNotFoundPageTemplateView.as_view(), name="page_not_found"),
 
     path("", include("conf.urls")),
 ]
+
+handler404 = "conf.error_handlers.custom_404_view"
+handler500 = "conf.error_handlers.custom_500_view"

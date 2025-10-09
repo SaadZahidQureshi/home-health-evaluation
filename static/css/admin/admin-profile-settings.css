@@ -1,3 +1,7 @@
 .side_menu ul li::after {
   content: none !important; /* removes the pseudo-element completely */
 }
+
+.main-right {
+  min-width: unset;
+}
