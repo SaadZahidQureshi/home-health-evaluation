@@ -47,10 +47,10 @@ class ResponsiveCalendar {
 
             const dayOfWeek = date.getDay(); 
             // Sunday = 0, Monday = 1, ..., Saturday = 6
-            if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+            if (dayOfWeek >= 1 && dayOfWeek <= 4) {
                 this.dates.push(date);
             }
-
+            
             count++;
         }
     }

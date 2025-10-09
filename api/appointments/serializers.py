@@ -16,6 +16,7 @@ class BookingPersonSerializer(serializers.ModelSerializer):
         fields = ['id', 'first_name', 'last_name', 'email', 'phone_number', 
                  'address', 'zip_code', 'city', 'state', 'type']
 
+
 class AppointmentCreateSerializer(serializers.Serializer):
     date = serializers.DateField()
     slot_type = serializers.ChoiceField(choices=Availability.SLOT_CHOICES)
@@ -30,19 +31,25 @@ class AppointmentCreateSerializer(serializers.Serializer):
     type = serializers.ChoiceField(choices=CustomerTypes.choices)
     
     def validate(self, data):
-        # Check if slot is already booked
+        # ✅ Check if booking day is between Monday (0) and Thursday (3)
+        booking_day = data['date'].weekday()  # Monday=0 ... Sunday=6
+        if booking_day > 3:  # means Friday(4), Saturday(5), or Sunday(6)
+            raise serializers.ValidationError(
+                "Appointments can only be booked from Monday to Thursday."
+            )
+        
+        # ✅ Check if slot is already booked
         availability = Availability.objects.filter(
             date=data['date'], 
             slot_type=data['slot_type']
         ).first()
         
         if availability and availability.is_booked:
-            raise serializers.ValidationError("This slot is already booked")
+            raise serializers.ValidationError("This slot is already booked.")
         
         return data
     
     def create(self, validated_data):
-        # Extract booking person data
         booking_person_data = {
             'first_name': validated_data['first_name'],
             'last_name': validated_data['last_name'],
@@ -55,10 +62,8 @@ class AppointmentCreateSerializer(serializers.Serializer):
             'type': validated_data.get('type', ''),
         }
         
-        # Create booking person
         booking_person = BookingPerson.objects.create(**booking_person_data)
         
-        # Get or create availability and mark as booked
         availability, created = Availability.objects.get_or_create(
             date=validated_data['date'],
             slot_type=validated_data['slot_type']
@@ -66,13 +71,14 @@ class AppointmentCreateSerializer(serializers.Serializer):
         availability.is_booked = True
         availability.save()
         
-        # Create appointment
         appointment = Appointment.objects.create(
             booking_person=booking_person,
             availability=availability
         )
         
         return appointment
+
+
 
 class AppointmentSerializer(serializers.ModelSerializer):
     booking_person = BookingPersonSerializer(read_only=True)
