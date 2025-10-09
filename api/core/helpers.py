@@ -2,6 +2,7 @@ import os
 import base64
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
+from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.contrib.staticfiles import finders
 from django.template.loader import get_template
@@ -155,105 +156,131 @@ def render_to_pdf(template_src, context_dict={}):
 
 
 def send_home_evaluation_report_email(customer, data=None):
-    subject = "Your Healthy Home Evaluation Report"
-    from_email = settings.EMAIL_HOST_USER
-    to_email = [customer.user.email]
+    try:
 
-    text_content = subject
-    text_template = get_template("email/report-email-template.html")
-    context_obj = {"customer": customer, "type": "healthy"}
-    template_content = text_template.render(context_obj)
+        subject = "Your Healthy Home Evaluation Report"
+        from_email = settings.EMAIL_HOST_USER
+        to_email = [customer.user.email]
 
-    msg = EmailMultiAlternatives(subject, text_content, from_email, to_email)
-    msg.attach_alternative(template_content, "text/html")
+        text_content = subject
+        text_template = get_template("email/report-email-template.html")
+        context_obj = {"customer": customer, "type": "healthy"}
+        template_content = text_template.render(context_obj)
 
-    context = {"customer": customer, "data": data}    
-    pdf = render_to_pdf("email/healthy_home_report.html", context)
-    if pdf:
-        # file_path = os.path.join(settings.BASE_DIR, "Healthy_Home_Report.pdf")
-        # with open(file_path, "wb") as f:
-        #     f.write(pdf)
+        msg = EmailMultiAlternatives(subject, text_content, from_email, to_email)
+        msg.attach_alternative(template_content, "text/html")
 
-        msg.attach("Healthy_Home_Report.pdf", pdf, "application/pdf")
-        msg.send()
+        context = {"customer": customer, "data": data}    
+        pdf = render_to_pdf("email/healthy_home_report.html", context)
+        if pdf:
+            # file_path = os.path.join(settings.BASE_DIR, "Healthy_Home_Report.pdf")
+            # with open(file_path, "wb") as f:
+            #     f.write(pdf)
+
+            msg.attach("Healthy_Home_Report.pdf", pdf, "application/pdf")
+            msg.send()
+    except Exception as e:
+        print(f"Error sending healthy home email: {e}")
+        # Raise it so the view can handle it
+        raise Exception(f"Failed to send email: {str(e)}")
 
 
 def send_home_energy_report_email(customer, data=None):
-    subject = "Your Residencial Home Evaluation Report"
-    from_email = settings.EMAIL_HOST_USER
-    to_email = [customer.user.email]
+    try:
+        subject = "Your Residencial Home Evaluation Report"
+        from_email = settings.EMAIL_HOST_USER
+        to_email = [customer.user.email]
 
-    text_content = subject
-    text_template = get_template("email/report-email-template.html")
-    context_obj = {"customer": customer, "type": "residential"}
-    template_content = text_template.render(context_obj)
+        text_content = subject
+        text_template = get_template("email/report-email-template.html")
+        context_obj = {"customer": customer, "type": "residential"}
+        template_content = text_template.render(context_obj)
 
-    msg = EmailMultiAlternatives(subject, text_content, from_email, to_email)
-    msg.attach_alternative(template_content, "text/html")
+        msg = EmailMultiAlternatives(subject, text_content, from_email, to_email)
+        msg.attach_alternative(template_content, "text/html")
 
-    context = {"customer": customer, "data": data}
-    pdf = render_to_pdf("email/residential-home-report.html", context)
-    if pdf:
-        # file_path = os.path.join(settings.BASE_DIR, "Residential_Home_Report.pdf")
-        # with open(file_path, "wb") as f:
-        #     f.write(pdf)
+        context = {"customer": customer, "data": data}
+        pdf = render_to_pdf("email/residential-home-report.html", context)
+        if pdf:
+            # file_path = os.path.join(settings.BASE_DIR, "Residential_Home_Report.pdf")
+            # with open(file_path, "wb") as f:
+            #     f.write(pdf)
 
-        msg.attach("Residential_Home_Report.pdf", pdf, "application/pdf")
-        msg.send()
+            msg.attach("Residential_Home_Report.pdf", pdf, "application/pdf")
+            msg.send()
+    except Exception as e:
+        # Log the error for debugging
+        print(f"Error sending residential home email: {e}")
+        # Raise it so the view can handle it
+        raise Exception(f"Failed to send email: {str(e)}")
 
 def format_service_type(service_type):
     return service_type.replace("_", " ").title()
 
 
 def send_contact_us_email(first_name, last_name, email, phone_number, service_type, message):
-    subject = "New Contact Us Submission"
-    text_content = subject
-    template = get_template("email/contact_us_email.html")
-    context = {
-        "first_name": first_name,
-        "last_name": last_name,
-        "email": email,
-        "phone_number": phone_number,
-        "service_type": format_service_type(service_type),
-        "message": message,
-    }
-    html_content = template.render(context)
-    msg = EmailMultiAlternatives(
-        subject,
-        text_content,
-        settings.EMAIL_HOST_USER,
-        settings.CONTACT_EMAIL,
-    )
-    msg.attach_alternative(html_content, "text/html")
-    msg.send()
+    try:
+        subject = "New Contact Us Submission"
+        text_content = subject
+        template = get_template("email/contact_us_email.html")
+        context = {
+            "first_name": first_name,
+            "last_name": last_name,
+            "email": email,
+            "phone_number": phone_number,
+            "service_type": format_service_type(service_type),
+            "message": message,
+        }
+        html_content = template.render(context)
+        msg = EmailMultiAlternatives(
+            subject,
+            text_content,
+            settings.EMAIL_HOST_USER,
+            settings.CONTACT_EMAIL,
+        )
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+    except Exception as e:
+        print(f"Error sending contact us email: {e}")
+        # Raise it so the view can handle it
+        raise Exception(f"Failed to send email: {str(e)}")
 
 
 def send_appointment_email(data):
-    subject = "New Appointment Scheduled – PG Home Dynamics"
-    text_content = subject
-    template = get_template("email/appointment_email.html")
-    context = {"data": data}
-    html_content = template.render(context)
-    msg = EmailMultiAlternatives(
-        subject,
-        text_content,
-        settings.EMAIL_HOST_USER,
-        settings.CONTACT_EMAIL,
-    )
-    msg.attach_alternative(html_content, "text/html")
-    msg.send()
+    try:
+        subject = "New Appointment Scheduled – PG Home Dynamics"
+        text_content = subject
+        template = get_template("email/appointment_email.html")
+        context = {"data": data}
+        html_content = template.render(context)
+        msg = EmailMultiAlternatives(
+            subject,
+            text_content,
+            settings.EMAIL_HOST_USER,
+            settings.CONTACT_EMAIL,
+        )
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+    except Exception as e:
+        print(f"Error sending appointment email: {e}")
+        # Raise it so the view can handle it
+        raise Exception(f"Failed to send email: {str(e)}")
 
 def send_appointment_confirmation_email(data):
-    subject = "Appointment Confirmation – PG Home Dynamics"
-    text_content = subject
-    template = get_template("email/appointment_confirmation_email.html")
-    context = {"data": data}
-    html_content = template.render(context)
-    msg = EmailMultiAlternatives(
-        subject,
-        text_content,
-        settings.EMAIL_HOST_USER,
-        [data.booking_person.email],
-    )
-    msg.attach_alternative(html_content, "text/html")
-    msg.send()
+    try:
+        subject = "Appointment Confirmation – PG Home Dynamics"
+        text_content = subject
+        template = get_template("email/appointment_confirmation_email.html")
+        context = {"data": data}
+        html_content = template.render(context)
+        msg = EmailMultiAlternatives(
+            subject,
+            text_content,
+            settings.EMAIL_HOST_USER,
+            [data.booking_person.email],
+        )
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+    except Exception as e:
+        print(f"Error sending appointment confirmation email: {e}")
+        raise Exception(f"Failed to send email: {str(e)}")

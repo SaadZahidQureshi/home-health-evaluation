@@ -1,3 +1,5 @@
+from django.db import transaction
+
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -54,11 +56,24 @@ class AppointmentViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        appointment = serializer.save()
-        send_appointment_email(appointment)
-        send_appointment_confirmation_email(appointment)
-        response_serializer = AppointmentSerializer(appointment)
-        return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+        try:
+            with transaction.atomic():
+                appointment = serializer.save()
+
+                # Try sending both emails inside transaction
+                send_appointment_email(appointment)
+                send_appointment_confirmation_email(appointment)
+
+            # If we reach here, everything succeeded
+            response_serializer = AppointmentSerializer(appointment)
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+
+        except Exception as e:
+            print(f"Error during appointment creation or email sending: {e}")
+            return Response(
+                {"error": f"Failed to complete booking: {str(e)}"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
 
     def destroy(self, request, *args, **kwargs):
         appointment = self.get_object()

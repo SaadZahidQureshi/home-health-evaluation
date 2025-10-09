@@ -133,11 +133,17 @@ class PrincipleViewSet(DotsModelViewSet):
     
     @action(detail=False, methods=["POST"], url_path="report")
     def report(self, request, *args, **kwargs):
-        customer_id = request.GET.get("customer_id")
-        customer = self._get_customer(customer_id) if customer_id else None
-        report_data = get_customer_report_data(customer)
-        send_home_evaluation_report_email(customer, report_data)
-        return Response({"data": report_data}, status=status.HTTP_200_OK)
+        try:
+            customer_id = request.GET.get("customer_id")
+            customer = self._get_customer(customer_id) if customer_id else None
+            report_data = get_customer_report_data(customer)
+
+            send_home_evaluation_report_email(customer, report_data)
+            return Response({"data": report_data}, status=status.HTTP_200_OK)
+        except Exception as e:
+            print(f"Error generating or sending report: {e}")
+            return Response({"error": "Failed to send report email: " + str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
 
 class CategoryViewSet(DotsModelViewSet):
     queryset = Category.objects.all()
@@ -257,19 +263,25 @@ class ContactUsView(APIView):
         serializer = ContactUsSerializer(data=request.data)
         if serializer.is_valid():
             data = serializer.validated_data
-
-            # Send email
-            send_contact_us_email(
-                first_name=data["first_name"],
-                last_name=data["last_name"],
-                email=data["email"],
-                phone_number=data["phone_number"],
-                service_type=data["service_type"],
-                message=data.get("message", "")
-            )
+            try:
+                send_contact_us_email(
+                    first_name=data["first_name"],
+                    last_name=data["last_name"],
+                    email=data["email"],
+                    phone_number=data["phone_number"],
+                    service_type=data["service_type"],
+                    message=data.get("message", "")
+                )
+            except Exception as e:
+                # Handle email sending error
+                return Response(
+                    {"error": str(e)},
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                )
 
             return Response(
                 {"message": "Your query has been submitted successfully."},
                 status=status.HTTP_200_OK,
             )
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

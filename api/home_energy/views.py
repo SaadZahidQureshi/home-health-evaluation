@@ -122,15 +122,19 @@ class StepViewSet(DotsModelViewSet):
     
     @action(detail=False, methods=["POST"], url_path="report")
     def report(self, request, *args, **kwargs):
-        customer_id = request.GET.get("customer_id") or request.data.get("customer_id")
-        customer = self._get_customer(customer_id) if customer_id else None
+        try:
+            customer_id = request.GET.get("customer_id") or request.data.get("customer_id")
+            customer = self._get_customer(customer_id) if customer_id else None
 
-        if not customer:
-            return Response({"detail": "Customer not found."}, status=status.HTTP_404_NOT_FOUND)
+            if not customer:
+                return Response({"detail": "Customer not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        report_data = get_customer_home_energy_report(customer)
-        send_home_energy_report_email(customer, report_data)
-        return Response({"data": report_data}, status=status.HTTP_200_OK)
+            report_data = get_customer_home_energy_report(customer)
+            send_home_energy_report_email(customer, report_data)
+            return Response({"data": report_data}, status=status.HTTP_200_OK)
+        except Exception as e:
+            print(f"Error generating or sending report: {e}")
+            return Response({"error": "Failed to send report email: " + str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     
 
