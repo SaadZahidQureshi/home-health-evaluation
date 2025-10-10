@@ -1178,3 +1178,7 @@
     }
     
 }
+
+.contact-item-disabled {
+    pointer-events: none !important;
+}
