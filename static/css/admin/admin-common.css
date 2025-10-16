@@ -23,3 +23,26 @@ li.active  {
     background-color: rgba(113, 191, 30, 1); 
 	border-radius: 10px;
 }
+
+/* @media (max-width:1350px) {
+    .parent-container-for-search-input-and-btn {
+        position: static;  
+        left: auto;         
+        transform: none;    
+
+    }
+    
+} */
+.main-right-col {
+    overflow-x: auto;
+}
+
+.main-right {
+    min-width: 1100px;
+}
+
+@media screen and (max-width: 767px) {
+    .history_table table {
+        width: 100% !important; 
+    }
+}

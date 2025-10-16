@@ -399,6 +399,9 @@ class HomePageTemplateView(TemplateView):
         context["active_nav"] = "home"
         context["google_map_api"] = settings.GOOGLE_MAP_API
         return context
+    
+class pageNotFoundPageTemplateView(TemplateView):
+    template_name = "page-not-found.html"
 
 class PricingPageTemplateView(TemplateView):
     template_name = "home/pricing.html"
