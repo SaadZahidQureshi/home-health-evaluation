@@ -163,6 +163,17 @@ input::-webkit-inner-spin-button {
 }
 
 
+.iti {
+  width: 100%;
+}
+.iti__flag-container {
+  z-index: 10;
+}
+
+.form-group #phone {
+    width: 100%;
+}
+
 /* main responsive stylings for all screenssss */
 
 

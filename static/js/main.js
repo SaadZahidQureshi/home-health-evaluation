@@ -61,6 +61,31 @@ function afterLoad(button, text) {
     button.pointerEvents = "auto";
 }
 
+
+document.addEventListener("DOMContentLoaded", function () {
+  const phoneInputField = document.querySelector("#phone");
+  const iti = window.intlTelInput(phoneInputField, {
+    initialCountry: "us",
+    nationalMode: false,
+    autoPlaceholder: "polite",
+    formatOnDisplay: true,
+    preferredCountries: ["us", "gb"],
+    utilsScript:
+      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js",
+  });
+
+  const form = document.querySelector("form");
+    form.addEventListener("submit", function (e) {
+//     if (!iti.isValidNumber()) {
+//         e.preventDefault();
+//        showToast("Error!", "Please enter a valid phone number with country code.", "danger-toast");
+//     return false;
+//   }
+  phoneInputField.value = iti.getNumber();
+});
+});
+
+
 function extractErrorMessages(obj) {
 	const messages = [];
 
@@ -293,3 +318,6 @@ function setParams(params, key, value) {
     let updatedParams = Object.entries(paramsObject).map(([key, value]) => `${key}=${value}`).join('&');
     return updatedParams;
 }
+
+
+

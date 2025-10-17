@@ -2,6 +2,7 @@ var successModal;
 let nextActionsModal;
 let appointmentData = {};
 let isEditMode = false;
+let phoneNumberInput = document.getElementById("phone");
 
 // Initialize modals when DOM is ready
 document.addEventListener('DOMContentLoaded', function () {
@@ -57,6 +58,14 @@ async function appointmentFormSubmit(event) {
     // 📌 SessionStorage data
     let selectedDate = sessionStorage.getItem("selected_date");
     let selectedSlot = sessionStorage.getItem("selected_slot");
+
+    const phoneNumber = libphonenumber.isValidPhoneNumber(data.phone_number);
+
+    // 📌 Phone validation
+    if (!phoneNumber) {
+        showToast("Error!", "Please enter a valid phone number with country code.", "danger-toast");
+        return false;
+    }
 
     let type = [];
     form.querySelectorAll('.form-check-input:checked').forEach((checkbox) => {
@@ -387,3 +396,7 @@ function saveToUserCalendar() {
     var myModal = new bootstrap.Modal(document.getElementById('calendarPopup'));
     myModal.show();
 }
+
+
+phoneNumberInput.addEventListener('input', handlePhoneInput);
+phoneNumberInput.addEventListener('keypress', handlePhoneKeyPress);

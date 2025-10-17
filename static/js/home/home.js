@@ -140,6 +140,3 @@ phoneNumberInput.addEventListener('input', handlePhoneInput);
 phoneNumberInput.addEventListener('keypress', handlePhoneKeyPress);
 
 
-document.getElementById("get-started-btn").addEventListener("click",function(){
-    window.location.href = "login-page/";
-})
