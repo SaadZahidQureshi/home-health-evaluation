@@ -1,7 +1,7 @@
 class ResponsiveCalendar {
     constructor() {
         this.currentDate = new Date();
-        this.selectedDate = new Date();
+        this.selectedDate = this.getNextWeekday(new Date());
         this.currentStartIndex = 0;
         this.dates = [];
         this.maxVisibleDates = this.getMaxVisibleDates();
@@ -158,6 +158,17 @@ class ResponsiveCalendar {
             this.renderDates();
             this.updateArrowStates();
         }
+    }
+
+    getNextWeekday(date) {
+        const next = new Date(date);
+        let day = next.getDay();
+
+        if (day === 5) next.setDate(next.getDate() + 3);
+        else if (day === 6) next.setDate(next.getDate() + 2);
+        else if (day === 0) next.setDate(next.getDate() + 1);
+
+        return next;
     }
 
     navigateLeft() {
