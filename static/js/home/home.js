@@ -1,4 +1,5 @@
 let phoneNumberInput = document.getElementById("phone");
+let phoneNumberInputInstance = initializePhoneInput(phoneNumberInput)
 
 async function contactFormSubmit(event) {
     event.preventDefault();
@@ -8,14 +9,6 @@ async function contactFormSubmit(event) {
     let buttonText = button.querySelector(".btn-text").textContent;
     let formData = new FormData(form);
     let data = formDataToObject(formData);
-
-    const phoneNumber = libphonenumber.isValidPhoneNumber(data.phone_number);
-
-    // 📌 Phone validation
-    if (!phoneNumber) {
-        showToast("Error!", "Please enter a valid phone number with country code.", "danger-toast");
-        return false;
-    }
 
     // 📌 Validations
     if (!data.first_name || data.first_name.trim() === '') {
@@ -30,6 +23,10 @@ async function contactFormSubmit(event) {
         showToast("Error!", "Email is required.", "danger-toast");
         return false;
     }
+    if (!phoneNumberInputInstance.isValidNumber()) {
+        showToast("Error!", "Please enter a valid phone number with country code.", "danger-toast");
+        return false;
+    }
     if (!data.service_type || data.service_type.trim() === '') {
         showToast("Error!", "Please select a service type.", "danger-toast");
         return false;
@@ -38,6 +35,8 @@ async function contactFormSubmit(event) {
         showToast("Error!", "Message is required.", "danger-toast");
         return false;
     }
+
+    data.phone_number = phoneNumberInputInstance.getNumber();
 
     // 📌 Payload
     let payload = {

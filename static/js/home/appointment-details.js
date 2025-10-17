@@ -3,6 +3,7 @@ let nextActionsModal;
 let appointmentData = {};
 let isEditMode = false;
 let phoneNumberInput = document.getElementById("phone");
+let phoneNumberInputInstance = initializePhoneInput(phoneNumberInput)
 
 // Initialize modals when DOM is ready
 document.addEventListener('DOMContentLoaded', function () {
@@ -59,13 +60,13 @@ async function appointmentFormSubmit(event) {
     let selectedDate = sessionStorage.getItem("selected_date");
     let selectedSlot = sessionStorage.getItem("selected_slot");
 
-    const phoneNumber = libphonenumber.isValidPhoneNumber(data.phone_number);
+    // const phoneNumber = libphonenumber.isValidPhoneNumber(data.phone_number);
 
-    // 📌 Phone validation
-    if (!phoneNumber) {
-        showToast("Error!", "Please enter a valid phone number with country code.", "danger-toast");
-        return false;
-    }
+    // // 📌 Phone validation
+    // if (!phoneNumber) {
+    //     showToast("Error!", "Please enter a valid phone number with country code.", "danger-toast");
+    //     return false;
+    // }
 
     let type = [];
     form.querySelectorAll('.form-check-input:checked').forEach((checkbox) => {
@@ -91,8 +92,8 @@ async function appointmentFormSubmit(event) {
         showToast("Error!", "Email is required.", "danger-toast");
         return false;
     }
-    if (!data.phone_number || data.phone_number.trim() === "") {
-        showToast("Error!", "Phone number is required.", "danger-toast");
+    if (!phoneNumberInputInstance.isValidNumber()) {
+        showToast("Error!", "Please enter a valid phone number with country code.", "danger-toast");
         return false;
     }
     if (!data.address || data.address.trim() === "") {
@@ -115,6 +116,8 @@ async function appointmentFormSubmit(event) {
         showToast("Error!", "Please select at least one choice.", "danger-toast");
         return false;
     }
+
+    data.phone_number = phoneNumberInputInstance.getNumber();
 
     // -------- Payload --------
     let payload = {
